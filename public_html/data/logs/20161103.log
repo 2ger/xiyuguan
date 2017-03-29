@@ -1,0 +1,43 @@
+2016-11-03 09:49:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1478137783</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&storeid=1&do=queue&m=weisrc_dish]]></EventKey>
+<MenuId>405817572</MenuId>
+</xml>
+
+2016-11-03 09:49:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-11-03 09:49:43 response :
+------------
+
+2016-11-03 10:41:51 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtzRhbIbWvCcVLCAI0KoNa6s]]></FromUserName>
+<CreateTime>1478140911</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-11-03 10:41:51 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-11-03 10:41:51 response :
+------------
+

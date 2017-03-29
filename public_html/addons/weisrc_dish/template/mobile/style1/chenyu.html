@@ -1,0 +1,32 @@
+<html>
+<head>
+<script type="text/javascript">
+function qrcode2(){
+var FNScanner = api.require('FNScanner');
+FNScanner.openScanner({
+    autorotation: true
+}, function(ret, err){        
+    if( ret ){
+        var urlf = ret.content;
+        // alert(urlf);
+        if(urlf != undefined){
+            urlf = urlf+"&opp=cheng";
+            //alert(urlf);
+            window.location.href=urlf;
+        }
+    }else{
+        //alert( JSON.stringify( err ) );
+    }
+});
+}
+// qrcode2();
+ window.setTimeout(qrcode2,1000); 
+// setTimeout(qrcode2(),10000);  
+</script>
+</head>
+<body>
+
+</body>
+</head>
+
+

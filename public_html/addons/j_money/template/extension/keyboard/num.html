@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Virtual Keyboard</title>
+
+	<link href="docs/css/jquery-ui.min.css" rel="stylesheet">
+	<!-- still using jQuery v2.2.4 because Bootstrap doesn't support v3+ -->
+	<script src="docs/js/jquery-latest.min.js"></script>
+	<script src="docs/js/jquery-ui.min.js"></script>
+
+	<!-- keyboard widget css & script (required) -->
+	<link href="css/keyboard.css" rel="stylesheet">
+	<script src="js/jquery.keyboard.js"></script>
+
+
+</head>
+
+<body>
+<input id="num2" class="alignRight" type="text">
+
+<script>
+$('#num2')
+	.keyboard({
+		layout : 'num',
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		preventPaste : true,  // prevent ctrl-v and right click
+		autoAccept : true
+	})
+	.addTyping();
+</script>
+</body></html>

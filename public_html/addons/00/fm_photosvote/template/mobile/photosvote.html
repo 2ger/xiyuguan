@@ -1,0 +1,167 @@
+{template 'header'}
+<script type="text/javascript" src="../addons/fm_photosvote/template/js/swipe.js?{php echo time()}"></script>
+<link type="text/css" rel="stylesheet" href="../addons/fm_photosvote/template/mobile/photos/style.css?{php echo time()}" />
+<link rel="stylesheet" type="text/css" href="../addons/fm_photosvote/template/css/style.css?{php echo time()}">
+<style>
+body{background:white no-repeat;background-size:100% auto;}
+ .h {height:10px}
+ .btn{  padding: 4px 8px;}
+ .pagination ul > li > a, .pagination ul > li > span {
+  padding: 5px 5px;
+}
+.con {
+  background: {$reply['zbgcolor']} url({php echo toimage($reply['zbg'])});
+  padding: 15px 10px 20px;
+  margin-top: -60px;
+  background-size: 100% auto; 
+  max-width: 640px;
+  margin: 0 auto;
+}
+.tongji {
+  width: 100%;
+  height: 60px;
+  background: url({php echo toimage($reply['zbgtj'])}) repeat-x -60px 0;
+  background-size: auto 100%;
+  position: relative;
+  z-index: 10px; 
+  max-width: 640px;
+  margin: 0 auto;
+}
+ .top { font-size: 14px; }
+ 
+ .modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-top: 12%;
+}
+.banner {
+  max-width: 640px;
+  margin: 0 auto;
+  max-height: 160px;
+}
+.usr_more {
+  width: 100%;
+  border: 0px solid #c4d4d0;
+  line-height: 35px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 0px;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.4);
+}
+</style>
+
+{template 'hnav'}
+<div id="banner_box" class="box_swipe" style="  max-width: 640px;  margin: 0 auto;">
+    <ul>
+        {loop $banners $banner}
+        <li>
+            <a href="{if empty($banner['link'])}#{else}{$banner['link']}{/if}"><img src="{php echo toimage($banner['thumb'])}" alt=""  width='100%' height='200px'/>
+            </a>
+            <span class="title" style="color:#fff;">{$banner['bannername']}</span>
+        </li>
+        {/loop}
+    </ul>
+    <ol>
+       {php $slideNum = 1;}
+	{loop $banners $banner}
+		<li{if $slideNum == 1} class="on"{/if}></li>
+		{php $slideNum++;}
+	{/loop}
+    </ol>
+</div>
+<script>
+	  
+		$(function() {
+		new Swipe($('#banner_box')[0], {
+		speed:500,
+				auto:3000,
+				callback: function(){
+				var lis = $(this.element).next("ol").children();
+						lis.removeClass("on").eq(this.index).addClass("on");
+				}
+		});
+		});
+		
+</script>
+{template 'tongji'}
+
+<div class="con">
+{if $reply['isedes'] == 1}
+	<p class="tips"><i>活动简介</i></p>
+    <div class="neirong">
+<h3 style="text-align:center;">全城寻找</h3></br><h3 style="text-align:center;">【路邮寄】形象代言人</h3></br>
+把藏在手机里的自拍照秀出来，用你们强大的气场HOLD住网友们吧！ 自拍达人们，将你们的激情化作一张自拍来刺伤小伙伴们的神经吧！或许，不管你长得多么着急，也不管你颜值多高。 </br>
+或许，有人因为你的自拍而改变命运！或许有人因为你的自拍而彻夜难眠！来吧，小伙伴们，小宇宙爆发吧!</br>
+
+秀出最真实最自信的一面！赶快拿起你的手机，调好焦距，换身衣服，摆个Pose，马上参与吧！</br>
+
+只要你是18-35岁，无论男女都可参与路邮寄全城寻找代言人的投票活动，活动时间：2016年6月1日——2016年6月30日</br>
+
+选出一位票数最多的作为路邮寄同城物流形象代言人</br>
+
+还不赶快行动，下一个白富美、 高富帅就是你……</br>
+
+微信投票：关注“路邮寄”即可参与投票。</br></br>
+
+<h3 style="text-align:center;">投票奖励</h3><br>
+一等奖（1名）获得：</br>
+
+1、香港百星珠宝提供的钻戒一枚（价值3800元）。</br>
+
+2、坐夜酒吧提供的德国啤酒十打（价值3600元）。</br>
+
+3、路邮寄提供创业计划全国物流收益的1％的股权。</br>
+
+4、丽竹提供的洗护套装两份。</br>
+</br>
+
+二等奖（2名）获得：</br>
+1、路邮寄提供的价值500元寄货券一张。</br>
+2、丽竹提供的洗护套装一份。</br>
+</br>
+
+三等奖（10名）获得：</br>1、路邮寄提供的价值100元寄货券一张。</br>
+2、丽竹提供的洗护套装一份。</br>
+</br>
+四等奖（30名）获得：</br>价值50元的寄货券一张。</br>
+</br>
+幸运奖（票数超过100）获得：</br>10元寄货券一张。</br></br>
+诚邀更多赞助商..（15878297309 梁先生）</br></br>
+
+<h3 style="text-align:center;">投票规则</h3><br>
+
+<p style="text-align:center;">禁止刷票！我们将严格审查投票选手，一经发现刷票将取消活动资格！</p><br>
+
+1、一旦参赛，本活动将认定参赛者提供了自己的真实照片合法使用权，不再另行协议。 <br>
+2、活动期间，每位用户每天只能投8位选手各一票。<br>
+3、对蓄意诽谤、破坏、干扰或恶意言论及行为，本公司将诉诸法律手段维护本次活动的合法权益。 <br>
+4、仅限18-35岁女性参加。报名需要提交本人真实有效照片，填写真实有效资料。使用虚假照片和报名信息将视为无效。同一参赛选手不可重复报名。<br> 
+5、活动结束后，将在“路邮寄”指定的会场公布名次，具体会场待定。 <br>
+6、本活动公开、公平、公正，欢迎监督。对诋毁造谣之言论者将追究法律责任！ <br>
+7、本次活动最终解释权归“路邮寄”微信平台所有！ <br>
+	</div>
+{/if}	
+   <p class="tips"><i>投票区</i></p>
+	{template 'tmoshi'}
+	{if ($reply['tmoshi'] == 1 || $reply['tmoshi'] == 2 || $reply['tmoshi'] == 3)}
+		{if $total > $psize}	
+		<div align="center">  
+			<button class="usr_more load_more label label-info" id="load_more_button"><i class="fa fa-random"></i> 查看更多</button>
+			<div class="animation_image" style="display:none;width:50px;color:#fff"><img src="../addons/fm_photosvote/template/mobile/photos/ajax-loader.gif" width="50"> Loading...</div>  
+		</div>
+		
+		{/if}
+	{else}
+		<div style="margin:0 auto;padding:0;text-align:center;">{$pager}</div>
+	{/if}
+	
+	{if $reply['isindex'] == 1}{template 'zanzhu'}{/if}
+	  <div class="copyright">
+    <a href="#"><i class="fa fa-copyright"></i>路邮寄</a>
+  </div>
+	<div class="h"></div>
+</div>
+{template 'fnav'}
+{template 'tvote'}
+{template 'footer'}

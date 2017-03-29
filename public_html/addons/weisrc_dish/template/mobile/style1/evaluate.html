@@ -1,0 +1,63 @@
+<html lang="zh-CN">
+<head>
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+    ng\:form {
+        display: block;
+    }</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户打赏</title>
+    <link data-turbolinks-track="true" href="{RES}/mobile/{php echo $this->cur_tpl}/assets/diandanbao/weixin.css" media="all" rel="stylesheet">
+    <style type="text/css">@media screen {
+        .smnoscreen {
+            display: none
+        }
+    }
+    @media print {
+        .smnoprint {
+            display: none
+        }
+    }</style>
+    {php echo register_jssdk(false);}
+</head>
+<body>
+<div ng-view="" style="height: 100%;" class="ng-scope">
+    <div class="ddb-nav-header ng-scope" common-header="">
+        <div class="nav-left-item" onclick="location.href='{php echo $this->createMobileUrl('waprestlist', array(), true)}';"><i class="fa fa-angle-left"></i></div>
+        <div class="header-title ng-binding">用户打赏</div>
+    </div>
+    <!--footer-->
+    {php include $this->template($this->cur_tpl.'/_menu');}
+
+
+    <div id="ddb-branch-show" class="main-view ng-scope">
+      <form name="form1" method="POST" action="" id='data_form'>
+        <div class="space-12"></div>
+        <div class="intro-section">
+            <div class="avatar-part">
+                <div class="branch-info">
+                    <div class="name ng-binding">打赏</div>
+                </div>
+            </div>
+        
+        <div class="operation-navs ng-scope">
+            <div class="operation-nav-item ng-scope">
+               <div class="text ng-binding"><input type="submit" name="money1" value="2元"></div>
+            </div>
+            <div class="operation-nav-item ng-scope">  
+              <div class="text ng-binding"><input type="submit" name="money2" value="4元"></div> 
+            </div>
+
+        </div>
+      </div>
+      <input type="hidden" name="submit" value="1" />
+      <input type="hidden" name="token" value="{$_W['token']}" />
+    </form>  
+</div>
+
+</body>
+</html>

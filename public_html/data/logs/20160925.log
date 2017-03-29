@@ -1,0 +1,48 @@
+2016-09-25 08:21:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtw97axvBp6AZK6YDY6PlSmw]]></FromUserName>
+<CreateTime>1474762872</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>38.953106</Latitude>
+<Longitude>117.329865</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-09-25 08:21:12 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-09-25 08:21:12 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-09-25 08:21:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtw97axvBp6AZK6YDY6PlSmw]]></FromUserName>
+<CreateTime>1474762879</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&eid=110]]></EventKey>
+<MenuId>405795979</MenuId>
+</xml>
+
+2016-09-25 08:21:19 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-25 08:21:19 response :
+------------
+

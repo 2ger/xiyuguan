@@ -1,0 +1,309 @@
+h5{
+	background-color:#efeff4;
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.mui-content{
+	background-color:#fff
+}
+
+.go{
+	text-align: right;
+}
+
+.fr{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 25% 30%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.ro{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 25% 80%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.alb{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 100% 100%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.sw{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 50% 90%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.eng{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 75% 20%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.ru{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 50% 80%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.wl{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 50% 100%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.sl{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 75% 90%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.de{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 100% 30%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.ur{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 25% 100%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.po{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 100% 70%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.ni{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 50% 70%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.sp{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 25% 90%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.cz{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 25% 20%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.tu{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 0% 100%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.cr{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 100% 10%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.be{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 0% 10%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.it{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 25% 50%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.ir{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 100% 40%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.sd{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 100% 90%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.pu{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 0% 80%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.il{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 75% 40%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.au{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 75% 0%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+.hu{
+	width: 45px;
+	height: 45px;
+	background-size: 225px 495px;
+	vertical-align: middle;
+	background-position: 50% 40%;
+	display: inline-block;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url(../img/flags.png);
+}
+
+p{
+	font-size: 15px;
+	text-align: center;
+}

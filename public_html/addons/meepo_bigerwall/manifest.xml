@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.baidu.com" versionCode="0.6,0.7,0.8">
+	<application setting="false">
+		<name><![CDATA[Meepo微现场超级版]]></name>
+		<identifie><![CDATA[meepo_bigerwall]]></identifie>
+		<version><![CDATA[8.7.7.1]]></version>
+		<type><![CDATA[activity]]></type>
+		<ability><![CDATA[可以实时同步显示现场参与者发送的微信消息,作者QQ 135034381]]></ability>
+		<description><![CDATA[Meepo微现场超级版，是在年会、展会、音乐会、婚礼现场、校园开学典礼、元旦晚会等场所展示特定主题微信的大屏幕，大屏幕上可以同步显示现场参与者发送的微信消息，现场人员参与抽奖、摇一摇、投票等等活动，也可在一个公众号内同时举行多个活动，非常的强大，能使场内外观众能够第一时间传递和获取现场信息，嗨爆整个现场。]]></description>
+		<author><![CDATA[F11源代码]]></author>
+		<url><![CDATA[http://bbs.f11.cc]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+			<message type="image" />
+			<message type="qr" />
+			<message type="subscribe" />
+			<message type="click" />
+		</handles>
+		<rule embed="true" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<rule>
+			<entry title="活动管理" do="manage" state="" direct="false" />
+		</rule>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[inc/qdyma/install.php]]></install>
+	<uninstall><![CDATA[inc/qdyma/uninstall.php]]></uninstall>
+	<upgrade><![CDATA[inc/qdyma/update.php]]></upgrade>
+</manifest>

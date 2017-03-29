@@ -1,0 +1,58 @@
+2016-07-25 11:14:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_a4f9178c9538]]></ToUserName>
+<FromUserName><![CDATA[oPAtQt2d8Dcn8qR_gvUwYaVvpfeg]]></FromUserName>
+<CreateTime>1469416482</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[订餐]]></EventKey>
+</xml>
+
+2016-07-25 11:14:42 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 9 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-07-25 11:14:42 response :
+------------
+Array:
+FromUserName : gh_a4f9178c9538 ;
+ToUserName : oPAtQt2d8Dcn8qR_gvUwYaVvpfeg ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-07-25 12:19:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_a4f9178c9538]]></ToUserName>
+<FromUserName><![CDATA[oPAtQt2d8Dcn8qR_gvUwYaVvpfeg]]></FromUserName>
+<CreateTime>1469420341</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[订餐]]></EventKey>
+</xml>
+
+2016-07-25 12:19:01 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 9 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-07-25 12:19:01 response :
+------------
+Array:
+FromUserName : gh_a4f9178c9538 ;
+ToUserName : oPAtQt2d8Dcn8qR_gvUwYaVvpfeg ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+

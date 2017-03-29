@@ -1,0 +1,170 @@
+2016-09-29 09:16:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475111779</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307957</Latitude>
+<Longitude>109.403198</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-09-29 09:16:19 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-09-29 09:16:19 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-09-29 09:16:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475111787</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>405795979</MenuId>
+</xml>
+
+2016-09-29 09:16:27 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-29 09:16:27 response :
+------------
+
+2016-09-29 09:22:34 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475112154</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.308048</Latitude>
+<Longitude>109.403244</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-09-29 09:22:34 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-09-29 09:22:34 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-09-29 09:24:15 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475112255</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>405795979</MenuId>
+</xml>
+
+2016-09-29 09:24:15 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-29 09:24:15 response :
+------------
+
+2016-09-29 10:19:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475115599</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307861</Latitude>
+<Longitude>109.403152</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-09-29 10:19:59 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-09-29 10:19:59 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-09-29 10:20:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475115600</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>405795979</MenuId>
+</xml>
+
+2016-09-29 10:20:01 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-29 10:20:01 response :
+------------
+
+2016-09-29 10:20:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1475115626</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307861</Latitude>
+<Longitude>109.403152</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-09-29 10:20:26 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-09-29 10:20:26 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+

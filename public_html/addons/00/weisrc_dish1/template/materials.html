@@ -1,0 +1,286 @@
+{template 'common/header'}
+{php echo $this -> set_tabbar($action, $storeid);}
+{if $operation == 'display'}
+<link rel="stylesheet" type="text/css" href="{RES}/css/main.css"/>
+<div class="main">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <ul class="nav nav-pills" role="tablist">
+                    <li>
+                        <a href="{php echo $this->createWebUrl('materialzones', array('op' => 'display', 'storeid' => $storeid))}">类型</a>
+                    </li>
+                    <li class="active">
+                        <a href="{php echo $this->createWebUrl('materials', array('op' => 'display', 'storeid' => $storeid))}">物资管理</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header">
+                <h3>物资 列表</h3>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-success btn-sm" href="{php echo $this->createWebUrl('materials', array('op' => 'display', 'storeid' => $storeid, 'type' => 'state'))}"> 当前门店物资列表</a>
+                <!-- <a class="btn btn-success btn-sm" href="{php echo $this->createWebUrl('materials', array('op' => 'display', 'storeid' => $storeid, 'type' => 'qrcode'))}"><i class="fa fa-qrcode"></i> 二维码</a> -->
+                <a class="btn btn-primary btn-sm" href="{php echo $this->createWebUrl('materials', array('op' => 'post', 'storeid' => $storeid))}">新建 物资</a>
+                <a class="btn btn-primary btn-sm" href="{php echo $this->createWebUrl('materials', array('op' => 'batch', 'storeid' => $storeid))}">批量新建</a>
+                <div class="form-group inline-form" style="display: inline-block;">
+                    <form accept-charset="UTF-8" action="./index.php" class="form-inline" id="diandanbao/table_search" method="get" role="form">
+                        <div style="margin:0;padding:0;display:inline">
+                        <input name="utf8" type="hidden" value="✓"></div>
+                        <input type="hidden" name="c" value="site" />
+                        <input type="hidden" name="a" value="entry" />
+                        <input type="hidden" name="m" value="weisrc_dish" />
+                        <input type="hidden" name="do" value="materials" />
+                        <input type="hidden" name="storeid" value="{$storeid}" />
+                        <div class="form-group">
+                            <label class="sr-only" for="q_name">物资</label>
+                            <input class="form-control" id="keyword" name="keyword" placeholder="物资" type="search">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="q_table_zone_id_eq">Table zone 等于</label>
+                            <select id="tablezonesid" name="tablezonesid" class="form-control-excel">
+                                <option value="">物资类型</option>
+                                {loop $tablezones $row}
+                                <option value="{$row['id']}" {if $row['id'] == $item['tablezonesid'] || $row['id'] == $tablezonesid} selected="selected"{/if}>{$row['title']}</option>
+                                {/loop}
+                            </select>
+                        </div>
+                        <input class="btn btn-sm btn-success" name="commit" type="submit" value="搜索">
+                        <!--<a class="btn btn-success btn-sm" data-remote="true" href="">批量导出物资二维码供打印(横版)</a>-->
+                        <!--<a class="btn btn-primary btn-sm" data-remote="true" href="">批量导出物资二维码供打印(竖版)</a>-->
+                    </form>
+                </div>
+            </div>
+            <div id="queue-setting-index-body">
+            {if $type == 'state'}
+            <div class="table-state-tables">
+                <div class="col-xs-12">
+                    {loop $list $item}
+                   
+                    <div class="state-table" data-id="{$item['id']}">
+                      
+                        <div class="name overflow-ellipsis">
+                            <span> <a  href="{php echo $this->createWebUrl('materials', array('op' => 'detail', 'storeid' => $storeid, 'tablesid' => $item['id']))}" >{$item['title']}</a></span>
+                            
+                        </div>
+                    </div>
+                    {/loop}
+                </div>
+                <div class="col-xs-4">
+                    <div class="table-order"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            {else}
+            <div class="alert alert-success">
+                将如下物资二维码打印并分别贴在对应物资上，即可实现扫码下单的功能。微信用户到店后只需拿起微信轻轻一扫，即可实现全自动点菜下单。
+            </div>
+            <div class="qr-code-table">
+                {loop $list $item}
+                {if $item['status']==0}
+                {php $status = 'idle';}
+                {php $title = '空闲';}
+                {elseif $item['status']==1}
+                {php $status = 'opened';}
+                {php $title = '已开台';}
+                {elseif $item['status']==2}
+                {php $status = 'ordered';}
+                {php $title = '已下单';}
+                {elseif $item['status']==3}
+                {php $status = 'paid';}
+                {php $title = '已支付';}
+                {/if}
+                    <div class="qr-code-item">
+                        <div class="qr-code-op">
+                            <a data-rel="tooltip" href="{php echo $this->createWebUrl('materials', array('id' => $item['id'], 'storeid' => $storeid, 'op' => 'post'))}" title="编辑"><icon class="fa fa-edit"></icon></a>
+                            <a data-confirm="确定删除?" data-method="delete" data-rel="tooltip" href="{php echo $this->createWebUrl('materials', array('id' => $item['id'], 'storeid' => $storeid, 'op' => 'delete'))}" onclick="return confirm('确认操作吗？');return false;" rel="nofollow" title="删除"><icon class="fa fa-trash-o"></icon></a>
+                        </div>
+                        <a href="{php echo $this->createWebUrl('materials', array('op' => 'detail', 'storeid' => $storeid, 'tablesid' => $item['id']))}">
+                            <div class="qr-code-box">
+                                <div class="qr-code-item-image">
+                                    <img alt="{$item['title']}" src="{php echo $this->fm_qrcode($_W['siteroot'] . 'app/index.php?i=' . $_W['uniacid'] . '&c=entry&mode=1&storeid=' . $storeid . '&tablesid=' . $item['id'] . '&do=waplist&m=weisrc_dish', 'qrcode_' . $item['id'], '', $logo);}" width="100%">
+                                </div>
+                                <div class="qr-code-item-info">
+                                    {$item['title']}
+                                </div>
+                            </div>
+                            <div class="qr-code-item-footer">
+                                扫描次数: {if empty($tablesorder[$item['id']]['count'])}0{else}{$tablesorder[$item['id']]['count']}{/if}
+                                <br>
+                                当前状态
+                                :
+                                <span class="label label-info">{$title}</span>
+                                <br>
+                                物资类型: {$tablezones[$item['tablezonesid']]['title']}
+                            </div>
+                        </a>
+                    </div>
+                {/loop}
+                <div class="space"></div>
+                </div>
+            {/if}
+            <div class="clearfix"></div>
+        </div>
+        </div>
+    </div>
+</div>
+{elseif $operation == 'batch'}
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <input type="hidden" name="storeid" value="{$storeid}" />
+        <input type="hidden" name="id" value="{$item['id']}" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                批量创建物资
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">起始编号</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="title" class="form-control" value="{$item['title']}"  placeholder=""/>
+                        <span class="help-block">例如：C001</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">价格(元)</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="user_count" class="form-control" value="{$item['user_count']}" placeholder=""/>
+                        <span class="help-block">
+                            <!-- 设置为自动排号时，当排号客户的用餐人数少于等于此人数时，系统将自动为排号客户分配此队列 -->
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">物资类型</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" style="margin-right:15px;" name="tablezonesid" autocomplete="off" class="form-control">
+                            {loop $tablezones $row}
+                            <option value="{$row['id']}" {if $row['id'] == $item['tablezonesid'] || $row['id'] == $tablezonesid} selected="selected"{/if}>{$row['title']}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">创建物资数量</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="table_count" class="form-control" value="{$item['table_count']}" placeholder=""/>
+                        <span class="help-block">
+                            根据创建的物资数量，系统会自动依据起始物资号依次递增,<br/> 例如C001, C002, C003, C004.....,一次最多创建10张物资
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="displayorder" class="form-control" value="{$item['displayorder']}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="创建" class="btn btn-primary col-lg-1" />
+            <input type="hidden" name="token" value="{$_W['token']}" />
+        </div>
+    </form>
+</div>
+{elseif $operation == 'post'}
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <input type="hidden" name="storeid" value="{$storeid}" />
+        <input type="hidden" name="id" value="{$item['id']}" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                物资 详情
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">物资</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="title" class="form-control" value="{$item['title']}"  placeholder=""/>
+                        <span class="help-block">例如：物资</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">价格(元)</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="user_count" class="form-control" value="{$item['user_count']}" placeholder=""/>
+                        <span class="help-block">
+                            物资估值
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">物资类型</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" style="margin-right:15px;" name="tablezonesid" autocomplete="off" class="form-control">
+                            {loop $tablezones $row}
+                            <option value="{$row['id']}" {if $row['id'] == $item['tablezonesid'] || $row['id'] == $tablezonesid} selected="selected"{/if}>{$row['title']}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="displayorder" class="form-control" value="{$item['displayorder']}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1" />
+            <input type="hidden" name="token" value="{$_W['token']}" />
+        </div>
+    </form>
+</div>
+{elseif $operation == 'detail'}
+<link rel="stylesheet" type="text/css" href="{RES}/css/main.css"/>
+<div class="main">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="header">
+                <h3>物资 详情</h3>
+            </div>
+            <div class="model-show">
+                <p>
+                    <b>
+                        物资
+                        :
+                    </b>
+                    {$item['title']}
+                </p>
+                <p>
+                    <b>
+                        物资类型
+                        :
+                    </b>
+                    {$cate['title']}
+                </p>
+                <p>
+                    <b>
+                        价格(元)
+                        :
+                    </b>
+                    {$item['user_count']}
+                </p>
+                <p>
+                    <b>
+                        所属门店
+                        :
+                    </b>
+                    {$store['title']}
+                </p>
+                
+                
+                
+                <div class="space"></div>
+            </div>
+           <div class="well">
+            <a class="btn btn-primary btn-sm" href="{php echo $this->createWebUrl('materials', array('op' => 'post', 'storeid' => $storeid, 'id' => $tablesid))}">编辑</a>
+            <a class="btn btn-default btn-sm" href="{php echo $this->createWebUrl('materials', array('op' => 'display', 'storeid' => $storeid))}">返回</a>
+           </div> 
+        </div>
+    </div>
+</div>
+{/if}
+{template 'common/footer'}

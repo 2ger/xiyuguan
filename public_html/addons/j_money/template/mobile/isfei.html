@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title>自动打印</title>
+</head>
+<body>
+<script language="JavaScript">
+function myrefresh()
+{
+       window.location.reload();
+}
+setTimeout('myrefresh()',10000); //指定1秒 = 1000刷新一次
+</script>
+
+自动打印
+{loop $good $item}
+<iframe src="" frameborder="0" id="box{$item['id']}"  name="box{$item['id']}"></iframe>
+<script>
+     var url ="index.php?i={$_W['uniacid']}&c=entry&do=printfei&m=j_money&goodsid="+{$item['goodsid']}+"&tablesid="+{$item['tablesid']}+"&total="+{$item['total']}+"&id="+{$item['id']}+"";
+console.log(url);
+window.open (url, "box{$item['id']}", "height=600, width=400, toolbar=no, menubar=no, scrollbars=yes, resizable=no, location=no, status=no"); 
+</script>
+{/loop}
+</body>
+</html>

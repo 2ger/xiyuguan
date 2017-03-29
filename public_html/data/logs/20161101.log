@@ -1,0 +1,21 @@
+2016-11-01 23:03:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1478012601</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[独家揭密：为什么月薪1500的年轻人都想买iPhone？http://z.yirendai.com/ggk/WebCard/index1?rel=AG1XMwNjAWAHYVBgV20IYgc2UjFSZVYw&media=umb&flag=yrd&skin=9&from=message&isappinstalled=0]]></Content>
+<MsgId>6348015784776722950</MsgId>
+</xml>
+
+2016-11-01 23:03:21 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-11-01 23:03:21 response :
+------------
+

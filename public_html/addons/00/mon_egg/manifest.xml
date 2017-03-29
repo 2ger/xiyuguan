@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.tencent-mall.com" versionCode="0.6">
+	<application setting="false">
+		<name><![CDATA[炫酷砸金蛋]]></name>
+		<identifie><![CDATA[mon_egg]]></identifie>
+		<version><![CDATA[1.2]]></version>
+		<type><![CDATA[activity ]]></type>
+		<ability><![CDATA[炫酷微每天砸金蛋]]></ability>
+		<description><![CDATA[炫酷微每天砸金蛋]]></description>
+		<author><![CDATA[tencent-mall.com]]></author>
+		<url><![CDATA[http://www.tencent-mall.com]]></url>
+	</application>
+	<platform>
+
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+	<bindings>
+
+		<menu>
+			<entry title="砸活动管理" do="eggManage" state="" />
+		</menu>
+	</bindings>
+
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

@@ -1,0 +1,106 @@
+<style>
+.orders-index-page .name {
+    font-size: 24px;
+    font-weight: 700;
+}
+</style>
+<!-- 导航菜单 -->
+    <div id="ddb-branch-show">
+    <div class="operation-navs ng-scope">
+            <div class="operation-nav-item ng-scope ">
+            {if $_SESSION['pcate']==3}
+                <a onclick="qrcode2()">
+            {else}
+                <a>
+            {/if}
+                    <div class="icon red ng-scope"><i class="fa fa-edit"></i></div>
+                    <div class="text ng-binding">称鱼</div>
+                </a>
+            </div>
+            <div class="operation-nav-item ng-scope ">
+            {if $_SESSION['pcate']==3}
+                <a onclick="qrcode3()">
+                {else}
+                <a>
+            {/if}
+                    <div class="icon red ng-scope"><i class="fa fa-anchor"></i>
+                    </div>
+                    <div class="text ng-binding">杀鱼</div>
+                </a>
+            </div>
+            <div class="operation-nav-item ng-scope ">
+            {if $_SESSION['pcate']==3}
+                <a onclick="qrcode4()">
+                {else}
+                <a>
+            {/if}
+                    <div class="icon red ng-scope"><i class="fa fa-cutlery"></i></div>
+                    <div class="text ng-binding">腌鱼</div>
+                </a>
+            </div>
+            <div class="operation-nav-item ng-scope ">
+                <a href="index.php?i={$_W['uniacid']}&c=entry&do=zhuyu&m=weisrc_dish">
+                    <div class="icon red ng-scope"><i class="fa fa-coffee"></i></div>
+                    <div class="text ng-binding">煮鱼</div>
+                </a>
+            </div>
+        </div>
+        </div>
+        <script>
+function qrcode2(){
+var FNScanner = api.require('FNScanner');
+FNScanner.openScanner({
+    autorotation: true
+}, function(ret, err){        
+    if( ret ){
+        var urlf = ret.content;
+        // alert(urlf);
+        if(urlf != undefined){
+            urlf = urlf+"&opp=cheng";
+            //alert(urlf);
+            window.location.href=urlf;
+        }
+    }else{
+        //alert( JSON.stringify( err ) );
+    }
+});
+}
+
+function qrcode3(){
+var FNScanner = api.require('FNScanner');
+FNScanner.openScanner({
+    autorotation: true
+}, function(ret, err){        
+    if( ret ){
+        var urlf = ret.content;
+        // alert(urlf);
+        if(urlf != undefined){
+            urlf = urlf+"&opp=sha";
+            //alert(urlf);
+            window.location.href=urlf;
+        }
+    }else{
+        //alert( JSON.stringify( err ) );
+    }
+});
+}
+
+function qrcode4(){
+var FNScanner = api.require('FNScanner');
+FNScanner.openScanner({
+    autorotation: true
+}, function(ret, err){        
+    if( ret ){
+        var urlf = ret.content;
+        // alert(urlf);
+        if(urlf != undefined){
+            urlf = urlf+"&opp=yan";
+            //alert(urlf);
+            window.location.href=urlf;
+        }
+    }else{
+        //alert( JSON.stringify( err ) );
+    }
+});
+}
+</script>

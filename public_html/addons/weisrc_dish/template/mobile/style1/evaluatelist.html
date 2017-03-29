@@ -1,0 +1,69 @@
+<html lang="zh-CN">
+<head>
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+    ng\:form {
+        display: block;
+    }</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+ <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+ <title>用户打赏</title>
+    <link data-turbolinks-track="true" href="{RES}/mobile/{php echo $this->cur_tpl}/assets/diandanbao/weixin.css" media="all" rel="stylesheet">
+    <style type="text/css">@media screen {
+        .smnoscreen {
+            display: none
+        }
+    }
+    @media print {
+        .smnoprint {
+            display: none
+        }
+    }</style>
+    {php echo register_jssdk(false);}
+</head>
+<body>
+<center>
+<h3 style="margin-top:30px">打赏员工</h3>
+</center>
+<form method="POST" action="" id='data_form'>
+<table class="pure-table pure-table-bordered" style="width:95%;margin:10px;">
+    <tbody>
+        <tr>
+            <td>服务人员  </td>
+            <td><input type="radio" name="people" value="{$people['step4man']}">厨师:{$people['step4man']}</td>
+            <td><input type="radio" name="people" value="{$people['step5man']}">服务员:{$people['step5man']}</td>
+        </tr>
+        <tr>
+            <td>打赏金额  </td>
+            <td><input type="radio" name="money" value="2">2元</td>
+            <td><input type="radio" name="money" value="4">4元</td>
+        </tr>
+    </tbody>
+</table>
+<input type="submit" name="submit" value="提交" class="pure-button pure-button-primary" style="width:95%;padding:15px;margin:10px;">
+<input type="hidden" name="token" value="{$_W['token']}" />
+</form>
+<center>
+<h3>打赏记录</h3>
+</center>
+<table class="pure-table pure-table-bordered" style="width:95%;margin:10px;">
+        <tr>
+            <td>姓名</td>
+            <td>金额</td>
+            <td>时间</td>
+        </tr>
+        {loop $list $item}
+         <tr>
+            <td>{$item['man']}</td>
+            <td>{$item['dashang']}元</td>
+            <td>{php echo date('H:i:s',$item['timeline'])}</td>
+        </tr>
+        {/loop}
+
+</table>
+</body>
+</html>

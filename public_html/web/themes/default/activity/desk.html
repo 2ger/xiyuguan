@@ -1,0 +1,31 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+	<li{if $do == 'index'} class="active"{/if}><a href="{php echo url('activity/desk/index');}">工作台</a></li>
+</ul>
+{if $do == 'index'}
+<div class="clearfix">
+	<div class="clearfix menu">
+		{if empty($permission)}
+		<div class="alert alert-danger">您没有操作权限.请联系公众号管理员</div>
+		{else}
+			{loop $permission $row}
+				<h5 class="page-header">{$row['title']}</h5>
+				<div class="clearfix">
+					{loop $row['items'] $row1}
+						<a href="{if $row1['type'] == 'url'}{$row1['url']}{else}javascript:;{/if}" class="tile img-rounded {$row1['modal']}" data-type="{$row1['data']}">
+							<i class="{$row1['icon']}"></i>
+							<span>{$row1['title']}</span>
+						</a>
+					{/loop}
+				</div>
+			{/loop}
+		{/if}
+	</div>
+</div>
+<script>
+	require(['trade', 'bootstrap'], function(trade){
+		trade.init();
+	});
+</script>
+{/if}
+{template 'common/footer'}

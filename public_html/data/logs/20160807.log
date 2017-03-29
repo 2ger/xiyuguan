@@ -1,0 +1,175 @@
+2016-08-07 07:28:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt7Pv3PfnZ_J5cE8UPxWVxdE]]></FromUserName>
+<CreateTime>1470526137</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-08-07 11:16:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_a4f9178c9538]]></ToUserName>
+<FromUserName><![CDATA[oPAtQt3VofedQwDLU-G0wGcfEgpE]]></FromUserName>
+<CreateTime>1470539782</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>31.047241</Latitude>
+<Longitude>121.740479</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-08-07 11:16:22 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-08-07 11:16:22 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-08-07 14:52:51 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt367auyG6IYVgF00qFRqMCs]]></FromUserName>
+<CreateTime>1470552771</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-08-07 14:52:51 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-08-07 14:52:51 response :
+------------
+
+2016-08-07 14:52:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt367auyG6IYVgF00qFRqMCs]]></FromUserName>
+<CreateTime>1470552774</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.695580</Latitude>
+<Longitude>120.115746</Longitude>
+<Precision>110.000000</Precision>
+</xml>
+
+2016-08-07 14:52:54 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-08-07 14:52:54 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-08-07 14:53:00 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt367auyG6IYVgF00qFRqMCs]]></FromUserName>
+<CreateTime>1470552780</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&id=2&do=game&m=j_money]]></EventKey>
+<MenuId>404308051</MenuId>
+</xml>
+
+2016-08-07 14:53:00 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-08-07 14:53:00 response :
+------------
+
+2016-08-07 14:53:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt367auyG6IYVgF00qFRqMCs]]></FromUserName>
+<CreateTime>1470552789</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.695580</Latitude>
+<Longitude>120.115746</Longitude>
+<Precision>110.000000</Precision>
+</xml>
+
+2016-08-07 14:53:09 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-08-07 14:53:09 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-08-07 21:50:49 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt3L8zrjRyJ5IbRZignmc3YA]]></FromUserName>
+<CreateTime>1470577848</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-08-07 21:50:49 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-08-07 21:50:49 response :
+------------
+
+2016-08-07 21:51:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt3L8zrjRyJ5IbRZignmc3YA]]></FromUserName>
+<CreateTime>1470577871</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&eid=22]]></EventKey>
+<MenuId>404308051</MenuId>
+</xml>
+
+2016-08-07 21:51:11 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-08-07 21:51:11 response :
+------------
+

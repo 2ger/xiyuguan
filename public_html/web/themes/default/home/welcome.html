@@ -1,0 +1,108 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+	<li class="active"><a href="{php echo url('home/welcome/' . $do);}">账号概况 - {$title}</a></li>
+</ul>
+<div class="clearfix welcome-container">
+	{if $do != 'ext'}
+	<div class="page-header">
+		<h4><i class="fa fa-plane"></i> 快捷操作</h4>
+	</div>
+<div class="panel panel-default">
+	<div class="panel-body table-responsive">
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th style="width:150px;">功能类别</th>
+			<th>管理入口</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>大模块</td>
+			<td>
+                <div class="shortcut clearfix">
+                    {loop $shortcuts $shortcut}
+                    <a href="{$shortcut['link']}" title="{$shortcut['title']}">
+                        <img src="{$shortcut['image']}" alt="{$shortcut['title']}" class="img-rounded" />
+                        <span>{$shortcut['title']}</span>
+                    </a>
+                    {/loop}
+                </div>
+			</td>
+		</tr>
+		<tr>
+			<td>门店管理</td>
+			<td>
+                <div class="shortcut clearfix">
+                    <a href="index.php?c=site&a=entry&id=1&storeid=1&do=order&m=weisrc_dish">
+                        <i class="fa fa-home"></i>
+                        <span>惠南店</span>
+                    </a>
+                </div>
+			</td>
+		</tr>
+		<tr>
+			<td>收银及员工管理</td>
+			<td>
+                <div class="shortcut clearfix">
+                    <a href="index.php?c=home&a=welcome&do=ext&m=j_money">
+                        <i class="fa fa-user-plus"></i>
+                        <span>收银及员工管理</span>
+                    </a>
+                </div>
+            </td>
+		</tr>
+		<tr>
+			<td>分销商城</td>
+			<td>
+                <div class="shortcut clearfix">
+                    <a href="index.php?c=home&a=welcome&do=ext&m=ewei_shop">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>分销商城</span>
+                    </a>
+                </div>
+			</td>
+		</tr>
+		<tr>
+			<td>聊天系统</td>
+			<td>
+                开发中...
+                <!-- <div class="shortcut clearfix"> -->
+                    <!-- <a href="index.php?c=home&a=welcome&do=ext&m=ewei_shop"> -->
+                        <!-- <i class="fa fa-wechat"></i> -->
+                        <!-- <span>聊天系统</span> -->
+                    <!-- </a> -->
+                <!-- </div> -->
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+	<!-- <div class="shortcut clearfix"> -->
+		<!-- <a href="{php echo url('platform/reply', array('m' => 'userapi'))}"> -->
+			<!-- <i class="fa fa-sitemap"></i> -->
+			<!-- <span>自定义接口</span> -->
+		<!-- </a> -->
+	<!-- </div> -->
+	{/if}
+	{if $do == 'platform'}
+	{template 'home/welcome-platform'}
+	{/if}
+	{if $do == 'site'}
+	{template 'home/welcome-site'}
+	{/if}
+	{if $do == 'mc'}
+	{template 'home/welcome-mc'}
+	{/if}
+	{if $do == 'setting'}
+	{template 'home/welcome-setting'}
+	{/if}
+	{if $do == 'ext'}
+	{template 'home/welcome-ext'}
+	{/if}
+	{if $do == 'solution'}
+	{template 'home/welcome-solution'}
+	{/if}
+</div>
+{template 'common/footer'}

@@ -1,0 +1,45 @@
+2016-04-30 00:32:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461947552</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[SCAN]]></Event>
+<EventKey><![CDATA[31cdddee214a364f40d1898fc2b03f21]]></EventKey>
+<Ticket><![CDATA[gQGT8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL3lFd2tMR1BrN0NTVlg4TWI4V1JmAAIET5whVwMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-30 00:32:51 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461947572</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>404079085</MenuId>
+</xml>
+
+2016-04-30 00:32:51 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-30 00:32:51 response :
+------------
+
+2016-04-30 22:55:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9xmhuQVkq2k38Wll_hDI6Y]]></FromUserName>
+<CreateTime>1462028108</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+

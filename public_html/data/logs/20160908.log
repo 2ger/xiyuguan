@@ -1,0 +1,191 @@
+2016-09-08 00:40:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt1-yYPyafw6JyOPTwmjQeN4]]></FromUserName>
+<CreateTime>1473266446</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-09-08 09:37:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473298630</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>404364969</MenuId>
+</xml>
+
+2016-09-08 09:37:10 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 09:37:10 response :
+------------
+
+2016-09-08 10:48:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473302896</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>404364969</MenuId>
+</xml>
+
+2016-09-08 10:48:17 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 10:48:17 response :
+------------
+
+2016-09-08 11:08:48 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473304127</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[scancode_push]]></Event>
+<EventKey><![CDATA[11]]></EventKey>
+<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+<ScanResult><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&mode=1&storeid=1&tablesid=50&do=waplist&m=weisrc_dish]]></ScanResult>
+</ScanCodeInfo>
+</xml>
+
+2016-09-08 11:08:48 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 11:08:48 response :
+------------
+
+2016-09-08 11:13:58 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473304438</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>404364969</MenuId>
+</xml>
+
+2016-09-08 11:13:58 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 11:13:58 response :
+------------
+
+2016-09-08 11:15:32 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473304532</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>404364969</MenuId>
+</xml>
+
+2016-09-08 11:15:32 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 11:15:32 response :
+------------
+
+2016-09-08 11:22:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473304936</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[scancode_push]]></Event>
+<EventKey><![CDATA[11]]></EventKey>
+<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+<ScanResult><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&mode=1&storeid=1&tablesid=50&do=waplist&m=weisrc_dish]]></ScanResult>
+</ScanCodeInfo>
+</xml>
+
+2016-09-08 11:22:16 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 11:22:16 response :
+------------
+
+2016-09-08 11:27:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473305231</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&eid=22]]></EventKey>
+<MenuId>404364969</MenuId>
+</xml>
+
+2016-09-08 11:27:11 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 11:27:11 response :
+------------
+
+2016-09-08 11:36:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_it_Zd46ZUoVYxdt9n_fSM]]></FromUserName>
+<CreateTime>1473305765</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&do=orderlist&m=weisrc_dish]]></EventKey>
+<MenuId>404364969</MenuId>
+</xml>
+
+2016-09-08 11:36:05 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-08 11:36:05 response :
+------------
+

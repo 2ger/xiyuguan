@@ -1,0 +1,2 @@
+[2016-01-15 20:46:40] trace test /web/index.php?c=utility&a=subscribe& enter
+[2016-01-15 20:46:40] trace test /web/index.php?c=utility&a=subscribe& from=owpeouL9gRpruL9BU5up_Y3Tz9Rs; to=gh_e26d20e10319; time=1452861994; type=qr; event=SCAN; tousername=gh_e26d20e10319; fromusername=owpeouL9gRpruL9BU5up_Y3Tz9Rs; createtime=1452861994; msgtype=event; eventkey=4; ticket=gQFo8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1EwT1kwaGJsdWktRFlCNHdKRzhHAAIEGeqYVgMEAAAAAA==; scene=4; 

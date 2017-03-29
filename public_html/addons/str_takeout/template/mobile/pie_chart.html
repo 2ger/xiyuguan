@@ -1,0 +1,133 @@
+{template 'common/header'}
+<link rel="stylesheet" type="text/css" href="../addons/str_takeout/template/resource/css/main.css">
+<script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
+<script src="../addons/str_takeout/template/resource/js/main.js"></script>
+<script src="../addons/str_takeout/template/resource/js/menu.js"></script>
+<script src="../addons/str_takeout/template/resource/js/common.js"></script>
+<!-- 图表插件 -->
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../addons/str_takeout/template/resource/js/js/jsapi.js"></script>
+<script type="text/javascript" src="../addons/str_takeout/template/resource/js/js/corechart.js"></script>		
+<script type="text/javascript" src="../addons/str_takeout/template/resource/js/js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="../addons/str_takeout/template/resource/js/js/jquery.ba-resize.min.js"></script>
+
+<script type="text/javascript">
+gvChartInit();
+$(document).ready(function(){
+	$('#myTable5').gvChart({
+		chartType: 'PieChart',
+		gvSettings: {
+			vAxis: {title: 'No of players'},
+			hAxis: {title: 'Month'},
+			width: 320,
+			height: 300
+		}
+	});
+});
+</script>
+
+<!-- <script type="text/javascript">
+gvChartInit();
+$(document).ready(function(){
+		$('#myTable1').gvChart({
+			chartType: 'PieChart',
+			gvSettings: {
+			vAxis: {title: 'No of players'},
+			hAxis: {title: 'Month'},
+			width: 320,
+			height: 300
+		}
+	});
+});
+</script> -->
+<!-- <script src="../addons/str_takeout/template/resource/js/echarts-all.js"></script> --><!-- 图表插件 -->
+
+<!-- <link data-turbolinks-track="true" href="../addons/weisrc_dish/template/mobile/style1/assets/diandanbao/mui.min.css" media="all" rel="stylesheet"> -->
+<style type="text/css">
+    body{background-color: #fff;}
+	.nav a{width:100%;}
+	.select{
+		width: 100%;height: 50px;background-color: #fff;
+	}
+	.select_btn{margin: 10px 15px; height: 30px; font-size: 18px;}
+	.nav a:last-child {
+    border-left: none;
+    border-radius: 5px 5px 5px 5px;
+	}
+	.main{width: 100%; margin-top: 5px; background-color: #fff; font-size: 14px;font-family: "微软雅黑"; border: solid 1px #add9c0;}
+	.main th{text-align: center; width: 25%; height: 40px;}
+	.main td{text-align: center;  height: 30px;}
+</style>
+<div class="container" onselectstart="return true;" ondragstart="return false;">
+	<header class="nav menu">
+	    <div>
+		    <a class="on">订单数据汇总</a>
+	    </div>	
+	</header>
+	<table class="main" border="1" cellspacing="0">
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>成交量</th>
+				<th>总额(元)</th>
+				<th>平均售价(元)</th>
+			</tr>
+		</thead>
+		<tbody>
+		{loop $goods $row}
+			<tr>
+				<td>{$row['name']}</td>
+				<td>{$row['total']}{$row['unitName']}</td>
+				<td>{$row['totalprice']}</td>
+				<td>{$row['avg']}</td>
+			</tr>
+		{/loop}
+		</tbody>
+	</table>
+
+	<div style="width:100%;margin:0 auto;">
+	   <table id='myTable5'>
+			<caption>购买类别分布</caption>
+			<thead>
+				<tr>
+					<th></th>
+					{loop $goods $rows}
+					<th>{$rows['name']}</th>
+					{/loop}
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				    <th>{$sum}</th>
+					{loop $goods $row}
+					<td>{$row['total']}</td>
+					{/loop}
+					
+				</tr>
+			</tbody>
+		</table>  
+
+	   <!-- <table id='myTable1'>
+			<caption>会员性别分布</caption>
+			<thead>
+				<tr>
+					<th></th>
+					<th>男</th>
+					<th>女</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1000</th>
+					<td>450</td>
+					<td>550</td>
+					</tr>
+			</tbody>
+		</table>   -->
+	
+	</div>	
+	{template 'footerbar'}
+</div>
+
+{template 'common'}
+{template 'common/footer'}

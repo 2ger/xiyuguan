@@ -1,0 +1,181 @@
+2016-01-14 00:42:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwH9LeRyxbWuNZvhEPgPcswQ]]></FromUserName>
+<CreateTime>1452703358</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-14 00:43:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwH9LeRyxbWuNZvhEPgPcswQ]]></FromUserName>
+<CreateTime>1452703398</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[微转]]></Content>
+<MsgId>6239313585601365610</MsgId>
+</xml>
+
+2016-01-14 00:43:18 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-14 00:43:18 response :
+------------
+
+2016-01-14 00:48:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwH9LeRyxbWuNZvhEPgPcswQ]]></FromUserName>
+<CreateTime>1452703692</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[一元抽奖]]></Content>
+<MsgId>6239314848321750721</MsgId>
+</xml>
+
+2016-01-14 00:48:12 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-14 00:48:12 response :
+------------
+
+2016-01-14 00:48:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwH9LeRyxbWuNZvhEPgPcswQ]]></FromUserName>
+<CreateTime>1452703720</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[一元抽奖 测试]]></Content>
+<MsgId>6239314968580835010</MsgId>
+</xml>
+
+2016-01-14 00:48:40 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-14 00:48:40 response :
+------------
+
+2016-01-14 00:48:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwH9LeRyxbWuNZvhEPgPcswQ]]></FromUserName>
+<CreateTime>1452703726</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[测试]]></Content>
+<MsgId>6239314994350638788</MsgId>
+</xml>
+
+2016-01-14 00:48:46 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-14 00:48:46 response :
+------------
+
+2016-01-14 00:49:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwH9LeRyxbWuNZvhEPgPcswQ]]></FromUserName>
+<CreateTime>1452703744</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-14 09:07:58 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_19f3b98aa3d7]]></ToUserName>
+<FromUserName><![CDATA[ouLX4twQNSM0m5ASBQGcbOfX-9aQ]]></FromUserName>
+<CreateTime>1452733677</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-14 09:47:41 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwOjFkZg2vp855Aosr7npeJE]]></FromUserName>
+<CreateTime>1452736061</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[一元抽奖]]></Content>
+<MsgId>6239453872118157508</MsgId>
+</xml>
+
+2016-01-14 09:47:41 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-14 09:47:41 response :
+------------
+
+2016-01-14 10:55:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwGr79Q9KdeQ2q4DU97lfru8]]></FromUserName>
+<CreateTime>1452740110</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-14 12:12:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwCFlRlD99ZmfIJQreRhqwOI]]></FromUserName>
+<CreateTime>1452744753</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-14 12:12:36 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-14 12:12:36 response :
+------------
+
+2016-01-14 12:13:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwCFlRlD99ZmfIJQreRhqwOI]]></FromUserName>
+<CreateTime>1452744790</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+

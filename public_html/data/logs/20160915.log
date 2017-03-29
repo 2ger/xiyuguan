@@ -1,0 +1,69 @@
+2016-09-15 00:44:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtxEpRL8eK1LQQ0JeHXUj6S4]]></FromUserName>
+<CreateTime>1473871477</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.458921</Latitude>
+<Longitude>109.380753</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-09-15 00:44:37 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-09-15 00:44:37 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-09-15 00:44:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtxEpRL8eK1LQQ0JeHXUj6S4]]></FromUserName>
+<CreateTime>1473871487</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-09-15 02:07:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtxLQ1DoF1fO2Z7ZVmV0xQcw]]></FromUserName>
+<CreateTime>1473876479</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-09-15 02:07:59 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-09-15 02:07:59 response :
+------------
+
+2016-09-15 18:24:07 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt0m--HL_mOY2Q-HJUGjJpLI]]></FromUserName>
+<CreateTime>1473935047</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+

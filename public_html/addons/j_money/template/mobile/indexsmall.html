@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>收银台 手机版 </title>
+<meta name="format-detection" content="telephone=no, address=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link href="./resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="./resource/css/font-awesome.min.css" rel="stylesheet">
+<link href="./resource/css/animate.css" rel="stylesheet">
+<link href="./resource/css/common.css" rel="stylesheet">
+<script src="{MODULE_URL}template/js/jquery-2.1.1.min.js"></script>
+<script src="{MODULE_URL}template/js/sweetalert.min.js"></script>
+<link type="text/css" rel="stylesheet" href="{MODULE_URL}template/js/sweetalert.css"/>
+</head>
+<body>
+{if $operation=='display'}
+<style>
+html{ height:100%;}
+body{height:100%; overflow:hidden; background:url({php echo tomedia($cfg['bg'])}); background-size:100% 100%;}
+.login_body{ display:table; width:80%; margin:0 auto; max-width:300px;height:100%;}
+.row{ display:table-row;}
+.cell{ display:table-cell; width:100%;vertical-align:middle; text-align:center}
+.form-control{ margin-bottom:10px;}
+</style>
+<!--登录-->
+<div class="login_body">
+  <div class="row">
+    <div class="cell">
+      <form  onSubmit="return false;">
+        <div class="input-group" style="margin-bottom:10px;"> <span class="input-group-addon" ><i class="fa fa-user" style="width:40px"></i></span>
+          <input type="text" name="userid" class="form-control" placeholder="用户名" required autofocus autocomplete="off" style="cursor:auto;">
+        </div>
+        <div class="input-group" style="margin-bottom:10px;"> <span class="input-group-addon" ><i class="fa fa-key" style="width:40px"></i></span>
+          <input type="password" name="pwd" class="form-control" placeholder="密码" required autocomplete="off">
+        </div>
+        <button class="btn btn-warning btn-block" type="submit" onClick="return checkUpdate();return false;"><i class="fa fa-sign-in"></i> 登录</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+$(document).ready(function(e) {
+    var _h=$(document).height();
+	$(".cell").height(_h*0.8);
+});
+function checkUpdate(){
+	var userid=$("input[name='userid']").val();
+	var pwd=$("input[name='pwd']").val();
+	if(userid.length<1){
+		swal("用户名不能为空");
+		return false;
+	}
+	if(pwd.length<6){
+		swal("密码长度不正确");
+		return false;
+	}
+	$.post("{php echo $this->createMobileUrl('ajax',array('op'=>'login'))}",{"userid":userid,"pwd":pwd},function(data){
+		if(data.success){
+			location.href="{php echo $this->createMobileUrl('index',array('op'=>'in'))}";
+		}else{
+			swal(data.msg);
+		}
+	},'json');
+	return false;
+}
+</script> 
+{else} 
+<!--登录成功-->
+<style>
+.jrow{ display:table-row;}
+.jcell{ display:table-cell}
+.valignM{ vertical-align:middle;}
+.main_top{height:50px; background:#18BB9C; display:table; width:100%;}
+.top_logo{width:80px; background:#1F232C; text-indent:30px;line-height:40px; padding:5px;}
+.top_menu{line-height:50px;text-align:right; padding:0 30px 0 0;color:#FFF;}
+.top_menu a{color:#FFF; display:inline-block; text-decoration:none; line-height:50px; padding:0 10px}
+.top_menu a:hover{ background:#FFF; color:#18BB9C}
+.main_body{display:table;width:100%;}
+.body_left{width:80px;vertical-align:top;color:#FFF;background:#2F3541;}
+.body_left_userinfobox{ background:#2F3541; padding:5px;}
+.body_left_menu{ background:#2F3541;}
+.body_left_menu ul,.body_left_menu ul li{ list-style:none; margin:0; padding:0;}
+.body_left_menu ul li{padding:10px; line-height:24px; cursor:pointer;}
+.body_left_menu ul li:hover{ background:#18BB9C}
+.body_left_menu ul li.jlabel{background:#18BB9C}
+.body_left_menu ul li span{ float:right;}
+.body_left_menu ul li b{ margin-right:10px;}
+.body_right{vertical-align:top;padding:20px;}
+.body_right_meneybox{ text-align:center;}
+.body_right_meneybox h2{ border-top-left-radius:4px;border-top-rig

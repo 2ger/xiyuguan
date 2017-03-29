@@ -1,0 +1,61 @@
+<html>
+<head>
+<script type="text/javascript">
+function qrcode3(){
+var FNScanner = api.require('FNScanner');
+FNScanner.openScanner({
+    autorotation: true
+}, function(ret, err){        
+    if( ret ){
+        var urlf = ret.content;
+        // alert(urlf);
+        if(urlf != undefined){
+            document.getElementById('btn').value='扫描成功,感谢您的辛勤劳动';
+            document.getElementById('h1').innerHTML='扫描成功';
+            urlf = urlf+"&opp=yan";
+            //alert(urlf);
+            window.location.href=urlf;
+        }
+    }else{
+        //alert( JSON.stringify( err ) );
+    }
+});
+}
+ 
+//window.setTimeout(qrcode3,5000); 
+</script>
+</head>
+<body style="background:#eee;text-align:center;padding-top:100px">
+<style>
+  .logo{border-radius:50%;width:80px;margin:10px auto}
+</style>
+<img src="http://shanghai.xyj0772.com/attachment/images/1/2016/10/tEfohN55cCofH5KnoDZseCMFOrGa83.png" class="logo" alt="">
+<h1 id="h1">欢迎回来</h1>
+
+<input type="button" id="btn" value="扫描成功" onclick="settime(this)" /> 
+
+<script type="text/javascript"> 
+var val = document.getElementById('btn');
+var countdown=5; 
+function settime(){
+    if (countdown == 0) { 
+        //val.removeAttribute("disabled");    
+        qrcode3();
+        // val.value="免费获取验证码"; 
+        countdown = 5; 
+    } else { 
+        val.setAttribute("disabled", true); 
+        val.value=countdown + "秒后开始扫描"; 
+        countdown--; 
+    } 
+    setTimeout(function() { 
+        settime() 
+    },1000) 
+}
+settime() 
+</script> 
+
+</body>
+</head>
+
+

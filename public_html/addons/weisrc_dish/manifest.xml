@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.52,0.6,0.7">
+<application setting="false">
+    <name><![CDATA[微点餐]]></name>
+    <identifie><![CDATA[weisrc_dish]]></identifie>
+    <version><![CDATA[4.8.1]]></version>
+    <type><![CDATA[business]]></type>
+    <ability><![CDATA[微点餐]]></ability>
+    <description><![CDATA[码上点餐|外卖|餐饮,1.本模块支持微信堂点，微信外卖，微信快餐，微信预定，微信排号，套餐推荐
+2.多门店管理（支持每个门店单独管理）]]></description>
+		<author><![CDATA[易伙三商]]></author>
+		<url><![CDATA[www.we7.cc]]></url>
+</application>
+<platform>
+    <handles>
+        <message type="text" />
+    </handles>
+		<rule embed="false" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="首页入口设置" do="wapindex" state="" direct="false" />
+			<entry title="门店列表入口" do="waprestList" state="" direct="false" />
+			<entry title="菜品列表入口" do="waplist" state="" direct="false" />
+			<entry title="智能点餐入口" do="wapselect" state="" direct="false" />
+			<entry title="我的订单入口" do="orderlist" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="门店管理" do="stores" state="" direct="false" />
+			<entry title="订单管理" do="allorder" state="" direct="false" />
+      <entry title="物资管理" do="allorder" state="" direct="false" />
+			<entry title="门店类型" do="type" state="" direct="false" />
+			<entry title="区域管理" do="area" state="" direct="false" />
+			<entry title="广告管理" do="ad" state="" direct="false" />
+			<entry title="会员管理" do="allfans" state="" direct="false" />
+			<entry title="人事管理" do="account" state="" direct="false" />
+			<entry title="模板管理" do="template" state="" direct="false" />
+			<entry title="基本设置" do="setting" state="" direct="false" />
+      <entry title="基本设置" do="setting" state="" direct="false" />
+		</menu>
+		<home>
+			<entry title="微点餐" do="wapindex" state="" direct="false" />
+			<entry title="门店列表" do="waprestList" state="" direct="false" />
+			<entry title="菜品列表" do="waplist" state="" direct="false" />
+			<entry title="智能点餐" do="wapselect" state="" direct="false" />
+			<entry title="我的订单" do="orderlist" state="" direct="false" />
+		</home>
+	</bindings>
+<install><![CDATA[
+    ]]></install>
+<uninstall><![CDATA[]]></uninstall>
+<upgrade><![CDATA[]]></upgrade>
+</manifest>

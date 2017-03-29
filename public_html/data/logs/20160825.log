@@ -1,0 +1,22 @@
+2016-08-25 17:41:34 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_a4f9178c9538]]></ToUserName>
+<FromUserName><![CDATA[oPAtQt2d8Dcn8qR_gvUwYaVvpfeg]]></FromUserName>
+<CreateTime>1472118094</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://shanghai.xyj0772.com/app/index.php?i=1&c=entry&id=1&do=detail&m=weisrc_dish]]></EventKey>
+<MenuId>516808282</MenuId>
+</xml>
+
+2016-08-25 17:41:34 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-08-25 17:41:34 response :
+------------
+

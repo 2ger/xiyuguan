@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{$reply['title']}</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<link rel="stylesheet" href="../images/css/mui.min.css">
+	<link rel="stylesheet" href="../images/css/custom.css">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>微投票</title>
+    {php echo register_jssdk();}
+    <link type="text/css" rel="stylesheet" href="../addons/ewei_vote/style/vote.css"/>
+    <script type="text/javascript" src="../addons/ewei_vote/style/js/jquery.js"></script>
+    <script type="text/javascript" src="../addons/ewei_vote/style/js/alert.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        // 微投票分享
+        wx.ready(function () {
+            sharedata = {
+                title: "{$sharetitle}",
+                desc: "{$sharedesc}",
+                link: "{$sharelink}",
+                imgUrl: "{$shareimg}"
+            };
+            wx.onMenuShareAppMessage(sharedata);
+            wx.onMenuShareTimeline(sharedata);
+        });
+
+        var votetype = "{$reply['votetype']}";
+        function divClick(obj) {
+            obj = $(obj);
+            if (votetype == '0') {
+                //单选
+                $(".oimg").show();
+                $(".oimg-sel").hide();
+                $(".option").attr("sel", "false");
+            }
+            var sel = obj.attr("sel");
+            if (sel == "false") {
+                obj.attr("sel", "true");
+                $(".oimg-sel", obj).show();
+                $(".oimg", obj).hide();
+            }
+            else {
+                obj.attr("sel", "false");
+                $(".oimg-sel", obj).hide();
+                $(".oimg", obj).show();
+            }
+        }
+        function submit() {
+	//	alert('ddd');
+			var len = $("input:checkbox:checked").length; 
+			if(len<8){ 
+			alert('至少要选够八支球队才能提交！'); 
+			return false;} 
+		
+            var ids = "";
+            $(".option").each(function () {
+                if ($(this).attr("sel") === "true") {
+                    if (ids !== "") {
+                        ids += ",";
+                    }
+                    ids += $(this).attr("val");
+                }
+            });
+			/** **/
+			$("input:checkbox[name=checkbox1]:checked").each(function () {
+                    if (ids !== "") {
+                        ids += ",";
+                    }
+                    ids += $(this).val();
+              
+            });
+			console.log('ddd')
+			console.log(ids);
+            if (ids == '') {
+                alert('请选择投票选项!');
+                return;
+            }
+            $.ajax({
+                url: "{$_W['siteroot']}app/{php echo $this->createMobileUrl('submit', array('id' => $rid))}",
+                data: {
+                    ids: ids,
+                    id: "{$rid}"
+                },
+                beforeSend: function () {
+                    $(".submit").attr("disabled", "true");
+                },
+                success: function (data) {
+                    if (data != '') {
+                        alert(data);
+                        return;
+                    }
+                    alert("投票成功!");
+                    $(".submit").removeAttr("disabled");
+                    setTimeout(function () {
+                        location.href = "{$_W['siteroot']}app/{php echo $this->createMobileUrl('result', array('id' => $rid))}";
+                    }, 500);
+                },
+                error: function () {
+                },
+                timeout: 15000
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="wrapper" style="margin-top:-8px;">
+    <img class="bg" src="../addons/ewei_vote/style/images/bg.jpg">
+    <input type='hidden' name='select_id'/>
+    <!-- <div class="top fn-clear">
+        <div class="title-cont">
+            <p class="title"></p>
+            <p class="timeout" style='padding-left:15px;'>
+                <img class="clock" src="../addons/ewei_vote/style/images/clock.png">
+                <span class="text">{$limits}</span>
+            </p>
+            <p>&nbsp;</p>
+        </div>
+    </div> -->
+  
+   <style type="text/css">
+	.hidden{display:none;}
+   </style>
+    {if $isshare == 1}
+    <div class="summary">参与方法:</div>
+    <div class="tip-cont">{php echo htmlspecialchars_decode($reply['share_txt'])}</div>
+    {else}
+    <div class="summary ">{$reply['description']}</div>
+    <div class="tip-cont hidden">
+        <img class="icon" src="../addons/ewei_vote/style/images/tip_icon.png">
+        提交后才能看到结果 ( {$selects} {if !empty($reply['votetimes'])}),
+        {/if}
+    </div>
+    <div class="option-cont hidden">
+        {loop $list $row}
+        <div class="option hidden" val="{$row['id']}" onclick="divClick(this)" sel="false">
+            {if !empty($row['thumb']) && $reply['isimg']==1}
+            <div>
+                <image src="../images/{php echo tomedia($row['thumb'])}" style="width:95%;margin:10px;"/>
+            </div>
+            {/if}
+            <img id="img{$row['id']}" class="oimg" src="../addons/ewei_vote/style/images/checkimg.png">
+            <img id="img{$row['id']}_sel" class="oimg-sel" src="../addons/ewei_vote/style/images/checkimg_check.png">
+            <div>{$row['title']}</div>
+        </div>
+        <img class="sep" src="../addons/ewei_vote/style/images/option_sep.jpg">
+        {/loop}
+    </div>
+
+    <p class="page-url"></p>
+
+
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-pull-left"></a>
+	    <h1 class="mui-title">{$reply['title']}<a href="http://wqq.xyj0772.com/attachment/images/3/2016/05/Pp0d0180u05V3fq380DqR0d02q23P8.jpg" ><span class="mui-icon mui-icon-help"></span></a></h1>
+	</header>
+
+		<!-- Group 1 -->
+		<div class="mui-content">
+		    <h5>　A组</h5>
+		    <ul class="mui-table-view mui-grid-view">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">		            
+		                <label for="g1-1"><img class="mui-media-object" src="../images/img/France.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g1-1" value="8" type="checkbox"><label for="g1-1">法国</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">		            
+		                <label for="g1-2"><img class="mui-media-object" src="../images/img/Romania.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g1-2" value="9" type="checkbox"><label for="g1-2">罗马尼亚</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g1-3"><img class="mui-media-object" src="../images/img/Albania.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g1-3" value="10" type="checkbox"><label for="g1-3">阿尔巴尼亚</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">		            
+		                <label for="g1-4"><img class="mui-media-object" src="../images/img/Switzerland.png"></label>
+				<div class="mui-media-body">
+				<input name="checkbox1" id="g1-4" value="11" type="checkbox"><label for="g1-4">瑞士</label></div></a></li>
+		    </ul>    
+		</div>
+		<!-- End -->
+
+		<!-- Group 2 -->
+		<div class="mui-content">
+		    <h5>　B组</h5>
+		    <ul class="mui-table-view mui-grid-view">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">		            
+		                <label for="g2-1"><img class="mui-media-object" src="../images/img/England.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g2-1" value="12" type="checkbox"><label for="g2-1">英格兰</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">		            
+		                <label for="g2-2"><img class="mui-media-object" src="../images/img/Russia.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g2-2" value="13" type="checkbox"><label for="g2-2">俄罗斯</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		               <label for="g2-3"><img class="mui-media-object" src="../images/img/Wales.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g2-3" value="14" type="checkbox"><label for="g2-3">威尔士</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">		            
+		                <label for="g2-4"><img class="mui-media-object" src="../images/img/Slovakia.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g2-4" value="15" type="checkbox"><label for="g2-4">斯洛伐克</label></div></a></li>
+		    </ul>    
+		</div>
+		<!-- End -->
+
+		<!-- Group 3 -->
+		<div class="mui-content">
+		    <h5>　C组</h5>
+		    <ul class="mui-table-view mui-grid-view">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g3-1"><img class="mui-media-object" src="../images/img/Germany.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g3-1" value="16" type="checkbox"><label for="g3-1">德国</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g3-2"><img class="mui-media-object" src="../images/img/Ukraine.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g3-2" value="17" type="checkbox"><label for="g3-2">乌克兰</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+			     <label for="g3-3"><img class="mui-media-object" src="../images/img/Poland.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g3-3" value="18" type="checkbox"><label for="g3-3">波兰</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g3-4"><img class="mui-media-object" src="../images/img/Northern-ireland.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g3-4" value="19" type="checkbox"><label for="g3-4">北爱尔兰</label></div></a></li>
+		    </ul>    
+		</div>
+		<!-- End -->
+
+		<!-- Group 4 -->
+		<div class="mui-content">
+		    <h5>　D组</h5>
+		    <ul class="mui-table-view mui-grid-view">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g4-1"><img class="mui-media-object" src="../images/img/Spain.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g4-1" value="20" type="checkbox"><label for="g4-1">西班牙</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g4-2"><img class="mui-media-object" src="../images/img/Czech-Republic.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g4-2" value="21" type="checkbox"><label for="g4-2">捷克</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+			     <label for="g4-3"><img class="mui-media-object" src="../images/img/Turkey.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g4-3" value="22" type="checkbox"><label for="g4-3">土耳其</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g4-4"><img class="mui-media-object" src="../images/img/Croatia.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g4-4" value="23" type="checkbox"><label for="g4-4">克罗地亚</label></div></a></li>
+		    </ul>    
+		</div>
+		<!-- End -->
+
+		<!-- Group 5 -->
+		<div class="mui-content">
+		    <h5>　E组</h5>
+		    <ul class="mui-table-view mui-grid-view">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g5-1"><img class="mui-media-object" src="../images/img/Belgium.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g5-1" value="24" type="checkbox"><label for="g5-1">比利时</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g5-2"><img class="mui-media-object" src="../images/img/Italy.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g5-2" value="25" type="checkbox"><label for="g5-2">意大利</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+			      <label for="g5-3"><img class="mui-media-object" src="../images/img/Ireland.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g5-3" value="26" type="checkbox"><label for="g5-3">爱尔兰</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+		                <label for="g5-4"><img class="mui-media-object" src="../images/img/Sweden.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" id="g5-4" value="27" type="checkbox"><label for="g5-4">瑞典</label></div></a></li>
+		    </ul>    
+		</div>
+		<!-- End -->
+
+		<!-- Group 6 -->
+		<div class="mui-content">
+		    <h5>　F组</h5>
+		    <ul class="mui-table-view mui-grid-view">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">				
+		                <label for="g6-1"><img class="mui-media-object" src="../images/img/Portugal.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" value="28" id="g6-1" type="checkbox"><label for="g6-1">葡萄牙</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">				
+		                <label for="g6-2"><img class="mui-media-object" src="../images/img/Iceland.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" value="29" id="g6-2" type="checkbox"><label for="g6-2">冰岛</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">
+				<label for="g6-3"><img class="mui-media-object" src="../images/img/Austria.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" value="30" id="g6-3" type="checkbox"><label for="g6-3">奥地利</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">				
+		                <label for="g6-4"><img class="mui-media-object" src="../images/img/Hungary.png"></label>
+		                <div class="mui-media-body"><input name="checkbox1" value="31" id="g6-4" type="checkbox"><label for="g6-4">匈牙利</label></div></a></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-3">	
+		    </ul>    
+		</div>
+		<!-- End -->
+
+		<div class="go">
+				<a type="button" id="reset" class="mui-btn mui-btn-danger mui-btn-block">重选</a>
+				<a type="button" id="ok"   onclick="submit()" class="mui-btn mui-btn-success mui-btn-block">提交</a>
+		</div>
+		 <div class="vote-cont">
+        <div style="height: 10px;"></div>
+     <!--    <img class="vote-btn"   onclick="submit()" src="../addons/ewei_vote/style/images/vote.png"/> -->
+        <div style="height: 10px;"></div>
+    </div>
+
+	</div>
+    {/if}
+	<script>
+		$(function () {
+			$("#reset").click(function(){ 
+			$("input[name='checkbox1']").removeAttr("checked"); 
+			});
+		});
+
+	        var aRadio=document.getElementsByTagName('input');
+	        for(var i=0;i<aRadio.length;i++)
+	        {
+	             
+	            aRadio[i].onclick=function()
+	            {
+	                var n=0;
+	                for(var j=0;j<aRadio.length;j++)
+	                {
+	                    if(aRadio[j].checked)
+	                    {
+	                        n++;
+	                    }
+	                }
+	                if(n>8)
+	                {
+	                    this.checked=false;
+	                    alert('出错啦，不能选择超过八支球队！')                
+	                }
+	            }
+	        }
+	</script>
+
+ </body>
+</html>

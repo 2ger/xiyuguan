@@ -1,0 +1,85 @@
+2016-05-16 09:19:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt5SDZmJVfSo1qmMhEqHBcUo]]></FromUserName>
+<CreateTime>1463361546</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1463361546</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[70:3a:d8:30:e6:e0]]></DeviceNo></xml>
+
+2016-05-16 09:19:06 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-16 09:19:06 response :
+------------
+
+2016-05-16 20:10:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt-LasLrA-Ny1adKFl_fL2QM]]></FromUserName>
+<CreateTime>1463400637</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>404104272</MenuId>
+</xml>
+
+2016-05-16 20:10:37 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-16 20:10:37 response :
+------------
+
+2016-05-16 20:39:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt-LasLrA-Ny1adKFl_fL2QM]]></FromUserName>
+<CreateTime>1463402357</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>404104272</MenuId>
+</xml>
+
+2016-05-16 20:39:17 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-16 20:39:17 response :
+------------
+
+2016-05-16 20:39:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt-LasLrA-Ny1adKFl_fL2QM]]></FromUserName>
+<CreateTime>1463402371</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>404104272</MenuId>
+</xml>
+
+2016-05-16 20:39:31 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-16 20:39:31 response :
+------------
+

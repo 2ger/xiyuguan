@@ -1,0 +1,157 @@
+2016-02-04 10:08:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_19f3b98aa3d7]]></ToUserName>
+<FromUserName><![CDATA[ouLX4t52apSIIky5Kq2zfnLK3aTg]]></FromUserName>
+<CreateTime>1454551719</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-04 10:08:39 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-02-04 10:08:39 response :
+------------
+
+2016-02-04 10:08:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_19f3b98aa3d7]]></ToUserName>
+<FromUserName><![CDATA[ouLX4t52apSIIky5Kq2zfnLK3aTg]]></FromUserName>
+<CreateTime>1454551734</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[草绿]]></Content>
+<MsgId>6247252128272612350</MsgId>
+</xml>
+
+2016-02-04 10:08:55 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-02-04 10:08:55 response :
+------------
+
+2016-02-04 13:26:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_4e2dc508e67f]]></ToUserName>
+<FromUserName><![CDATA[oKmr0jk873xyCqvdwz2s182G_450]]></FromUserName>
+<CreateTime>1454563574</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-04 16:00:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwDWsWzgd611qC54aBZ_qrt4]]></FromUserName>
+<CreateTime>1454572814</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-04 16:00:14 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-02-04 16:00:14 response :
+------------
+
+2016-02-04 16:00:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwDWsWzgd611qC54aBZ_qrt4]]></FromUserName>
+<CreateTime>1454572843</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[朋友圈]]></Content>
+<MsgId>6247342790738357189</MsgId>
+</xml>
+
+2016-02-04 16:00:43 params :
+------------
+Array:
+message : Array ;
+module : weisrc_friend ;
+rule : 11 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-02-04 16:00:43 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwDWsWzgd611qC54aBZ_qrt4 ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-02-04 19:14:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwKHDCkVRfybTwnXSJ16QfCQ]]></FromUserName>
+<CreateTime>1454584446</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[jfhb]]></Content>
+<MsgId>6247392625243896429</MsgId>
+</xml>
+
+2016-02-04 19:14:10 params :
+------------
+Array:
+message : Array ;
+module : water_jfhb ;
+rule : 368 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-02-04 19:14:10 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-02-04 19:14:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwKHDCkVRfybTwnXSJ16QfCQ]]></FromUserName>
+<CreateTime>1454584470</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[jfhb]]></Content>
+<MsgId>6247392728323111536</MsgId>
+</xml>
+
+2016-02-04 19:14:33 params :
+------------
+Array:
+message : Array ;
+module : water_jfhb ;
+rule : 368 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-02-04 19:14:33 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwKHDCkVRfybTwnXSJ16QfCQ ;
+MsgType : text ;
+Content : 访问微信接口错误, 错误代码: 48001, 错误信息: api unauthorized hint: [z6wb30473vr22],错误详情：api功能未授权 ;
+

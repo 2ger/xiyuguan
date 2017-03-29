@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.012wz.com" versionCode="0.6">
+	<application setting="true">
+		<name><![CDATA[收银及员工管理]]></name>
+		<identifie><![CDATA[j_money]]></identifie>
+		<version><![CDATA[2.5.1]]></version>
+		<type><![CDATA[biz]]></type>
+		<ability><![CDATA[新扫码收银台]]></ability>
+		<description><![CDATA[新扫码收银台]]></description>
+		<author><![CDATA[柒柒源码]]></author>
+		<url><![CDATA[http://h770.com]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+	<bindings>
+		<menu>
+		      <entry title="扩展功能接口" do="extendbtn" state="" direct="false" />
+			  <entry title="抽奖设置" do="lottery" state="" direct="false" />
+			  <!-- <entry title="文章营销" do="artcle" state="" direct="false" /> -->
+              <entry title="小票打印模板" do="print" state="" direct="false" />
+              <entry title="收银记录" do="history" state="" direct="false" />
+			  <!-- <entry title="营销活动" do="function" state="" direct="false" /> -->
+			  <entry title="员工管理" do="member" state="" direct="false" />
+			  <entry title="折扣设置" do="discount" state="" direct="false" />
+			  <!-- <entry title="代金卷管理" do="daijin" state="" direct="false" /> -->
+			  <entry title="满减活动管理" do="manjian" state="" direct="false" />
+		</menu>
+		<cover>
+		      <entry title="收银台入口" do="index" state="" direct="false" />
+		</cover>
+	</bindings>
+	<install><![CDATA[
+    ]]></install>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

@@ -1,0 +1,67 @@
+<html ng-app="diandanbao" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="telephone=no" name="format-detection">
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<meta content="production" name="env">
+<title>登录</title>
+<link rel="Stylesheet" type="text/css" href="../addons/ewei_hotel/template/style/css/mian.css">
+    <link rel="stylesheet" type="text/css" href="../addons/ewei_hotel/template/style/css/myctrip.css">
+
+<link data-turbolinks-track="true" href="{RES}/mobile/{php echo $this->cur_tpl}/assets/diandanbao/weixin.css?v=1" media="all" rel="stylesheet">
+<style type="text/css">@media screen{.smnoscreen {display:none}} @media print{.smnoprint{display:none}}</style>
+<script language="javascript">
+function check(form){
+    if (form.mobile.value==""){
+        alert("请输入手机号!");form.mobile.focus();return false;
+    }
+    if (form.password.value==""){
+        alert("请输入密码!");form.password.focus();return false;
+    }  
+}
+</script>
+</head>
+
+<body onselectstart="return false">
+
+<div id="headerview" style="height: 48px;">
+    <header style="position: fixed;">
+        <h1>员工登录</h1>
+        <!--<i id="c-ui-header-return" class="returnico i_bef" onclick="javascript:history.back();"></i>-->
+    </header>
+</div>
+<div id="main" class="h100">
+    <div class="main-frame">
+        <div class="main-viewport">
+            <div class="sub-viewport" id="id_viewport2" page-id="212052" page-url="account/login">
+                <article class="p10">
+                    <!--登录查询-->
+                    <form name="form1" method="POST" action="" id='data_form'>
+                    <div id="login">
+                        <ul class="conlist">
+                            <li class="li_inputbox clear-input-box">
+                                <input autofocus="" maxlength="30" class="li_input" tabindex="1" id="mobile"
+                                       type="text" name="mobile" required="" value="" placeholder="手机号">
+                            </li>
+                            <li class="li_inputbox clear-input-box">
+                                <input class="li_input" maxlength="20" required="" tabindex="2" id="password"
+                                       type="password" name="password" placeholder="密码(6-20位字符)">
+                                
+                            </li>
+                        </ul>
+  
+                        <input type="submit" class="mainbtn" name="submit" value="登录"">
+                        <input type="hidden" name="submit" value="1" />
+                        <input type="hidden" name="token" value="{$_W['token']}" />
+                    </div>
+                    </form>
+
+                </article>
+            </div>
+        </div>
+        <div class="main-state"></div>
+    </div>
+</div>
+<div id="footer"></div>
+
+</body>
+</html>

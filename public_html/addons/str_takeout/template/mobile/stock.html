@@ -1,0 +1,103 @@
+{template 'common/header'}
+<link rel="stylesheet" type="text/css" href="../addons/str_takeout/template/resource/css/main.css">
+<script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
+<style type="text/css">
+	.but-post{display:block;height:30px;line-height:30px;border:none;width:640px;border-radius:3px;font-size:16px;font-weight:bold;color:#fff;background-color:#ff5f32;}
+	.nav div{width:100%; color: #fff;text-align: center;}
+</style>
+<div class="container">
+	<section>
+	<header class="nav menu">
+		<div>{$users['name']}库存信息</div>
+	</header>
+	    
+		<style type="text/css">
+			.my_menu_list th{width:0;}
+			.tt h2 {
+			    width: 100%;
+			    -webkit-box-sizing: border-box;
+			    height: 30px;
+			    line-height: 30px;
+			    padding-left: 15px;
+			    font-size: 16px;
+			    color: #919191;
+			    background-color: #f8f8f8;
+			    border-width: 0 0 1px;
+			}
+			.sou {
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				height: 60px;
+				background-color: white;
+			}
+			.sou ul {
+				padding: 10px;
+			}
+			.sou ul li {
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+		</style>
+		<!-- 按分类搜索 -->
+	    <div class="sou">
+	    	<ul>
+	    		<li>
+	    			<select class="comm_btn" style="width: 100%;" onchange="changeselect()" id="changeselect">
+
+	    				<option value="">分类</option>
+	    				{loop $category $row}
+	    				<option value="{$row['id']}" {if $cid==$row['id']} selected='selected'{/if}>{$row['name']}</option>
+	    				{/loop}
+	    			</select>
+	    		</li>
+	    	</ul>
+	    	<script type="text/javascript">
+	    		function changeselect(){
+				var id= $('#changeselect').val();
+                window.location.href="index.php?i=3&c=entry&do=stock&logid={$logid}&storeid={$storeid}&m=str_takeout&cid="+id;
+	    		}
+	    	</script>
+	    </div>
+	    <!-- 搜索结束 -->
+		{loop $category $cate_row}
+		{if !empty($cate_goods[$cate_row['id']])}
+		<div class="tt cat{$cate_row['id']}" id="cate-{$cate_row['id']}">
+		<h2 style="color:#ff510c">{$cate_row['name']}</h2></div>
+		<table class="my_menu_list" style="margin-top: 0px;">
+			<thead>
+				<tr>
+					<th style="width:30%">原材料</th>
+					<th style="width:20%">规格</th>
+					<th style="width:20%">库存</th>
+					<th style="width:20%">单位</th>
+				</tr>
+			</thead>
+			<tbody>
+					{loop $cate_goods[$cate_row['id']] $da}
+						<tr>
+							<td>{$da['name']}</td>
+							<td>{$da['spec']}</td>
+							<td>{php if(empty($da['costUnitId']))$da['costUnitId']=1}
+								{if ($da['qty']*$da['costUnitId'])<=1}
+								<span style="color: red;">
+									{php echo $da['qty']*$da['costUnitId']}
+								</span>
+								{else}
+								{php echo $da['qty']*$da['costUnitId']}
+								{/if}
+							</td>
+							<td>{if $da['costName']==''}{$da['unitName']}{else}{$da['costName']}{/if}</td>
+						</tr>
+					{/loop}
+			</tbody>
+		</table>
+		{/if}
+		{/loop}
+
+	</section>
+	{template 'footerbar'}
+</div>
+
+{template 'common'}
+{template 'common/footer'}

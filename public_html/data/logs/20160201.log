@@ -1,0 +1,166 @@
+2016-02-01 00:16:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwKHDCkVRfybTwnXSJ16QfCQ]]></FromUserName>
+<CreateTime>1454256998</CreateTime>
+<MsgType><![CDATA[image]]></MsgType>
+<PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz/giczmN23MNia59n4NrQzqNZEb3xadibkWZWsiaZxIzeEoNSWjJm1Mcd3zibhh6jY8V7SSFXsUtwag5f6t6EwOj87ePQ/0]]></PicUrl>
+<MsgId>6245986246792680062</MsgId>
+<MediaId><![CDATA[ZQ8lShwmdxrRykCu4RzNB1cvu15Za4vshkvcB2BDz4pP7JcnbmVD2cQDpuZcvXGs]]></MediaId>
+</xml>
+
+2016-02-01 00:16:39 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-02-01 00:16:39 response :
+------------
+
+2016-02-01 07:16:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_4e2dc508e67f]]></ToUserName>
+<FromUserName><![CDATA[oKmr0jhU_Kb5_zcBEr7vf_6wjtZM]]></FromUserName>
+<CreateTime>1454282166</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-01 15:53:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwKHDCkVRfybTwnXSJ16QfCQ]]></FromUserName>
+<CreateTime>1454313224</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[猜红包]]></Content>
+<MsgId>6246227735623874704</MsgId>
+</xml>
+
+2016-02-01 15:53:44 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 117 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-02-01 15:53:44 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwKHDCkVRfybTwnXSJ16QfCQ ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-02-01 15:53:45 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwKHDCkVRfybTwnXSJ16QfCQ]]></FromUserName>
+<CreateTime>1454313220</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[长红包]]></Content>
+<MsgId>6246227718444005519</MsgId>
+</xml>
+
+2016-02-01 15:53:45 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-02-01 15:53:45 response :
+------------
+
+2016-02-01 16:07:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwHHN9O7nDsACe4UyapImLco]]></FromUserName>
+<CreateTime>1454314069</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-01 19:12:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwFL9FpwvtHWsut22XQU4ZJ4]]></FromUserName>
+<CreateTime>1454325145</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-01 22:11:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwEblndq0Ttl4scL2aiKyMKM]]></FromUserName>
+<CreateTime>1454335872</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-02-01 22:11:12 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-02-01 22:11:12 response :
+------------
+
+2016-02-01 22:11:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwEblndq0Ttl4scL2aiKyMKM]]></FromUserName>
+<CreateTime>1454335887</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[微考试]]></Content>
+<MsgId>6246325072467711274</MsgId>
+</xml>
+
+2016-02-01 22:11:28 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 38 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-02-01 22:11:28 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwEblndq0Ttl4scL2aiKyMKM ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-02-01 23:39:02 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_4a88bcb35142]]></ToUserName>
+<FromUserName><![CDATA[oXvf4jkU_q_PyXssX0lozNvnqLJQ]]></FromUserName>
+<CreateTime>1454341141</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+

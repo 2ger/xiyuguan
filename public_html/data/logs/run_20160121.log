@@ -1,0 +1,2 @@
+[2016-01-21 13:11:33] trace test /web/index.php?c=site&a=entry&eid=772 notify:
+[2016-01-21 13:11:42] trace test /web/index.php?c=site&a=entry&op=post&do=wxpay&m=cgc_gzredbag notify:

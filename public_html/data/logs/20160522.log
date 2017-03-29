@@ -1,0 +1,207 @@
+2016-05-22 07:08:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uB0JsXVrj_1kUXab6Uj7fmU]]></FromUserName>
+<CreateTime>1463872131</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-22 07:08:56 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-22 07:08:56 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uB0JsXVrj_1kUXab6Uj7fmU ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-22 09:41:58 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uDOB9HU155uGF88MH1EGvqA]]></FromUserName>
+<CreateTime>1463881289</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[竞猜]]></Content>
+<MsgId>6287322261886904036</MsgId>
+</xml>
+
+2016-05-22 09:41:58 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-22 09:41:58 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uDOB9HU155uGF88MH1EGvqA ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-22 11:25:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uOVo3qdm7k_A9fDT9Xky2cM]]></FromUserName>
+<CreateTime>1463887503</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[竟猜]]></Content>
+<MsgId>6287348950813686265</MsgId>
+</xml>
+
+2016-05-22 11:25:28 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-22 11:25:28 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uOVo3qdm7k_A9fDT9Xky2cM ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-22 11:54:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uAvWVZpLhW7HORqp-N_QJwU]]></FromUserName>
+<CreateTime>1463889258</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[http://wqq.xyj0772.com/app/index.php?i=3&c=entry&id=19&do=result&m=ewei_vote]]></Content>
+<MsgId>6287356488481292124</MsgId>
+</xml>
+
+2016-05-22 11:54:19 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-22 11:54:19 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uAvWVZpLhW7HORqp-N_QJwU ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-22 15:18:15 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uOVo3qdm7k_A9fDT9Xky2cM]]></FromUserName>
+<CreateTime>1463901475</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[我的也0k了]]></Content>
+<MsgId>6287408960096756479</MsgId>
+</xml>
+
+2016-05-22 15:18:15 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-22 15:18:16 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uOVo3qdm7k_A9fDT9Xky2cM ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-22 17:31:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uE_lmhr3OrQZWSNP7J2P1VM]]></FromUserName>
+<CreateTime>1463909470</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-22 17:31:34 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-22 17:31:34 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uE_lmhr3OrQZWSNP7J2P1VM ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-22 19:42:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uAwnvRa_NiwiZaX1AqYTEBc]]></FromUserName>
+<CreateTime>1463917349</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-22 22:30:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt4KCc-UR7Sch5sgc8W3t7wA]]></FromUserName>
+<CreateTime>1463927393</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qc8899.com]]></EventKey>
+<MenuId>404106993</MenuId>
+</xml>
+
+2016-05-22 22:30:22 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-22 22:30:22 response :
+------------
+

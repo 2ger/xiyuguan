@@ -1,0 +1,3053 @@
+2016-04-20 09:15:29 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt4kBlYFLnzNeuX2HyUp03C0]]></FromUserName>
+<CreateTime>1461114928</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1461114928</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[70:3a:d8:30:e6:e0]]></DeviceNo></xml>
+
+2016-04-20 09:15:29 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 09:15:29 response :
+------------
+
+2016-04-20 09:59:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461117566</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=home&]]></EventKey>
+<MenuId>403541938</MenuId>
+</xml>
+
+2016-04-20 09:59:36 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 09:59:36 response :
+------------
+
+2016-04-20 10:49:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461120586</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=home&]]></EventKey>
+<MenuId>403549674</MenuId>
+</xml>
+
+2016-04-20 10:49:55 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 10:49:55 response :
+------------
+
+2016-04-20 10:55:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461120901</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307623</Latitude>
+<Longitude>109.403137</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 10:55:12 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 10:55:12 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:03:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461121389</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.308050</Latitude>
+<Longitude>109.403297</Longitude>
+<Precision>76.944252</Precision>
+</xml>
+
+2016-04-20 11:03:22 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:03:22 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:03:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461121391</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:03:24 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:03:24 response :
+------------
+
+2016-04-20 11:04:07 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461121434</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:04:07 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:04:07 response :
+------------
+
+2016-04-20 11:07:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461121656</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307608</Latitude>
+<Longitude>109.403152</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 11:07:36 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:07:36 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:11:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461121875</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307743</Latitude>
+<Longitude>109.403175</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 11:11:17 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:11:17 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:11:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461121882</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[易伙]]></Content>
+<MsgId>6275470699063521714</MsgId>
+</xml>
+
+2016-04-20 11:11:24 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 9 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-04-20 11:11:24 response :
+------------
+Array:
+FromUserName : gh_d5c808a7666e ;
+ToUserName : om_6jtwK1SqXYxH3qyYgABWGiCR4 ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-04-20 11:13:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461121978</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:13:01 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:13:01 response :
+------------
+
+2016-04-20 11:14:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461122064</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307835</Latitude>
+<Longitude>109.403137</Longitude>
+<Precision>97.701279</Precision>
+</xml>
+
+2016-04-20 11:14:27 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:14:27 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:15:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122118</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:15:21 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:15:21 response :
+------------
+
+2016-04-20 11:15:49 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt4kBlYFLnzNeuX2HyUp03C0]]></FromUserName>
+<CreateTime>1461122146</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1461122146</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[70:3a:d8:30:e6:e0]]></DeviceNo></xml>
+
+2016-04-20 11:15:49 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:15:49 response :
+------------
+
+2016-04-20 11:20:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122430</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:20:35 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:20:35 response :
+------------
+
+2016-04-20 11:20:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461122436</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307402</Latitude>
+<Longitude>109.403168</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 11:20:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:20:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:20:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461122437</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:20:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:20:43 response :
+------------
+
+2016-04-20 11:23:03 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461122577</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307535</Latitude>
+<Longitude>109.403175</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 11:23:03 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:23:03 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:23:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461122582</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:23:08 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:23:08 response :
+------------
+
+2016-04-20 11:25:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122752</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:25:59 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:25:59 response :
+------------
+
+2016-04-20 11:26:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122808</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://hh.xyj0772.comwechat/oauth/wxch_oauth.php?oid=20]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:26:55 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:26:55 response :
+------------
+
+2016-04-20 11:27:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122821</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://hh.xyj0772.comwechat/oauth/wxch_oauth.php?oid=19]]></EventKey>
+<MenuId>403550540</MenuId>
+</xml>
+
+2016-04-20 11:27:08 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:27:08 response :
+------------
+
+2016-04-20 11:29:41 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122973</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403550934</MenuId>
+</xml>
+
+2016-04-20 11:29:41 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:29:41 response :
+------------
+
+2016-04-20 11:29:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461122985</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://hh.xyj0772.comwechat/oauth/wxch_oauth.php?oid=20]]></EventKey>
+<MenuId>403550934</MenuId>
+</xml>
+
+2016-04-20 11:29:54 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:29:54 response :
+------------
+
+2016-04-20 11:41:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461123692</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=254]]></EventKey>
+<MenuId>403551110</MenuId>
+</xml>
+
+2016-04-20 11:41:44 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:41:44 response :
+------------
+
+2016-04-20 11:42:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461123718</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=254]]></EventKey>
+<MenuId>403551110</MenuId>
+</xml>
+
+2016-04-20 11:42:09 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:42:09 response :
+------------
+
+2016-04-20 11:47:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124050</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=254]]></EventKey>
+<MenuId>403551197</MenuId>
+</xml>
+
+2016-04-20 11:47:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:47:43 response :
+------------
+
+2016-04-20 11:48:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124123</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307713</Latitude>
+<Longitude>109.403137</Longitude>
+<Precision>76.257179</Precision>
+</xml>
+
+2016-04-20 11:48:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:48:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:49:03 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124129</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[二维码]]></Content>
+<MsgId>6275480349855036406</MsgId>
+</xml>
+
+2016-04-20 11:49:03 message xx :
+------------
+String:
+{"tousername":"gh_d5c808a7666e","fromusername":"om_6jt2KN5m2a7PN8LYPB54R85zI","createtime":"1461124129","msgtype":"text","content":"\u4e8c\u7ef4\u7801","msgid":"6275480349855036406","from":"om_6jt2KN5m2a7PN8LYPB54R85zI","to":"gh_d5c808a7666e","time":"1461124129","type":"text","event":null,"redirection":false,"source":null}
+
+2016-04-20 11:49:03 saveUserInfo :
+------------
+Array:
+subscribe : 1 ;
+openid : om_6jt2KN5m2a7PN8LYPB54R85zI ;
+nickname : 125円 ;
+sex : 2 ;
+language : zh_CN ;
+city :  ;
+province :  ;
+country : 中国 ;
+headimgurl : http://wx.qlogo.cn/mmopen/3XvNxks4Nw7TSmXDa5OPdqCF8ZmaV1y4rS8C3xJrCbRwPaEWngom8IrAlUQwvL1xlVPoSe0fUTY1OWUsMjaUmwJFuPm1seb8/0 ;
+subscribe_time : 1461050159 ;
+remark :  ;
+groupid : 0 ;
+
+2016-04-20 11:49:03 refresh :
+------------
+Array:
+subscribe : 1 ;
+openid : om_6jt2KN5m2a7PN8LYPB54R85zI ;
+nickname : 125円 ;
+sex : 2 ;
+language : zh_CN ;
+city :  ;
+province :  ;
+country : 中国 ;
+headimgurl : http://wx.qlogo.cn/mmopen/3XvNxks4Nw7TSmXDa5OPdqCF8ZmaV1y4rS8C3xJrCbRwPaEWngom8IrAlUQwvL1xlVPoSe0fUTY1OWUsMjaUmwJFuPm1seb8/0 ;
+subscribe_time : 1461050159 ;
+remark :  ;
+groupid : 0 ;
+
+2016-04-20 11:49:03 Processor:SUBSCRIBE :
+------------
+Array:
+tousername : gh_d5c808a7666e ;
+fromusername : om_6jt2KN5m2a7PN8LYPB54R85zI ;
+createtime : 1461124129 ;
+msgtype : text ;
+content : 二维码 ;
+msgid : 6275480349855036406 ;
+from : om_6jt2KN5m2a7PN8LYPB54R85zI ;
+to : gh_d5c808a7666e ;
+time : 1461124129 ;
+type : text ;
+event :  ;
+redirection :  ;
+source :  ;
+
+2016-04-20 11:49:04 step1 :
+------------
+String:
+
+
+2016-04-20 11:49:04 step3 :
+------------
+String:
+<1461124112
+
+2016-04-20 11:49:04 step3.0 :
+------------
+String:
+om_6jt2KN5m2a7PN8LYPB54R85zI
+
+2016-04-20 11:49:04 begin send text :
+------------
+String:
+
+
+2016-04-20 11:49:04 end send text :
+------------
+String:
+
+
+2016-04-20 11:49:04 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=Xkp8PHQad2RpqFLilALmNDIPL_I1aPj3xlW0XBondwCLdmNFyM3nFICN_i-nMzRAiHCwFnY1sdFMUfoRlzlcxn-PNd0w_VK-c_xOe_H3dNbKNlyy-CtCU2azEHLvBtaGLLRiAIAFFL
+
+2016-04-20 11:49:04 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-04-20 11:49:04 end send res :
+------------
+String:
+
+
+2016-04-20 11:49:04 step3.1 :
+------------
+String:
+
+
+2016-04-20 11:49:04 sc :
+------------
+
+2016-04-20 11:49:04 sc emtpy :
+------------
+
+2016-04-20 11:49:04 begin get limit scene scene id :
+------------
+
+2016-04-20 11:49:04 QR data :
+------------
+String:
+{"action_name":"QR_LIMIT_SCENE","action_info":{"scene":{"scene_id":2}}}
+
+2016-04-20 11:49:04 QR content :
+------------
+Array:
+ticket : gQFt8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1RFejBYckhrTWlSTGYwTm5JV0JmAAIESFCFVQMEAAAAAA== ;
+url : http://weixin.qq.com/q/TEz0XrHkMiRLf0NnIWBf ;
+
+2016-04-20 11:49:04 succ get limit scene scene id :
+------------
+
+2016-04-20 11:49:04 img get limit scene scene id :
+------------
+
+2016-04-20 11:49:04 step merge 1 :
+------------
+String:
+merge bgfile http://wqq.xyj0772.com/attachment/images/2/2016/04/gcju87Kn228W61NQOuqW8yK61ncQJc.jpg and qrfile https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFt8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1RFejBYckhrTWlSTGYwTm5JV0JmAAIESFCFVQMEAAAAAA%3D%3D
+
+2016-04-20 11:49:05 step merge 1 done :
+------------
+String:
+
+
+2016-04-20 11:49:05 step upload 1 :
+------------
+String:
+
+
+2016-04-20 11:49:05 uploadurl :
+------------
+String:
+http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=Xkp8PHQad2RpqFLilALmNDIPL_I1aPj3xlW0XBondwCLdmNFyM3nFICN_i-nMzRAiHCwFnY1sdFMUfoRlzlcxn-PNd0w_VK-c_xOe_H3dNbKNlyy-CtCU2azEHLvBtaGLLRiAIAFFL&type=image
+
+2016-04-20 11:49:05 postparam :
+------------
+Array:
+media : @C:/phpStudy/WWW/40gewangzhan/wqq/attachment/qr-image-om_6jt2KN5m2a7PN8LYPB54R85zI6343.jpg ;
+
+2016-04-20 11:49:07 Running task :
+------------
+String:
+http://wqq.xyj0772.com/./app/index.php?i=2&c=entry&from_user=om_6jt2KN5m2a7PN8LYPB54R85zI&do=RunTask&m=quickspread&wxref=mp.weixin.qq.com#wechat_redirect==>{"errno":1,"message":"Operation timed out after 4000 milliseconds with 0 bytes received"}
+
+2016-04-20 11:49:08 content :
+------------
+Array:
+type : image ;
+media_id : H4Woat4yqsIefZ7pjOM2JuhJXaAIbujhWrZc1hnqNiQkypbQn7I3xFoGdl_0rt6E ;
+created_at : 1461124134 ;
+
+2016-04-20 11:49:08 step upload 1 done :
+------------
+String:
+
+
+2016-04-20 11:49:08 genImage :
+------------
+String:
+H4Woat4yqsIefZ7pjOM2JuhJXaAIbujhWrZc1hnqNiQkypbQn7I3xFoGdl_0rt6E
+
+2016-04-20 11:49:08 begin send text :
+------------
+String:
+
+
+2016-04-20 11:49:08 end send text :
+------------
+String:
+
+
+2016-04-20 11:49:08 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=Xkp8PHQad2RpqFLilALmNDIPL_I1aPj3xlW0XBondwCLdmNFyM3nFICN_i-nMzRAiHCwFnY1sdFMUfoRlzlcxn-PNd0w_VK-c_xOe_H3dNbKNlyy-CtCU2azEHLvBtaGLLRiAIAFFL
+
+2016-04-20 11:49:08 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-04-20 11:49:08 end send res :
+------------
+String:
+
+
+2016-04-20 11:49:08 begin setQR :
+------------
+String:
+
+
+2016-04-20 11:49:08 cc2.2 :
+------------
+String:
+
+
+2016-04-20 11:49:08 end setQR :
+------------
+String:
+
+
+2016-04-20 11:49:08 step4 :
+------------
+String:
+H4Woat4yqsIefZ7pjOM2JuhJXaAIbujhWrZc1hnqNiQkypbQn7I3xFoGdl_0rt6E
+
+2016-04-20 11:49:08 sendImage end :
+------------
+String:
+{"touser":"om_6jt2KN5m2a7PN8LYPB54R85zI","msgtype":"image","image":{"media_id":"H4Woat4yqsIefZ7pjOM2JuhJXaAIbujhWrZc1hnqNiQkypbQn7I3xFoGdl_0rt6E"}}
+
+2016-04-20 11:49:08 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=Xkp8PHQad2RpqFLilALmNDIPL_I1aPj3xlW0XBondwCLdmNFyM3nFICN_i-nMzRAiHCwFnY1sdFMUfoRlzlcxn-PNd0w_VK-c_xOe_H3dNbKNlyy-CtCU2azEHLvBtaGLLRiAIAFFL
+
+2016-04-20 11:49:08 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-04-20 11:49:08 step5 :
+------------
+String:
+
+
+2016-04-20 11:57:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124632</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[二维码]]></EventKey>
+</xml>
+
+2016-04-20 11:57:28 message xx :
+------------
+String:
+{"tousername":"gh_d5c808a7666e","fromusername":"om_6jt2KN5m2a7PN8LYPB54R85zI","createtime":"1461124632","msgtype":"event","event":"CLICK","eventkey":"\u4e8c\u7ef4\u7801","from":"om_6jt2KN5m2a7PN8LYPB54R85zI","to":"gh_d5c808a7666e","time":"1461124632","type":"text","content":"\u4e8c\u7ef4\u7801","redirection":true,"source":"click"}
+
+2016-04-20 11:57:28 refresh :
+------------
+Array:
+uid : 2 ;
+nickname : 125円 ;
+avatar : http://wx.qlogo.cn/mmopen/3XvNxks4Nw7TSmXDa5OPdqCF8ZmaV1y4rS8C3xJrCbRwPaEWngom8IrAlUQwvL1xlVPoSe0fUTY1OWUsMjaUmwJFuPm1seb8/0 ;
+
+2016-04-20 11:57:28 Processor:SUBSCRIBE :
+------------
+Array:
+tousername : gh_d5c808a7666e ;
+fromusername : om_6jt2KN5m2a7PN8LYPB54R85zI ;
+createtime : 1461124632 ;
+msgtype : event ;
+event : CLICK ;
+eventkey : 二维码 ;
+from : om_6jt2KN5m2a7PN8LYPB54R85zI ;
+to : gh_d5c808a7666e ;
+time : 1461124632 ;
+type : text ;
+content : 二维码 ;
+redirection : 1 ;
+source : click ;
+
+2016-04-20 11:57:29 step1 :
+------------
+String:
+
+
+2016-04-20 11:57:29 step3 :
+------------
+String:
+1461124148<1461124112
+
+2016-04-20 11:57:29 begin send text :
+------------
+String:
+
+
+2016-04-20 11:57:29 end send text :
+------------
+String:
+
+
+2016-04-20 11:57:29 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=1FjAdlZ4ZZuP38eMYiRqbhHWqrYJ_SgY9v5tSdaULPe9wDaRINpk8gmMFLj2R--zpRKVOIBYDT-kJk7rm_1Bml8G2im-HaC3omXR-SKBAhmEnt9XM15UTV4O5Vv7V0OdETQfAIASHE
+
+2016-04-20 11:57:29 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-04-20 11:57:29 end send res :
+------------
+String:
+
+
+2016-04-20 11:57:29 step3.2 :
+------------
+String:
+
+
+2016-04-20 11:57:29 step4 :
+------------
+String:
+H4Woat4yqsIefZ7pjOM2JuhJXaAIbujhWrZc1hnqNiQkypbQn7I3xFoGdl_0rt6E
+
+2016-04-20 11:57:29 sendImage end :
+------------
+String:
+{"touser":"om_6jt2KN5m2a7PN8LYPB54R85zI","msgtype":"image","image":{"media_id":"H4Woat4yqsIefZ7pjOM2JuhJXaAIbujhWrZc1hnqNiQkypbQn7I3xFoGdl_0rt6E"}}
+
+2016-04-20 11:57:29 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=1FjAdlZ4ZZuP38eMYiRqbhHWqrYJ_SgY9v5tSdaULPe9wDaRINpk8gmMFLj2R--zpRKVOIBYDT-kJk7rm_1Bml8G2im-HaC3omXR-SKBAhmEnt9XM15UTV4O5Vv7V0OdETQfAIASHE
+
+2016-04-20 11:57:29 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-04-20 11:57:29 step5 :
+------------
+String:
+
+
+2016-04-20 11:57:29 Running task :
+------------
+String:
+http://wqq.xyj0772.com/./app/index.php?i=2&c=entry&from_user=om_6jt2KN5m2a7PN8LYPB54R85zI&do=RunTask&m=quickspread&wxref=mp.weixin.qq.com#wechat_redirect==>{"code":"200","status":"OK","responseline":"HTTP\/1.1 200 OK","headers":{"Date":"Wed, 20 Apr 2016 03:57:28 GMT","Server":"Apache\/2.4.10 (Win32) OpenSSL\/0.9.8zb","Set-Cookie":["yunsuo_session_verify=eeaf1e3d951845ff2a33af44913b53e3; expires=Wed, 20-Apr-21 07:54:01 GMT; path=\/; domain=.xyj0772.com; HttpOnly","PHPSESSID=5391fd3d256be226f3d8b35f3eecaa09","PHPSESSID=5391fd3d256be226f3d8b35f3eecaa09; path=\/"],"Expires":"Thu, 19 Nov 1981 08:52:00 GMT","Cache-Control":"no-store, no-cache, must-revalidate, post-check=0, pre-check=0","Pragma":"no-cache","Content-Length":"1","Content-Type":"text\/html; charset=utf-8"},"content":"\n","meta":"HTTP\/1.1 200 OK\r\nDate: Wed, 20 Apr 2016 03:57:28 GMT\r\nServer: Apache\/2.4.10 (Win32) OpenSSL\/0.9.8zb\r\nSet-Cookie: yunsuo_session_verify=eeaf1e3d951845ff2a33af44913b53e3; expires=Wed, 20-Apr-21 07:54:01 GMT; path=\/; domain=.xyj0772.com; HttpOnly\r\nSet-Cookie: PHPSESSID=5391fd3d256be226f3d8b35f3eecaa09\r\nSet-Cookie: PHPSESSID=5391fd3d256be226f3d8b35f3eecaa09; path=\/\r\nExpires: Thu, 19 Nov 1981 08:52:00 GMT\r\nCache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nPragma: no-cache\r\nContent-Length: 1\r\nContent-Type: text\/html; charset=utf-8\r\n\r\n\n"}
+
+2016-04-20 11:57:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124646</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://hh.xyj0772.comwechat/oauth/wxch_oauth.php?oid=20]]></EventKey>
+<MenuId>403551367</MenuId>
+</xml>
+
+2016-04-20 11:57:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:57:43 response :
+------------
+
+2016-04-20 11:57:48 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124651</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403551367</MenuId>
+</xml>
+
+2016-04-20 11:57:48 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:57:48 response :
+------------
+
+2016-04-20 11:57:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124658</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403551367</MenuId>
+</xml>
+
+2016-04-20 11:57:54 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:57:54 response :
+------------
+
+2016-04-20 11:58:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124677</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403551367</MenuId>
+</xml>
+
+2016-04-20 11:58:14 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:58:14 response :
+------------
+
+2016-04-20 11:58:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124710</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307665</Latitude>
+<Longitude>109.403114</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 11:58:47 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:58:47 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 11:58:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124710</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://hh.xyj0772.comwechat/oauth/wxch_oauth.php?oid=20]]></EventKey>
+<MenuId>403551367</MenuId>
+</xml>
+
+2016-04-20 11:58:47 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:58:47 response :
+------------
+
+2016-04-20 11:59:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461124749</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[SCAN]]></Event>
+<EventKey><![CDATA[2]]></EventKey>
+<Ticket><![CDATA[gQFt8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1RFejBYckhrTWlSTGYwTm5JV0JmAAIESFCFVQMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 11:59:26 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:59:26 response :
+------------
+
+2016-04-20 11:59:26 Receiver:SCAN :
+------------
+String:
+2
+
+2016-04-20 11:59:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461124755</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 11:59:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461124776</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_2]]></EventKey>
+<Ticket><![CDATA[gQFt8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1RFejBYckhrTWlSTGYwTm5JV0JmAAIESFCFVQMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 11:59:54 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 11:59:54 response :
+------------
+
+2016-04-20 11:59:54 Receiver:SUBSCRIBE :
+------------
+String:
+qrscene_2
+
+2016-04-20 11:59:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461124778</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307451</Latitude>
+<Longitude>109.403114</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 11:59:55 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 11:59:55 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 12:01:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124874</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307665</Latitude>
+<Longitude>109.403114</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 12:01:31 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 12:01:31 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 12:01:38 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461124880</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://hh.xyj0772.comwechat/oauth/wxch_oauth.php?oid=20]]></EventKey>
+<MenuId>403551367</MenuId>
+</xml>
+
+2016-04-20 12:01:38 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 12:01:38 response :
+------------
+
+2016-04-20 12:08:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461125322</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 12:08:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 12:08:43 response :
+------------
+
+2016-04-20 12:08:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461125326</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 12:08:47 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 12:08:47 response :
+------------
+
+2016-04-20 12:10:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461125426</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 12:10:28 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 12:10:28 response :
+------------
+
+2016-04-20 13:38:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt4kBlYFLnzNeuX2HyUp03C0]]></FromUserName>
+<CreateTime>1461130730</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1461130730</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[70:3a:d8:30:e6:e0]]></DeviceNo></xml>
+
+2016-04-20 13:38:54 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 13:38:54 response :
+------------
+
+2016-04-20 14:31:41 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_joxo4Bk9EsgZAnw2u7XWM]]></FromUserName>
+<CreateTime>1461133898</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 14:31:41 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:31:41 response :
+------------
+
+2016-04-20 14:52:51 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135160</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 14:52:51 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:52:51 response :
+------------
+
+2016-04-20 14:53:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135186</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 14:54:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135249</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_2]]></EventKey>
+<Ticket><![CDATA[gQFt8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1RFejBYckhrTWlSTGYwTm5JV0JmAAIESFCFVQMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 14:54:21 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:54:21 response :
+------------
+
+2016-04-20 14:54:21 Receiver:SUBSCRIBE :
+------------
+String:
+qrscene_2
+
+2016-04-20 14:54:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135252</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307346</Latitude>
+<Longitude>109.403084</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 14:54:24 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 14:54:24 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 14:54:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135276</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 14:55:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135304</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_2]]></EventKey>
+<Ticket><![CDATA[gQFt8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1RFejBYckhrTWlSTGYwTm5JV0JmAAIESFCFVQMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 14:55:16 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:55:16 response :
+------------
+
+2016-04-20 14:55:16 Receiver:SUBSCRIBE :
+------------
+String:
+qrscene_2
+
+2016-04-20 14:55:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135308</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307545</Latitude>
+<Longitude>109.403076</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 14:55:19 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 14:55:19 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 14:55:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461135309</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 14:55:20 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:55:20 response :
+------------
+
+2016-04-20 14:55:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461135321</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 14:55:33 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:55:33 response :
+------------
+
+2016-04-20 14:55:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461135331</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=436]]></EventKey>
+<MenuId>403551414</MenuId>
+</xml>
+
+2016-04-20 14:55:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 14:55:43 response :
+------------
+
+2016-04-20 15:12:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461136349</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 15:12:38 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461136356</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 15:13:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461136401</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 15:13:23 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:13:23 response :
+------------
+
+2016-04-20 15:13:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461136409</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 15:15:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461136553</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_b61cc861555195a0c8a6661f39aceb4d]]></EventKey>
+<Ticket><![CDATA[gQEE7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1preHpqdmJra0NUcHhtMlNwbVJmAAIEGiwXVwMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 15:15:57 params :
+------------
+Array:
+message : Array ;
+module : ewei_shop ;
+rule : 12 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-04-20 15:15:57 response :
+------------
+Array:
+FromUserName : gh_d5c808a7666e ;
+ToUserName : om_6jt9nx0Vn3i2pXSydeJEeGeUU ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-04-20 15:15:57 Receiver:SUBSCRIBE :
+------------
+String:
+qrscene_b61cc861555195a0c8a6661f39aceb4d
+
+2016-04-20 15:21:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461136881</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307520</Latitude>
+<Longitude>109.402977</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 15:21:25 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 15:21:25 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 15:21:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461136882</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403554219</MenuId>
+</xml>
+
+2016-04-20 15:21:26 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:21:26 response :
+------------
+
+2016-04-20 15:21:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461136891</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554219</MenuId>
+</xml>
+
+2016-04-20 15:21:35 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:21:35 response :
+------------
+
+2016-04-20 15:26:07 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461137162</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 15:26:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461137172</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 15:26:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461137178</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554219</MenuId>
+</xml>
+
+2016-04-20 15:26:23 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:26:23 response :
+------------
+
+2016-04-20 15:34:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461137658</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=435]]></EventKey>
+<MenuId>403554139</MenuId>
+</xml>
+
+2016-04-20 15:34:25 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:34:25 response :
+------------
+
+2016-04-20 15:35:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461137723</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:35:30 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:35:30 response :
+------------
+
+2016-04-20 15:38:53 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461137924</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=516]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:38:53 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:38:53 response :
+------------
+
+2016-04-20 15:40:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461138000</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:40:09 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:40:09 response :
+------------
+
+2016-04-20 15:44:45 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461138275</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:44:45 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:44:45 response :
+------------
+
+2016-04-20 15:45:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461138339</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:45:50 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:45:50 response :
+------------
+
+2016-04-20 15:47:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461138459</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:47:50 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:47:50 response :
+------------
+
+2016-04-20 15:49:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461138567</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554219</MenuId>
+</xml>
+
+2016-04-20 15:49:39 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:49:39 response :
+------------
+
+2016-04-20 15:52:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461138745</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 15:52:39 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:52:39 response :
+------------
+
+2016-04-20 15:52:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461138752</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554219</MenuId>
+</xml>
+
+2016-04-20 15:52:46 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:52:46 response :
+------------
+
+2016-04-20 15:54:29 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461138854</CreateTime>
+<MsgType><![CDATA[image]]></MsgType>
+<PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz/JB1ibRFMDkJWt939vvTj3LsjdG46c0dcMJtHp2xTUe0icibxzL9m5EO4Esa1tC6dE8Rcfv608OIW5dNjibF7XP8bTQ/0]]></PicUrl>
+<MsgId>6275543593248473753</MsgId>
+<MediaId><![CDATA[FSiLPmqHiwzLl8uM8LFWpZhydxX68HW7UT7OCIb7gJbKjloO9e2mgHAc0Fat-i77]]></MediaId>
+</xml>
+
+2016-04-20 15:54:29 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 15:54:29 response :
+------------
+
+2016-04-20 15:54:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461138872</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:02:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461139319</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 16:02:16 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:02:16 response :
+------------
+
+2016-04-20 16:05:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461139522</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:05:22 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:05:22 response :
+------------
+
+2016-04-20 16:06:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461139560</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307533</Latitude>
+<Longitude>109.403107</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 16:06:01 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:06:01 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:06:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461139598</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:07:02 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461139621</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:08:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461139690</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:08:12 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:08:12 response :
+------------
+
+2016-04-20 16:08:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461139697</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 16:08:19 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:08:19 response :
+------------
+
+2016-04-20 16:08:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461139738</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 16:11:52 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt_joxo4Bk9EsgZAnw2u7XWM]]></FromUserName>
+<CreateTime>1461139909</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:13:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140019</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:14:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140053</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:14:17 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:14:17 response :
+------------
+
+2016-04-20 16:14:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140060</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 16:21:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140463</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307716</Latitude>
+<Longitude>109.403053</Longitude>
+<Precision>68.185226</Precision>
+</xml>
+
+2016-04-20 16:21:08 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:21:08 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:22:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140544</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307716</Latitude>
+<Longitude>109.403053</Longitude>
+<Precision>68.185226</Precision>
+</xml>
+
+2016-04-20 16:22:30 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:22:30 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:23:53 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140626</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307709</Latitude>
+<Longitude>109.403069</Longitude>
+<Precision>73.950089</Precision>
+</xml>
+
+2016-04-20 16:23:53 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:23:53 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:24:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140651</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307446</Latitude>
+<Longitude>109.403168</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 16:24:18 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:24:18 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:24:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140652</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 16:25:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2reuXZKpn7S21ogqL9aK0I]]></FromUserName>
+<CreateTime>1461140710</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[SCAN]]></Event>
+<EventKey><![CDATA[b61cc861555195a0c8a6661f39aceb4d]]></EventKey>
+<Ticket><![CDATA[gQEE7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1preHpqdmJra0NUcHhtMlNwbVJmAAIEGiwXVwMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 16:25:17 params :
+------------
+Array:
+message : Array ;
+module : ewei_shop ;
+rule : 12 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-04-20 16:25:17 response :
+------------
+Array:
+FromUserName : gh_d5c808a7666e ;
+ToUserName : om_6jt2reuXZKpn7S21ogqL9aK0I ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-04-20 16:25:17 Receiver:SCAN :
+------------
+String:
+b61cc861555195a0c8a6661f39aceb4d
+
+2016-04-20 16:25:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2reuXZKpn7S21ogqL9aK0I]]></FromUserName>
+<CreateTime>1461140711</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307594</Latitude>
+<Longitude>109.403114</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 16:25:17 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:25:17 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:25:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2reuXZKpn7S21ogqL9aK0I]]></FromUserName>
+<CreateTime>1461140736</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307556</Latitude>
+<Longitude>109.403084</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 16:25:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:25:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:25:45 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461140738</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_b61cc861555195a0c8a6661f39aceb4d]]></EventKey>
+<Ticket><![CDATA[gQEE7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1preHpqdmJra0NUcHhtMlNwbVJmAAIEGiwXVwMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-04-20 16:25:46 params :
+------------
+Array:
+message : Array ;
+module : ewei_shop ;
+rule : 12 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-04-20 16:25:46 response :
+------------
+Array:
+FromUserName : gh_d5c808a7666e ;
+ToUserName : om_6jt9nx0Vn3i2pXSydeJEeGeUU ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-04-20 16:25:46 Receiver:SUBSCRIBE :
+------------
+String:
+qrscene_b61cc861555195a0c8a6661f39aceb4d
+
+2016-04-20 16:25:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140747</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 16:25:54 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:25:54 response :
+------------
+
+2016-04-20 16:28:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140884</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307446</Latitude>
+<Longitude>109.403168</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 16:28:12 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:28:12 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:28:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461140889</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:28:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461140891</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 16:28:19 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:28:19 response :
+------------
+
+2016-04-20 16:35:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2KN5m2a7PN8LYPB54R85zI]]></FromUserName>
+<CreateTime>1461141335</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 16:58:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461142688</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-04-20 16:58:24 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:58:24 response :
+------------
+
+2016-04-20 16:58:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461142691</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307657</Latitude>
+<Longitude>109.403091</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 16:58:27 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 16:58:27 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 16:58:29 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461142693</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 16:58:29 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 16:58:29 response :
+------------
+
+2016-04-20 17:01:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461142882</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403554603</MenuId>
+</xml>
+
+2016-04-20 17:01:40 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 17:01:40 response :
+------------
+
+2016-04-20 17:22:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461144136</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307594</Latitude>
+<Longitude>109.403099</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 17:22:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 17:22:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 17:22:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461144136</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 17:22:21 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 17:22:21 response :
+------------
+
+2016-04-20 17:31:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1461144691</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 17:31:39 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 17:31:39 response :
+------------
+
+2016-04-20 20:07:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461154053</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.201290</Latitude>
+<Longitude>109.428299</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 20:07:33 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 20:07:33 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 20:07:38 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461154058</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:07:38 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:07:38 response :
+------------
+
+2016-04-20 20:09:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461154171</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 20:11:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461154264</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:11:05 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:11:05 response :
+------------
+
+2016-04-20 20:14:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461154450</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=516]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:14:11 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:14:11 response :
+------------
+
+2016-04-20 20:54:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt8BHq6um_tJoUBmIyLu4kgM]]></FromUserName>
+<CreateTime>1461156879</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:54:45 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:54:45 response :
+------------
+
+2016-04-20 20:54:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt8BHq6um_tJoUBmIyLu4kgM]]></FromUserName>
+<CreateTime>1461156894</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=512]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:54:59 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:54:59 response :
+------------
+
+2016-04-20 20:55:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt8BHq6um_tJoUBmIyLu4kgM]]></FromUserName>
+<CreateTime>1461156934</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:55:40 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:55:40 response :
+------------
+
+2016-04-20 20:55:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt8BHq6um_tJoUBmIyLu4kgM]]></FromUserName>
+<CreateTime>1461156938</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[海报]]></EventKey>
+</xml>
+
+2016-04-20 20:56:03 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt8BHq6um_tJoUBmIyLu4kgM]]></FromUserName>
+<CreateTime>1461156957</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=516]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 20:56:03 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 20:56:03 response :
+------------
+
+2016-04-20 20:59:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9fMU8BvCQaYpx_WaO_3Jp8]]></FromUserName>
+<CreateTime>1461157173</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.305803</Latitude>
+<Longitude>109.402603</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 20:59:39 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 20:59:39 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 22:26:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461162400</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.274801</Latitude>
+<Longitude>109.382210</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-04-20 22:26:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-04-20 22:26:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-04-20 22:26:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461162401</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 22:26:44 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 22:26:44 response :
+------------
+
+2016-04-20 22:28:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1461162498</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wqq.xyj0772.com/app/index.php?i=2&c=entry&eid=493]]></EventKey>
+<MenuId>403555216</MenuId>
+</xml>
+
+2016-04-20 22:28:21 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-04-20 22:28:21 response :
+------------
+

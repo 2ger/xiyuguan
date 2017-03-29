@@ -1,0 +1,6115 @@
+2016-01-15 09:52:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwO5eYXYwvet1uRhcWQBN8PM]]></FromUserName>
+<CreateTime>1452822762</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 09:52:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 09:52:43 response :
+------------
+
+2016-01-15 09:52:51 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwO5eYXYwvet1uRhcWQBN8PM]]></FromUserName>
+<CreateTime>1452822771</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[摇一摇]]></Content>
+<MsgId>6239826288732410029</MsgId>
+</xml>
+
+2016-01-15 09:52:51 params :
+------------
+Array:
+message : Array ;
+module : mon_qmshake ;
+rule : 23 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-15 09:52:51 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwO5eYXYwvet1uRhcWQBN8PM ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-15 11:23:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_19f3b98aa3d7]]></ToUserName>
+<FromUserName><![CDATA[ouLX4ty0HMGnVlhsmp2ZBenHoGCw]]></FromUserName>
+<CreateTime>1452828214</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 11:23:36 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 11:23:36 response :
+------------
+
+2016-01-15 11:23:48 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_19f3b98aa3d7]]></ToUserName>
+<FromUserName><![CDATA[ouLX4ty0HMGnVlhsmp2ZBenHoGCw]]></FromUserName>
+<CreateTime>1452828228</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[求签]]></Content>
+<MsgId>6239849726367827858</MsgId>
+</xml>
+
+2016-01-15 11:23:48 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 140 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-15 11:23:48 response :
+------------
+Array:
+FromUserName : gh_19f3b98aa3d7 ;
+ToUserName : ouLX4ty0HMGnVlhsmp2ZBenHoGCw ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-15 12:12:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_01fab0e22f0f]]></ToUserName>
+<FromUserName><![CDATA[ocFNKt02pqDkYDTUNvas3pTSgLj0]]></FromUserName>
+<CreateTime>1452831174</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[订单]]></Content>
+<MsgId>6239862379340808759</MsgId>
+</xml>
+
+2016-01-15 12:12:54 params :
+------------
+Array:
+message : Array ;
+module : mon_orderform ;
+rule : 284 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-15 12:12:54 response :
+------------
+Array:
+FromUserName : gh_01fab0e22f0f ;
+ToUserName : ocFNKt02pqDkYDTUNvas3pTSgLj0 ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-15 12:33:00 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_01fab0e22f0f]]></ToUserName>
+<FromUserName><![CDATA[ocFNKt02pqDkYDTUNvas3pTSgLj0]]></FromUserName>
+<CreateTime>1452832380</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[http://www.wx866.com/payment/wechat/pay.php]]></Content>
+<MsgId>6239867559071368657</MsgId>
+</xml>
+
+2016-01-15 12:33:00 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 12:33:00 response :
+------------
+
+2016-01-15 12:46:58 info :
+------------
+String:
+发送模板消息数据{"template_id":"poEfzlq6OWJt9_mxGVRnaSj3GQcnzY_mTF812orlCmM","touser":"ocFNKt02pqDkYDTUNvas3pTSgLj0","url":"http:\/\/www.wx866.com\/app\/index.php?i=79&c=entry&openid=ocFNKt02pqDkYDTUNvas3pTSgLj0&iid=3&do=OrderItem&m=mon_orderform","topcolor":"#FF0000","data":{"first":{"value":"\u606d\u559c\u60a8\u63d0\u4ea4\u4f18\u60e0\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"orderType":{"value":"\u4f18\u60e0\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"tradeDateTime":{"value":"2016-01-15 12:46","color":"#173177"},"customerInfo":{"value":"\u59d3\u540d:\u4f55\u4eae \u624b\u673a:18696803873","color":"#173177"},"orderItemName":{"value":"\u8ba2\u5355\u8ba2\u5355","color":"#000000"},"orderItemData":{"value":"\u4f18\u60e0\u8f66","color":"#173177"},"remark":{"value":"\u4fdd\u5b58\u597d\u60a8\u7684\u51ed\u8bc1\u54e6!\u6b22\u8fce\u4e0b\u6b21\u518d\u6b21\u9884\u5b9a","color":"#173177"}}}
+
+2016-01-15 12:46:58 info :
+------------
+String:
+发送模板消息返回内容Array
+
+2016-01-15 12:48:24 info :
+------------
+String:
+发送模板消息数据{"template_id":"poEfzlq6OWJt9_mxGVRnaSj3GQcnzY_mTF812orlCmM","touser":"ocFNKt02pqDkYDTUNvas3pTSgLj0","url":"http:\/\/www.wx866.com\/app\/index.php?i=79&c=entry&openid=ocFNKt02pqDkYDTUNvas3pTSgLj0&iid=1&do=OrderItem&m=mon_orderform","topcolor":"#FF0000","data":{"first":{"value":"\u606d\u559c\u60a8\u63d0\u4ea4 \u4e0a\u95e8\u6d17\u8f66 \u5c0f\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"orderType":{"value":" \u4e0a\u95e8\u6d17\u8f66 \u5c0f\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"tradeDateTime":{"value":"2016-01-15 12:48","color":"#173177"},"customerInfo":{"value":"\u59d3\u540d:\u4f55\u4eae \u624b\u673a:18696803873","color":"#173177"},"orderItemName":{"value":"\u8ba2\u5355\u8ba2\u5355","color":"#000000"},"orderItemData":{"value":" \u4e0a\u95e8\u6d17\u8f66 \u5c0f\u8f66","color":"#173177"},"remark":{"value":"\u4fdd\u5b58\u597d\u60a8\u7684\u51ed\u8bc1\u54e6!\u6b22\u8fce\u4e0b\u6b21\u518d\u6b21\u9884\u5b9a","color":"#173177"}}}
+
+2016-01-15 12:48:24 info :
+------------
+String:
+发送模板消息返回内容Array
+
+2016-01-15 12:49:57 info :
+------------
+String:
+发送模板消息数据{"template_id":"poEfzlq6OWJt9_mxGVRnaSj3GQcnzY_mTF812orlCmM","touser":"ocFNKt02pqDkYDTUNvas3pTSgLj0","url":"http:\/\/www.wx866.com\/app\/index.php?i=79&c=entry&openid=ocFNKt02pqDkYDTUNvas3pTSgLj0&iid=2&do=OrderItem&m=mon_orderform","topcolor":"#FF0000","data":{"first":{"value":"\u606d\u559c\u60a8\u63d0\u4ea4\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"orderType":{"value":"\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"tradeDateTime":{"value":"2016-01-15 12:49","color":"#173177"},"customerInfo":{"value":"\u59d3\u540d:\u4f55\u4eae \u624b\u673a:18696803873","color":"#173177"},"orderItemName":{"value":"\u8ba2\u5355\u8ba2\u5355","color":"#000000"},"orderItemData":{"value":"\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66","color":"#173177"},"remark":{"value":"\u4fdd\u5b58\u597d\u60a8\u7684\u51ed\u8bc1\u54e6!\u6b22\u8fce\u4e0b\u6b21\u518d\u6b21\u9884\u5b9a","color":"#173177"}}}
+
+2016-01-15 12:49:57 info :
+------------
+String:
+发送模板消息返回内容Array
+
+2016-01-15 12:50:29 info :
+------------
+String:
+通用订单异步通知数据<xml><appid><![CDATA[wx2b162c0114cfd399]]></appid>
+<bank_type><![CDATA[ICBC_DEBIT]]></bank_type>
+<cash_fee><![CDATA[100]]></cash_fee>
+<fee_type><![CDATA[CNY]]></fee_type>
+<is_subscribe><![CDATA[Y]]></is_subscribe>
+<mch_id><![CDATA[1254452501]]></mch_id>
+<nonce_str><![CDATA[qs0l7s5bq92rwr9ibedk8gyox9ggrkco]]></nonce_str>
+<openid><![CDATA[ocFNKt02pqDkYDTUNvas3pTSgLj0]]></openid>
+<out_trade_no><![CDATA[20160115125003]]></out_trade_no>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<sign><![CDATA[AF1ED3F2DFEE8F88B01ECC1C6B8C1BE5]]></sign>
+<time_end><![CDATA[20160115125028]]></time_end>
+<total_fee>100</total_fee>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+<transaction_id><![CDATA[1009340766201601152709578966]]></transaction_id>
+</xml>
+
+2016-01-15 12:50:29 info :
+------------
+String:
+通知订单更新
+
+2016-01-15 12:50:31 info :
+------------
+String:
+发送模板消息数据{"template_id":"1wzBEoG-uYAnT2q-4i1iJKJrUaYD3n-5kaKLfnYyqZQ","touser":"ocFNKt02pqDkYDTUNvas3pTSgLj0","url":"http:\/\/www.wx866.com\/app\/index.php?i=79&c=entry&openid=ocFNKt02pqDkYDTUNvas3pTSgLj0&iid=2&do=OrderItem&m=mon_orderform","topcolor":"#FF0000","data":{"first":{"value":"\u606d\u559c\u4f55\u4eae\u652f\u4ed8\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66\u6210\u529f!","color":"#173177"},"orderMoneySum":{"value":"1","color":"#173177"},"orderProductName":{"value":"\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66","color":"#173177"},"remark":{"value":"\u4fdd\u5b58\u597d\u60a8\u7684\u652f\u4ed8\u51ed\u8bc1\u54e6!\u6b22\u8fce\u4e0b\u6b21\u518d\u6b21\u9884\u5b9a","color":"#173177"}}}
+
+2016-01-15 12:50:32 info :
+------------
+String:
+发送支付消息返回内容Array
+
+2016-01-15 13:00:40 info :
+------------
+String:
+发送模板消息数据{"template_id":"9dJlkLuQEiWYIlHYuYVHSJm7KUbI69_HSWhofKyQIX8","touser":"ocFNKt02pqDkYDTUNvas3pTSgLj0","url":"http:\/\/www.wx866.com\/app\/index.php?i=79&c=entry&openid=ocFNKt02pqDkYDTUNvas3pTSgLj0&iid=2&do=OrderItem&m=mon_orderform","topcolor":"#FF0000","data":{"first":{"value":"\u606d\u559c\u60a8\u63d0\u4ea4\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"orderType":{"value":"\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66\u8ba2\u5355\u6210\u529f!","color":"#173177"},"tradeDateTime":{"value":"2016-01-15 13:00","color":"#173177"},"customerInfo":{"value":"\u59d3\u540d:\u4f55\u4eae \u624b\u673a:18696803873","color":"#173177"},"orderItemName":{"value":"\u8ba2\u5355\u8ba2\u5355","color":"#000000"},"orderItemData":{"value":"\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66","color":"#173177"},"remark":{"value":"\u4fdd\u5b58\u597d\u60a8\u7684\u51ed\u8bc1\u54e6!\u6b22\u8fce\u4e0b\u6b21\u518d\u6b21\u9884\u5b9a","color":"#173177"}}}
+
+2016-01-15 13:00:40 info :
+------------
+String:
+发送模板消息返回内容Array
+
+2016-01-15 13:01:26 info :
+------------
+String:
+通用订单异步通知数据<xml><appid><![CDATA[wx2b162c0114cfd399]]></appid>
+<bank_type><![CDATA[ICBC_DEBIT]]></bank_type>
+<cash_fee><![CDATA[100]]></cash_fee>
+<fee_type><![CDATA[CNY]]></fee_type>
+<is_subscribe><![CDATA[Y]]></is_subscribe>
+<mch_id><![CDATA[1254452501]]></mch_id>
+<nonce_str><![CDATA[ko16csl4nvqde1d7b9x2g5zao078hsx0]]></nonce_str>
+<openid><![CDATA[ocFNKt02pqDkYDTUNvas3pTSgLj0]]></openid>
+<out_trade_no><![CDATA[20160115130114]]></out_trade_no>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<sign><![CDATA[32AA600D40843A5343C432F1CC67AB2E]]></sign>
+<time_end><![CDATA[20160115130124]]></time_end>
+<total_fee>100</total_fee>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+<transaction_id><![CDATA[1009340766201601152709809171]]></transaction_id>
+</xml>
+
+2016-01-15 13:01:26 info :
+------------
+String:
+通知订单更新
+
+2016-01-15 13:01:27 info :
+------------
+String:
+发送模板消息数据{"template_id":"1wzBEoG-uYAnT2q-4i1iJKJrUaYD3n-5kaKLfnYyqZQ","touser":"ocFNKt02pqDkYDTUNvas3pTSgLj0","url":"http:\/\/www.wx866.com\/app\/index.php?i=79&c=entry&openid=ocFNKt02pqDkYDTUNvas3pTSgLj0&iid=2&do=OrderItem&m=mon_orderform","topcolor":"#FF0000","data":{"first":{"value":"\u606d\u559c\u4f55\u4eae\u652f\u4ed8\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66\u6210\u529f!","color":"#173177"},"orderMoneySum":{"value":"1","color":"#173177"},"orderProductName":{"value":"\u4e0a\u95e8\u6d17\u8f66 \u8d8a\u91ce\u8f66","color":"#173177"},"remark":{"value":"\u4fdd\u5b58\u597d\u60a8\u7684\u652f\u4ed8\u51ed\u8bc1\u54e6!\u6b22\u8fce\u4e0b\u6b21\u518d\u6b21\u9884\u5b9a","color":"#173177"}}}
+
+2016-01-15 13:01:27 info :
+------------
+String:
+发送支付消息返回内容Array
+
+2016-01-15 13:03:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwIYJ8tXuotSdyRG545BbYhw]]></FromUserName>
+<CreateTime>1452834193</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 13:03:13 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 13:03:13 response :
+------------
+
+2016-01-15 14:45:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwHTJRtsnNFpxKxc99kzqB8w]]></FromUserName>
+<CreateTime>1452840331</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 14:45:31 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 14:45:31 response :
+------------
+
+2016-01-15 14:45:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwHTJRtsnNFpxKxc99kzqB8w]]></FromUserName>
+<CreateTime>1452840343</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[KTV]]></Content>
+<MsgId>6239901759897741411</MsgId>
+</xml>
+
+2016-01-15 14:45:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 14:45:43 response :
+------------
+
+2016-01-15 14:45:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwHTJRtsnNFpxKxc99kzqB8w]]></FromUserName>
+<CreateTime>1452840347</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[ktv]]></Content>
+<MsgId>6239901777077610596</MsgId>
+</xml>
+
+2016-01-15 14:45:47 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 14:45:47 response :
+------------
+
+2016-01-15 14:46:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwHTJRtsnNFpxKxc99kzqB8w]]></FromUserName>
+<CreateTime>1452840368</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 15:40:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_0ded91b79364]]></ToUserName>
+<FromUserName><![CDATA[oQK_Ht36WFEic1Qf0_gSCus4wp_Y]]></FromUserName>
+<CreateTime>1452843631</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[会员卡]]></Content>
+<MsgId>6239915881751997981</MsgId>
+</xml>
+
+2016-01-15 15:40:31 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 15:40:31 response :
+------------
+
+2016-01-15 15:41:52 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_0ded91b79364]]></ToUserName>
+<FromUserName><![CDATA[oQK_Ht36WFEic1Qf0_gSCus4wp_Y]]></FromUserName>
+<CreateTime>1452843712</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[首页]]></Content>
+<MsgId>6239916229644349001</MsgId>
+</xml>
+
+2016-01-15 15:41:52 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 15:41:52 response :
+------------
+
+2016-01-15 16:36:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwDr-rRuvJ8WLgPLwmeTPAb0]]></FromUserName>
+<CreateTime>1452846990</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[微夜店]]></Content>
+<MsgId>6239930308545360647</MsgId>
+</xml>
+
+2016-01-15 16:36:30 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 16:36:30 response :
+------------
+
+2016-01-15 16:52:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwDr-rRuvJ8WLgPLwmeTPAb0]]></FromUserName>
+<CreateTime>1452847942</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 18:15:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwBGVJZKT9x_5mraPa2IlAdc]]></FromUserName>
+<CreateTime>1452852933</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 18:15:33 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 18:15:33 response :
+------------
+
+2016-01-15 18:15:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwBGVJZKT9x_5mraPa2IlAdc]]></FromUserName>
+<CreateTime>1452852946</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 19:17:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwORakX7XwnMrKFF-1skgzE4]]></FromUserName>
+<CreateTime>1452856632</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 19:17:13 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 19:17:13 response :
+------------
+
+2016-01-15 19:17:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwORakX7XwnMrKFF-1skgzE4]]></FromUserName>
+<CreateTime>1452856642</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 20:08:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452859867</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 20:08:31 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:08:31 response :
+------------
+
+2016-01-15 20:08:32 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452859869</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 20:08:32 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:08:32 response :
+------------
+
+2016-01-15 20:08:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452859873</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 20:08:36 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:08:36 response :
+------------
+
+2016-01-15 20:08:38 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452859875</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 20:08:38 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:08:38 response :
+------------
+
+2016-01-15 20:08:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452859876</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 20:08:39 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:08:39 response :
+------------
+
+2016-01-15 20:08:48 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452859885</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 20:08:49 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:08:49 response :
+------------
+
+2016-01-15 20:35:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPtZR_0_UzSQr0cFE78Nbj0]]></FromUserName>
+<CreateTime>1452861323</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.003113</Latitude>
+<Longitude>114.337364</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:35:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:35:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:35:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFCkwCM81Ty-IvkC5L2Sf6I]]></FromUserName>
+<CreateTime>1452861328</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>34.808319</Latitude>
+<Longitude>114.521278</Longitude>
+<Precision>10.000000</Precision>
+</xml>
+
+2016-01-15 20:35:28 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:35:28 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:35:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouDoocj5A0ymW8BQJnd_pZBE]]></FromUserName>
+<CreateTime>1452861336</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.697079</Latitude>
+<Longitude>109.019905</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:35:36 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:35:36 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:36:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF4opgpE_Atk870h9nBOZNE]]></FromUserName>
+<CreateTime>1452861361</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 20:36:01 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 20:36:01 response :
+------------
+
+2016-01-15 20:36:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF4opgpE_Atk870h9nBOZNE]]></FromUserName>
+<CreateTime>1452861364</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.941483</Latitude>
+<Longitude>114.343445</Longitude>
+<Precision>2707.000000</Precision>
+</xml>
+
+2016-01-15 20:36:05 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:36:05 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:36:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouIIVY_MjVFx3CJV3CPA5Ys8]]></FromUserName>
+<CreateTime>1452861371</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.135696</Latitude>
+<Longitude>114.037216</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:36:11 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:36:11 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:36:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouIIVY_MjVFx3CJV3CPA5Ys8]]></FromUserName>
+<CreateTime>1452861376</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.135696</Latitude>
+<Longitude>114.037216</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:36:16 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:36:16 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:36:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouOvCvhPkh2CI8LkvxCP6pWA]]></FromUserName>
+<CreateTime>1452861406</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 20:36:49 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF4opgpE_Atk870h9nBOZNE]]></FromUserName>
+<CreateTime>1452861409</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.941483</Latitude>
+<Longitude>114.343445</Longitude>
+<Precision>2707.000000</Precision>
+</xml>
+
+2016-01-15 20:36:49 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:36:49 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:36:58 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPG2qxYtmTmeXCr97w8cpZI]]></FromUserName>
+<CreateTime>1452861418</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.071301</Latitude>
+<Longitude>113.832207</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:36:58 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:36:58 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:37:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHHD4bRFGcbkdvNe9SpZcs4]]></FromUserName>
+<CreateTime>1452861429</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>18.208380</Latitude>
+<Longitude>109.487900</Longitude>
+<Precision>1689.000000</Precision>
+</xml>
+
+2016-01-15 20:37:09 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:37:09 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:37:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF4opgpE_Atk870h9nBOZNE]]></FromUserName>
+<CreateTime>1452861439</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.941483</Latitude>
+<Longitude>114.343445</Longitude>
+<Precision>2707.000000</Precision>
+</xml>
+
+2016-01-15 20:37:19 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:37:19 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:37:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF4opgpE_Atk870h9nBOZNE]]></FromUserName>
+<CreateTime>1452861448</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 20:38:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHHD4bRFGcbkdvNe9SpZcs4]]></FromUserName>
+<CreateTime>1452861481</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>18.208380</Latitude>
+<Longitude>109.487900</Longitude>
+<Precision>1689.000000</Precision>
+</xml>
+
+2016-01-15 20:38:01 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:38:01 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:40:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJJHsrUeXIMboZfW5eeOXAM]]></FromUserName>
+<CreateTime>1452861633</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.084915</Latitude>
+<Longitude>114.359665</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:40:33 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:40:33 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:03 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJJHsrUeXIMboZfW5eeOXAM]]></FromUserName>
+<CreateTime>1452861723</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.084873</Latitude>
+<Longitude>114.359734</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:42:03 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:42:03 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMJ7YKJFlxlwbnMmIcyxyn8]]></FromUserName>
+<CreateTime>1452861734</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.101200</Latitude>
+<Longitude>114.347366</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:42:14 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:42:14 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452861738</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069702</Latitude>
+<Longitude>114.364296</Longitude>
+<Precision>50.000000</Precision>
+</xml>
+
+2016-01-15 20:42:19 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:42:19 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452861746</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[qr]]></Content>
+<MsgId>6239993685082028283</MsgId>
+</xml>
+
+2016-01-15 20:42:27 message xx :
+------------
+String:
+{"from":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","to":"gh_e26d20e10319","time":"1452861746","type":"text","event":"","tousername":"gh_e26d20e10319","fromusername":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","createtime":"1452861746","msgtype":"text","content":"qr","msgid":"6239993685082028283","redirection":false,"source":null}
+
+2016-01-15 20:42:27 saveUserInfo :
+------------
+Array:
+subscribe : 1 ;
+openid : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+nickname : 宋艳超 ;
+sex : 1 ;
+language : zh_CN ;
+city : 安阳 ;
+province : 河南 ;
+country : 中国 ;
+headimgurl : http://wx.qlogo.cn/mmopen/Szib8ySqErWJPK1aqClp6Hdu7t2qKUPBBurNnh5C5H7RbaIOmo6EBdLibhpYPuapAzp8xIE0ssL9ialmry2mtdCsA/0 ;
+subscribe_time : 1450865282 ;
+remark :  ;
+groupid : 0 ;
+
+2016-01-15 20:42:27 refresh :
+------------
+Array:
+subscribe : 1 ;
+openid : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+nickname : 宋艳超 ;
+sex : 1 ;
+language : zh_CN ;
+city : 安阳 ;
+province : 河南 ;
+country : 中国 ;
+headimgurl : http://wx.qlogo.cn/mmopen/Szib8ySqErWJPK1aqClp6Hdu7t2qKUPBBurNnh5C5H7RbaIOmo6EBdLibhpYPuapAzp8xIE0ssL9ialmry2mtdCsA/0 ;
+subscribe_time : 1450865282 ;
+remark :  ;
+groupid : 0 ;
+
+2016-01-15 20:42:27 Processor:SUBSCRIBE :
+------------
+Array:
+from : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+to : gh_e26d20e10319 ;
+time : 1452861746 ;
+type : text ;
+event :  ;
+tousername : gh_e26d20e10319 ;
+fromusername : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+createtime : 1452861746 ;
+msgtype : text ;
+content : qr ;
+msgid : 6239993685082028283 ;
+redirection :  ;
+source :  ;
+
+2016-01-15 20:42:28 step1 :
+------------
+String:
+
+
+2016-01-15 20:42:28 step3 :
+------------
+String:
+<1452861583
+
+2016-01-15 20:42:28 step3.0 :
+------------
+String:
+owpeouL9gRpruL9BU5up_Y3Tz9Rs
+
+2016-01-15 20:42:28 begin send text :
+------------
+String:
+
+
+2016-01-15 20:42:28 end send text :
+------------
+String:
+
+
+2016-01-15 20:42:28 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:42:29 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:42:29 end send res :
+------------
+String:
+
+
+2016-01-15 20:42:29 step3.1 :
+------------
+String:
+
+
+2016-01-15 20:42:29 sc :
+------------
+
+2016-01-15 20:42:29 sc emtpy :
+------------
+
+2016-01-15 20:42:29 begin get limit scene scene id :
+------------
+
+2016-01-15 20:42:29 QR data :
+------------
+String:
+{"action_name":"QR_LIMIT_SCENE","action_info":{"scene":{"scene_id":2}}}
+
+2016-01-15 20:42:29 QR content :
+------------
+Array:
+ticket : gQEA8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL3drUGxGNDdsekNfMXZKLV9XVzhHAAIENemYVgMEAAAAAA== ;
+url : http://weixin.qq.com/q/wkPlF47lzC_1vJ-_WW8G ;
+
+2016-01-15 20:42:29 succ get limit scene scene id :
+------------
+
+2016-01-15 20:42:29 img get limit scene scene id :
+------------
+
+2016-01-15 20:42:29 step merge 1 :
+------------
+String:
+merge bgfile http://www.wx866.com/attachment/images/81/2016/01/kGLRgEceEEggfreeL3WegGe5GxWekc.jpg and qrfile https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEA8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL3drUGxGNDdsekNfMXZKLV9XVzhHAAIENemYVgMEAAAAAA%3D%3D
+
+2016-01-15 20:42:29 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouK5cefQUdXxxlnPdmL2NSVc]]></FromUserName>
+<CreateTime>1452861748</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.112892</Latitude>
+<Longitude>114.298729</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:42:29 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:42:29 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:29 step merge 1 done :
+------------
+String:
+
+
+2016-01-15 20:42:29 step upload 1 :
+------------
+String:
+
+
+2016-01-15 20:42:29 uploadurl :
+------------
+String:
+http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP&type=image
+
+2016-01-15 20:42:29 postparam :
+------------
+Array:
+media : @D:/wwwroot/www.wx866.com/attachment/qr-image-owpeouL9gRpruL9BU5up_Y3Tz9Rs11272.jpg ;
+
+2016-01-15 20:42:31 Running task :
+------------
+String:
+http://www.wx866.com/./app/index.php?i=81&c=entry&from_user=owpeouL9gRpruL9BU5up_Y3Tz9Rs&do=RunTask&m=quickspread&wxref=mp.weixin.qq.com#wechat_redirect==>{"errno":1,"message":"Operation timed out after 4000 milliseconds with 0 bytes received"}
+
+2016-01-15 20:42:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452861753</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.070370</Latitude>
+<Longitude>114.364693</Longitude>
+<Precision>50.000000</Precision>
+</xml>
+
+2016-01-15 20:42:33 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:42:33 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452861756</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714779</Latitude>
+<Longitude>117.036041</Longitude>
+<Precision>1850.000000</Precision>
+</xml>
+
+2016-01-15 20:42:36 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:42:36 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:42:39 content :
+------------
+Array:
+type : image ;
+media_id : bbY1VMoHHnoJ_VHvsT80PY_uJ2bGPr2TVEaBFK7JfvVK80civv8wEnhihkYCdlb0 ;
+created_at : 1452861759 ;
+
+2016-01-15 20:42:39 step upload 1 done :
+------------
+String:
+
+
+2016-01-15 20:42:39 genImage :
+------------
+String:
+bbY1VMoHHnoJ_VHvsT80PY_uJ2bGPr2TVEaBFK7JfvVK80civv8wEnhihkYCdlb0
+
+2016-01-15 20:42:39 begin send text :
+------------
+String:
+
+
+2016-01-15 20:42:39 end send text :
+------------
+String:
+
+
+2016-01-15 20:42:39 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:42:39 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:42:39 end send res :
+------------
+String:
+
+
+2016-01-15 20:42:39 begin setQR :
+------------
+String:
+
+
+2016-01-15 20:42:39 cc2.2 :
+------------
+String:
+
+
+2016-01-15 20:42:39 end setQR :
+------------
+String:
+
+
+2016-01-15 20:42:39 step4 :
+------------
+String:
+bbY1VMoHHnoJ_VHvsT80PY_uJ2bGPr2TVEaBFK7JfvVK80civv8wEnhihkYCdlb0
+
+2016-01-15 20:42:39 sendImage end :
+------------
+String:
+{"touser":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","msgtype":"image","image":{"media_id":"bbY1VMoHHnoJ_VHvsT80PY_uJ2bGPr2TVEaBFK7JfvVK80civv8wEnhihkYCdlb0"}}
+
+2016-01-15 20:42:39 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:42:39 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:42:39 step5 :
+------------
+String:
+
+
+2016-01-15 20:43:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452861784</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714779</Latitude>
+<Longitude>117.036041</Longitude>
+<Precision>1850.000000</Precision>
+</xml>
+
+2016-01-15 20:43:04 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:43:04 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:43:07 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNsLFTpkRPe-pA6rwS3qRqE]]></FromUserName>
+<CreateTime>1452861786</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.917351</Latitude>
+<Longitude>114.369629</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:43:07 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:43:07 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPTrx999G04HZ2-wolsTXnc]]></FromUserName>
+<CreateTime>1452861845</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069454</Latitude>
+<Longitude>114.363686</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:05 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:05 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKmRFIlG12SvuAeHwPpQliQ]]></FromUserName>
+<CreateTime>1452861852</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.026524</Latitude>
+<Longitude>114.291458</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:12 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:12 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPTrx999G04HZ2-wolsTXnc]]></FromUserName>
+<CreateTime>1452861853</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[qr]]></Content>
+<MsgId>6239994144643529008</MsgId>
+</xml>
+
+2016-01-15 20:44:13 message xx :
+------------
+String:
+{"from":"owpeouPTrx999G04HZ2-wolsTXnc","to":"gh_e26d20e10319","time":"1452861853","type":"text","event":"","tousername":"gh_e26d20e10319","fromusername":"owpeouPTrx999G04HZ2-wolsTXnc","createtime":"1452861853","msgtype":"text","content":"qr","msgid":"6239994144643529008","redirection":false,"source":null}
+
+2016-01-15 20:44:13 saveUserInfo :
+------------
+Array:
+subscribe : 1 ;
+openid : owpeouPTrx999G04HZ2-wolsTXnc ;
+nickname : 『愚人』♀ ;
+sex : 1 ;
+language : zh_CN ;
+city : 新乡 ;
+province : 河南 ;
+country : 中国 ;
+headimgurl : http://wx.qlogo.cn/mmopen/PiajxSqBRaEKXjoibfnzdUELsvlmb32CfMQLxpOSct3AGRWGnHtVwT1ibcYImjdTtZaic1WBzf02AtaPD9RZUdJIHQ/0 ;
+subscribe_time : 1452132188 ;
+remark :  ;
+groupid : 0 ;
+
+2016-01-15 20:44:13 refresh :
+------------
+Array:
+subscribe : 1 ;
+openid : owpeouPTrx999G04HZ2-wolsTXnc ;
+nickname : 『愚人』♀ ;
+sex : 1 ;
+language : zh_CN ;
+city : 新乡 ;
+province : 河南 ;
+country : 中国 ;
+headimgurl : http://wx.qlogo.cn/mmopen/PiajxSqBRaEKXjoibfnzdUELsvlmb32CfMQLxpOSct3AGRWGnHtVwT1ibcYImjdTtZaic1WBzf02AtaPD9RZUdJIHQ/0 ;
+subscribe_time : 1452132188 ;
+remark :  ;
+groupid : 0 ;
+
+2016-01-15 20:44:13 Processor:SUBSCRIBE :
+------------
+Array:
+from : owpeouPTrx999G04HZ2-wolsTXnc ;
+to : gh_e26d20e10319 ;
+time : 1452861853 ;
+type : text ;
+event :  ;
+tousername : gh_e26d20e10319 ;
+fromusername : owpeouPTrx999G04HZ2-wolsTXnc ;
+createtime : 1452861853 ;
+msgtype : text ;
+content : qr ;
+msgid : 6239994144643529008 ;
+redirection :  ;
+source :  ;
+
+2016-01-15 20:44:13 step1 :
+------------
+String:
+
+
+2016-01-15 20:44:13 step3 :
+------------
+String:
+<1452861583
+
+2016-01-15 20:44:13 step3.0 :
+------------
+String:
+owpeouPTrx999G04HZ2-wolsTXnc
+
+2016-01-15 20:44:13 begin send text :
+------------
+String:
+
+
+2016-01-15 20:44:13 end send text :
+------------
+String:
+
+
+2016-01-15 20:44:13 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:44:14 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:44:14 end send res :
+------------
+String:
+
+
+2016-01-15 20:44:14 step3.1 :
+------------
+String:
+
+
+2016-01-15 20:44:14 sc :
+------------
+String:
+2
+
+2016-01-15 20:44:14 sc ok :
+------------
+String:
+2
+
+2016-01-15 20:44:14 begin get limit scene scene id :
+------------
+
+2016-01-15 20:44:14 QR data :
+------------
+String:
+{"action_name":"QR_LIMIT_SCENE","action_info":{"scene":{"scene_id":3}}}
+
+2016-01-15 20:44:14 QR content :
+------------
+Array:
+ticket : gQHv8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xLzBVUGFjZG5sNHlfYW5veUlabThHAAIEnumYVgMEAAAAAA== ;
+url : http://weixin.qq.com/q/0UPacdnl4y_anoyIZm8G ;
+
+2016-01-15 20:44:14 succ get limit scene scene id :
+------------
+
+2016-01-15 20:44:14 img get limit scene scene id :
+------------
+
+2016-01-15 20:44:14 step merge 1 :
+------------
+String:
+merge bgfile http://www.wx866.com/attachment/images/81/2016/01/kGLRgEceEEggfreeL3WegGe5GxWekc.jpg and qrfile https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHv8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xLzBVUGFjZG5sNHlfYW5veUlabThHAAIEnumYVgMEAAAAAA%3D%3D
+
+2016-01-15 20:44:14 step merge 1 done :
+------------
+String:
+
+
+2016-01-15 20:44:14 step upload 1 :
+------------
+String:
+
+
+2016-01-15 20:44:14 uploadurl :
+------------
+String:
+http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP&type=image
+
+2016-01-15 20:44:14 postparam :
+------------
+Array:
+media : @D:/wwwroot/www.wx866.com/attachment/qr-image-owpeouPTrx999G04HZ2-wolsTXnc10586.jpg ;
+
+2016-01-15 20:44:17 Running task :
+------------
+String:
+http://www.wx866.com/./app/index.php?i=81&c=entry&from_user=owpeouPTrx999G04HZ2-wolsTXnc&do=RunTask&m=quickspread&wxref=mp.weixin.qq.com#wechat_redirect==>{"errno":1,"message":"Operation timed out after 4000 milliseconds with 0 bytes received"}
+
+2016-01-15 20:44:20 content :
+------------
+Array:
+type : image ;
+media_id : gJ8IA3NdoHRQSCkCbBqt3UGO4w9zM6iAdGNwZCVQwV9r0ke_yp88OUVRSG9MWxCx ;
+created_at : 1452861860 ;
+
+2016-01-15 20:44:20 step upload 1 done :
+------------
+String:
+
+
+2016-01-15 20:44:20 genImage :
+------------
+String:
+gJ8IA3NdoHRQSCkCbBqt3UGO4w9zM6iAdGNwZCVQwV9r0ke_yp88OUVRSG9MWxCx
+
+2016-01-15 20:44:20 begin send text :
+------------
+String:
+
+
+2016-01-15 20:44:20 end send text :
+------------
+String:
+
+
+2016-01-15 20:44:20 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:44:20 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:44:20 end send res :
+------------
+String:
+
+
+2016-01-15 20:44:20 begin setQR :
+------------
+String:
+
+
+2016-01-15 20:44:20 cc2.2 :
+------------
+String:
+
+
+2016-01-15 20:44:20 end setQR :
+------------
+String:
+
+
+2016-01-15 20:44:20 step4 :
+------------
+String:
+gJ8IA3NdoHRQSCkCbBqt3UGO4w9zM6iAdGNwZCVQwV9r0ke_yp88OUVRSG9MWxCx
+
+2016-01-15 20:44:20 sendImage end :
+------------
+String:
+{"touser":"owpeouPTrx999G04HZ2-wolsTXnc","msgtype":"image","image":{"media_id":"gJ8IA3NdoHRQSCkCbBqt3UGO4w9zM6iAdGNwZCVQwV9r0ke_yp88OUVRSG9MWxCx"}}
+
+2016-01-15 20:44:20 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:44:20 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:44:20 step5 :
+------------
+String:
+
+
+2016-01-15 20:44:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPTrx999G04HZ2-wolsTXnc]]></FromUserName>
+<CreateTime>1452861871</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069454</Latitude>
+<Longitude>114.363686</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:31 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:31 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouDKfZR6Dclf5VWK5kH6sAEo]]></FromUserName>
+<CreateTime>1452861876</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.188129</Latitude>
+<Longitude>113.261749</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:36 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:36 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPTrx999G04HZ2-wolsTXnc]]></FromUserName>
+<CreateTime>1452861877</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069466</Latitude>
+<Longitude>114.363693</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:37 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:37 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPTrx999G04HZ2-wolsTXnc]]></FromUserName>
+<CreateTime>1452861883</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069466</Latitude>
+<Longitude>114.363693</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:44 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:44 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:44:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouDKfZR6Dclf5VWK5kH6sAEo]]></FromUserName>
+<CreateTime>1452861887</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.188129</Latitude>
+<Longitude>113.261749</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:44:47 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:44:47 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:45:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPTrx999G04HZ2-wolsTXnc]]></FromUserName>
+<CreateTime>1452861904</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069466</Latitude>
+<Longitude>114.363693</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:45:04 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:45:04 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:45:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKmRFIlG12SvuAeHwPpQliQ]]></FromUserName>
+<CreateTime>1452861910</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.026524</Latitude>
+<Longitude>114.291458</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:45:11 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:45:11 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:45:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKmRFIlG12SvuAeHwPpQliQ]]></FromUserName>
+<CreateTime>1452861933</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.026524</Latitude>
+<Longitude>114.291458</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:45:33 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:45:33 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:46:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452861975</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[qr]]></Content>
+<MsgId>6239994668629539181</MsgId>
+</xml>
+
+2016-01-15 20:46:16 message xx :
+------------
+String:
+{"from":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","to":"gh_e26d20e10319","time":"1452861975","type":"text","event":"","tousername":"gh_e26d20e10319","fromusername":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","createtime":"1452861975","msgtype":"text","content":"qr","msgid":"6239994668629539181","redirection":false,"source":null}
+
+2016-01-15 20:46:16 refresh :
+------------
+Array:
+uid : 803 ;
+nickname : 宋艳超 ;
+avatar : http://wx.qlogo.cn/mmopen/Szib8ySqErWJPK1aqClp6Hdu7t2qKUPBBurNnh5C5H7RbaIOmo6EBdLibhpYPuapAzp8xIE0ssL9ialmry2mtdCsA/0 ;
+
+2016-01-15 20:46:16 Processor:SUBSCRIBE :
+------------
+Array:
+from : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+to : gh_e26d20e10319 ;
+time : 1452861975 ;
+type : text ;
+event :  ;
+tousername : gh_e26d20e10319 ;
+fromusername : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+createtime : 1452861975 ;
+msgtype : text ;
+content : qr ;
+msgid : 6239994668629539181 ;
+redirection :  ;
+source :  ;
+
+2016-01-15 20:46:16 step1 :
+------------
+String:
+
+
+2016-01-15 20:46:16 step3 :
+------------
+String:
+1452861759<1452861956
+
+2016-01-15 20:46:16 step3.0 :
+------------
+String:
+owpeouL9gRpruL9BU5up_Y3Tz9Rs
+
+2016-01-15 20:46:16 begin send text :
+------------
+String:
+
+
+2016-01-15 20:46:16 end send text :
+------------
+String:
+
+
+2016-01-15 20:46:16 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:46:17 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:46:17 end send res :
+------------
+String:
+
+
+2016-01-15 20:46:17 step3.1 :
+------------
+String:
+
+
+2016-01-15 20:46:17 sc :
+------------
+String:
+3
+
+2016-01-15 20:46:17 sc ok :
+------------
+String:
+3
+
+2016-01-15 20:46:17 begin get limit scene scene id :
+------------
+
+2016-01-15 20:46:17 QR data :
+------------
+String:
+{"action_name":"QR_LIMIT_SCENE","action_info":{"scene":{"scene_id":4}}}
+
+2016-01-15 20:46:17 QR content :
+------------
+Array:
+ticket : gQFo8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1EwT1kwaGJsdWktRFlCNHdKRzhHAAIEGeqYVgMEAAAAAA== ;
+url : http://weixin.qq.com/q/Q0OY0hblui-DYB4wJG8G ;
+
+2016-01-15 20:46:17 succ get limit scene scene id :
+------------
+
+2016-01-15 20:46:17 img get limit scene scene id :
+------------
+
+2016-01-15 20:46:17 step merge 1 :
+------------
+String:
+merge bgfile http://www.wx866.com/attachment/images/81/2016/01/HMmF0LGuZygg8DPOvPmpkuLLym0oo0.jpg and qrfile https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFo8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1EwT1kwaGJsdWktRFlCNHdKRzhHAAIEGeqYVgMEAAAAAA%3D%3D
+
+2016-01-15 20:46:17 step merge 1 done :
+------------
+String:
+
+
+2016-01-15 20:46:17 step upload 1 :
+------------
+String:
+
+
+2016-01-15 20:46:17 uploadurl :
+------------
+String:
+http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP&type=image
+
+2016-01-15 20:46:17 postparam :
+------------
+Array:
+media : @D:/wwwroot/www.wx866.com/attachment/qr-image-owpeouL9gRpruL9BU5up_Y3Tz9Rs10044.jpg ;
+
+2016-01-15 20:46:20 Running task :
+------------
+String:
+http://www.wx866.com/./app/index.php?i=81&c=entry&from_user=owpeouL9gRpruL9BU5up_Y3Tz9Rs&do=RunTask&m=quickspread&wxref=mp.weixin.qq.com#wechat_redirect==>{"errno":1,"message":"Operation timed out after 4000 milliseconds with 0 bytes received"}
+
+2016-01-15 20:46:23 content :
+------------
+Array:
+type : image ;
+media_id : ra2IRIfdfDydfOEX9sn9vaxQPGFO2FK70zVOxCktRHThiMtHSFVIjomW5mS21gjV ;
+created_at : 1452861983 ;
+
+2016-01-15 20:46:23 step upload 1 done :
+------------
+String:
+
+
+2016-01-15 20:46:23 genImage :
+------------
+String:
+ra2IRIfdfDydfOEX9sn9vaxQPGFO2FK70zVOxCktRHThiMtHSFVIjomW5mS21gjV
+
+2016-01-15 20:46:23 begin send text :
+------------
+String:
+
+
+2016-01-15 20:46:23 end send text :
+------------
+String:
+
+
+2016-01-15 20:46:23 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:46:23 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:46:23 end send res :
+------------
+String:
+
+
+2016-01-15 20:46:23 begin setQR :
+------------
+String:
+
+
+2016-01-15 20:46:23 cc2.2 :
+------------
+String:
+
+
+2016-01-15 20:46:23 end setQR :
+------------
+String:
+
+
+2016-01-15 20:46:23 step4 :
+------------
+String:
+ra2IRIfdfDydfOEX9sn9vaxQPGFO2FK70zVOxCktRHThiMtHSFVIjomW5mS21gjV
+
+2016-01-15 20:46:23 sendImage end :
+------------
+String:
+{"touser":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","msgtype":"image","image":{"media_id":"ra2IRIfdfDydfOEX9sn9vaxQPGFO2FK70zVOxCktRHThiMtHSFVIjomW5mS21gjV"}}
+
+2016-01-15 20:46:23 sendResurl :
+------------
+String:
+https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=kY3sWW75fo0Nm9orF6c5uZ7pA-psx3XOtEtuH6Lfefz8byRAQwxhOCRfkPnpFgzsGuN-ERBdL-ypXjH6V9-VACxYR9LqlUHdVMGFUK5DwkUGELfAFAKIP
+
+2016-01-15 20:46:23 content :
+------------
+Array:
+errcode : 0 ;
+errmsg : ok ;
+
+2016-01-15 20:46:23 step5 :
+------------
+String:
+
+
+2016-01-15 20:46:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452861994</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[SCAN]]></Event>
+<EventKey><![CDATA[4]]></EventKey>
+<Ticket><![CDATA[gQFo8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1EwT1kwaGJsdWktRFlCNHdKRzhHAAIEGeqYVgMEAAAAAA==]]></Ticket>
+</xml>
+
+2016-01-15 20:46:35 message xx :
+------------
+String:
+{"from":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","to":"gh_e26d20e10319","time":"1452861994","type":"text","event":"SCAN","tousername":"gh_e26d20e10319","fromusername":"owpeouL9gRpruL9BU5up_Y3Tz9Rs","createtime":"1452861994","msgtype":"event","eventkey":"4","ticket":"gQFo8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1EwT1kwaGJsdWktRFlCNHdKRzhHAAIEGeqYVgMEAAAAAA==","scene":"4","redirection":true,"source":"qr","content":"qr"}
+
+2016-01-15 20:46:35 refresh :
+------------
+Array:
+uid : 803 ;
+nickname : 宋艳超 ;
+avatar : http://wx.qlogo.cn/mmopen/Szib8ySqErWJPK1aqClp6Hdu7t2qKUPBBurNnh5C5H7RbaIOmo6EBdLibhpYPuapAzp8xIE0ssL9ialmry2mtdCsA/0 ;
+
+2016-01-15 20:46:35 Processor:SUBSCRIBE :
+------------
+Array:
+from : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+to : gh_e26d20e10319 ;
+time : 1452861994 ;
+type : text ;
+event : SCAN ;
+tousername : gh_e26d20e10319 ;
+fromusername : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+createtime : 1452861994 ;
+msgtype : event ;
+eventkey : 4 ;
+ticket : gQFo8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1EwT1kwaGJsdWktRFlCNHdKRzhHAAIEGeqYVgMEAAAAAA== ;
+scene : 4 ;
+redirection : 1 ;
+source : qr ;
+content : qr ;
+
+2016-01-15 20:46:35 Processor:SCAN :
+------------
+String:
+4
+
+2016-01-15 20:46:35 getQRByScene :
+------------
+String:
+4
+
+2016-01-15 20:46:35 Processor:SCAN done :
+------------
+String:
+4
+
+2016-01-15 20:46:35 params :
+------------
+Array:
+message : Array ;
+module : quickspread ;
+rule : 287 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-15 20:46:35 response :
+------------
+Array:
+FromUserName : gh_e26d20e10319 ;
+ToUserName : owpeouL9gRpruL9BU5up_Y3Tz9Rs ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-15 20:46:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452861995</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069717</Latitude>
+<Longitude>114.364349</Longitude>
+<Precision>30.000000</Precision>
+</xml>
+
+2016-01-15 20:46:36 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:46:36 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:47:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKmRFIlG12SvuAeHwPpQliQ]]></FromUserName>
+<CreateTime>1452862045</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.026524</Latitude>
+<Longitude>114.291458</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:47:25 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:47:25 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:47:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKmRFIlG12SvuAeHwPpQliQ]]></FromUserName>
+<CreateTime>1452862062</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.026524</Latitude>
+<Longitude>114.291458</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:47:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:47:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:47:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKmRFIlG12SvuAeHwPpQliQ]]></FromUserName>
+<CreateTime>1452862067</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.026524</Latitude>
+<Longitude>114.291458</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:47:47 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:47:47 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:48:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452862139</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069561</Latitude>
+<Longitude>114.364105</Longitude>
+<Precision>10.000000</Precision>
+</xml>
+
+2016-01-15 20:48:59 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:48:59 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:49:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJyNFBtV5_cxkYKQJZRedng]]></FromUserName>
+<CreateTime>1452862168</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.775562</Latitude>
+<Longitude>115.093399</Longitude>
+<Precision>3876.000000</Precision>
+</xml>
+
+2016-01-15 20:49:28 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:49:28 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:50:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouObgy4SqstyYbe--ZHLRLnY]]></FromUserName>
+<CreateTime>1452862222</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.022850</Latitude>
+<Longitude>114.378311</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:50:22 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:50:22 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:51:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKubPjIg9K0j-N9fkxTQxws]]></FromUserName>
+<CreateTime>1452862286</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.082375</Latitude>
+<Longitude>114.382339</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-01-15 20:51:26 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:51:26 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:51:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPHsv6TGEgWcNWTVeddideU]]></FromUserName>
+<CreateTime>1452862293</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.698856</Latitude>
+<Longitude>109.021095</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-01-15 20:51:33 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:51:33 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:53:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMjsdnE-XC_680wK5t1b2yo]]></FromUserName>
+<CreateTime>1452862419</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.073959</Latitude>
+<Longitude>114.433128</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:53:40 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:53:40 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:53:45 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLWcbCBtORpxCiADogH5thA]]></FromUserName>
+<CreateTime>1452862425</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>34.333843</Latitude>
+<Longitude>113.757950</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:53:45 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:53:45 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:53:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKubPjIg9K0j-N9fkxTQxws]]></FromUserName>
+<CreateTime>1452862427</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.082314</Latitude>
+<Longitude>114.382401</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-01-15 20:53:47 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:53:47 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:54:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJ9TvcHEaIiP7N8zag7kbzU]]></FromUserName>
+<CreateTime>1452862457</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.046421</Latitude>
+<Longitude>114.729393</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:54:17 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:54:17 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:54:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKubPjIg9K0j-N9fkxTQxws]]></FromUserName>
+<CreateTime>1452862460</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.082314</Latitude>
+<Longitude>114.382401</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-01-15 20:54:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:54:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:54:45 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMjsdnE-XC_680wK5t1b2yo]]></FromUserName>
+<CreateTime>1452862485</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.073959</Latitude>
+<Longitude>114.433128</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:54:45 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:54:45 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:55:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHHD4bRFGcbkdvNe9SpZcs4]]></FromUserName>
+<CreateTime>1452862525</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>18.208380</Latitude>
+<Longitude>109.487900</Longitude>
+<Precision>1689.000000</Precision>
+</xml>
+
+2016-01-15 20:55:25 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:55:25 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:55:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouC5_387IR8pQWRpExCjd9Pc]]></FromUserName>
+<CreateTime>1452862552</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.110165</Latitude>
+<Longitude>114.374100</Longitude>
+<Precision>2835.000000</Precision>
+</xml>
+
+2016-01-15 20:55:54 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:55:54 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:56:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHHD4bRFGcbkdvNe9SpZcs4]]></FromUserName>
+<CreateTime>1452862595</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>18.208380</Latitude>
+<Longitude>109.487900</Longitude>
+<Precision>1689.000000</Precision>
+</xml>
+
+2016-01-15 20:56:35 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:56:35 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:56:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJERkYihEarLFMXlJzXqAZs]]></FromUserName>
+<CreateTime>1452862602</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.054234</Latitude>
+<Longitude>114.709396</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:56:42 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:56:42 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:56:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJERkYihEarLFMXlJzXqAZs]]></FromUserName>
+<CreateTime>1452862617</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.054234</Latitude>
+<Longitude>114.709396</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:56:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:56:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:58:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouE-oXESHoBqGPNFPlhePwNU]]></FromUserName>
+<CreateTime>1452862684</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.089561</Latitude>
+<Longitude>114.190521</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:58:04 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:58:04 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:58:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452862701</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.069473</Latitude>
+<Longitude>114.363731</Longitude>
+<Precision>100.000000</Precision>
+</xml>
+
+2016-01-15 20:58:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:58:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:58:41 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouE-oXESHoBqGPNFPlhePwNU]]></FromUserName>
+<CreateTime>1452862721</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.089561</Latitude>
+<Longitude>114.190521</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:58:41 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:58:41 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:58:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouDnwI8wbsl7t-jbtnM2LNbs]]></FromUserName>
+<CreateTime>1452862734</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>33.596394</Latitude>
+<Longitude>114.030655</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 20:58:54 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:58:54 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:59:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHYJhfvXINXJGUVjlKnCzuM]]></FromUserName>
+<CreateTime>1452862747</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.093590</Latitude>
+<Longitude>114.406044</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 20:59:08 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:59:08 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 20:59:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouIUstSOtOGTYijSJBuIh3hQ]]></FromUserName>
+<CreateTime>1452862797</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>34.817772</Latitude>
+<Longitude>113.634834</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 20:59:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 20:59:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:01:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouBi4A5eAd7sVzG6hD7i-yzg]]></FromUserName>
+<CreateTime>1452862871</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.097301</Latitude>
+<Longitude>114.300316</Longitude>
+<Precision>95.659180</Precision>
+</xml>
+
+2016-01-15 21:01:11 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:01:11 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:03:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMjsdnE-XC_680wK5t1b2yo]]></FromUserName>
+<CreateTime>1452862997</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.073959</Latitude>
+<Longitude>114.433128</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:03:17 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:03:17 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:04:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouG2wxLow-c3rdk4MvrAXm_8]]></FromUserName>
+<CreateTime>1452863097</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.104797</Latitude>
+<Longitude>114.343971</Longitude>
+<Precision>2058.000000</Precision>
+</xml>
+
+2016-01-15 21:04:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:04:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:05:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJd4sk8g6VmJDxTAxkqJp7c]]></FromUserName>
+<CreateTime>1452863140</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.033741</Latitude>
+<Longitude>114.023804</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:05:40 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:05:40 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:05:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMjsdnE-XC_680wK5t1b2yo]]></FromUserName>
+<CreateTime>1452863143</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.073959</Latitude>
+<Longitude>114.433128</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:05:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:05:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:05:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNtbO3ROyAOAfNfckaxXd60]]></FromUserName>
+<CreateTime>1452863149</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.109173</Latitude>
+<Longitude>114.370087</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:05:50 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:05:50 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:05:58 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJMlQunrWZuyK6vpr_nTVSk]]></FromUserName>
+<CreateTime>1452863158</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.109081</Latitude>
+<Longitude>114.359283</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:05:58 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:05:58 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:07:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJd4sk8g6VmJDxTAxkqJp7c]]></FromUserName>
+<CreateTime>1452863229</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.033741</Latitude>
+<Longitude>114.023804</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:07:09 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:07:09 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:07:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJd4sk8g6VmJDxTAxkqJp7c]]></FromUserName>
+<CreateTime>1452863240</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.033741</Latitude>
+<Longitude>114.023804</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:07:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:07:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:08:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLwfSb-04v68zPRXEbQ-PhM]]></FromUserName>
+<CreateTime>1452863298</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>34.735687</Latitude>
+<Longitude>113.718178</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:08:18 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:08:18 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:09:00 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFVWthz9pawwkFQjLFp-1lA]]></FromUserName>
+<CreateTime>1452863340</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>39.011860</Latitude>
+<Longitude>106.389549</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:09:00 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:09:00 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:09:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJd4sk8g6VmJDxTAxkqJp7c]]></FromUserName>
+<CreateTime>1452863363</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.033741</Latitude>
+<Longitude>114.023804</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:09:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:09:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:09:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHGFKyx87mYsLx3JEqcEfbM]]></FromUserName>
+<CreateTime>1452863397</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.984035</Latitude>
+<Longitude>114.352585</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:09:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:09:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:12:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLV_VIFFSi3jFjWcVgpy8y8]]></FromUserName>
+<CreateTime>1452863566</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:12:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEjLZf4woQf7wRlf_BjlnCc]]></FromUserName>
+<CreateTime>1452863576</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.109524</Latitude>
+<Longitude>114.080307</Longitude>
+<Precision>1917.000000</Precision>
+</xml>
+
+2016-01-15 21:12:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:12:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:13:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452863590</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714973</Latitude>
+<Longitude>117.042053</Longitude>
+<Precision>2230.000000</Precision>
+</xml>
+
+2016-01-15 21:13:11 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:13:11 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:13:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPVhfC3aylMIgy4pn9ejQmY]]></FromUserName>
+<CreateTime>1452863624</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.093594</Latitude>
+<Longitude>114.184570</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:13:44 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:13:44 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:14:19 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452863660</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 21:14:20 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:14:20 response :
+------------
+
+2016-01-15 21:14:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1452863661</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2016-01-15 21:14:21 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:14:21 response :
+------------
+
+2016-01-15 21:15:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452863704</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714973</Latitude>
+<Longitude>117.042053</Longitude>
+<Precision>2230.000000</Precision>
+</xml>
+
+2016-01-15 21:15:04 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:15:04 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:15:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEjLZf4woQf7wRlf_BjlnCc]]></FromUserName>
+<CreateTime>1452863704</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.115524</Latitude>
+<Longitude>114.095436</Longitude>
+<Precision>2004.000000</Precision>
+</xml>
+
+2016-01-15 21:15:05 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:15:05 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:15:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouCZAq40H0QvGo9gED-YiOH4]]></FromUserName>
+<CreateTime>1452863716</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.102943</Latitude>
+<Longitude>114.392914</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:15:16 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:15:16 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:15:29 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452863729</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714973</Latitude>
+<Longitude>117.042053</Longitude>
+<Precision>2230.000000</Precision>
+</xml>
+
+2016-01-15 21:15:29 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:15:29 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:17:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMFME--rjJMj9FCUTfZaAhw]]></FromUserName>
+<CreateTime>1452863863</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.178974</Latitude>
+<Longitude>113.065262</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:17:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:17:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:19:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMFME--rjJMj9FCUTfZaAhw]]></FromUserName>
+<CreateTime>1452863946</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.178986</Latitude>
+<Longitude>113.065308</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:19:06 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:19:06 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:19:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMFME--rjJMj9FCUTfZaAhw]]></FromUserName>
+<CreateTime>1452863953</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.178986</Latitude>
+<Longitude>113.065308</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:19:13 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:19:13 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:21:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouI0-Xl9ySzUBDNo8zt6MPUA]]></FromUserName>
+<CreateTime>1452864082</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.085590</Latitude>
+<Longitude>114.629089</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:21:22 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:21:22 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:21:48 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouM2WBXWkKJoTcZec7rWva-o]]></FromUserName>
+<CreateTime>1452864108</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.063812</Latitude>
+<Longitude>113.830421</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:21:48 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:21:48 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:22:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouM2WBXWkKJoTcZec7rWva-o]]></FromUserName>
+<CreateTime>1452864175</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.063812</Latitude>
+<Longitude>113.830421</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:22:55 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:22:55 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:25:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF7mxbjaAUeXxDslleQrj_4]]></FromUserName>
+<CreateTime>1452864314</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.091053</Latitude>
+<Longitude>114.317070</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:25:14 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:25:14 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:26:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouOTBEdNE7gLi9u2aGe-4K-k]]></FromUserName>
+<CreateTime>1452864370</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:26:10 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:26:10 response :
+------------
+
+2016-01-15 21:26:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouOTBEdNE7gLi9u2aGe-4K-k]]></FromUserName>
+<CreateTime>1452864373</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.106361</Latitude>
+<Longitude>103.722893</Longitude>
+<Precision>2120.000000</Precision>
+</xml>
+
+2016-01-15 21:26:13 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:26:13 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:26:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452864379</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714973</Latitude>
+<Longitude>117.042053</Longitude>
+<Precision>2230.000000</Precision>
+</xml>
+
+2016-01-15 21:26:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:26:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:28:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJCUTgzuIAc4jHq-jKt71ow]]></FromUserName>
+<CreateTime>1452864486</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>33.551991</Latitude>
+<Longitude>114.587746</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 21:28:06 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:28:06 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:29:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJCUTgzuIAc4jHq-jKt71ow]]></FromUserName>
+<CreateTime>1452864563</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>33.552082</Latitude>
+<Longitude>114.587753</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 21:29:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:29:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:30:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452864620</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040905</Latitude>
+<Longitude>114.351402</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:30:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:30:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:30:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouOuEnopdDwdRGlJlO7XH2rw]]></FromUserName>
+<CreateTime>1452864657</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>28.440195</Latitude>
+<Longitude>119.477837</Longitude>
+<Precision>60.000000</Precision>
+</xml>
+
+2016-01-15 21:30:57 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:30:57 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:31:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMFME--rjJMj9FCUTfZaAhw]]></FromUserName>
+<CreateTime>1452864674</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.179199</Latitude>
+<Longitude>113.065437</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:31:14 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:31:14 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:31:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEUK1DXz615C6wUUQE9qj-0]]></FromUserName>
+<CreateTime>1452864685</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.102833</Latitude>
+<Longitude>114.325439</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:31:25 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:31:25 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:31:53 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEUK1DXz615C6wUUQE9qj-0]]></FromUserName>
+<CreateTime>1452864713</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.102833</Latitude>
+<Longitude>114.325439</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:31:53 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:31:53 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:32:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMFME--rjJMj9FCUTfZaAhw]]></FromUserName>
+<CreateTime>1452864725</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.179199</Latitude>
+<Longitude>113.065437</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:32:05 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:32:05 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:32:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452864741</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040890</Latitude>
+<Longitude>114.351395</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:32:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:32:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:32:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKSAVUL_l8jzBCXDkVV_UM8]]></FromUserName>
+<CreateTime>1452864763</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.119499</Latitude>
+<Longitude>114.372482</Longitude>
+<Precision>3181.000000</Precision>
+</xml>
+
+2016-01-15 21:32:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:32:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:33:34 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEUK1DXz615C6wUUQE9qj-0]]></FromUserName>
+<CreateTime>1452864814</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.102863</Latitude>
+<Longitude>114.325439</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:33:34 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:33:34 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:34:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEUK1DXz615C6wUUQE9qj-0]]></FromUserName>
+<CreateTime>1452864862</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.102863</Latitude>
+<Longitude>114.325439</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:34:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:34:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:34:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKSAVUL_l8jzBCXDkVV_UM8]]></FromUserName>
+<CreateTime>1452864883</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.119499</Latitude>
+<Longitude>114.372482</Longitude>
+<Precision>3181.000000</Precision>
+</xml>
+
+2016-01-15 21:34:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:34:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:36:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwNcR2zc2AtFVWB-sWRPkUvs]]></FromUserName>
+<CreateTime>1452865003</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:36:43 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:36:43 response :
+------------
+
+2016-01-15 21:36:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwNcR2zc2AtFVWB-sWRPkUvs]]></FromUserName>
+<CreateTime>1452865014</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[拼团]]></Content>
+<MsgId>6240007721035908779</MsgId>
+</xml>
+
+2016-01-15 21:36:55 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 15 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-15 21:36:55 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwNcR2zc2AtFVWB-sWRPkUvs ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-15 21:37:16 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwNcR2zc2AtFVWB-sWRPkUvs]]></FromUserName>
+<CreateTime>1452865036</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[测试]]></Content>
+<MsgId>6240007815525189300</MsgId>
+</xml>
+
+2016-01-15 21:37:16 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:37:16 response :
+------------
+
+2016-01-15 21:37:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwNcR2zc2AtFVWB-sWRPkUvs]]></FromUserName>
+<CreateTime>1452865048</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[拼团测试]]></Content>
+<MsgId>6240007867064796855</MsgId>
+</xml>
+
+2016-01-15 21:37:28 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:37:28 response :
+------------
+
+2016-01-15 21:37:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwNcR2zc2AtFVWB-sWRPkUvs]]></FromUserName>
+<CreateTime>1452865066</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:37:48 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwD4UX0NbsXrmT0k-qwd0Dzc]]></FromUserName>
+<CreateTime>1452865068</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:37:48 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:37:48 response :
+------------
+
+2016-01-15 21:37:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwD4UX0NbsXrmT0k-qwd0Dzc]]></FromUserName>
+<CreateTime>1452865076</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[砍价]]></Content>
+<MsgId>6240007987323881161</MsgId>
+</xml>
+
+2016-01-15 21:37:56 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 21:37:56 response :
+------------
+
+2016-01-15 21:38:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouOuEnopdDwdRGlJlO7XH2rw]]></FromUserName>
+<CreateTime>1452865101</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>28.440197</Latitude>
+<Longitude>119.477783</Longitude>
+<Precision>60.000000</Precision>
+</xml>
+
+2016-01-15 21:38:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:38:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:39:07 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452865147</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040966</Latitude>
+<Longitude>114.351448</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:39:07 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:39:07 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:40:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPwZVpXz2iwJTDQFc25kXOY]]></FromUserName>
+<CreateTime>1452865226</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.121456</Latitude>
+<Longitude>114.365395</Longitude>
+<Precision>40.000000</Precision>
+</xml>
+
+2016-01-15 21:40:26 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:40:26 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:42:53 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452865372</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040897</Latitude>
+<Longitude>114.351379</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:42:53 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:42:53 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:45:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452865510</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040981</Latitude>
+<Longitude>114.351463</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:45:11 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:45:11 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:45:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452865518</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040981</Latitude>
+<Longitude>114.351463</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:45:18 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:45:18 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:45:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFdNFcFQ_bLsHsw-9gqQcs4]]></FromUserName>
+<CreateTime>1452865535</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.040958</Latitude>
+<Longitude>114.351501</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:45:35 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:45:35 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:45:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouDDhlQSLPBiFlHfoBj63vRY]]></FromUserName>
+<CreateTime>1452865542</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.101707</Latitude>
+<Longitude>114.365990</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:45:42 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:45:42 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:46:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452865583</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714485</Latitude>
+<Longitude>117.041435</Longitude>
+<Precision>4435.000000</Precision>
+</xml>
+
+2016-01-15 21:46:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:46:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:46:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452865597</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714485</Latitude>
+<Longitude>117.041435</Longitude>
+<Precision>4435.000000</Precision>
+</xml>
+
+2016-01-15 21:46:37 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:46:37 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:47:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHgQDk-c5fNv_2SFqc_kuoE]]></FromUserName>
+<CreateTime>1452865627</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.062485</Latitude>
+<Longitude>114.364716</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:47:08 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:47:08 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:47:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouGU_zizHAdtCk_fzYpaFoIQ]]></FromUserName>
+<CreateTime>1452865655</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.084614</Latitude>
+<Longitude>114.338074</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 21:47:35 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:47:35 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:48:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouDZXTgMY4kujcwEkeywBGj0]]></FromUserName>
+<CreateTime>1452865710</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.108376</Latitude>
+<Longitude>114.315872</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:48:30 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:48:30 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:49:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452865796</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714985</Latitude>
+<Longitude>117.041809</Longitude>
+<Precision>2924.000000</Precision>
+</xml>
+
+2016-01-15 21:49:56 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:49:56 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 21:50:45 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouBi7Mo8J0uKXsk-CZLb6fkY]]></FromUserName>
+<CreateTime>1452865845</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:59:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNIeGVHvoeEiXP2hPC_dUTU]]></FromUserName>
+<CreateTime>1452866375</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 21:59:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452866394</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.098083</Latitude>
+<Longitude>114.310059</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 21:59:54 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 21:59:54 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:00:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouGugTIdvbxb_sbUsl2iEmwQ]]></FromUserName>
+<CreateTime>1452866437</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>34.818043</Latitude>
+<Longitude>113.627953</Longitude>
+<Precision>2359.000000</Precision>
+</xml>
+
+2016-01-15 22:00:37 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:00:37 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:01:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouCo9iBTfSigsNGzs5Gxag_s]]></FromUserName>
+<CreateTime>1452866491</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.117756</Latitude>
+<Longitude>114.345764</Longitude>
+<Precision>4010.000000</Precision>
+</xml>
+
+2016-01-15 22:01:31 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:01:31 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:01:39 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouCo9iBTfSigsNGzs5Gxag_s]]></FromUserName>
+<CreateTime>1452866499</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 22:02:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452866521</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.098305</Latitude>
+<Longitude>114.309769</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:02:01 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:02:01 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:02:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouHhVhmLQafsEKedqiiBRq00]]></FromUserName>
+<CreateTime>1452866533</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 22:02:13 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 22:02:13 response :
+------------
+
+2016-01-15 22:02:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPLCy7387f90tMPs3QnUUUk]]></FromUserName>
+<CreateTime>1452866548</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.109783</Latitude>
+<Longitude>114.347450</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:02:28 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:02:28 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:03:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouK6br0WOc5Pg4MIUK_CtHSE]]></FromUserName>
+<CreateTime>1452866590</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.985363</Latitude>
+<Longitude>114.348495</Longitude>
+<Precision>309.000000</Precision>
+</xml>
+
+2016-01-15 22:03:10 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:03:10 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:06:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452866761</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.098083</Latitude>
+<Longitude>114.310104</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:06:01 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:06:01 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:08:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452866901</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.098087</Latitude>
+<Longitude>114.310059</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:08:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:08:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:10:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouK6br0WOc5Pg4MIUK_CtHSE]]></FromUserName>
+<CreateTime>1452867031</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.986378</Latitude>
+<Longitude>114.346657</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:10:31 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:10:31 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:12:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLFt0yUgJJs7LWuQGF2-GPA]]></FromUserName>
+<CreateTime>1452867120</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 22:12:01 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 22:12:01 response :
+------------
+
+2016-01-15 22:12:03 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLFt0yUgJJs7LWuQGF2-GPA]]></FromUserName>
+<CreateTime>1452867123</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.092285</Latitude>
+<Longitude>114.399376</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:12:03 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:12:03 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:13:02 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLq-Vvw_RkimiF9O_abG1Dw]]></FromUserName>
+<CreateTime>1452867182</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.149227</Latitude>
+<Longitude>114.226059</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:13:02 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:13:02 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:15:38 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452867338</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.098057</Latitude>
+<Longitude>114.310066</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:15:38 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:15:38 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:17:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouOzhg06g7AxmqGsiU-_uHQE]]></FromUserName>
+<CreateTime>1452867450</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.114452</Latitude>
+<Longitude>114.116859</Longitude>
+<Precision>30.000000</Precision>
+</xml>
+
+2016-01-15 22:17:30 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:17:30 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:20:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452867623</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.097713</Latitude>
+<Longitude>114.310234</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:20:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:20:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:20:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNWfB-iUgQHumyfmoTC18tc]]></FromUserName>
+<CreateTime>1452867656</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>31.933250</Latitude>
+<Longitude>118.641495</Longitude>
+<Precision>92.186028</Precision>
+</xml>
+
+2016-01-15 22:20:56 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:20:56 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:21:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouEzn61zQTq-EuzyHiDSsBi8]]></FromUserName>
+<CreateTime>1452867676</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.097713</Latitude>
+<Longitude>114.310234</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:21:17 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:21:17 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:24:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJV-9FJLZFwTL9w5RDA3LQI]]></FromUserName>
+<CreateTime>1452867894</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.923355</Latitude>
+<Longitude>114.367348</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:24:54 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:24:54 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:26:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFWHthsOpYjN0CsLsNjmM8k]]></FromUserName>
+<CreateTime>1452867983</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.714973</Latitude>
+<Longitude>117.042053</Longitude>
+<Precision>2230.000000</Precision>
+</xml>
+
+2016-01-15 22:26:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:26:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:26:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJV-9FJLZFwTL9w5RDA3LQI]]></FromUserName>
+<CreateTime>1452868015</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.923347</Latitude>
+<Longitude>114.367371</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:26:55 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:26:55 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:29:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJV-9FJLZFwTL9w5RDA3LQI]]></FromUserName>
+<CreateTime>1452868157</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.923347</Latitude>
+<Longitude>114.367371</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:29:17 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:29:17 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:30:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNNw--tXSz2yMlIXdawI9Wo]]></FromUserName>
+<CreateTime>1452868218</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.099136</Latitude>
+<Longitude>114.355972</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:30:18 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:30:18 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:30:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouPkl5d41lZWcXU3Ten8VN34]]></FromUserName>
+<CreateTime>1452868223</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>32.688419</Latitude>
+<Longitude>109.027763</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 22:30:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:30:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:33:02 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKPYajuWXXcaBCF8cu0BzF8]]></FromUserName>
+<CreateTime>1452868382</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>31.174671</Latitude>
+<Longitude>120.663376</Longitude>
+<Precision>1858.000000</Precision>
+</xml>
+
+2016-01-15 22:33:02 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:33:02 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:33:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouFqAffjRlRz5r-YQI53ofCY]]></FromUserName>
+<CreateTime>1452868386</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>38.491711</Latitude>
+<Longitude>112.705048</Longitude>
+<Precision>3175.000000</Precision>
+</xml>
+
+2016-01-15 22:33:06 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:33:06 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:33:58 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKPYajuWXXcaBCF8cu0BzF8]]></FromUserName>
+<CreateTime>1452868438</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>31.174671</Latitude>
+<Longitude>120.663376</Longitude>
+<Precision>1858.000000</Precision>
+</xml>
+
+2016-01-15 22:33:58 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:33:58 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:35:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKPYajuWXXcaBCF8cu0BzF8]]></FromUserName>
+<CreateTime>1452868507</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>31.173658</Latitude>
+<Longitude>120.656685</Longitude>
+<Precision>3275.000000</Precision>
+</xml>
+
+2016-01-15 22:35:08 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:35:08 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:36:06 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLLt8LQNEc_FM19eHmNjBxk]]></FromUserName>
+<CreateTime>1452868566</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.082481</Latitude>
+<Longitude>114.350861</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:36:06 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:36:06 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:38:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKPYajuWXXcaBCF8cu0BzF8]]></FromUserName>
+<CreateTime>1452868720</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>31.174671</Latitude>
+<Longitude>120.663376</Longitude>
+<Precision>1858.000000</Precision>
+</xml>
+
+2016-01-15 22:38:40 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:38:40 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:44:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNXRvIlIxc-ZKOURqNj83TQ]]></FromUserName>
+<CreateTime>1452869061</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.981998</Latitude>
+<Longitude>114.350868</Longitude>
+<Precision>110.000000</Precision>
+</xml>
+
+2016-01-15 22:44:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:44:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:45:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNsLFTpkRPe-pA6rwS3qRqE]]></FromUserName>
+<CreateTime>1452869143</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.924667</Latitude>
+<Longitude>114.375435</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:45:43 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:45:43 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:46:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouAG9CoA97ruaf4Ex8WpUlA4]]></FromUserName>
+<CreateTime>1452869181</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.133694</Latitude>
+<Longitude>114.383553</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:46:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:46:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:47:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKwm4L4w6mExc7LbfiIB47E]]></FromUserName>
+<CreateTime>1452869234</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.128811</Latitude>
+<Longitude>114.352921</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 22:47:14 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:47:14 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:48:05 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouCB8Cd4av-oWjK9cyjjxVec]]></FromUserName>
+<CreateTime>1452869284</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.105564</Latitude>
+<Longitude>114.364288</Longitude>
+<Precision>2436.000000</Precision>
+</xml>
+
+2016-01-15 22:48:05 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:48:05 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:55:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouP0m_vIyS-3EQB5GthmMbsU]]></FromUserName>
+<CreateTime>1452869720</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.115753</Latitude>
+<Longitude>114.344749</Longitude>
+<Precision>2107.000000</Precision>
+</xml>
+
+2016-01-15 22:55:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:55:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:58:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouIV9gz99ZNPy0zzV7H6_2JY]]></FromUserName>
+<CreateTime>1452869934</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.937172</Latitude>
+<Longitude>114.422745</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:58:54 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:58:54 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:59:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouKDDAr5c7TEp-WGGJu19ZyE]]></FromUserName>
+<CreateTime>1452869950</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.118279</Latitude>
+<Longitude>114.378777</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-01-15 22:59:10 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:59:10 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:59:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouIV9gz99ZNPy0zzV7H6_2JY]]></FromUserName>
+<CreateTime>1452869976</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.937172</Latitude>
+<Longitude>114.422745</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:59:36 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:59:36 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 22:59:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouIV9gz99ZNPy0zzV7H6_2JY]]></FromUserName>
+<CreateTime>1452869987</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>35.937176</Latitude>
+<Longitude>114.422745</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 22:59:47 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 22:59:47 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:04:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJij3ysdeXdDE7cpC_-jmNE]]></FromUserName>
+<CreateTime>1452870295</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 23:04:55 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 23:04:55 response :
+------------
+
+2016-01-15 23:05:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLv1A42JkuqvQh-yvDolj8s]]></FromUserName>
+<CreateTime>1452870330</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>22.568096</Latitude>
+<Longitude>114.122993</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:05:30 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:05:30 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:05:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLv1A42JkuqvQh-yvDolj8s]]></FromUserName>
+<CreateTime>1452870355</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>22.568096</Latitude>
+<Longitude>114.122993</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:05:55 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:05:55 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:06:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLv1A42JkuqvQh-yvDolj8s]]></FromUserName>
+<CreateTime>1452870367</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>22.567753</Latitude>
+<Longitude>114.123863</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:06:08 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:06:08 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:06:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouLv1A42JkuqvQh-yvDolj8s]]></FromUserName>
+<CreateTime>1452870393</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>22.567753</Latitude>
+<Longitude>114.123863</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:06:33 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:06:33 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:06:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJij3ysdeXdDE7cpC_-jmNE]]></FromUserName>
+<CreateTime>1452870414</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 23:11:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouNDFQiC0txp-jwL3aUAX1U4]]></FromUserName>
+<CreateTime>1452870668</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.083916</Latitude>
+<Longitude>114.764320</Longitude>
+<Precision>90.000000</Precision>
+</xml>
+
+2016-01-15 23:11:08 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:11:08 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:30:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouL9gRpruL9BU5up_Y3Tz9Rs]]></FromUserName>
+<CreateTime>1452871813</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.055588</Latitude>
+<Longitude>114.381805</Longitude>
+<Precision>73.004448</Precision>
+</xml>
+
+2016-01-15 23:30:13 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:30:13 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:36:36 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJSw9MTJ6jUU2D7qjSjEhy0]]></FromUserName>
+<CreateTime>1452872196</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-01-15 23:36:36 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 23:36:36 response :
+------------
+
+2016-01-15 23:36:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJSw9MTJ6jUU2D7qjSjEhy0]]></FromUserName>
+<CreateTime>1452872204</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[会员]]></Content>
+<MsgId>6240038601850012832</MsgId>
+</xml>
+
+2016-01-15 23:36:44 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-01-15 23:36:44 response :
+------------
+
+2016-01-15 23:37:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouJSw9MTJ6jUU2D7qjSjEhy0]]></FromUserName>
+<CreateTime>1452872238</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[会员]]></Content>
+<MsgId>6240038747878900902</MsgId>
+</xml>
+
+2016-01-15 23:37:18 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 289 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-15 23:37:18 response :
+------------
+Array:
+FromUserName : gh_e26d20e10319 ;
+ToUserName : owpeouJSw9MTJ6jUU2D7qjSjEhy0 ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-15 23:39:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouC7CwBaIdcY6B2GuTja1Ers]]></FromUserName>
+<CreateTime>1452872390</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.089180</Latitude>
+<Longitude>114.331230</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:39:50 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:39:50 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:41:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouF1EY7ON69FZsiqOdyS2jxY]]></FromUserName>
+<CreateTime>1452872483</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.056850</Latitude>
+<Longitude>113.999802</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:41:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:41:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:42:18 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouC7CwBaIdcY6B2GuTja1Ers]]></FromUserName>
+<CreateTime>1452872538</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.089317</Latitude>
+<Longitude>114.331177</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:42:18 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:42:18 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:45:21 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouC7CwBaIdcY6B2GuTja1Ers]]></FromUserName>
+<CreateTime>1452872720</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.089424</Latitude>
+<Longitude>114.331116</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:45:21 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:45:21 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:46:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouC7CwBaIdcY6B2GuTja1Ers]]></FromUserName>
+<CreateTime>1452872780</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.089424</Latitude>
+<Longitude>114.331116</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:46:20 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:46:20 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:55:47 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouART4m1G0npPRL7dVjd3lcs]]></FromUserName>
+<CreateTime>1452873347</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.249588</Latitude>
+<Longitude>113.861809</Longitude>
+<Precision>2800.000000</Precision>
+</xml>
+
+2016-01-15 23:55:47 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:55:47 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:57:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMmEdoc_6tlqmOcESeIVK-o]]></FromUserName>
+<CreateTime>1452873462</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.084888</Latitude>
+<Longitude>114.343719</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:57:42 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:57:42 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:58:10 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMmEdoc_6tlqmOcESeIVK-o]]></FromUserName>
+<CreateTime>1452873490</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.084888</Latitude>
+<Longitude>114.343719</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:58:10 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:58:10 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-01-15 23:58:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_e26d20e10319]]></ToUserName>
+<FromUserName><![CDATA[owpeouMmEdoc_6tlqmOcESeIVK-o]]></FromUserName>
+<CreateTime>1452873503</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>36.084888</Latitude>
+<Longitude>114.343758</Longitude>
+<Precision>150.000000</Precision>
+</xml>
+
+2016-01-15 23:58:23 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-01-15 23:58:23 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+

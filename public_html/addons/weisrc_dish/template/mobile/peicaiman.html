@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>配菜间-慢</title>
+</style>
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+    {php include $this->template($this->cur_tpl.'/_menu2');}
+        <div class="weui-flex">
+            <div class="weui-flex__item "><a class="weui-btn weui-btn_plain-primary" href="{php echo $this->createMobileUrl('peicaiman', array(), true)}">未完成</a></div>
+            <div class="weui-flex__item"><a href="{php echo $this->createMobileUrl('peicaiman', array('revoke' => 1), true)}" class="weui-btn weui-btn_plain-default">已完成</a></div>
+        </div>
+
+        <div class="weui-cells weui-cells_checkbox"  id="list">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                     <p>
+                       配菜间-慢 
+                         {if $revoke==1}
+                      已完成 <i class="weui-icon-warn"></i>
+                      {else}
+                        未完成 <i class="weui-icon-success"></i>
+                     {/if}
+
+                    </p>
+                    </div>
+                    <div class="weui-cell__ft">
+                   <a class="weui-btn weui-btn_primary " onclick="submitIds2()">
+                    提交</a> 
+                    </div>
+                </div>
+        <!-- 列表 -->
+        {loop $list $items}
+        <label class="weui-cell weui-check__label {$items['change']}  {if $revoke==1}tui{/if}  {if $items['type']==2}tui f-gray{/if}" for="{$items['id']}">
+           <div class="weui-cell__hd">
+            <input type="checkbox" class="weui-check"  name="r" id="{$items['id']}">
+            <i class="weui-icon-checked"></i>
+        </div>
+        <div class="weui-cell__bd">
+            <p>
+                <!-- 桌号 -->
+                <span class="right f-blue">{$items['sortname']}  - {$items['tablesname']} </span>
+                {$items['title']}{if $items['flavor']!=""}({$items['flavor']}){/if} * {$items['total']} {$items['unitname']}  
+                {if $items['type']==2}(已退){/if} 
+                <br>
+                {if $items['content']!=""}
+                <span style="color:#fff;background:red">{$items['content']}</span>
+                {/if}
+
+                <span class="right">  {php echo date('H:i',$items['dateline'])}</span>
+
+            </p>
+        </div>
+    </label>
+    {/loop}
+    </div>
+        <style>
+    .tui{text-decoration: line-through;color:#000;}
+    </style>
+</body>
+</html>

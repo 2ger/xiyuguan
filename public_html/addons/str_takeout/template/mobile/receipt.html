@@ -1,0 +1,160 @@
+{template 'common/header'}
+<link rel="stylesheet" type="text/css" href="../addons/str_takeout/template/resource/css/main.css">
+<script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
+<script src="../addons/str_takeout/template/resource/js/main.js"></script>
+<script src="../addons/str_takeout/template/resource/js/menu.js"></script>
+<script src="../addons/str_takeout/template/resource/js/common.js"></script>
+<!-- <link href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css" rel="stylesheet"> -->
+<style type="text/css">
+	.nav a{width:100%;}
+	.select{
+		width: 100%;height: 50px;background-color: #fff;
+	}
+	.select_btn{margin: 10px 15px; height: 30px; font-size: 18px;}
+	.nav a:last-child {
+    border-left: none;
+    border-radius: 5px 5px 5px 5px;
+	}
+</style>
+<div class="container" onselectstart="return true;" ondragstart="return false;">
+	<header class="nav menu">
+	    <div>
+		    <a class="on">验收单</a>
+	    </div>	
+	</header>
+	<form name="cart_form" action="{php echo $this->createMobileUrl('receipt', array('uid' => $_GPC['uid'],'id' => $_GPC['id']), true);}" method="post">
+        <table class="my_menu_list">
+        	<thead>
+        	    <tr>
+        	    	<th style="width:25%">名称</th>
+        	    	<th style="width:15%">预订</th>
+        	    	<th style="width:17%">实发</th>
+        	    	<th style="width:17%">单位</th>
+        	    	<th style="width:26%">实收</th>
+        	    </tr>
+        	</thead>
+        	<tbody>
+        	{loop $goods_info $row}
+        		<tr>
+        			<td>{$row['name']}</td>
+        			<td>{$row['yd']}</td>
+        			<td>{$row['sf']['sf']}</td>
+        			<td>{$row['unitName']}</td><!-- <input type="hidden" name="salePrice[{$row['id']}]" value="{$row['salePrice']}"> -->
+        			<td><input type="text" name="receipt[{$row['id']}]" style="width: 80px; height: 30px; text-align: center;" value="{$row['receipts']}"></td>
+        		</tr>
+        	{/loop}
+        	</tbody>
+        </table>
+        <!-- <input type="hidden" name="goodsid" value="{$row['id']}"> -->
+		<footer class="shopping_cart">
+			<div class="fixed">
+				<div class="cart_bg">
+					<span class="cart_num" id="cartNum"></span>
+				</div>
+				<div><span id="totalPrice"></span></div>
+				<div>
+					<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" >提交</a>
+				</div>
+			</div>
+		</footer>
+	</form>
+	{template 'footerbar'}
+	<!-- <div class="menu_detail" id="menuDetail">
+		<img style="display: none;">
+		<div class="nopic"><img src=""></div>
+		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
+		<dl>
+			<dt>价格：</dt>
+			<dd class="highlight">￥<span class="price"></span></dd>
+		</dl>
+		<p>库存<span class="sale_num"></span>份</p>
+		<dl>
+			<dt>介绍：</dt>
+			<dd class="info"></dd>
+		</dl>
+	</div> -->
+</div>
+
+<script type="text/javascript">
+var menu = {
+	offsetAry: [0],
+	_is_left_menu_addclass:true,
+	init: function(id){
+		var winH = $(window).height(),
+			_this = this,			
+			_icoMenu = $('#icoMenu'),
+			_sideNav = $('#sideNav'),
+			maxH = winH - (_icoMenu.parent().is(':visible') ? _icoMenu.outerHeight(true) : 0) - 45;
+
+		this.el =  $(id);
+		
+		_sideNav.height(maxH);
+
+		if(_sideNav.find('ul').height() > maxH)  new IScroll('#sideNav', { probeType: 3, mouseWheel: true ,click:true});
+
+		$(window).bind('scroll', function(){
+			_this.scroll.call(_this);
+		});
+
+		$('#icoMenu').click(function(){
+			if(_sideNav.css('display') != 'none') {
+				_sideNav.show();
+			} else {
+				_sideNav.hide();
+			}
+			if(_sideNav.find('ul').height() > maxH)  new IScroll('#sideNav', { probeType: 3, mouseWheel: true ,click:true});
+		});
+
+		$('.menu_tt h2').each(function(){
+			_this.offsetAry.push($(this).offset().top);
+		});
+
+		this.el.find('a').click(function(){
+			$(this).addClass('on').parent().siblings().find('a').removeClass('on');
+			_this._is_left_menu_addclass=false;
+			var t = $(window).scrollTop();
+			var t1= _this.offsetAry[_this.el.find('a').index(this) + 1];
+			var _t =Math.abs(t1-t);
+			var _time =parseInt( Math.round(_t/3));
+			$('html,body').animate({scrollTop: t1}, _time,"linear",function(){_this._is_left_menu_addclass=true;});
+		});
+
+		// _this.offsetT = this.el.offset().top;	
+	},
+	getIndex: function(ary, value){
+		var i = 0;
+		for(; i < ary.length; i++){
+			if(value >= ary[i] && value < ary[i + 1]){
+				return i;
+			}
+		}
+		return ary.length -1;
+	},
+	scroll: function(){
+		var st = $(document).scrollTop(),
+			index = this.getIndex(this.offsetAry, st),
+			i = index - 1;
+
+		if(this.curIndex !== index){ // 判断分类是否切换
+			
+			$('.menu_tt h2').removeClass('menu_fixed');
+			if(this._is_left_menu_addclass==true)
+				this.el.find('a').removeClass('on');
+			if(i >= 0){
+				this.el.addClass('menu_fixed');
+				$('.menu_tt').eq(i).find('h2').addClass('menu_fixed');
+				if(this._is_left_menu_addclass==true)
+					this.el.find('a').eq(i).addClass('on');	
+			}else{
+				this.el.removeClass('menu_fixed');
+			}
+			this.curIndex = index;
+		}
+	}
+}
+	$(function(){
+		menu.init('#menuNav');
+	});
+</script>
+{template 'common'}
+{template 'common/footer'}

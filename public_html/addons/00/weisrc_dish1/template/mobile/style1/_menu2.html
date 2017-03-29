@@ -1,0 +1,36 @@
+<div class="ddb-nav-footer ng-scope" common-footer="">
+	<!-- <a class="nav-item {if $cur_nave=='home'}active{/if}" href="{php echo $this->createMobileUrl('waprestlist', array(), true)}"><i class="fa fa-home"></i>
+		<div class="nav-text">所有</div>
+	</a -->
+	<a class="nav-item ng-scope {if $cur_nave=='search'}active{/if}"  href="{php echo $this->createMobileUrl('search', array(), true)}"><i class="fa fa-eye"></i>
+		<div class="nav-text">鱼</div>
+	</a>
+	<a class="nav-item ng-scope {if $cur_nave=='collection'}active{/if}"  href="{php echo $this->createMobileUrl('collection', array(), true)}" ng-if="!current_shop.is_single">
+		<i class="fa fa-star"></i>
+		<div class="nav-text">冷菜间</div>
+	</a>
+	<a class="nav-item" href="{php echo $this->createMobileUrl('order', array(), true)}"><i class="fa fa-list"></i>
+		<div class="nav-text">配菜间</div>
+	</a>
+	<a class="nav-item" href="{php echo $this->createMobileUrl('opera', array(), true)}"><i class="fa fa-user"></i>
+		<div class="nav-text">服务员</div>
+	</a>
+	<a class="nav-item" onclick="qrcode()"><i class="fa fa-qrcode"></i>
+		<div class="nav-text">扫一扫</div>
+	</a>
+</div>
+<script>
+function qrcode(){
+	var scanner = api.require('scanner');
+
+scanner.decode({
+    sound: 'widget://test.wav'
+}, function(ret, err){        
+    if( ret ){
+        alert( JSON.stringify( ret ) );
+    }else{
+        alert( JSON.stringify( err ) );
+    }
+});
+}
+</script>

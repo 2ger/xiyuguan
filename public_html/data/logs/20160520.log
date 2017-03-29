@@ -1,0 +1,252 @@
+2016-05-20 01:04:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uLYPJPqrjWAFHJiWMBCCLnY]]></FromUserName>
+<CreateTime>1463677474</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-20 06:00:53 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uK00o7wr74YwKO_5ItobxL0]]></FromUserName>
+<CreateTime>1463695249</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-20 06:00:53 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-20 06:00:53 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uK00o7wr74YwKO_5ItobxL0 ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-20 08:59:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uNlvchrhuu5T0balJxlCltg]]></FromUserName>
+<CreateTime>1463705945</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-20 08:59:09 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-20 08:59:09 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uNlvchrhuu5T0balJxlCltg ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-20 09:10:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt5SDZmJVfSo1qmMhEqHBcUo]]></FromUserName>
+<CreateTime>1463706655</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1463706655</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[70:3a:d8:30:e6:e0]]></DeviceNo></xml>
+
+2016-05-20 09:10:55 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-20 09:10:55 response :
+------------
+
+2016-05-20 09:19:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt2reuXZKpn7S21ogqL9aK0I]]></FromUserName>
+<CreateTime>1463707140</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>24.307697</Latitude>
+<Longitude>109.403122</Longitude>
+<Precision>65.000000</Precision>
+</xml>
+
+2016-05-20 09:19:01 params :
+------------
+Array:
+message : Array ;
+module : default ;
+rule : -1 ;
+
+2016-05-20 09:19:01 response :
+------------
+Array:
+errno : -1 ;
+message : Invaild value ;
+
+2016-05-20 09:21:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uAmGvVfVm4Xjnz1sjslYTdA]]></FromUserName>
+<CreateTime>1463707286</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-20 09:32:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uJBF2BcHrFhCgRVNIKinhCg]]></FromUserName>
+<CreateTime>1463707964</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-20 09:32:46 params :
+------------
+Array:
+message : Array ;
+module : ewei_vote ;
+rule : 19 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-05-20 09:32:46 response :
+------------
+Array:
+FromUserName : gh_339b357d6bcb ;
+ToUserName : oq5x0uJBF2BcHrFhCgRVNIKinhCg ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-05-20 09:35:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uJBF2BcHrFhCgRVNIKinhCg]]></FromUserName>
+<CreateTime>1463708124</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2016-05-20 12:48:01 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt5SDZmJVfSo1qmMhEqHBcUo]]></FromUserName>
+<CreateTime>1463719677</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1463719677</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[70:3a:d8:30:e6:e0]]></DeviceNo></xml>
+
+2016-05-20 12:48:01 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-20 12:48:01 response :
+------------
+
+2016-05-20 17:25:53 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtwK1SqXYxH3qyYgABWGiCR4]]></FromUserName>
+<CreateTime>1463736343</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1463736343</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[d0:ee:07:2c:67:b6]]></DeviceNo></xml>
+
+2016-05-20 17:25:54 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-20 17:25:54 response :
+------------
+
+2016-05-20 17:26:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jtyA0XUoJpueIm_M_bE97C3o]]></FromUserName>
+<CreateTime>1463736400</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1463736400</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[d0:ee:07:2c:67:b6]]></DeviceNo></xml>
+
+2016-05-20 17:26:50 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-20 17:26:50 response :
+------------
+
+2016-05-20 17:27:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt9nx0Vn3i2pXSydeJEeGeUU]]></FromUserName>
+<CreateTime>1463736465</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[WifiConnected]]></Event><ConnectTime>1463736465</ConnectTime><ExpireTime>0</ExpireTime><VendorId><![CDATA[3001224419]]></VendorId><ShopId><![CDATA[7737770]]></ShopId><DeviceNo><![CDATA[d0:ee:07:2c:67:b6]]></DeviceNo></xml>
+
+2016-05-20 17:27:55 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-05-20 17:27:55 response :
+------------
+
+2016-05-20 21:34:14 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_339b357d6bcb]]></ToUserName>
+<FromUserName><![CDATA[oq5x0uEHFYNs58_-2JbMPXJ7a8wo]]></FromUserName>
+<CreateTime>1463751249</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+

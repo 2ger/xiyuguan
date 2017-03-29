@@ -1,0 +1,42 @@
+2016-11-08 18:32:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1478601132</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[记住这六句真理，钱不是问题！http://z.yirendai.com/ggk/WebCard/index2?rel=AG1XMwNjAWAHYVBgV20IYgc2UjFSZVYw&media=umb&flag=yrd&skin=10&from=message&isappinstalled=0]]></Content>
+<MsgId>6350543506174408093</MsgId>
+</xml>
+
+2016-11-08 18:32:12 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-11-08 18:32:12 response :
+------------
+
+2016-11-08 19:03:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_d5c808a7666e]]></ToUserName>
+<FromUserName><![CDATA[om_6jt6usuAZP1BqD9ZAcymcvAQ8]]></FromUserName>
+<CreateTime>1478603016</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[[红包][红包][红包][红包][红包]宜人贷5-20万在线申请，30分钟放款[红包][红包][红包][红包][红包]http://z.yirendai.com/ggk/WebCard/index?rel=AG1XMwNjAWAHYVBgV20IYgc2UjFSZVYw&media=umb&flag=yrd&skin=1]]></Content>
+<MsgId>6350551597892793758</MsgId>
+</xml>
+
+2016-11-08 19:03:37 params :
+------------
+Array:
+rule : -2 ;
+module :  ;
+message : Array ;
+
+2016-11-08 19:03:37 response :
+------------
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>易伙三商</title>
+	<meta name="format-detection" content="telephone=no, address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="shortcut icon" href="http://yhs.xyj0772.com/attachment/images/global/wechat.jpg" />
+    <link href="{$_W['siteroot']}app/resource/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{$_W['siteroot']}app/resource/css/font-awesome.min.css" rel="stylesheet">
+	<link href="{$_W['siteroot']}app/resource/css/animate.css" rel="stylesheet">
+	<link href="{$_W['siteroot']}app/resource/css/common.css" rel="stylesheet">
+	<link href="{$_W['siteroot']}app/resource/css/app.css" rel="stylesheet">
+	<link href="{$_W['siteroot']}app/index.php?i=3&c=utility&a=style&" rel="stylesheet">
+	<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+    <!-- <script src="http://yhs.xyj0772.com/app/resource/js/require.js"></script> -->
+	<!-- <script src="http://yhs.xyj0772.com/app/resource/js/app/config.js"></script> -->
+	<!-- <script type="text/javascript" src="http://yhs.xyj0772.com/app/resource/js/lib/jquery-1.11.1.min.js"></script> -->
+	
+	
+</head>
+<body>
+<div class="container container-fill">
+<link rel="stylesheet" type="text/css" href="../addons/str_takeout/template/resource/css/main.css">
+    <script src="http://cdn1.lncld.net/static/js/av-min-1.5.0.js"></script>
+
+<style type="text/css">
+	.but-post{display:block;height:30px;line-height:30px;border:none;width:640px;border-radius:3px;font-size:16px;font-weight:bold;color:#fff;background-color:#ff5f32;}
+	.nav div{width:100%; color: #fff;text-align: center;}
+</style>
+<div class="container">
+	<section>
+	<header class="nav menu">
+		<div>订单详情</div>
+	</header>
+
+		<style type="text/css">
+			.my_menu_list th{width:0;}
+		</style>
+		<table class="my_menu_list">
+			<thead>
+				<tr>
+					<th style="width:25%">原材料</th>
+					<th style="width:25%">规格</th>
+					<th style="width:17%">预订</th>
+					<th style="width:17%">实收</th>
+					<th style="width:16%">单位</th>
+				</tr>
+			</thead>
+			<tbody>
+					{loop $order_info $da}
+						<tr>
+							<td>{$da['name']}</td>
+							<td>{$da['spec']}</td>
+							<td>{$da['qty']}</td>
+							<td>{$da['receipts']}</td>
+							<td>{$da['unitName']}</td>
+						</tr>
+					{/loop}
+			</tbody>
+		</table>
+		<ul class="box pay_box">
+			<li>订单编号：{$order['billNo']}</li>
+			<li>联系人：{$order['userName']}</li>
+			<li>下单时间：{$order['modifyTime']}</li>
+			<li>总数量：<span class="text-strong">{if $totalqty>0}{$totalqty}{else}{$order['totalQty']}{/if}</span></li>
+		</ul>
+        <!-- <img src="{$order['photo']}" id="image" width="100%">
+		<form action="" id="myform" method="post" enctype="multipart/form-data"> 
+		<input type="hidden" name="orderid" value="{$order['id']}">
+		<input type="hidden" name="imageurl"  id="imageurl">
+		<ul class="box pay_box">
+		    <li>图片上传</li>
+			<li><input type="file" id="file_input"/></li>
+			<li><input type="submit" name="submit" value="上传图片" class="comm_btn"></li>
+		</ul> -->
+<!-- 存储服务 -->
+<!-- <script type="text/javascript">
+var APP_ID = 'fFV3bSINmXtDbrp0BLkfCuFF-gzGzoHsz';
+var APP_KEY = '1ESTWvG8xfkcHEciQ5lNJcQh';
+AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+});
+
+
+var input = document.getElementById("file_input");
+//文件域选择文件时, 执行readFile函数
+input.addEventListener('change',readFile,false);
+function readFile(){ 
+    console.log('获得文件大小');
+    var file = this.files[0]; 
+  
+
+    var fileUploadControl = this;
+    if (fileUploadControl.files.length > 0) {
+        var localFile = fileUploadControl.files[0];
+        var name = 'avatar.png';
+        var file = new AV.File(name, localFile);
+        file.save().then(function(file) {
+            // 文件保存成功
+            document.getElementById('imageurl').value=file.url();
+            document.getElementById('image').src=file.url();
+            //document.getElementById('myform').submit();
+            //alert('图片上传成功！');
+			        //$("#imageurl").val(file.url());
+            console.log(file.url());
+        }, function(error) {
+            // 异常处理
+            console.error(error);
+        });
+    }
+}
+</script> -->
+		<!-- </form> -->
+		<ul class="box pay_box">
+			<li>备注</li>
+			<li>{if $order['description']}{$order['description']}{else}无{/if}</li>
+		</ul>
+		<!-- <div class="detail_tools">
+				<div><a href="javascript:;" class="comm_btn" id="confirmBtn">退货</a></div>
+		</div> -->
+
+	</section>
+	{php $config = get_config();}
+<footer data-role="footer" id="footer_role">
+	<nav class="nav_common">
+		<ul class="box_nav">
+		{if $_COOKIE['pcate']==13}
+		    <li class="more {if $_GPC['do'] == 'price'}on{/if}">
+				<a href="{php echo $this->createMobileUrl('price', array('uid' => $_GPC['uid']));}">
+					 <!-- <span class="order">&nbsp;</span> -->
+		  		 <label> 填写价格</label>
+				</a>
+			</li>
+			<li class="more {if $_GPC['do'] == 'jhds'}on{/if}">
+				<a href="{php echo $this->createMobileUrl('jhds', array('uid' => $_GPC['uid']));}">
+				<!-- <a href="index.php?i=1&c=entry&do=myorders&lId={$_GPC['lId']}&m=str_takeout"> -->
+					<!-- <span class="my">&nbsp;</span> -->
+				<label> 填写进货单</label>
+			</a>
+			</li>
+			<li>
+		{else}
+			<li class="more {if $_GPC['do'] == 'list'}on{/if}">
+				<a href="{php echo $this->createMobileUrl('list', array('uid' => $_GPC['uid']));}">
+					 <!-- <span class="order">&nbsp;</span> -->
+		  		 <label> 商品预订</label>
+				</a>
+			</li>
+			<li class="more {if $_GPC['do'] == 'myorders' || $_GPC['do'] == 'orderdetails'}on{/if}">
+				<a href="{php echo $this->createMobileUrl('myorders', array('uid' => $_GPC['uid']));}">
+				<!-- <a href="index.php?i=1&c=entry&do=myorders&lId={$_GPC['lId']}&m=str_takeout"> -->
+					<!-- <span class="my">&nbsp;</span> -->
+				<label> 我的订单</label>
+			</a>
+			</li>
+			<li>
+		{/if}
+				<a href="index.php?i={$_W['uniacid']}&c=entry&do=operalist&storeid={$storeid}&m=weisrc_dish">
+					<!-- <span class="introx">&nbsp;</span> -->
+				<label> 个人中心</label>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</footer>
+</div>
+</div>
+</body>
+</html>
+<!-- {template 'common'} -->
+<!-- {template 'common/footer'} -->

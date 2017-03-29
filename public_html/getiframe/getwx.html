@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title></title>
+	<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script language="javascript">
+function getIframe(){
+var t=$("#IFrame").contents().find("#angel").val();
+alert("子框架里文本框里的内容为："+t);
+console.log(t);
+}
+</script>
+
+</head>
+<body>
+<a class="click" onclick="getIframe()">获得</a>
+<br>
+
+<iframe id="Iframe" src="iframe.html" width="500" height=900></iframe>
+
+</body>
+</html>

@@ -1,0 +1,4551 @@
+<?php
+/**
+ * 捷讯收银台模块微站定义
+ *
+ * @author 易伙三商
+ */
+defined('IN_IA') or exit('Access Denied');
+include("../addons/j_money/jetsum_function.php");
+class J_moneyModuleSite extends WeModuleSite {
+	public function doMobileAjax() {
+		global $_GPC, $_W;
+		if(!$_W['isajax'])die(json_encode(array('success'=>false,'msg'=>"错误！")));
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$cfg = $this->module['config'];
+		if($operation=="login"){
+			//用户登录
+			$userid=$_GPC['userid'];
+			$pwd=$_GPC['pwd'];
+			if(!$userid || !$pwd)die(json_encode(array("success"=>false,"msg"=>"用户名或者密码错误")));
+			$pwd=md5($_GPC['pwd']);
+			$item=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and useracount=:a and password=:b limit 1",array(":a"=>$userid,":b"=>$pwd));//
+			if(!$item)die(json_encode(array("success"=>false,"msg"=>"用户不存在或者密码错误")));
+			if(!$item['status'])die(json_encode(array("success"=>false,"msg"=>"该用户还没有审核，请联系管理员")));
+			isetcookie('islogin', $item['id'],100086400);
+			isetcookie('storeid', $item['storeid'],100086400);
+			isetcookie('weid', $_W['uniacid'],100086400);
+            // var_dump($item['storeid']);
+			// isetcookie('username', $userid]);
+			// isetcookie('pwd', $pwd);
+			// isetcookie('islogin', $item['id'], 3600*$cfg['cookiehold']);
+			// isetcookie('storeid', $item['storeid'], 3600*$cfg['cookiehold']);
+            //称鱼，及收银员 进入收银界面
+            if($item['pcate']==1 or $item['pcate']==9 or $item['pcate']==17 or $item['pcate']==10){
+                die(json_encode(array("success"=>true)));
+            }else{
+                die(json_encode(array("success2"=>true)));
+            }
+		}
+
+//开台
+	if($operation=="kaitai"){
+            $storeid = $_GPC['storeid'];
+            $people = $_GPC['people'];
+            $tablesid = $_GPC['tablesid'];
+            $data = array(
+            'weid' => $_W['uniacid'],
+            'from_user' => 'chengyu',
+            'storeid' => $storeid,
+            'ordersn' => date('md') . sprintf("%04d", $fansid) . random(4, 1), //订单号
+            'totalnum' => 0, //产品数量
+            'totalprice' => 0, //总价
+            'goodsprice' =>0,
+            'counts' =>$people,
+            'username' => "称鱼台",
+            'status' => 1, //状态
+            'tables' => $tablesid,
+            'dateline' => TIMESTAMP
+        );
+        pdo_insert('weisrc_dish_order', $data);
+        $orderid = pdo_insertid();
+        //开台
+        $result=pdo_update("weisrc_dish_tables",array('status'=>1),array("id"=>$tablesid));
+       
+        die($orderid);
+	}
+
+        //退菜
+		if($operation=="tui"){
+            $storeid = $_GPC['storeid'];
+			$orderid=$_GPC['orderid'];
+			$goodsid=$_GPC['goodsid'];
+			$total=$_GPC['total'];//总份数
+			$id=$_GPC['id'];
+			$tablesid=$_GPC['tablesid'];
+			$price=$_GPC['price'];//总价改为单价
+			$left=$_GPC['left'];//剩余的份数
+            if($left>0){//只减其中一部份
+                // 修改菜的type=1
+                pdo_update("weisrc_dish_order_goods",array("total"=>$left),array("id"=>$id));
+            
+                pdo_insert("weisrc_dish_order_goods",array("weid"=>$_W['uniacid'],"storeid"=>$storeid,"tablesid"=>$tablesid,"goodsid"=>$goodsid,"orderid"=>$orderid,"price"=>$price,"total"=>$total-$left,"status"=>1,"type"=>2,"taste"=>$taste));
+
+                //删除购物车
+                pdo_update("weisrc_dish_cart",array("total"=>$left),array("tablesid"=>$tablesid,"total"=>$total,"goodsid"=>$goodsid));
+            }else{
+                // 修改菜的type=1
+                pdo_update("weisrc_dish_order_goods",array("type"=>2),array("id"=>$id));
+        
+                //删除购物车
+                pdo_fetch("delete from ims_weisrc_dish_cart where goodsid =".$goodsid."  and tablesid=".$tablesid." and total=".$total);
+
+            }
+            if ($orderid>0) {
+            	 $price = pdo_fetch("select sum(price*total) as price from ims_weisrc_dish_order_goods where type =0  and orderid=".$orderid);
+	            if($price['price']<0){
+	                $price['price'] =0;
+	            }
+				$i = pdo_update("weisrc_dish_order",array("totalprice"=>$price['price']),array("id"=>$orderid));
+				if($i>0){
+	                die(json_encode(array("success"=>true,"totalprice"=>$price['price'])));
+	            }
+            }else{
+	             die(json_encode(array("success"=>true,"tips"=>'购物车的 goodsid'.$goodsid." tablesid:".$tablesid." total".$left)));
+            }
+           
+        }
+        //退菜  end
+
+        //送菜
+		if($operation=="song"){
+			$orderid=$_GPC['orderid'];
+			$goodsid=$_GPC['goodsid'];
+			$price=$_GPC['price'];
+			$id=$_GPC['id'];
+            // 修改菜的type=1
+			 pdo_update("weisrc_dish_order_goods",array("type"=>1),array("id"=>$id));
+        
+            $zhekou = pdo_fetch("select sum(price*total) as price from ims_weisrc_dish_order_goods where type =1  and orderid=".$orderid);
+            $price = pdo_fetch("select sum(price*total) as price from ims_weisrc_dish_order_goods where type =0  and orderid=".$orderid);
+            if($price['price']<0){
+                $price['price'] =0;
+            }
+			$i = pdo_update("weisrc_dish_order",array("totalprice"=>$price['price'],"zhekou"=>$zhekou['price']),array("id"=>$orderid));
+			if($i>0){
+                die(json_encode(array("success"=>true,"totalprice"=>$price['price'])));
+            }
+        }
+        //送菜  end
+         //上菜
+		if($operation=="shang"){
+			$id=$_GPC['id'];
+			$i = pdo_update("weisrc_dish_order_goods",array("stepnow"=>5),array("id"=>$id));
+			if($i>0){
+                die(json_encode(array("success"=>true,"id"=>$id)));
+            }
+        }
+        //修改做法
+		if($operation=="gai"){
+			$orderid=$_GPC['orderid'];
+			$tablesid=$_GPC['tablesid'];
+			$goodsid=$_GPC['goodsid'];
+			$total = $_GPC['total'];
+			$id = $_GPC['id'];
+			$taste=$_GPC['taste'];
+			$storeid = $_GPC['storeid'];
+            // 修改菜
+			 pdo_update("weisrc_dish_order_goods",array("taste"=>$taste),array("orderid"=>$orderid,"goodsid"=>$goodsid,"id"=>$id));
+                //修改鱼表 
+                pdo_update("weisrc_dish_fish",array("taste"=>$taste),array("tablesid"=>$tablesid,"total"=>$total,"done"=>0));
+
+                //删除购物车
+                pdo_update("weisrc_dish_cart",array("taste"=>$taste),array("tablesid"=>$tablesid,"total"=>$total,"goodsid"=>$goodsid));
+                die(json_encode(array("success"=>true)));
+        }
+        // 转台功能  
+        if ($operation == 'changetable') {
+			$storeid=$_GPC['storeid'];
+            $orderid = intval($_GPC['orderid']);
+            $tablesid = intval($_GPC['tablesid']);
+            $tableTo = intval($_GPC['tableTo']);
+            // die(json_encode(array("success"=>$orderid+" tablesid"+$tablesid+" tablesTO"+$tableTo)));
+			$table0 = pdo_fetch("SELECT a.*,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id WHERE a.id=".$tablesid);
+			$table1 = pdo_fetch("SELECT a.*,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id WHERE a.id=".$tableTo);
+			if($table1['status'] ==1){
+			//	 message("目标桌为开台状态，无法转台！");
+			}
+            //把订单转过去
+            pdo_fetch("UPDATE ims_weisrc_dish_order set tables=".$tableTo." WHERE storeid=".$storeid." and id=".$orderid);
+            //把菜转过去
+            pdo_fetch("UPDATE ims_weisrc_dish_order_goods set tablesid=".$tableTo.",content ='".$table0['zone'].$table0['title']."转到".$table1['zone'].$table1['title']."' WHERE storeid=".$storeid." and orderid=".$orderid);
+             //互换状态
+            pdo_fetch("UPDATE ims_weisrc_dish_tables set status=0 WHERE id=".$tablesid);
+            pdo_fetch("UPDATE ims_weisrc_dish_tables set status=1 WHERE id=".$tableTo);
+            $url ='index.php?i='.$_W['uniacid'].'&c=entry&op=in&do=index&m=j_money&tablesid='.$tablesTo;
+            die(json_encode(array("success"=>true)));
+        }
+
+        // 转台功能 end 
+
+        //菜品转台17.2.27
+		if($operation=="zhuan"){
+            $orderid=$_GPC['orderid'];//订单id
+            $tablesid=$_GPC['tablesid'];//桌台号
+            $goodsid=$_GPC['goodsid'];//菜品id
+            $total = $_GPC['total'];//数量
+            $id = $_GPC['id'];//菜品下单id
+            $price = $_GPC['price'];//总价格
+            $tabletg=$_GPC['tabletg'];//目标桌id
+            $storeid = $_GPC['storeid'];//店铺id
+            $taste = $_GPC['taste'];
+            $targetid = pdo_fetch("SELECT id,totalnum,totalprice,status FROM ims_weisrc_dish_order WHERE status in(0,1) and ispay=0 AND storeid=".$storeid." AND tables=".$tabletg." order by id desc");//目标桌确定的订单
+            $orders = pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE id=".$orderid." AND storeid=".$storeid);//当前订单状态
+            $sumtotal = $orders['totalnum']-$total;
+            $sumprice = $orders['totalprice']-($price*$total);
+            if(!empty($targetid['id'])){//已开桌，加入订单
+                $totalnum = $total+$targetid['totalnum'];//总数
+                $totalprice = ($price*$total)+$targetid['totalprice'];//总价格
+                pdo_update("weisrc_dish_order_goods",array("orderid"=>$targetid['id'],"tablesid"=>$tabletg,"content"=>$orderid."转到".$targetid['id']),array("id"=>$id));
+                pdo_update("weisrc_dish_order",array("totalnum"=>$totalnum,"totalprice"=>$totalprice),array("id"=>$targetid['id'],"storeid"=>$storeid));
+                pdo_update("weisrc_dish_fish",array("tablesid"=>$tabletg),array("storeid"=>$storeid,"goodsid"=>$goodsid,"tablesid"=>$tablesid,"done"=>0,"weight"=>$total));//转鱼
+                pdo_update("weisrc_dish_order",array("totalnum"=>$sumtotal,"totalprice"=>$sumprice),array("id"=>$orderid,"storeid"=>$storeid));//减菜品
+            }else{//没开台加入购物车
+                pdo_insert("weisrc_dish_cart",array("weid"=>$_W['uniacid'],"storeid"=>$storeid,"goodsid"=>$goodsid,"tablesid"=>$tabletg,"price"=>$price,"total"=>$total,"goodstype"=>1,"taste"=>$taste));
+                pdo_delete("weisrc_dish_order_goods",array("id"=>$id));
+                pdo_update("weisrc_dish_fish",array("tablesid"=>$tabletg),array("tablesid"=>$tablesid,"goodsid"=>$goodsid,"done"=>0,"weight"=>$total,"storeid"=>$storeid));//鱼
+                pdo_update("weisrc_dish_order",array("totalnum"=>$sumtotal,"totalprice"=>$sumprice),array("id"=>$orderid,"storeid"=>$storeid));//减菜品
+                // pdo_fetch("DELETE FROM ims_weisrc_dish_order_goods WHERE id=".$id);
+            }
+            die(json_encode(array("success"=>true)));
+        }
+
+        // 并台功能  17.1.10
+        if ($operation == 'andtable') {
+            $storeid = $_GPC['storeid'];//店铺id
+            $tablesid = intval($_GPC['tablesid']);//当前桌号
+            $orderid = intval($_GPC['orderid']);
+            $ToOrderid = intval($_GPC['ToOrderid']);
+			$table0 = pdo_fetch("SELECT a.*,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id WHERE a.weid = '{$_W['uniacid']}' and a.id=".$tablesid." and a.storeid=".$storeid);//当前桌
+			// $table1 = pdo_fetch("SELECT a.*,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id WHERE a.weid = '{$_W['uniacid']}' and a.id=".$tablesnet." and a.storeid=".$storeid);
+            //当前订单信息
+            $order0 = pdo_fetch('SELECT id,totalnum,totalprice from ims_weisrc_dish_order WHERE  id='.$orderid);
+            $orderst = pdo_fetch('SELECT status from ims_weisrc_dish_order_goods WHERE tablesid ='.$tablesid.' and storeid='.$storeid.' and orderid='.$orderid.' order by id desc limit 1');
+            if($orderst['status']==0){
+//            	message("00请先确认订单！");
+            }
+            
+            //并台到订单信息
+            $orderidnet = pdo_fetch('SELECT id,totalnum,totalprice,status,tables from ims_weisrc_dish_order WHERE  id='.$ToOrderid);
+            if(empty($orderidnet)){
+//            	message("11目标桌未确认订单,不能并台！");
+            }
+            	$num = $order0['totalnum']+$orderidnet['totalnum'];
+            	$price = $order0['totalprice']+$orderidnet['totalprice'];
+                $isok = pdo_fetch("UPDATE ims_weisrc_dish_order set totalnum=".$num.",totalprice=".$price." WHERE storeid=".$storeid." and id=".$orderidnet['id']);
+                $isthis = pdo_fetch("UPDATE ims_weisrc_dish_order set status=-1 WHERE storeid=".$storeid." and id=".$orderid);
+                //把菜单并过来
+                pdo_fetch("UPDATE ims_weisrc_dish_order_goods set tablesid=".$orderidnet['tables'].",content ='来自：".$table0['zone'].$table0['title']."并台',orderid=".$orderidnet['id'].",status=1 WHERE orderid=".$orderid);
+            //更新桌号状态
+            pdo_fetch("UPDATE ims_weisrc_dish_tables set status=0 WHERE id=".$tablesid);
+            die(json_encode(array("success"=>true,"totables"=>$orderidnet['tables'])));
+        }
+        // 并台功能 end
+
+
+        //授权打折
+		if($operation=="souquan"){
+			$owner=$_GPC['owner'];
+			$ownerpwd=md5($_GPC['ownerpwd']);
+
+			$souquan=pdo_fetch("select id from ims_j_money_user where useracount=".$owner." and password='".$ownerpwd."' and pcate=2");
+			if(!empty($souquan)){
+				die(json_encode(array("success"=>true)));
+			}else{
+				die(json_encode(array("success"=>false,"text"=>$ownerpwd)));
+			}
+            
+        }
+        //授权打折  end
+        //支付功能
+		if($operation=="ispay"){
+			//收款主程序-  添加  直接支付成功
+			$paytype=$_GPC["paytype"];
+			$storeid=$_GPC["storeid"];
+			$orderid=$_GPC["orderid"];
+			$tablesid=$_GPC["tablesid"];
+			$fee=$_GPC["fee"] ? $_GPC["fee"] : 0;
+			$deviceinfo=intval($_GPC["userid"]);
+			$totalfee=$_GPC['totalfee'];
+			$payno=$_GPC['old_trade_no'];
+			$zhekou=$_GPC['zhekou'];
+			$discount=$_GPC['discount'];
+            //2016-11-22 添加收款明细
+			$kdz=$_GPC['kdz'];
+			$bkdz=$_GPC['bkdz'];
+			$daijinquan=$_GPC['daijinquan'];
+			$mian=$_GPC['mian'];
+			$mj=$_GPC['mj'];
+			$dz=$_GPC['dz'];//打折减去的部份
+
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:a and status=1",array(":a"=>$deviceinfo));
+			// if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			load()->func('communication');
+			$fee=intval($fee*100);
+			// $totalfee=intval($fee);
+			$totalfee=intval($totalfee*100);
+			$coupon_fee=0;
+			$marketid=0;
+
+			//2017-1-11 添加合并收款方式
+			$addtype = $_GPC['addtype'];//收款方式
+			$addnum = $_GPC['addnum'];//收款金额
+			$data = array();
+			if(!empty($addnum)){
+				$addpaynum = intval($addnum*100);
+				if($addtype==1){
+					$data['weixin']=$addpaynum;
+				}elseif($addtype==2){
+					$data['alipay']=$addpaynum;
+				}elseif($addtype==3){
+					$data['cash']=$addpaynum;
+				}elseif($addtype==4){
+					$data['paycard']=$addpaynum;
+				}elseif($addtype==5){
+					$data['quick']=$addpaynum;
+				}
+			}
+			//end
+			
+			//
+			pay0:
+			// $cfg = $this->module['config'];
+			// $mch_id=$cfg['pay_mchid'];
+			// $pay_signkey=$cfg['pay_signkey'];
+			$outTradeNo=strval(date("YmdHis"));
+			// $pageparama=array(
+				// "appid"=>$cfg['appid'],
+				// "mch_id"=>strval($mch_id),
+				// "device_info"=>$deviceinfo,
+				// "nonce_str"=>getNonceStr(),
+				// "body"=>"微支付收款",
+				// "detail"=>"微支付收款",
+				// "attach"=>"-",
+				// "out_trade_no"=>$outTradeNo,
+				// "total_fee"=>$fee,
+				// "fee_type"=>"CNY",
+				// "spbill_create_ip"=>$cfg['pay_ip'],
+				// "goods_tag"=>"000001",
+				// "auth_code"=>$qrcode,
+			// );
+			// if($cfg['sub_appid'] && $cfg['sub_mch_id']){
+				// $pageparama['sub_appid']=$cfg['sub_appid'];
+				// $pageparama['sub_mch_id']=$cfg['sub_mch_id'];
+			// }
+			//插入数据
+			// $data=array(
+			// 	"weid"=>$_W['uniacid'],
+			// 	"userid"=>$deviceinfo,
+			// 	"status"=>1,
+			// 	"groupid"=>$user['pcate'],
+			// 	"attach"=>$_GPC['attach'] ? $_GPC['attach'] :'PC',
+			// 	"out_trade_no"=>$outTradeNo,
+			// 	"paytype"=>$paytype,
+			// 	// "total_fee"=>$totalfee,
+			//     "total_fee"=>$totalfee,
+			// 	"coupon_fee"=>intval($zhekou)*100,
+			// 	"cash_fee"=>$fee,
+			// 	"marketing"=>$marketid,
+			// 	"old_trade_no"=>$_GPC['old_trade_no'],
+
+			// 	"tablesid"=>$tablesid,
+			// 	"orderid"=>$orderid,
+			// 	"storeid"=>$storeid,
+
+			// 	"kdz"=>$kdz,
+			// 	"bkdz"=>$bkdz,
+			// 	"daijinquan"=>$daijinquan,
+			// 	"mian"=>$mian,
+			// 	"mj"=>$mj,
+			// 	"dz"=>$dz,
+
+			// 	 "createtime"=>TIMESTAMP,
+			// 	 "createdate"=>date('Y-m-d'),
+			// 	 "discount"=>$discount,
+				
+			// );
+			    $data['weid']=$_W['uniacid'];
+				$data['userid']=$deviceinfo;
+				$data['status']=1;
+				$data['groupid']=$user['pcate'];
+				$data['attach']=$_GPC['attach'] ? $_GPC['attach'] :'PC';
+				$data['out_trade_no']=$outTradeNo;
+				$data['paytype']=$paytype;
+				// "total_fee"=>$totalfee,
+			    $data['total_fee']=$totalfee;
+				$data['coupon_fee']=intval($zhekou)*100;
+				$data['cash_fee']=$fee;
+				$data['marketing']=$marketid;
+				$data['old_trade_no']=$_GPC['old_trade_no'];
+
+				$data['tablesid']=$tablesid;
+				$data['orderid']=$orderid;
+				$data['storeid']=$storeid;
+
+				$data['kdz']=$kdz;
+				$data['bkdz']=$bkdz;
+				$data['daijinquan']=$daijinquan;
+				$data['mian']=$mian;
+				$data['mj']=$mj;
+				$data['dz']=$dz;
+
+				$data['createtime']=TIMESTAMP;
+				$data['createdate']=date('Y-m-d');
+				$data['discount']=$discount;
+			if($marketid)$data['marketing_log']=$marketing['description'];
+			pdo_insert("j_money_trade",$data);
+			// pdo_delete("weisrc_dish_fish",array("tablesid"=>$tablesid));
+			pdo_update("weisrc_dish_tables",array("status"=>0),array("id"=>$tablesid));
+            // 收款不更新上菜进度， 上南店 2.24
+			// pdo_update("weisrc_dish_order_goods",array("status"=>2,"stepnow"=>5),array("orderid"=>$orderid));
+			 //空订单
+            pdo_update("weisrc_dish_order",array('status'=>-1),array("tables"=>$tablesid,'totalnum'=>0));
+            //清状态
+            isetcookie('dian'.$tablesid, '');
+			isetcookie('yu'.$tablesid, '');
+
+			pdo_update("weisrc_dish_order",array("status"=>2,"zhekou"=>$zhekou,"kdz"=>$kdz,"bkdz"=>$bkdz,"daijinquan"=>$daijinquan,"mian"=>$mian,"mj"=>$mj,"dz"=>$dz,"ispay"=>1),array("tables"=>$tablesid,"id"=>$orderid));
+			$result=array(
+				"success"=>1,
+				"out_trade_no"=>$outTradeNo,
+				"result_code"=>'SUCCESS',
+				// "userid"=>$deviceinfo,
+				// "attach"=>$_GPC['attach'] ? $_GPC['attach'] :'PC',
+				// "total_fee"=>$totalfee,
+				// "coupon_fee"=>$coupon_fee,
+				// "cash_fee"=>$fee,
+				// "marketing"=>$marketid,
+				// "old_trade_no"=>$_GPC['old_trade_no'],
+				// "tablesid"=>$tablesid,
+			);
+			// $sign=MakeSign($pageparama,$pay_signkey);
+			// $pageparama['sign']=$sign;
+			// $xml = ToXml($pageparama);
+			// $response =postXmlCurl($xml, "https://api.mch.weixin.qq.com/pay/micropay", 10);
+			// $result=FromXml($response);
+			// if($result['return_code']!='SUCCESS'){
+				//支付失败时返回
+				// pdo_update("j_money_trade",array("log"=>"收款失败：".$result['return_msg']),array("out_trade_no"=>$outTradeNo));
+				// die(json_encode(array("success"=>false,"msg"=>$result['return_msg'])));
+			// }
+			// $insertInfo=array(
+				// "openid"=>$result['openid'],
+				// "is_subscribe"=>$result['is_subscribe']=="Y" ? 1 : 0,
+				// "trade_type"=>$result['trade_type'],
+				// "bank_type"=>$result['bank_type'],
+				// "fee_type"=>$result['CNY'],
+				// "transaction_id"=>$result['transaction_id'],
+				// "time_end"=>strtotime($result['time_end']),
+				// "createtime"=>TIMESTAMP,
+				// "createdate"=>date('Y-m-d'),
+			// );
+			// if(!intval($data['total_fee']))$insertInfo["total_fee"]=intval($result['total_fee']);
+			// if(!intval($data['coupon_fee']))$insertInfo["coupon_fee"]=intval($result['coupon_fee']);
+			// if(intval($result['cash_fee']))$insertInfo["cash_fee"]=intval($result['cash_fee']);
+			// if($result['result_code']=='SUCCESS'){
+				// $insertInfo['isconfirm']=1;
+				// $insertInfo['status']=1;
+			// }
+			// pdo_update("j_money_trade",$insertInfo,array("out_trade_no"=>$outTradeNo));
+			// if(!isset($result['out_trade_no']))$result['out_trade_no']=$pageparama['out_trade_no'];
+            die(json_encode(array("success"=>true,"items"=>$result)));
+		}
+		if($operation=="paywechat"){
+			//收款主程序-微支付
+			$qrcode=$_GPC["qrcode"];
+			$tablesid=$_GPC["tablesid"];
+			$fee=$_GPC["fee"] ? $_GPC["fee"] : 1;
+			$deviceinfo=intval($_GPC["userid"]);
+
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:a and status=1",array(":a"=>$deviceinfo));
+			if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			load()->func('communication');
+			$fee=intval($fee*100);
+			$totalfee=intval($fee);
+			$coupon_fee=0;
+			$marketid=0;
+			//查询是否有满减活动
+			$marketing=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and starttime<=:a and endtime>=:b and status=1 and condition_fee<=:c order by displayorder asc ,id desc limit 1",array(":a"=>TIMESTAMP,":b"=>TIMESTAMP,":c"=>$fee));
+			if($marketing && $marketing['favorabletype']==1){
+				//小时判断
+				if($marketing['hour']){
+					$hourary=strpos($marketing['hour'],",") ? explode(",",$marketing['hour']):array($marketing['hour']);
+					if(!in_array(date("H"),$hourary))goto pay;
+				}
+				//人数判断
+				if($marketing['num']){
+					$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a and createdate =:b ",array(":a"=>$marketing['id'],":b"=>date('Y-m-d')));
+					if($marketing['isallnum']){
+						$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a ",array(":a"=>$marketing['id']));
+					}
+					if($numuser>=$marketing['num'])goto pay;
+				}
+				$favorable=$marketing['favorable'];
+				if(strpos($favorable,"|#满减#|")){
+					$temp=str_replace("[|#满减#|","",$favorable);
+					$temp=str_replace("]","",$temp);
+					$favorAry=explode("-",$temp);
+					if(count($favorAry)>1){
+						$favorAry1=strpos($favorAry[0],"%") ? intval(str_replace("%","",$favorAry[0])*0.01*$fee) : $favorAry[0]*100;
+						$favorAry2=strpos($favorAry[1],"%") ? intval(str_replace("%","",$favorAry[1])*0.01*$fee) : $favorAry[1]*100;
+						if($favorAry1>=$favorAry2){
+							$coupon_fee=$favorAry1;
+						}else{
+							$coupon_fee=mt_rand($favorAry1,$favorAry2);
+						}
+						if($marketing['isint']){
+							$coupon_fee=intval(sprintf('%.2f',($coupon_fee*0.01)))*100;
+						}
+						if(count($favorAry)==3){
+							if($coupon_fee>$favorAry[2]*100)$coupon_fee=$favorAry[2]*100;
+						}
+						if($coupon_fee>=$fee)$coupon_fee=0;
+						$fee=$fee-$coupon_fee;
+						$marketid=$marketing['id'];
+					}
+				}
+			}
+			
+			//
+			pay:
+			$cfg = $this->module['config'];
+			$mch_id=$cfg['pay_mchid'];
+			$pay_signkey=$cfg['pay_signkey'];
+			$outTradeNo=strval(date("YmdHis"));
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($mch_id),
+				"device_info"=>$deviceinfo,
+				"nonce_str"=>getNonceStr(),
+				"body"=>"微支付收款",
+				"detail"=>"微支付收款",
+				"attach"=>"-",
+				"out_trade_no"=>$outTradeNo,
+				"total_fee"=>$fee,
+				"fee_type"=>"CNY",
+				"spbill_create_ip"=>$cfg['pay_ip'],
+				"goods_tag"=>"000001",
+				"auth_code"=>$qrcode,
+			);
+			if($cfg['sub_appid'] && $cfg['sub_mch_id']){
+				$pageparama['sub_appid']=$cfg['sub_appid'];
+				$pageparama['sub_mch_id']=$cfg['sub_mch_id'];
+			}
+			//插入数据
+			$data=array(
+				"weid"=>$_W['uniacid'],
+				"userid"=>$deviceinfo,
+				"groupid"=>$user['pcate'],
+				"attach"=>$_GPC['attach'] ? $_GPC['attach'] :'PC',
+				"out_trade_no"=>$outTradeNo,
+				"total_fee"=>$totalfee,
+				"coupon_fee"=>$coupon_fee,
+				"cash_fee"=>$fee,
+				"marketing"=>$marketid,
+				"old_trade_no"=>$_GPC['old_trade_no'],
+				"tablesid"=>$tablesid,
+				
+			);
+			if($marketid)$data['marketing_log']=$marketing['description'];
+			pdo_insert("j_money_trade",$data);
+			$sign=MakeSign($pageparama,$pay_signkey);
+			$pageparama['sign']=$sign;
+			$xml = ToXml($pageparama);
+			$response =postXmlCurl($xml, "https://api.mch.weixin.qq.com/pay/micropay", 10);
+			$result=FromXml($response);
+			if($result['return_code']!='SUCCESS'){
+				//支付失败时返回
+				pdo_update("j_money_trade",array("log"=>"收款失败：".$result['return_msg']),array("out_trade_no"=>$outTradeNo));
+				die(json_encode(array("success"=>false,"msg"=>$result['return_msg'])));
+			}
+			$insertInfo=array(
+				"openid"=>$result['openid'],
+				"is_subscribe"=>$result['is_subscribe']=="Y" ? 1 : 0,
+				"trade_type"=>$result['trade_type'],
+				"bank_type"=>$result['bank_type'],
+				"fee_type"=>$result['CNY'],
+				"transaction_id"=>$result['transaction_id'],
+				"time_end"=>strtotime($result['time_end']),
+				"createtime"=>TIMESTAMP,
+				"createdate"=>date('Y-m-d'),
+			);
+			if(!intval($data['total_fee']))$insertInfo["total_fee"]=intval($result['total_fee']);
+			if(!intval($data['coupon_fee']))$insertInfo["coupon_fee"]=intval($result['coupon_fee']);
+			if(intval($result['cash_fee']))$insertInfo["cash_fee"]=intval($result['cash_fee']);
+			if($result['result_code']=='SUCCESS'){
+				$insertInfo['isconfirm']=1;
+				$insertInfo['status']=1;
+			}
+			pdo_update("j_money_trade",$insertInfo,array("out_trade_no"=>$outTradeNo));
+			if(!isset($result['out_trade_no']))$result['out_trade_no']=$pageparama['out_trade_no'];
+			die(json_encode(array("success"=>true,"items"=>$result)));
+		}
+		if($operation=="qrcodewechat"){
+			//微信扫码支付
+			$fee=$_GPC["fee"];
+			$tablesid=$_GPC["tablesid"];
+			$userOpenid=$_W['openid'] ? $_W['openid'] : die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and openid=:openid ",array(":openid"=>$userOpenid));
+			if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			load()->func('communication');
+			$fee=intval($fee*100);
+			$totalfee=intval($fee);
+			$coupon_fee=0;
+			$marketid=0;
+			//查询是否有满减活动
+			$marketing=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and starttime<=:a and endtime>=:b and status=1 and condition_fee<=:c order by displayorder asc ,id desc limit 1",array(":a"=>TIMESTAMP,":b"=>TIMESTAMP,":c"=>$fee));
+			if($marketing && $marketing['favorabletype']==1){
+				//小时判断
+				if($marketing['hour']){
+					$hourary=strpos($marketing['hour'],",") ? explode(",",$marketing['hour']):array($marketing['hour']);
+					if(!in_array(date("H"),$hourary))goto pay2;
+				}
+				if($marketing['num']){
+					$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a and createdate =:b ",array(":a"=>$marketing['id'],":b"=>date('Y-m-d')));
+					if($marketing['isallnum']){
+						$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a ",array(":a"=>$marketing['id']));
+					}
+					if($numuser>=$marketing['num'])goto pay2;
+				}
+				$favorable=$marketing['favorable'];
+				if(strpos($favorable,"|#满减#|")){
+					$temp=str_replace("[|#满减#|","",$favorable);
+					$temp=str_replace("]","",$temp);
+					$favorAry=explode("-",$temp);
+					if(count($favorAry)>1){
+						$favorAry1=strpos($favorAry[0],"%") ? intval(str_replace("%","",$favorAry[0])*0.01*$fee) : $favorAry[0]*100;
+						$favorAry2=strpos($favorAry[1],"%") ? intval(str_replace("%","",$favorAry[1])*0.01*$fee) : $favorAry[1]*100;
+						if($favorAry1>=$favorAry2){
+							$coupon_fee=$favorAry1;
+						}else{
+							$coupon_fee=mt_rand($favorAry1,$favorAry2);
+						}
+						if($marketing['isint']){
+							$coupon_fee=intval(sprintf('%.2f',($coupon_fee*0.01)))*100;
+						}
+						if(count($favorAry)==3){
+							if($coupon_fee>$favorAry[2]*100)$coupon_fee=$favorAry[2]*100;
+						}
+						if($coupon_fee>=$fee)$coupon_fee=0;
+						$fee=$fee-$coupon_fee;
+						$marketid=$marketing['id'];
+					}
+				}
+			}
+			pay2:
+			$mch_id=$cfg['pay_mchid'];
+			$pay_signkey=$cfg['pay_signkey'];
+			$outTradeNo=strval(date("YmdHis"));
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($mch_id),
+				"device_info"=>"WEB",
+				"nonce_str"=>getNonceStr(),
+				"body"=>"微支付收款",
+				"detail"=>"微支付收款",
+				"attach"=>"-",
+				"out_trade_no"=>$outTradeNo,
+				"total_fee"=>$fee,
+				"fee_type"=>"CNY",
+				"spbill_create_ip"=>$cfg['pay_ip'],
+				"time_start"=>date("YmdHis"),
+				"time_expire"=>date("YmdHis",TIMESTAMP+600),
+				"notify_url"=>$cfg['notify_url'],
+				"trade_type"=>"NATIVE",
+				"product_id"=>"01",
+			);
+			if($cfg['sub_appid'] && $cfg['sub_mch_id']){
+				$pageparama['sub_appid']=$cfg['sub_appid'];
+				$pageparama['sub_mch_id']=$cfg['sub_mch_id'];
+			}
+			//插入数据
+			$data=array(
+				"weid"=>$_W['uniacid'],
+				"userid"=>$user['id'],
+				"groupid"=>$user['pcate'],
+				"attach"=>"扫码收款",
+				"out_trade_no"=>$outTradeNo,
+				"total_fee"=>$totalfee,
+				"coupon_fee"=>$coupon_fee,
+				"cash_fee"=>$fee,
+				"createtime"=>TIMESTAMP,
+				"createdate"=>date('Y-m-d'),
+				"marketing"=>$marketid,
+				"old_trade_no"=>$_GPC['old_trade_no'],
+				"tablesid"=>$tablesid,
+			);
+			if($marketid)$data['marketing_log']=$marketing['description'];
+			pdo_insert("j_money_trade",$data);
+			$sign=MakeSign($pageparama,$pay_signkey);
+			$pageparama['sign']=$sign;
+			$xml = ToXml($pageparama);
+			$response =postXmlCurl($xml, "https://api.mch.weixin.qq.com/pay/unifiedorder", 10);
+			$result=FromXml($response);
+			if($result['return_code']!='SUCCESS'){
+				//支付失败时返回
+				pdo_update("j_money_trade",array("log"=>"收款失败：".$result['return_msg']),array("out_trade_no"=>$outTradeNo));
+				die(json_encode(array("success"=>false,"msg"=>$result['return_msg'])));
+			}
+			if(isset($result['code_url'])){
+				include('../addons/j_money/phpqrcode.php');
+				load()->func('file');
+				$dir_url="../attachment/j_money/".$_W['uniacid']."/";
+				mkdirs($dir_url);
+				$codename=$userOpenid."_.png";
+				$value = $result['code_url'];
+				if(file_exists($dir_url.$codename))@unlink ($dir_url.$codename);
+				QRcode::png($value, $dir_url.$codename, "L", 10);
+				die(json_encode(array("success"=>true,"qrcode"=>$dir_url.$codename."?v=".TIMESTAMP,"orderid"=>$outTradeNo)));
+			}
+			die(json_encode(array("success"=>false,"msg"=>"生成失败")));
+		}
+		if($operation=="closeqrcodewechat"){
+			//取消支付订单
+			$orderid=$_GPC["orderid"];
+			$mch_id=$cfg['pay_mchid'];
+			$pay_signkey=$cfg['pay_signkey'];
+			$outTradeNo=strval(date("YmdHis"));
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($mch_id),
+				"out_trade_no"=>$orderid,
+				"nonce_str"=>getNonceStr(),
+			);
+			$sign=MakeSign($pageparama,$pay_signkey);
+			$pageparama['sign']=$sign;
+			$xml = ToXml($pageparama);
+			$response =postXmlCurl($xml, "https://api.mch.weixin.qq.com/pay/closeorder", 10);
+			$result=FromXml($response);
+			if($result['return_code']=='SUCCESS' && $result['result_code']=='SUCCESS'){
+				pdo_update("j_money_trade",array("log"=>"取消订单："),array("out_trade_no"=>$outTradeNo));
+				die(json_encode(array("success"=>true,"orderid"=>$outTradeNo)));
+			}
+			pdo_update("j_money_trade",array("log"=>"取消订单失败：".$result['return_msg']),array("out_trade_no"=>$outTradeNo));
+			die(json_encode(array("success"=>false,"msg"=>$result['return_msg'])));
+			
+		}
+		if($operation=="payalipay"){
+			//收款主程序-支付宝
+			$qrcode=$_GPC["qrcode"];
+			$fee=$_GPC["fee"] ? $_GPC["fee"] : 1;
+			$deviceinfo=intval($_GPC["userid"]);
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:a and status=1",array(":a"=>$deviceinfo));
+			if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$fee=intval($fee*100);
+			$totalfee=intval($fee);
+			$coupon_fee=0;
+			$marketid=0;
+			//查询是否有满减活动
+			$marketing=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and starttime<=:a and endtime>=:b and status=1 and favorabletype=1 and condition_fee<=:c order by displayorder asc ,id desc limit 1",array(":a"=>TIMESTAMP,":b"=>TIMESTAMP,":c"=>$fee));
+			if($marketing){
+				//小时判断
+				if($marketing['hour']){
+					$hourary=strpos($marketing['hour'],",") ? explode(",",$marketing['hour']):array($marketing['hour']);
+					if(!in_array(date("H"),$hourary))goto alipay;
+				}
+				if($marketing['num']){
+					$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a and createdate =:b ",array(":a"=>$marketing['id'],":b"=>date('Y-m-d')));
+					if($marketing['isallnum']){
+						$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a ",array(":a"=>$marketing['id']));
+					}
+					if($numuser>=$marketing['num'])goto alipay;
+				}
+				$favorable=$marketing['favorable'];
+				if(strpos($favorable,"|#满减#|")){
+					$temp=str_replace("[|#满减#|","",$favorable);
+					$temp=str_replace("]","",$temp);
+					$favorAry=explode("-",$temp);
+					if(count($favorAry)>1){
+						$favorAry1=strpos($favorAry[0],"%") ? intval(str_replace("%","",$favorAry[0])*0.01*$fee) : $favorAry[0]*100;
+						$favorAry2=strpos($favorAry[1],"%") ? intval(str_replace("%","",$favorAry[1])*0.01*$fee) : $favorAry[1]*100;
+						if($favorAry1>=$favorAry2){
+							$coupon_fee=$favorAry1;
+						}else{
+							$coupon_fee=mt_rand($favorAry1,$favorAry2);
+						}
+						if($marketing['isint']){
+							$coupon_fee=intval(sprintf('%.2f',($coupon_fee*0.01)))*100;
+						}
+						if(count($favorAry)==3){
+							if($coupon_fee>$favorAry[2]*100)$coupon_fee=$favorAry[2]*100;
+						}
+						if($coupon_fee>=$fee)$coupon_fee=0;
+						$fee=$fee-$coupon_fee;
+						$marketid=$marketing['id'];
+					}
+				}
+			}
+			//
+			alipay:
+			$cfg = $this->module['config'];
+			$outTradeNo = strval(date("YmdHis"));
+			$auth_code = trim($qrcode);
+			$total_amount = $fee;
+			$subject = "支付宝收款";
+			$data=array(
+				"weid"=>$_W['uniacid'],
+				"userid"=>$deviceinfo,
+				"groupid"=>$user['pcate'],
+				"attach"=>$_GPC['attach'] ? $_GPC['attach'] :"PC",
+				"paytype"=>1,//1位支付宝交易
+				"out_trade_no"=>$outTradeNo,
+				"total_fee"=>$totalfee,
+				"coupon_fee"=>$coupon_fee,
+				"cash_fee"=>$fee,
+				"createtime"=>TIMESTAMP,
+				"createdate"=>date('Y-m-d'),
+				"marketing"=>$marketid,
+				"old_trade_no"=>$_GPC['old_trade_no'],
+			);
+			if($marketid)$data['marketing_log']=$marketing['description'];
+			pdo_insert("j_money_trade",$data);
+			$postfee=sprintf('%.2f',($fee*0.01));
+			require_once '../addons/j_money/F2fpay.php';
+			$f2fpay = new F2fpay();
+			$response = $f2fpay->barpay($outTradeNo, $auth_code, $postfee, $subject,$cfg);
+			
+			
+			$temp=(array)$response;
+			$result=(array)$temp['alipay_trade_pay_response'];
+			if($result['code']=="10003"){
+				die(json_encode(array("success"=>true,"result"=>true,"out_trade_no"=>$outTradeNo)));
+			}elseif($result['code']=="10000"){
+				$insertdata=array(
+					"status"=>1,
+					"isconfirm"=>1,
+					"transaction_id"=>$result['trade_no'],
+					"time_end"=>strtotime($result['gmt_payment']),
+				);
+				pdo_update("j_money_trade",$insertdata,array("out_trade_no"=>$outTradeNo));
+				$item=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE out_trade_no=:a",array(":a"=>$outTradeNo));
+				die(json_encode(array("success"=>true,"items"=>$item)));
+			}else{
+				pdo_update("j_money_trade",array("log"=>"收款失败：".$result['sub_msg']),array("out_trade_no"=>$outTradeNo));
+				die(json_encode(array("success"=>false,"msg"=>$result['sub_msg'])));
+			}
+			die();
+		}
+		if($operation=="qrcodealipay"){
+			//支付宝扫码支付
+			$fee=$_GPC["fee"];
+			$userOpenid=$_W['openid'] ? $_W['openid'] : die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and openid=:openid ",array(":openid"=>$userOpenid));
+			if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$fee=intval($fee*100);
+			$totalfee=intval($fee);
+			$coupon_fee=0;
+			$marketid=0;
+			//查询是否有满减活动
+			$marketing=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and starttime<=:a and endtime>=:b and status=1 and favorabletype=1 and condition_fee<=:c order by displayorder asc ,id desc limit 1",array(":a"=>TIMESTAMP,":b"=>TIMESTAMP,":c"=>$fee));
+			if($marketing){
+				//小时判断
+				if($marketing['hour']){
+					$hourary=strpos($marketing['hour'],",") ? explode(",",$marketing['hour']):array($marketing['hour']);
+					if(!in_array(date("H"),$hourary))goto alipay2;
+				}
+				if($marketing['num']){
+					$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a and createdate =:b ",array(":a"=>$marketing['id'],":b"=>date('Y-m-d')));
+					if($marketing['isallnum']){
+						$numuser=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and status=1 and marketing=:a ",array(":a"=>$marketing['id']));
+					}
+					if($numuser>=$marketing['num'])goto alipay2;
+				}
+				$favorable=$marketing['favorable'];
+				if(strpos($favorable,"|#满减#|")){
+					$temp=str_replace("[|#满减#|","",$favorable);
+					$temp=str_replace("]","",$temp);
+					$favorAry=explode("-",$temp);
+					if(count($favorAry)>1){
+						$favorAry1=strpos($favorAry[0],"%") ? intval(str_replace("%","",$favorAry[0])*0.01*$fee) : $favorAry[0]*100;
+						$favorAry2=strpos($favorAry[1],"%") ? intval(str_replace("%","",$favorAry[1])*0.01*$fee) : $favorAry[1]*100;
+						if($favorAry1>=$favorAry2){
+							$coupon_fee=$favorAry1;
+						}else{
+							$coupon_fee=mt_rand($favorAry1,$favorAry2);
+						}
+						if($marketing['isint']){
+							$coupon_fee=intval(sprintf('%.2f',($coupon_fee*0.01)))*100;
+						}
+						if(count($favorAry)==3){
+							if($coupon_fee>$favorAry[2]*100)$coupon_fee=$favorAry[2]*100;
+						}
+						if($coupon_fee>=$fee)$coupon_fee=0;
+						$fee=$fee-$coupon_fee;
+						$marketid=$marketing['id'];
+					}
+				}
+			}
+			//
+			alipay2:
+			$cfg = $this->module['config'];
+			$outTradeNo = strval(date("YmdHis"));
+			$total_amount = $fee;
+			$subject = "支付宝收款";
+			$data=array(
+				"weid"=>$_W['uniacid'],
+				"userid"=>$user['id'],
+				"attach"=>"扫码收款",
+				"groupid"=>$user['pcate'],
+				"paytype"=>1,//1为支付宝交易
+				"out_trade_no"=>$outTradeNo,
+				"total_fee"=>$totalfee,
+				"coupon_fee"=>$coupon_fee,
+				"cash_fee"=>$fee,
+				"createtime"=>TIMESTAMP,
+				"createdate"=>date('Y-m-d'),
+				"marketing"=>$marketid,
+				"old_trade_no"=>$_GPC['old_trade_no'],
+			);
+			if($marketid)$data['marketing_log']=$marketing['description'];
+			pdo_insert("j_money_trade",$data);
+			$postfee=sprintf('%.2f',($fee*0.01));
+			require_once '../addons/j_money/F2fpay.php';
+			$f2fpay = new F2fpay();
+			$response = $f2fpay->qrpay($outTradeNo, $postfee, $subject,$cfg);
+			$temp=(array)$response;
+			$result=(array)$temp['alipay_trade_precreate_response'];
+			//var_dump($temp);
+			if($result['code']=="10000"){
+				if(isset($result['qr_code'])){
+					include('../addons/j_money/phpqrcode.php');
+					load()->func('file');
+					$dir_url="../attachment/j_money/".$_W['uniacid']."/";
+					mkdirs($dir_url);
+					$codename=$userOpenid."_.png";
+					$value = $result['qr_code'];
+					if(file_exists($dir_url.$codename))@unlink ($dir_url.$codename);
+					QRcode::png($value, $dir_url.$codename, "L", 10);
+					die(json_encode(array("success"=>true,"qrcode"=>$dir_url.$codename."?v=".TIMESTAMP,"orderid"=>$outTradeNo)));
+				}
+				die(json_encode(array("success"=>false,"msg"=>"生成失败")));
+			}else{
+				pdo_update("j_money_trade",array("log"=>"收款码失败：".$result['sub_msg']),array("out_trade_no"=>$outTradeNo));
+				die(json_encode(array("success"=>false,"msg"=>$result['sub_msg'])));
+			}
+			die();
+		}
+		if($operation=="checwechatkpay"){
+			//复查订单
+			load()->func('communication');
+			$orderid=$_GPC["orderid"];
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			$cfg = $this->module['config'];
+			$mch_id=$cfg['pay_mchid'];
+			$pay_signkey=$cfg['pay_signkey'];
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($mch_id),
+				"out_trade_no"=>$orderid,
+				"nonce_str"=>getNonceStr(),
+			);
+			if($cfg['sub_appid'] && $cfg['sub_mch_id']){
+				$pageparama['sub_appid']=$cfg['sub_appid'];
+				$pageparama['sub_mch_id']=$cfg['sub_mch_id'];
+			}
+			$sign=MakeSign($pageparama,$pay_signkey);
+			$pageparama['sign']=$sign;
+			$xml = ToXml($pageparama);
+			$response =postXmlCurl($xml, "https://api.mch.weixin.qq.com/pay/orderquery", 10);
+			$result=FromXml($response);
+			if($result['trade_state']=='SUCCESS' && $trade['status']==0){
+				$insertInfo=array(
+					"openid"=>$result['openid'],
+					"is_subscribe"=>$result['is_subscribe']=="Y" ? 1 : 0,
+					"trade_type"=>$result['trade_type'],
+					"bank_type"=>$result['bank_type'],
+					"fee_type"=>$result['CNY'],
+					"transaction_id"=>$result['transaction_id'],
+					"time_end"=>strtotime($result['time_end']),
+					"isconfirm"=>1,
+					"status"=>1,
+				);
+				pdo_update("j_money_trade",$insertInfo,array("id"=>$trade['id']));
+			}
+			die(json_encode(array("success"=>true,"items"=>$result)));
+		}
+		if($operation=="checkalipay"){
+			//复查订单
+			load()->func('communication');
+			$orderid=$_GPC["orderid"];
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			require_once '../addons/j_money/F2fpay.php';
+			$cfg = $this->module['config'];
+			$f2fpay = new F2fpay();
+			$response = $f2fpay->query($orderid,$cfg);
+			$results=@json_decode(json_encode($response),true);
+			//var_dump($results);
+			
+			$result=$results['alipay_trade_query_response'];
+			if($result['code']==10003){
+				pdo_update("j_money_trade",array("log"=>"等待客户支付密码"),array("out_trade_no"=>$orderid));
+				die(json_encode(array("success"=>true,"result"=>true,"out_trade_no"=>$orderid)));
+			}elseif($result['code']==10000){
+				if($result['trade_status']=="TRADE_SUCCESS"){
+					$insertdata=array(
+						"status"=>1,
+						"isconfirm"=>1,
+						"transaction_id"=>$result['trade_no'],
+						"time_end"=>strtotime($result['gmt_payment']),
+					);
+					pdo_update("j_money_trade",$insertdata,array("out_trade_no"=>$orderid));
+					$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a",array(":a"=>$orderid));
+					die(json_encode(array("success"=>true,"items"=>$trade)));
+				}else{
+					die(json_encode(array("success"=>false,"msg"=>"等待客户付款")));
+				}
+			}else{
+				pdo_update("j_money_trade",array("log"=>"收款失败：".$result['sub_msg']),array("out_trade_no"=>$orderid));
+				die(json_encode(array("success"=>false,"msg"=>$result['sub_msg'])));
+			}
+			die();
+		}
+		if($operation=="reverse"){
+			//撤销订单-待完善
+			$orderid=$_GPC["orderid"];
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			if($trade['status'])die();
+			$cfg = $this->module['config'];
+			$mch_id=$cfg['pay_mchid'];
+			$pay_signkey=$cfg['pay_signkey'];
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($mch_id),
+				"out_trade_no"=>$orderid,
+				"nonce_str"=>getNonceStr(),
+			);
+			$sign=MakeSign($pageparama,$pay_signkey);
+			$pageparama['sign']=$sign;
+			$xml = array2xml($pageparama);
+			$extras = array();
+			$certfile="../attachment/j_money/cert_2/".$_W['uniacid']."/".$cfg['apiclient_cert'];
+			$keyfile="../attachment/j_money/cert_2/".$_W['uniacid']."/".$cfg['apiclient_key'];
+			if(!file_exists($certfile) || !file_exists($certfile)){
+				$data=array("log"=>"撤销订单时:读取证书失败");
+				pdo_update("j_money_trade",$data,array("id"=>$trade['id']));
+				die();
+			}
+			$extras['CURLOPT_SSLCERT'] =$certfile;
+			$extras['CURLOPT_SSLKEY'] =$keyfile;
+			load()->func('communication');
+			$resp = ihttp_request("https://api.mch.weixin.qq.com/secapi/pay/reverse", $xml, $extras);
+			if(is_error($resp)) {
+				$procResult = $resp;
+			}
+			$arr=FromXml($resp['content']);
+			//var_dump($arr);
+			die();
+		}
+		if($operation=="marketing"){
+			//判断营销活动
+			$orderid=$_GPC["orderid"];
+			if(!$orderid)die("订单号不能为空");
+			
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			if($trade['paytype']){
+				die(json_encode(array("success"=>false,"msg"=>"支付订单没有后续方案")));
+			}
+			if(!$trade || !$trade['status'] || !$trade['openid'])die("订单异常");
+			//是否赠送积分;
+			if($trade['credit']*100>0)die("已添加积分");
+			if($cfg['creadit']){
+				$openid=$trade['openid'];
+				$follow=pdo_fetchcolumn("SELECT follow FROM ".tablename('mc_mapping_fans')." WHERE uniacid='{$_W['uniacid']}' and openid=:a ",array(":a"=>$openid));
+				if($follow){
+					$credit=$trade['cash_fee']*$cfg['creadit'];
+					if($credit){
+						load()->model('mc');
+						mc_update($openid,array("lookingfor"=>"收银台"));
+						$uid=mc_openid2uid($openid);
+						echo "会员ID：".$uid."\n";
+						if($uid){
+							mc_credit_update($uid,"credit1",$credit,array("","收银台消费获得积分"));
+							pdo_update("j_money_trade",array("credit"=>$credit),array("out_trade_no"=>$orderid));
+						}
+					}
+				}
+			}
+			//是否有优惠
+			if($trade['marketing'])die("已有营销方案");
+			//优惠开始判断
+			$marketlist=pdo_fetchall("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and starttime<=:a and endtime>=:b and status=1 and favorabletype>1 and condition_fee<=:c order by displayorder asc,id desc",array(":a"=>$trade['time_end'],":b"=>$trade['time_end'],":c"=>$trade['cash_fee']));
+			if(!count($marketlist) || !$marketlist)die("没有符合营销方案");
+			$openid=$trade['openid'];
+			$data=array(
+				"weid"=>$_W['uniacid'],
+				"out_trade_no"=>$orderid,
+				"createtime"=>TIMESTAMP,
+				"openid"=>$openid,
+			);
+			pdo_insert("j_money_reward",$data);
+			$markid=0;
+			foreach($marketlist as $row){
+				if($markid)break;
+				$flag=false;
+				//----是否有条件判断
+				switch($row['condition']){
+					case 1://所有人
+						$flag=true;
+					break;
+					case 4://首次关注
+						$flag=true;
+					break;
+					case 2:
+						//指定级别会员
+						load()->model('mc');
+						$uid=mc_openid2uid($openid);
+						if($uid){
+							$u_groupid=mc_fetch($openid,"groupid");
+							$groupary=strpos($row['condition_member'],",") ? explode(",",$row['condition_member']):array($row['condition_member']);
+							if(!in_array($u_groupid,$groupary))$flag=true;
+						}
+					break;
+					case 3:
+						//首次使用微支付
+						$isAdd=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE openid=:a",array(":a"=>$openid));
+						if(!$isAdd)$flag=true;
+					break;
+					
+					case 5:
+						//关注公众号时长
+						$followtime=pdo_fetchcolumn("SELECT followtime FROM ".tablename('mc_mapping_fans')." WHERE openid=:a",array(":a"=>$openid));
+						if($followtime){
+							if(TIMESTAMP-$followtime>=$row['condition_attendtime']*86400){
+								$flag=true;
+							}
+						}
+					break;
+				}
+
+				if(!$flag)continue;
+				//----条件符合，人数判断
+				if($row['num']){
+					$where=$row["isallnum"] ? "" :" and createtime>='".strtotime(date("Y-m-d")." 00:00")."' and createtime<='".strtotime(date("Y-m-d")." 23:59")."'";
+					$hadfavorCount=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_reward')." WHERE weid=:a and favorabletype=:b $where",array(":a"=>$_W['uniacid'],":b"=>$row['favorabletype']));
+					if($hadfavorCount>=$row['num'])continue;
+				}
+				//条件符合，更新优惠信息
+				pdo_update("j_money_reward",array("favorabletype"=>$row['favorabletype'],"favorable"=>$row['favorable'],"marketid"=>$row["id"],"marketing_log"=>$row["description"]),array("out_trade_no"=>$orderid));
+				pdo_update("j_money_trade",array("marketing"=>$row["id"],"marketing_log"=>$row["description"]),array("id"=>$trade['id']));
+				$markid=$row['id'];
+				//----优惠判断
+				$favorable=$row['favorable'];
+				switch($row['favorabletype']){
+					case 2:
+					//获得红包
+						if(strpos($favorable,"|#红包#|")){
+							$temp=str_replace("[|#红包#|","",$favorable);
+							$temp=str_replace("]","",$temp);
+							$favorAry=explode("-",$temp);
+							$fee=0;
+							if(count($favorAry)==2){
+								$favorAry1=intval($favorAry[0]*100);
+								$favorAry2=intval($favorAry[1]*100);
+								if($favorAry1>=$favorAry2){
+									$fee=$favorAry1;
+								}else{
+									$fee=mt_rand($favorAry1,$favorAry2);
+								}
+								if($fee>=100){
+									$this->_sendpack($trade['openid'],$orderid,$fee,$cfg);
+								}else{
+									pdo_update("j_money_reward",array("favorabletype"=>"2","favorable"=>$row['favorable'],'condition'=>$row['condition'],"reward"=>$fee,"log"=>"金额不足1元，不发送红包"),array("out_trade_no"=>$orderid));
+								}
+							}
+						}
+					break;
+					case 3:
+					//活动卡券
+						if(strpos($favorable,"|#卡券#|")){
+							$temp=str_replace("[|#卡券#|","",$favorable);
+							$temp=str_replace("]","",$temp);
+							$favorAry=strpos($temp,",") ? explode(",",$temp) : array($temp);
+							shuffle($favorAry);
+							$cardkey=$favorAry[0];
+							$wxcard=json_decode($cfg['wxcard'],true);
+							if($wxcard[$cardkey]){
+								$markid=$row['id'];
+								$updateData=array(
+									'marketid'=>$markid,
+									'favorabletype'=>3,
+									'favorable'=>$row['favorable'],
+									'condition'=>$row['condition'],
+									'reward'=>$wxcard[$cardkey],
+									'status'=>0,
+									'gettype'=>1,
+									'log'=>'获得卡券',
+								);
+								pdo_update("j_money_reward",$updateData,array("out_trade_no"=>$orderid));
+								if($trade['is_subscribe']){
+									$result=$this->sendCard($openid,$wxcard[$cardkey]);
+									if($result['errcode']==0){
+										pdo_update("j_money_reward",array("status"=>1,"completed"=>1,"gettype"=>0,"endtime"=>TIMESTAMP),array("out_trade_no"=>$orderid));
+									}
+								}
+								die(json_encode($result));
+							}
+						}
+					break;
+					case 4:
+					//获得抽奖机会
+						if(strpos($row['favorable'],"|#抽奖#|")){
+							$temp=str_replace("[|#抽奖#|","",$favorable);
+							$temp=str_replace("]","",$temp);
+							$favorAry=intval($temp);
+							if($favorAry){
+								$markid=$row['id'];
+								$updateData=array(
+									'marketid'=>$markid,
+									'favorabletype'=>4,
+									'condition'=>$row['condition'],
+									'favorable'=>$row['favorable'],
+									'reward'=>$favorAry,
+									'status'=>1,
+									'gettype'=>1,
+									'log'=>'获得'.$favorAry.'次抽奖机会',
+								);
+								pdo_update("j_money_reward",$updateData,array("out_trade_no"=>$orderid));
+								$insert=array(
+									'weid'=>$_W['uniacid'],
+									'gid'=>$row['gid'],
+									'from_user'=>$openid,
+								);
+								for($i=0;$i<$favorAry;$i++){
+									pdo_insert("j_money_lottery",$insert);
+								}
+							}
+						}
+					break;
+				}
+			}
+			die();
+		}
+		if($operation=="isprint"){
+			//打印记录
+			$orderid=$_GPC["orderid"];
+			$trade=pdo_fetch("SELECT id,isprint FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			if(!$trade)die("1");
+			$temp=pdo_update("j_money_trade",array("isprint"=>$trade['isprint']+1),array("id"=>$trade['id']));
+			die($temp);
+		}
+		if($operation=="getcounterrecord"){
+			//获取当前收款员今天记录
+            $userid=$_GPC['islogin'];
+			$date=isset($_GPC['date']) ? $_GPC['date'] : date('Y-m-d');
+			if(!$userid)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b  order by id desc",array(":a"=>$userid,":b"=>$date));
+			
+			$cash_fee_wechat=0;
+			$cash_fee_ali=0;
+			$i=0;
+			$templist=array();
+			
+			foreach($list as $row){
+				if($row['status']){
+					if($row['paytype']=0){
+						$cash_fee_ali=$cash_fee_ali+$row['cash_fee'];
+					}else{
+						$cash_fee_wechat=$cash_fee_wechat+$row['cash_fee'];
+					}
+				}
+				if($i<10){
+					$templist[$i]=$row;
+					$templist[$i]['paytype']=$row['paytype'];
+					// $templist[$i]['paytype']=$row['paytype'] ? "支付宝":"微信";
+					$templist[$i]['createtime']=date("H:i",$row['createtime']);
+					$templist[$i]['total_fee']=sprintf('%.2f',($row['total_fee']/100));
+					$templist[$i]['coupon_fee']=sprintf('%.2f',($row['coupon_fee']/100));
+					$templist[$i]['cash_fee']=sprintf('%.2f',($row['cash_fee']/100));
+				}
+				$i++;
+			}
+			$num=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_carduser')." WHERE weid='{$_W['uniacid']}' and userid=:a and createtime>=:b and createtime<=:c",array(':a'=>$userid,':b'=>strtotime(date("Y-m-d 00:00:00")),':c'=>strtotime(date("Y-m-d 23:59:59"))));
+			
+			die(json_encode(array("success"=>true,"num"=>$num,"item"=>$templist,"cash_fee_w"=>sprintf('%.2f',($cash_fee_wechat/100)),"cash_fee_a"=>sprintf('%.2f',($cash_fee_ali/100)))));
+		}
+		if($operation=="getcounternoprintrecord"){
+			//获取当前收款员今天没有打印的记录x
+			//或员工交班记录表
+			$userid=$_GPC['islogin'];
+			$date=isset($_GPC['date']) ? $_GPC['date'] : date('Y-m-d');
+			if(!$userid)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$storeid = $_GPC['storeid'];
+			// var_dump($storeid);
+
+			// $list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and status=1 and isprint=0  order by id desc",array(":a"=>$userid,":b"=>$date));//未打印订单
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_endday')." WHERE type=1 and storeid=".$storeid." order by id desc");//交班信息
+            // var_dump($list);
+			$i=0;
+			$templist=array();
+			foreach($list as $row){
+				if($i<10){
+					$templist[$i]=$row;
+					//$templist[$i]['userid']=$row['userid'];
+					$templist[$i]['realname']= pdo_fetch("SELECT realname FROM ".tablename('j_money_user')." WHERE id=".$row['userid']);//交班信息
+					$templist[$i]['starttime2']=$row['starttime'];
+					$templist[$i]['endtime2']=$row['endtime'];
+					$templist[$i]['starttime']=date("Y-m-d H:i:s",$row['starttime']);
+					$templist[$i]['endtime']=date("Y-m-d H:i:s",$row['endtime']);
+					$templist[$i]['revenue']=sprintf('%.2f',$row['revenue']);
+					$templist[$i]['totalprice']=sprintf('%.2f',$row['totalprice']);
+					$templist[$i]['createtime']=date("Y-m-d H:i:s",$row['createtime']);
+				}
+				$i++;
+			}
+			$num=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}'  and userid=:a and createdate=:b and status=1 and isprint=0 ",array(":a"=>$userid,":b"=>$date));
+			
+			die(json_encode(array("success"=>true,"num"=>$num,"item"=>$templist)));
+		}
+		if($operation=="game"){
+			//大转盘游戏
+			$rid = intval($_GPC['id']);
+			$openid="from_user_oauth";
+			// $openid=$_W['openid'] ? $_W['openid'] : $_GPC['from_user_oauth'];
+			// if(!$openid)die(json_encode(array('err'=>1,'msg'=>'微信登陆才能玩游戏哦~')));
+			// $play_count=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_award')." WHERE gid=:a and createtime=0 and from_user=:b ",array(":a"=>$rid,":b"=>$openid));
+			$play_count=1;
+            if(!$play_count)die(json_encode(array('err'=>1,'msg'=>'您已经没有抽奖机会了')));
+			$gameid=$rid;
+			// $gameid=pdo_fetchcolumn("SELECT id FROM ".tablename('j_money_lottery')." WHERE gid=:a and createtime=0 and from_user=:b order by id asc limit 1",array(":a"=>$rid,":b"=>$openid));
+			$item = pdo_fetch("SELECT * FROM ".tablename('j_money_lotterygame')." WHERE id=:a ",array(":a"=>$rid));
+			$list = pdo_fetchall("SELECT * FROM ".tablename('j_money_award')." WHERE gid=:a and renum>0 ORDER BY id asc",array(":a"=>$rid));
+			$selecttotal=pdo_fetch("SELECT totalprice FROM ".tablename('weisrc_dish_order')." WHERE id=:a ",array(":a"=>$_GPC['orderid']));
+			// 
+			if($item['status']!=1)die(json_encode(array('err'=>1,'msg'=>'游戏已结束了哦')));
+			if($item['starttime']>TIMESTAMP)die(json_encode(array('err'=>1,'msg'=>'游戏还没有开始哦')));
+			if($item['endtime']<TIMESTAMP)die(json_encode(array('err'=>1,'msg'=>'游戏已结束了哦')));
+			
+			// $res['msg']="抱歉，没有抽奖奖品哦~";
+			$prize_arr=array();
+			$i=1;
+			foreach($list as $row){
+				$data=array(
+					"id"=>$i,
+					"sid"=>$row['id'],
+					"title"=> $row['level'],
+					"is"=> $row['isprize'],
+					"deg"=>$row['deg'],
+					"probalilty"=>$row['probalilty'],
+				);
+				array_push($prize_arr,$data);
+				$i++;
+			}
+			$arr=array();
+			foreach ($prize_arr as $key => $val) { 
+				$arr[$val['id']] = $val['probalilty']; 
+			}
+			$proSum = array_sum($arr); 
+			$result="";
+			foreach ($arr as $key => $proCur) { 
+				$randNum = mt_rand(1, $proSum); 
+				if ($randNum <= $proCur) { 
+					$result = $key; 
+					break; 
+				} else { 
+					$proSum -= $proCur; 
+				}
+			}
+			$res = $prize_arr[$result-1];
+			$prizeItem = pdo_fetch("SELECT * FROM ".tablename('j_money_award')." WHERE id = '".$res['sid']."' ");
+			if($res['is']==1 && $prizeItem['leavel']>0){
+				//总参与次数
+				$countman=pdo_fetchcolumn("select count(*) FROM ".tablename('j_money_lottery')." WHERE gid=:a and createtime>0",array(":a"=>$rid));
+				//此奖品抽中数量
+				$countPrize=pdo_fetchcolumn("select count(*) FROM ".tablename('j_money_lottery')." where gid=:a and aid='".$res['sid']."' ",array(":a"=>$rid));
+				//总抽奖人数<（中奖要求人数*奖品已抽中数量+1）
+				if($countman<$prizeItem['leavel']*($countPrize+1)){
+					$other = pdo_fetch("SELECT * FROM ".tablename('j_money_award')." WHERE gid = '".$rid."' and isprize=0 order by probalilty desc limit 1");
+					$res['sid']=$other['id'];
+					$res['level']=$other['level'];
+					$res['title']=$other['title'];
+					$res['deg']=$other['deg'];
+					$res['credit']=$other['credit'];
+					$res['is']=0;
+				}
+			}
+			$data=array(
+				'aid'=>$res['sid'],
+				'award'=>$res['title'],
+				"isprize"=> $res['is'],
+				'createtime'=>TIMESTAMP,
+			);
+			$res['msg']="抱歉，没有抽奖奖品哦~";
+			if($res['is']==1){
+				pdo_update('j_money_award', array('renum'=>$prizeItem['renum']-1,), array('id' => $res['sid']));
+
+				//---判断中奖类型
+				$cfg = $this->module['config'];
+				if(strpos($prizeItem['description'],"|#红包#|")){
+					//---红包---
+					$temp=str_replace("[|#红包#|","",$prizeItem['description']);
+					$temp=str_replace("]","",$temp);
+					$favorAry=explode("-",$temp);
+					$fee=0;
+					if(count($favorAry)==2){
+						$favorAry1=intval($favorAry[0]*100);
+						$favorAry2=intval($favorAry[1]*100);
+						if($favorAry1>=$favorAry2){
+							$fee=$favorAry1;
+						}else{
+							$fee=mt_rand($favorAry1,$favorAry2);
+						}
+						$fee = $fee>=100 ? $fee : 100;
+						$result=$this->_sendpack2($openid,$fee,$cfg);
+						$data['prizetype']=1;
+						$data['award']="微信现金红包";
+						$data['status']=1;
+						$data['sncode']=$fee;
+						if(!$result || $result['errno']!=0){
+							$res['msg']="恭喜您获得微信现金红包一个<br>".json_encode($result);
+						}else{
+							$res['msg']="恭喜您获得微信现金红包一个";
+							$data['gettime']=TIMESTAMP;
+						}
+					}
+				}elseif(strpos($prizeItem['description'],"|#卡券#|")){
+					//---卡券---
+					$temp=str_replace("[|#卡券#|","",$prizeItem['description']);
+					$temp=str_replace("]","",$temp);
+					$favorAry=strpos($temp,",") ? explode(",",$temp) : array($temp);
+					shuffle($favorAry);
+					$cardkey=$favorAry[0];
+					$wxcard=json_decode($cfg['wxcard'],true);
+					if($wxcard[$cardkey]){
+						$result=$this->sendCard($openid,$wxcard[$cardkey]);
+						if($result['errcode']==0){
+							$res['msg']="恭喜您获得卡券一张";
+							$data['prizetype']=2;
+							$data['award']="卡券一张";
+							$data['gettime']=TIMESTAMP;
+							$data['status']=1;
+							$data['sncode']=$wxcard[$cardkey];
+						}else{
+							$res['msg']="恭喜您获得卡券一张，请在公众号发送【兑奖】后，回到本页面领取哦";
+							$data['prizetype']=2;
+							$data['award']="卡券一张";
+							$data['sncode']=$wxcard[$cardkey];
+						}
+					}
+				}else{
+					if($prizeItem['description']<0){
+						$res['msg']="恭喜您,抽中了".$res['title']." 订单".$prizeItem['description']."";
+					}else{
+						$res['msg']="恭喜您,抽中了".$res['title']." 订单+".$prizeItem['description']."";
+					}
+					
+					$data['prizetype']=0;
+					$data['sncode']=$gameid.'-'.getNonceStr(5);
+                    //插入dish_order_goods 表  . tablesid  goodsid=129   price  total=1
+                    // $price = 12;
+                    $price=$prizeItem['description'];
+                   //中获奖金额后台设定 2016.10.25
+                    // if($res['title']=="一等奖"){
+                    // 	$price=-10;
+                    // }elseif($res['title']=="二等奖"){
+                    // 	$price=-5;
+                    // }elseif($res['title']=="三等奖"){
+                    // 	$price=-2;
+                    // }elseif($res['title']=="四等奖"){
+                    // 	$price=2;
+                    // }elseif($res['title']=="五等奖"){
+                    // 	$price=5;
+                    // }elseif($res['title']=="六等奖"){
+                    // 	$price=0;
+                    // }
+                    
+                    $goods=array(
+                        'weid'=>$_W['uniacid'],
+                        'storeid'=>1,
+                        'orderid'=>$_GPC['orderid'],
+                        'goodsid'=>129,
+                        'dateline'=>TIMESTAMP,
+                        'stepnow'=>5,
+                        'price'=>$price,
+                        'total'=>1,
+                        'status'=>1,
+                        'tablesid'=>$_GPC['tablesid'],
+                        'taste'=>"大转盘",
+                    );
+                    pdo_insert("weisrc_dish_order_goods",$goods);
+                    if($selecttotal['totalprice']){
+                    	pdo_update("weisrc_dish_order",array('totalprice'=>$selecttotal['totalprice']+$price),array('id'=>$_GPC['orderid']));
+                    }
+                    
+                    // 插入dish_order_goods end
+
+				}
+			}
+			pdo_update('j_money_lottery', $data, array('id' => $gameid));
+			die(json_encode($res));
+		}
+		if($operation=="checkcard"){
+			//卡券查询
+			$islogin=$_GPC['islogin'];
+			if(!$islogin)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:id ",array(":id"=>$islogin));
+			if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$code=$_GPC['code'];
+			if(!$code)die(json_encode(array("success"=>false,"msg"=>"卡券ID不能为空")));
+			$cfg = $this->module['config'];
+			load()->func('communication');
+			$acid=pdo_fetchcolumn("SELECT acid FROM ".tablename('account')." WHERE uniacid=:uniacid ",array(':uniacid'=>$_W['uniacid']));
+			$acc = WeAccount::create($acid);
+			$tokens=$acc->fetch_token();
+			$pageparama=json_encode(array("code"=>$code));
+			$resp = ihttp_request("https://api.weixin.qq.com/card/code/get?access_token=".$tokens,$pageparama, $xml);
+			if(is_error($resp)) {
+				$procResult = $resp;
+			}
+			
+			$result=@json_decode($resp['content'],true);
+
+			if($result['errcode'])die(json_encode(array("success"=>false,"msg"=>"卡券查询失败，原因：".$result['errmsg'])));
+			$cardid=$result['card']['card_id'];
+			$begin_time=$result['card']['begin_time'];
+			$end_time=$result['card']['end_time'];
+			$can_consume=$result['can_consume'];
+			$user_card_status=$result['user_card_status'];
+			$openid=$result['openid'];
+
+			// var_dump($begin_time);
+
+			if($begin_time>TIMESTAMP || $end_time<TIMESTAMP)die(json_encode(array("success"=>false,"msg"=>"该卡券不可用，原因：该卡券使用时间为：".date("y-m-d H:i",$begin_time)."-".date("y-m-d H:i",$end_time))));
+			$cardstatus=array(
+				"CONSUMED"=>"已使用",
+				"EXPIRE"=>"已过期",
+				"GIFT_TIMEOUT"=>"转赠超时",
+				"DELETE"=>"已删除",
+				"UNAVAILABLE"=>"已失效",
+				"invalid serial code"=>"已被朋友使用",
+			);
+			if(!$can_consume){
+				die(json_encode(array("success"=>false,"msg"=>$cardstatus[$user_card_status])));
+			}
+			$coupon=pdo_fetch("SELECT * FROM ".tablename('coupon')." WHERE uniacid=:a and card_id=:b",array(':a'=>$_W['uniacid'],':b'=>$cardid));
+			if(!$coupon){
+				$coupon=array();
+				$pageparama=json_encode(array("card_id"=>$cardid));
+				$resp = ihttp_request("https://api.weixin.qq.com/card/get?access_token=".$tokens,$pageparama, $xml);
+				if(is_error($resp))die(json_encode(array("success"=>false,"msg"=>$resp)));
+				$cardinfo=@json_decode($resp['content'],true);
+				$coupon['type']=strtolower($cardinfo['card']['card_type']);
+				$c_info=$cardinfo['card'][$coupon['type']]['base_info'];
+				
+				$coupon['msg']=$cardinfo['card'][$coupon['type']]['default_detail'];
+				$coupon['typestr']="线上卡券";
+			}else{
+				switch($coupon['type']){
+					case "discount":
+						$coupon["msg"]="".sprintf('%.2f',($coupon['extra']/100))."折";
+						$coupon["typestr"]="折扣券";
+					break;
+					case "cash":
+						$extra=iunserializer($coupon['extra']);
+						$coupon["msg"]="满".$extra['least_cost']."减".$extra['reduce_cost'];
+						$coupon["typestr"]="代金券";
+					break;
+					case "gift":
+						$coupon["msg"]="".$coupon['extra']."";
+						$coupon["typestr"]="礼品券";
+					break;
+					case "groupon":
+						$coupon["msg"]="".$coupon['extra']."";
+						$coupon["typestr"]="团购券";
+					break;
+					case "general_coupon":
+						$coupon["msg"]="".$coupon['extra']."";
+						$coupon["typestr"]="优惠券";
+					break;
+				}
+			}
+			$coupon['openid']=$openid;
+			$coupon['code']=$code;
+			die(json_encode(array("success"=>true,"item"=>$coupon)));
+		}
+		if($operation=="cardcheck"){
+			//卡券核销
+			$islogin=$_GPC['islogin'];
+			if(!$islogin)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:id ",array(":id"=>$islogin));
+			if(!$user)die(json_encode(array("success"=>false,"msg"=>"请先登录")));
+			$code=$_GPC['code'];
+			if(!$code)die(json_encode(array("success"=>false,"msg"=>"卡券ID不能为空")));
+			$cfg = $this->module['config'];
+			load()->func('communication');
+			$acid=pdo_fetchcolumn("SELECT acid FROM ".tablename('account')." WHERE uniacid=:uniacid ",array(':uniacid'=>$_W['uniacid']));
+			$acc = WeAccount::create($acid);
+			$tokens=$acc->fetch_token();
+			$pageparama=json_encode(array("code"=>$code));
+			$resp = ihttp_request("https://api.weixin.qq.com/card/code/consume?access_token=".$tokens,$pageparama, $xml);
+			if(is_error($resp)) {
+				$procResult = $resp;
+			}
+			$arr=@json_decode($resp['content'],true);
+			if($arr['errcode'])die(json_encode(array("success"=>false,"msg"=>"核销失败。失败原因：".json_encode($arr))));
+			$cardid=$arr['card']['card_id'];
+			$openid=$arr['openid'];
+			if(!$cardid || !$openid)die(json_encode(array("success"=>false,"msg"=>"核销失败。失败原因：".json_encode($arr))));
+			$coupon=pdo_fetch("SELECT * FROM ".tablename('coupon')." WHERE uniacid=:a and card_id=:b",array(':a'=>$_W['uniacid'],':b'=>$cardid));
+			if($coupon){
+				//die(json_encode(array("success"=>false,"msg"=>"卡券查询失败，原因：卡券已删除")));
+				$data=array(
+					"weid"=>$_W['uniacid'],
+					"openid"=>$openid,
+					"userid"=>$islogin,
+					"cardid"=>$cardid,
+					"code"=>$code,
+					"type"=>$coupon['type'],
+					"title"=>$coupon['title'],
+					"sub_title"=>$coupon['sub_title'],
+					"description"=>$coupon['description'],
+					"extra"=>$coupon['extra'],
+					"createtime"=>TIMESTAMP,
+				);
+			}else{
+				$pageparama=json_encode(array("card_id"=>$cardid));
+				$resp = ihttp_request("https://api.weixin.qq.com/card/get?access_token=".$tokens,$pageparama, $xml);
+				if(is_error($resp))die(json_encode(array("success"=>false,"msg"=>$resp)));
+				$cardinfo=@json_decode($resp['content'],true);
+				$cardtype=strtolower($cardinfo['card']['card_type']);
+				$c_info=$cardinfo['card'][$cardtype]['base_info'];
+				
+				$data=array(
+					"weid"=>$_W['uniacid'],
+					"openid"=>$openid,
+					"userid"=>$islogin,
+					"cardid"=>$cardid,
+					"code"=>$code,
+					"createtime"=>TIMESTAMP,
+					
+					"type"=>strtolower($cardinfo['card']['card_type']),
+					"title"=>$c_info['title'],
+					"sub_title"=>$c_info['sub_title'],
+					"description"=>$cardinfo['card'][$cardtype]['default_detail'],
+					"extra"=>'',
+				);
+			}
+			pdo_insert("j_money_carduser",$data);
+			$data['id']=pdo_insertid();
+			$num=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_carduser')." WHERE userid=:a and createtime>=:b and createtime<=:c",array(':a'=>$islogin,':b'=>strtotime(date("Y-m-d 00:00:00")),':c'=>strtotime(date("Y-m-d 23:59:59"))));
+			die(json_encode(array("success"=>true,"item"=>$data,"num"=>$num)));
+		}
+		if($operation=="tempmsg"){
+			// //发送模板消息
+			// $orderid=$_GPC["orderid"];
+			// if(!$orderid)die("订单号不能为空");
+			// $trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			// if(!$trade['is_subscribe'])die('没有关注，发送失败');
+			// $temstr=urldecode($cfg['tempparama']);
+			// $tempstr=str_replace("|#单号#|",$trade['out_trade_no'],$temstr);
+			// $tempstr=str_replace("|#时间#|",date("y-m-d H:i",$trade['time_end']),$tempstr);
+			// $tempstr=str_replace("|#总金额#|","￥".sprintf('%.2f',($trade['total_fee']/100))."元",$tempstr);
+			// $tempstr=str_replace("|#优惠金额#|","￥".sprintf('%.2f',($trade['coupon_fee']/100))."元",$tempstr);
+			// $tempstr=str_replace("|#实付金额#|","￥".sprintf('%.2f',($trade['cash_fee']/100))."元",$tempstr);
+			// $tempstr=str_replace("|#支付方式#|","微信支付",$tempstr);
+			// if($trade['marketing']){
+			// 	$marking=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE id=:a ",array(":a"=>$trade['marketing']));
+			// 	if($marking['description']){
+			// 		$tempstr=str_replace("|#优惠#|",$marking['description'],$tempstr);
+			// 	}
+			// }
+			// $tempstr=str_replace("|#优惠#|",'',$tempstr);
+			// //echo $tempstr;
+			// $itemary=json_decode($tempstr,true);
+			// //print_r($itemary);
+			// $temp=array();
+			// foreach($itemary as $key=>$val){
+			// 	$temp[$key]=array(
+			// 		"value"=>$val['value'],
+			// 		"color"=>$val['color'] ? $val['color']: "#333333",
+			// 	);
+			// }
+			// $url=$cfg["tempurl"];
+			// //-----抽奖判断-----//
+			// if($marking['favorabletype']==4){
+			// 	$gamestatus=pdo_fetchcolumn("SELECT status FROM ".tablename('j_money_lotterygame')." WHERE id=:a ",array(":a"=>$marking['gid']));
+			// 	if($gamestatus==1){
+			// 		$temp['remark']["value"]="您获得抽奖机会哦，请点击本详情进入抽奖";
+			// 		$url=$_W['siteroot']."app/index.php?i=".$_W['uniacid']."&c=entry&id=".$marking['gid']."&do=game&m=j_money";
+			// 	}
+			// }
+			
+			// //-----抽奖判断-----//
+			// $acid=pdo_fetchcolumn("SELECT acid FROM ".tablename('account')." WHERE uniacid=:uniacid ",array(':uniacid'=>$_W['uniacid']));
+			// $acc = WeAccount::create($acid);
+			// $data = $acc->sendTplNotice($trade['openid'],$cfg["tempid"],$temp,$url,"#FF0000");
+			// $result=json_decode($data,true);
+			// if($result['errcode']!=0){
+			// 	pdo_update("j_money_trade",array("log"=>$data),array("out_trade_no"=>$orderid));
+			// }
+			// die($data);
+		}
+		if($operation=="mobilemore"){
+			//移动端记录翻页
+			$userOpenid=$_W['openid'] ? $_W['openid'] : die(json_encode(array("success"=>false)));
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and openid=:openid ",array(":openid"=>$userOpenid));
+			
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page'])-1 :0;
+			$psize = 5;
+			$start = $pindex * $psize;
+			$date=$_GPC['date']? $_GPC['date'] : date("Y-m-d");
+			//$date='2016-03-28';
+			
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and attach<>'-' and attach<>'PC' order by id desc LIMIT ".$start.",".$psize,array(":a"=>$user['id'],":b"=>$date));
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and attach<>'-' and attach<>'PC' ",array(":a"=>$user['id'],":b"=>date("Y-m-d")));
+			if(count($list)){
+				die(json_encode(array("success"=>true,"item"=>$list)));
+			}else{
+				die(json_encode(array("success"=>false)));
+			}
+		}
+		if($operation=="refundorder"){
+			//退款申请
+			$orderid=$_GPC["orderid"];
+			if(!$orderid)die(json_encode(array("success"=>false,"msg"=>"订单号不能为空")));
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			if(!$trade)die(json_encode(array("success"=>false,"msg"=>"订单号不能为空")));
+			if(!$trade['status'])die(json_encode(array("success"=>false,"msg"=>"该订单没有付款")));
+			if($trade['refundstatus'])die(json_encode(array("success"=>false,"msg"=>"该订单已退款")));
+			if(!$cfg['refunder'])die(json_encode(array("success"=>false,"msg"=>"无退款处理人")));
+			$refund_trade_no=TIMESTAMP;
+			pdo_update("j_money_trade",array("refund_fee"=>$trade['cash_fee'],"refund_trade_no"=>TIMESTAMP),array("out_trade_no"=>$orderid));
+			
+			$acid=pdo_fetchcolumn("SELECT acid FROM ".tablename('account')." WHERE uniacid=:uniacid ",array(':uniacid'=>$_W['uniacid']));
+			$acc = WeAccount::create($acid);
+			$url=$_W['siteroot']."app/index.php?i=".$_W['uniacid']."&c=entry&do=refund&m=j_money&orderid=".$orderid;
+			$temp=array(
+				"first"=>array(
+					"value"=>"您有新的退款要处理",
+					"color"=>"#FF0000"
+				),
+				"orderProductPrice"=>array(
+					"value"=>sprintf('%.2f',($trade['cash_fee']/100)),
+					"color"=>"#FF0000"
+				),
+				"orderProductName"=>array(
+					"value"=>"电脑端退款申请",
+					"color"=>"#333333"
+				),
+				"orderName"=>array(
+					"value"=>$orderid,
+					"color"=>"#333333"
+				),
+				"remark"=>array(
+					"value"=>"请点击此信息进行退款操作",
+					"color"=>"#333333"
+				)
+			);
+			$data = $acc->sendTplNotice($cfg['refunder'],$cfg["tempid2"],$temp,$url,"#FF0000");
+			$result=json_decode($data,true);
+			die(json_encode(array("success"=>true)));
+		}
+		if($operation=="refundexcute"){
+			//退款执行
+			$orderid=$_GPC["orderid"];
+			if(!$orderid)die(json_encode(array("success"=>false,"msg"=>"订单号不能为空")));
+			if(!$_W['openid'])die(json_encode(array("success"=>false,"msg"=>"无退款处理人")));
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			if(!$trade)die(json_encode(array("success"=>false,"msg"=>"订单号不能为空")));
+			if(!$trade['status'])die(json_encode(array("success"=>false,"msg"=>"该订单没有付款")));
+			if($trade['refundstatus'])die(json_encode(array("success"=>false,"msg"=>"该订单已退款")));
+			if(!$cfg['refunder'])die(json_encode(array("success"=>false,"msg"=>"无退款处理人")));
+			if($cfg['refunder']!=$_W['openid'])die(json_encode(array("success"=>false,"msg"=>"非法登陆")));
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($cfg['pay_mchid']),
+				"device_info"=>$trade['userid'],
+				"nonce_str"=>getNonceStr(),
+				"out_trade_no"=>$orderid,
+				"out_refund_no"=>$trade['refund_trade_no'],
+				"total_fee"=>$trade['cash_fee'],
+				"refund_fee"=>$trade['refund_fee'],
+				"op_user_id"=>$trade['userid'],
+			);
+			if($cfg['sub_appid'] && $cfg['sub_mch_id']){
+				$pageparama['sub_appid']=$cfg['sub_appid'];
+				$pageparama['sub_mch_id']=$cfg['sub_mch_id'];
+			}
+			$sign=MakeSign($pageparama,$cfg['pay_signkey']);
+			$pageparama['sign']=$sign;
+			$xml = ToXml($pageparama);
+			$pemary=array("cert"=>'../attachment/j_money/cert_2/'.$_W['uniacid']."/".$cfg['apiclient_cert'],"key"=>'../attachment/j_money/cert_2/'.$_W['uniacid']."/".$cfg['apiclient_key'],);
+			$response =postXmlAndPemCurl($xml, "https://api.mch.weixin.qq.com/secapi/pay/refund", $pemary);
+			$result=FromXml($response);
+			if($result['return_code']!='SUCCESS'){
+				pdo_update("j_money_trade",array("log"=>"退款失败：".$result['return_msg']),array("out_trade_no"=>$orderid));
+				die(json_encode(array("success"=>false,"msg"=>$result['return_msg'])));
+			}
+			pdo_update("j_money_trade",array("refundstatus"=>1,"refundtime"=>TIMESTAMP),array("out_trade_no"=>$orderid));
+			die(json_encode(array("success"=>true)));
+		}
+		if($operation=="checkrefundorder"){
+			//查询退款状态
+			$orderid=$_GPC["orderid"];
+			if(!$orderid)die(json_encode(array("success"=>false,"msg"=>"订单号不能为空")));
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+			if(!$trade)die(json_encode(array("success"=>false,"msg"=>"订单号不能为空")));
+			$pageparama=array(
+				"appid"=>$cfg['appid'],
+				"mch_id"=>strval($cfg['pay_mchid']),
+				"device_info"=>$trade['userid'],
+				"nonce_str"=>getNonceStr(),
+				"out_trade_no"=>$orderid,
+			);
+			if($cfg['sub_appid'] && $cfg['sub_mch_id']){
+				$pageparama['sub_appid']=$cfg['sub_appid'];
+				$pageparama['sub_mch_id']=$cfg['sub_mch_id'];
+			}
+			$sign=MakeSign($pageparama,$cfg['pay_signkey']);
+			$pageparama['sign']=$sign;
+			$xml = ToXml($pageparama);
+			$response =postXmlCurl($xml, "https://api.mch.weixin.qq.com/pay/refundquery", 10);
+			$result=FromXml($response);
+			if($result['return_code']!='SUCCESS'){
+				//pdo_update("j_money_trade",array("log"=>"退款失败：".$result['return_msg']),array("out_trade_no"=>$orderid));
+				die(json_encode(array("success"=>false,"msg"=>$result['return_msg'])));
+			}
+			if($result['result_code']=='SUCCESS'){
+				//pdo_update("j_money_trade",array("refundstatus"=>1,"refundtime"=>TIMESTAMP),array("out_trade_no"=>$orderid));
+				die(json_encode(array("success"=>true,"status"=>1)));
+			}else{
+				die(json_encode(array("success"=>true,"status"=>0)));
+			}
+			
+		}
+	}
+	/*
+	*手机端-退款
+	*/
+	public function doMobileRefund() {
+		global $_GPC, $_W;
+		$orderid=$_GPC["orderid"];
+		
+		if(!$_W['openid'] || !$orderid)message("非法登陆");
+		$cfg = $this->module['config'];
+		if($cfg['refunder']!=$_W['openid'])message("非法登陆");
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$orderid));
+		include $this->template('refund');
+	}
+	//打印选项
+	public function doMobilePrintsetting() {
+		global $_GPC, $_W;
+		$printCat = $_GPC['str'];
+		isetcookie('printCat', $printCat,100086400);
+		die($printCat);
+	}
+	//收银台首页
+	public function doMobileIndex() {
+		//这个操作被定义用来呈现 功能封面
+		global $_GPC, $_W;
+		//$snid=$_GPC['snid'];
+		$storeid = $_GPC['storeid'];
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$cfg = $this->module['config'];
+
+  $storeinfo=pdo_fetch("SELECT title FROM ".tablename('weisrc_dish_stores')." WHERE id=:id ",array(":id"=>$storeid));
+
+		if($operation=='display'){
+			isetcookie('islogin', '', 0);
+            $ismobile=isMobile();
+		}else{
+		$tablesid=$_GPC['tablesid'];
+		$url='/index.php?i='.$_W['uniacid'].'&c=entry&op=in&do=index&m=j_money&tablesid='.$tablesid;
+		$ismobile=isMobile();
+		if($ismobile || $_W['openid']){
+			// header("location:".$this->createMobileUrl("mobile"));
+			// exit();
+		}
+
+//打印选项
+		$printCat =pdo_fetchall("SELECT id,name FROM ".tablename('weisrc_dish_category')." WHERE weid='{$_W['uniacid']}' and name in('酒水饮料','飞饼') and storeid=".$storeid);
+		$printsetting = $_GPC['printCat'];
+		foreach ($printCat as $key => $value) {
+			if(strpos("###".$printsetting,$value['id']) > 0){
+		    $printCat[$key]['checked']=1;
+			}else{
+		 $printCat[$key]['checked']=0;
+			}
+		}
+		 // var_dump($printCat);
+//打印选项 end
+
+		$jiushuiId = pdo_fetch("select id from ims_weisrc_dish_category where name = '酒水饮料'  and storeid=".$storeid);
+		$feibingId = pdo_fetch("select id from ims_weisrc_dish_category where name = '飞饼'  and storeid=".$storeid);
+		
+		
+		if(!empty($tablesid)){
+			//查找本桌新订单16.12.5
+			$orders = pdo_fetch('SELECT * from ims_weisrc_dish_order WHERE status=0 and ispay = 0 and tables ='.$tablesid.' AND storeid = '.$storeid.' order by id ASC limit 1');
+			$order = pdo_fetch('SELECT * from ims_weisrc_dish_order WHERE status in (1) and ispay = 0 and tables ='.$tablesid.' AND storeid = '.$storeid.' order by id ASC limit 1');
+            if(!empty($order)){
+                $orderid = $order['id'];
+            }else{
+            	if(!empty($orders)){
+            		$orderid = $orders['id'];
+            	}else{
+            		$orderid = -1;
+            	}   
+            }	
+		}else{
+                $orderid = -1;
+            }
+
+		// var_dump($orderid);
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$cfg = $this->module['config'];
+        $start = pdo_fetch('SELECT endtime from ims_j_money_endday WHERE storeid='.$storeid.' order by id desc limit 1');//上次交班时间16.11.20
+        $start=$start['endtime'];
+if($start ==NULL)$start=0;
+		$end = time();
+		//收银统计
+		$tongji = $this->tongji($storeid,$start,$end);
+		
+
+		// 今天桌台统计
+		$tableall=pdo_fetch("SELECT count(*) as total FROM ".tablename('weisrc_dish_order')." WHERE status in (1,2) and totalnum >0 and comment is NULL and dateline between $start and $end and storeid=".$storeid);
+		//已结桌台
+		$tabledone=pdo_fetch("SELECT count(*) as total FROM ".tablename('weisrc_dish_order')." WHERE status in (2)  and totalnum >0 and comment is NULL and dateline between $start and $end and storeid=".$storeid);
+		//未结桌台
+		$sql ="SELECT count(*) as total FROM ".tablename('weisrc_dish_order')." WHERE status in (1)  and totalnum >0 and comment is NULL and dateline between $start and $end and storeid=".$storeid;
+		$tableopen=pdo_fetch($sql);
+		// var_dump($sql);
+
+        //登陆判断
+		$islogin=$_GPC['islogin'];
+		if(!$islogin){
+			header("Location:".$this->createMobileUrl("index"));
+			exit();
+		}
+		$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE storeid=".$storeid." and id=:id ",array(":id"=>$islogin));
+        if(!$user || !$user['status'])message("用户不存在或没有权限");
+        //如果是称鱼的人，则隐藏其它功能
+        if($user['pcate'] ==9 or $user['pcate'] ==17){
+            $ischeng = "hidden";
+        }	
+		if(!$user['login_pc'] || !$user['login_m']){
+			if(!$user['login_pc']){
+				if(!$ismobile)message("您的账号禁止在电脑端登录！");
+			}
+			if(!$user['login_m']){
+				if($ismobile)message("您的账号禁止在移动端登录！");
+			}
+		}
+			$group=pdo_fetchcolumn("SELECT companyname FROM ".tablename('j_money_group')." WHERE id=:a",array(":a"=>$user['pcate']));//用户职位
+			$marketing=pdo_fetchall("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and status=1 and starttime<=:a and endtime>=:b order by displayorder asc ,id desc",array(":a"=>TIMESTAMP,":b"=>TIMESTAMP));//营销内容
+			$printDoc=pdo_fetchcolumn("SELECT id FROM ".tablename('j_money_print')." WHERE weid='{$_W['uniacid']}' and pcate=0 order by isdefault desc,id desc limit 1 ");
+			$printDoc2=pdo_fetchcolumn("SELECT id FROM ".tablename('j_money_print')." WHERE weid='{$_W['uniacid']}' and pcate=1 order by isdefault desc,id desc limit 1 ");
+			$btnlist=pdo_fetchall("SELECT * FROM ".tablename('j_money_extend')." WHERE weid='{$_W['uniacid']}' and status=1 order by id asc ");
+			//折扣列表
+            if($user['discount'] != ""){
+                // $discount=pdo_fetchall("SELECT * FROM ".tablename('j_money_discount')." where id in(".$user['discount'].") and status=1");
+                $discount=pdo_fetchall("SELECT * FROM ".tablename('j_money_discount')." where status=1");
+                foreach ($discount as $key => $value) {
+                	if(strstr($user['discount'],$value['id'])){
+                		$discount[$key]['jdiction']=1;
+                	}else{
+                		$discount[$key]['jdiction']=0;
+                	}
+                }
+
+            }
+            //菜的做法列表
+            $taste=pdo_fetchall("SELECT * FROM ims_weisrc_dish_goods_taste order by id");
+            //代金券列表
+            $daijin=pdo_fetchall("SELECT * FROM ".tablename('j_money_daijin')." where status=1 order by daijin");
+
+            //满减活动列表
+            $manjian=pdo_fetchall("SELECT * FROM ".tablename('j_money_manjian')." where status=1 AND weid = '{$_W['uniacid']}' order by manjian");
+
+            //餐桌管理
+			$list = pdo_fetchall("SELECT a.id,a.title,a.status,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id AND a.storeid = b.storeid WHERE a.storeid = ".$storeid."  ORDER BY b.order,a.tablezonesid, a.title ASC");//'{$_W['uniacid']}' 
+            foreach ($list as $key => $value) {
+                //未结账的订单总价
+                $list[$key]['order']= pdo_fetch("SELECT totalprice,id,dateline,counts FROM  ims_weisrc_dish_order WHERE tables = ".$value['id']." and status in (0,1)  and ispay =0 order by id ");//  11.27  desc
+                if($list[$key]['order']){
+                	$list[$key]['price'] = pdo_fetch("SELECT sum(price*total) as total FROM  ims_weisrc_dish_order_goods WHERE type = 0 and status =1 and orderid = ".$list[$key]['order']['id']);//按商品表计算总价
+                }
+                $list[$key]['yu'] = $_GPC['yu'. $value['id']];
+                $list[$key]['dian'] = $_GPC['dian'. $value['id']];
+                }
+			 // var_dump($list);
+            //列出本店的鱼17.2.3
+            $fish1 = pdo_fetch('SELECT g.id,g.title,g.marketprice,g.unitname,g.pcate FROM ims_weisrc_dish_goods as g join ims_weisrc_dish_category as c on g.pcate=c.id and g.storeid=c.storeid WHERE c.name="活杀黑鱼" and g.title="酸菜鱼" and g.status=1 and g.storeid='.$storeid);
+            $fish2 = pdo_fetch('SELECT g.id,g.title,g.marketprice,g.unitname,g.pcate FROM ims_weisrc_dish_goods as g join ims_weisrc_dish_category as c on g.pcate=c.id and g.storeid=c.storeid WHERE c.name="活杀黑鱼" and g.title="青花椒鱼" and g.status=1 and g.storeid='.$storeid);
+            // var_dump($fish2);
+            if(!empty($tablesid)){
+            	//称鱼操作
+            	if(isset($_GPC['fishclik'])){
+					$weight=$_GPC['weight'];//鱼重量
+				    $flavor=$_GPC['flavor'];//口味
+				    $oneprice=$_GPC['oneprice'];
+				    $fishid = $_GPC['fishid'];//菜品id
+				    $goodstype = $_GPC['goodstype'];//菜品类别
+				    $tablesid=$_GPC['tablesid'];
+					// $orderid=0;
+				    $price=$weight*$oneprice; //修改后鱼的价格
+				    $date=time();
+                    //没有输入重量时，出错
+                    if($weight=="")message("请输入重量！",$url,'error');
+                    //判断是否有订单
+                    if($orderid==-1){
+                    	 message("未找到订单，请刷新重试！",$url,'success');
+                    }else{
+                    	$order=$orderid;
+                    	$fistorder=pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE id=".$orderid);
+
+                    	$allprice=$price+$fistorder['totalprice'];
+				    	$totalnum=$fistorder['totalnum']+1;
+				    	$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_order_goods(weid,storeid,orderid,goodsid,price,total,dateline,tablesid,taste,stepnow,status) VALUES({$_W['uniacid']},{$storeid},{$fistorder['id']},{$fishid},{$oneprice},{$weight},{$date},{$tablesid},'{$flavor}',0,{$fistorder['status']})");
+				    	$update=pdo_fetch("UPDATE ims_weisrc_dish_order SET totalnum=".$totalnum.", totalprice=".$allprice." WHERE storeid=".$storeid." and id=".$fistorder['id']);
+				    	$url = $_SERVER["HTTP_REFERER"];
+				    	header('location:'.$url);
+
+                    }
+                }
+                //称鱼操作end
+                
+                //列出所有菜品(除鱼外)
+                // $all_goods=pdo_fetchall("SELECT a.*,b.name as fenlei from ".tablename('weisrc_dish_goods')."  a left join ".tablename('weisrc_dish_category')."  b on a.pcate = b.id WHERE a.storeid=".$storeid." and a.pcate !=9 and a.pcate !=1 order by a.pcate");
+                $all_goods=pdo_fetchall("SELECT a.*,b.name as fenlei from ".tablename('weisrc_dish_goods')."  a left join ".tablename('weisrc_dish_category')."  b on a.pcate = b.id WHERE a.storeid=".$storeid." and b.name !='活杀黑鱼' and b.name !='特殊类' order by a.pcate");
+                //加菜
+               //列出有菜品
+                   // $all_goods=pdo_fetchall("SELECT a.*,b.name as fenlei from ".tablename('weisrc_dish_goods')."  a left join ".tablename('weisrc_dish_category')."  b on a.pcate = b.id WHERE a.pcate !=9 and a.pcate !=1  order by a.pcate");
+                if(isset($_GPC['addclick'])){
+                	$weight1=$_GPC['weight1'];
+				    $flavor1=$_GPC['flavor1'];
+				    $oneprice1=$_GPC['oneprice2'];
+                    // var_dump($oneprice1);
+				    $tablesid=$_GPC['tablesid'];
+				    $goodsid=$_GPC['goodsid'];
+				    $price1=$weight1*$oneprice1;
+				    $date=time();
+
+                    //没有输入重量时，出错
+                    if($price1==0)message("请选择菜品！",$url,'error');
+
+				    $select=pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE status in(0,1) and ispay=0 AND storeid=".$storeid." AND tables=".$tablesid." order by id desc");
+				    if($select['id']){
+				    	$allprice=$price1+$select['totalprice'];
+				    	$totalnum=$select['totalnum']+$weight1;
+                        //加菜
+				    	$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_order_goods(weid,storeid,orderid,goodsid,price,total,dateline,tablesid,taste,status) VALUES({$_W['uniacid']},{$storeid},{$select['id']},{$goodsid},{$oneprice1},{$weight1},{$date},{$tablesid},'{$flavor1}',1)");
+                        //更新总价格和数量
+				    	$update=pdo_fetch("UPDATE ims_weisrc_dish_order SET totalnum=".$totalnum.", totalprice=".$allprice." WHERE storeid=".$storeid." AND id =".$select['id']);
+				    	$url = $_SERVER["HTTP_REFERER"];
+				    	header('location:'.$url);
+				    	// if($update=="")message("操作成功了！",$url,'success');
+				    }else{
+                        //没有订单，则加入购物车
+				    	$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_cart(weid,storeid,goodsid,price,total,tablesid,taste) VALUES({$_W['uniacid']},{$storeid},{$goodsid},{$oneprice1},{$weight1},{$tablesid},'{$flavor1}')");
+				    	$url = $_SERVER["HTTP_REFERER"];
+				    	header('location:'.$url);
+				    	// if($insert=="")message("操作成功了！",$url,'success');
+				    }
+
+                }
+                //特殊菜(隐)
+                if(isset($_GPC['specialclik'])){
+                	$weight1=$_GPC['weight1'];
+				    $flavor1=$_GPC['flavor1'];
+				    $oneprice1=$_GPC['oneprice1'];
+				    $tablesid=$_GPC['tablesid'];
+				    $price1=$weight1*$oneprice1;
+				    $date=time();
+
+				    $select=pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE status<=1 and ispay=0 AND storeid=".$storeid." AND tables=".$tablesid." order by id desc");
+				    if($select['id']){
+				    	$allprice=$price1+$select['totalprice'];
+				    	$totalnum=$select['totalnum']+$weight1;
+				    	$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_order_goods(weid,storeid,orderid,goodsid,price,total,dateline,tablesid,taste,status) VALUES({$_W['uniacid']},{$storeid},{$select['id']},130,{$oneprice1},{$weight1},{$date},{$tablesid},'{$flavor1}',1)");
+				    	$update=pdo_fetch("UPDATE ims_weisrc_dish_order SET totalnum=".$totalnum.", totalprice=".$allprice." WHERE storeid=".$storeid." AND id =".$select['id']);
+				    	if($update=="")message("操作成功了！",$url,'success');
+				    }else{
+				    	$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_cart(weid,storeid,goodsid,goodstype,price,total,tablesid,taste) VALUES({$_W['uniacid']},{$storeid},130,9,{$oneprice1},{$weight1},{$tablesid},'{$flavor1}')");
+				    	if($insert=="")message("操作成功了！",$url,'success');
+				    }
+
+                }
+                //特殊菜(隐)end
+                //火锅店与酸菜店17.2.15
+                $typeid = pdo_fetch("SELECT typeid FROM ".tablename('weisrc_dish_stores')." WHERE id=".$storeid);
+                //end
+
+                //桌号
+                    $tableinfo=pdo_fetch("SELECT t.title as id,z.title as zone from ".tablename('weisrc_dish_tables')." t left join ".tablename('weisrc_dish_tablezones')." z on t.tablezonesid = z.id WHERE t.storeid=".$storeid." AND t.id=".$tablesid);
+               //列出该桌号的所有菜
+                    $order_goods=pdo_fetchall("SELECT a.title,b.id,b.stepnow,b.type,b.orderid,b.tablesid,b.goodsid,b.total,b.price,(b.total*b.price) as ttprice,b.taste as flavor from ".tablename('weisrc_dish_order_goods')." as b join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid WHERE b.storeid=".$storeid." AND b.status=1 and b.orderid=".$orderid." order by b.type,b.stepnow,a.title");
+                    //列出加菜16.12.5
+                    if(!empty($orders)){
+                    	$orders_goods=pdo_fetchall("SELECT a.title,b.id,b.stepnow,b.type,b.orderid,b.goodsid,b.total,b.price,(b.total*b.price) as ttprice,b.taste as flavor from ".tablename('weisrc_dish_order_goods')." as b join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid WHERE (b.status=0 or b.status=1) AND b.storeid=".$storeid." AND b.orderid=".$orders['id']." order by b.type,b.stepnow,a.title");
+                        $addprice = pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) AND storeid=".$storeid." and type =0 and orderid=".$orders['id']);
+                        $addprice= round($addprice['total'],0);
+                    }
+                  
+               // 所有消费
+                    $xiaofei=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and storeid=".$storeid." and type !=2 and orderid=".$orderid);//所有消费金额
+                   
+                    //应收：非退，送菜总金额
+                    $ys=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and storeid=".$storeid." and type =0 and orderid=".$orderid);//所有消费金额
+                    $song=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and storeid=".$storeid." and type =1 and orderid=".$orderid);//送菜金额
+                    $dazp=pdo_fetch("SELECT price from ".tablename('weisrc_dish_order_goods')." WHERE status =1 and storeid=".$storeid." and taste='大转盘' and type=0 and orderid=".$orderid);//大转盘抵消金额
+                    
+
+                   $xiaofei['total1']= round($xiaofei['total'],0);//所有消费金额保留两位小数
+                   $xiaofei['total']= round($xiaofei['total'],0);//所有消费取整数
+                   $xiaofei['ys']= round($ys['total'],0);//所有消费取整数
+                   $xiaofei['song']= round($song['total'],0);//所有消费金额保留两位小数
+                   $zhaocha=pdo_fetch("SELECT price from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and storeid=".$storeid." and taste='找茬' and orderid=".$orderid);//找茬抵消金额
+                  
+                   $dixiao=abs($dazp['price']+$zhaocha['price']);//抵消差
+                   $buzhekou=pdo_fetch("SELECT sum(a.price*a.total) as price from ims_weisrc_dish_order_goods as a join ims_weisrc_dish_goods as b on a.goodsid=b.id join ims_weisrc_dish_category as c on b.pcate = c.id WHERE (a.status =0 or a.status =1) and a.type =0 and c.parentid = 0 and a.storeid=".$storeid." and a.orderid=".$orderid);//酒水饮料+飞饼的消费价格//
+                   // parentid = 0  不可打折
+                   // $buzhekous=pdo_fetch("SELECT sum(a.price*a.total) as price from ims_weisrc_dish_order_goods as a join ims_weisrc_dish_goods as b on a.goodsid=b.id join ims_weisrc_dish_category as c on b.pcate = c.id WHERE a.status =1 and a.type =0 and c.parentid = 0 and a.storeid=".$storeid." and a.tablesid=".$tablesid);
+                   $buzhekou['price'] = round($buzhekou['price'],0);
+                   $kedazhe=round($xiaofei['ys']-$buzhekou['price'],0);//可折扣价格
+
+                   // var_dump($buzhekou);
+                   if($dazp['price']){
+                   $xiaofei['total0']=$xiaofei['total1']-$dazp['price'];
+                     if($zhaocha['price']){
+                     	$xiaofei['total0']=$xiaofei['total0']-$zhaocha['price'];
+                     }
+                   }else{
+                   	$xiaofei['total0']=$xiaofei['total1'];
+                   	if($zhaocha['price']){
+                   		$xiaofei['total0']=$xiaofei['total1']-$zhaocha['price'];
+                   	}
+                   }
+
+                   if($orderid<0){
+                   //没有订单，从购物车读取  -  方便收款记录电话外卖的单
+                       // xx  不用，因无法打印菜单
+                        // $xiaofei=pdo_fetch("SELECT sum(total*price) as ys from ".tablename('weisrc_dish_cart')." WHERE tablesid=".$tablesid);
+                   // $xiaofei['ys']= round($xiaofei['ys'],0);//所有消费取整数
+
+                   }
+
+            }
+
+		}
+			include $this->template('index');
+		if($_GPC['small']){
+			include $this->template('indexsmall');
+		}else{
+		}
+	}
+	
+
+    //消台
+    public function doMobileXiaotai(){
+    	 global $_GPC, $_W;
+            $tablesid = $_GET['tablesid'];
+            $orderid = $_GET['orderid'];
+            pdo_update("weisrc_dish_order",array('status'=>-1),array("id"=>$orderid));
+            //空订单
+            pdo_update("weisrc_dish_order",array('status'=>-1),array("tables"=>$tablesid,'totalnum'=>0));
+            pdo_update("weisrc_dish_order_goods",array('status'=>-1),array("orderid"=>$orderid));//按桌号消台16.12.5
+            pdo_delete("weisrc_dish_fish",array("tablesid"=>$tablesid));//消台删除本桌鱼的记录17.2.3
+            $result=pdo_update("weisrc_dish_tables",array('status'=>0),array("id"=>$tablesid));
+            //清状态
+            isetcookie('dian'.$tablesid, ''); 
+			isetcookie('yu'.$tablesid, ''); 
+           //删除购物车
+           pdo_fetch("delete from ims_weisrc_dish_cart where  tablesid=".$tablesid);
+           $url='index.php?i='.$_W['uniacid'].'&c=entry&op=in&do=index&m=j_money';
+            message('操作成功！', $url,'success');
+    }
+    //统计
+    public function tongji($storeid,$starttime,$endtime){
+        global $_GPC, $_W;
+        //条件
+        if($storeid ==0){//等于0则查出所有店的
+            $store = " storeid >0";
+        }else{
+            $store = " storeid =".$storeid;
+        }
+		$where = $store." and createtime between ".$starttime." and ".$endtime;
+		//总人数
+	    $data['people']= pdo_fetch('SELECT sum(counts) as total from ims_weisrc_dish_order where status =2 and ispay =1  and  storeid ='.$storeid." and dateline between ".$starttime." and ".$endtime);
+	    // var_dump($data['people']);
+
+        //微信 weixin
+	    $data['weixin']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from (select DISTINCT orderid,cash_fee from ims_j_money_trade where paytype =0 and '.$where.') b' );
+	    $weixin1= pdo_fetch('SELECT sum(weixin) as total from ims_j_money_trade where  '.$where);
+	    $data['weixin']['total']+=$weixin1['total'];
+
+        //支付宝 alipay
+        $data['alipay']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from (select DISTINCT orderid,cash_fee from ims_j_money_trade where paytype =1 and '.$where.') b' );
+        $alipay1= pdo_fetch('SELECT sum(alipay) as total from ims_j_money_trade where  '.$where);
+        $data['alipay']['total']+=$alipay1['total'];
+
+        // //现金 cash
+        $data['cash']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from (select DISTINCT orderid,cash_fee from ims_j_money_trade where paytype =3 and '.$where.') b' );
+        $cash1= pdo_fetch('SELECT sum(cash) as total from ims_j_money_trade where  '.$where);
+        $data['cash']['total'] += $cash1['total'];
+
+        // //刷卡 paycard
+        $data['paycard']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from (select DISTINCT orderid,cash_fee from ims_j_money_trade where paytype =4 and '.$where.') b' );
+        $paycard1= pdo_fetch('SELECT sum(paycard) as total from ims_j_money_trade where  '.$where);
+        $data['paycard']['total']+=$paycard1['total'];
+
+        // //闪惠 shanhui
+        // $data['shanhui']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from ims_j_money_trade where paytype =5 and  '.$where);
+
+        $data['shanhui']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from (select DISTINCT orderid,cash_fee from ims_j_money_trade where paytype =5 and '.$where.') b' );
+
+        // //美团 meituan
+        $data['meituan']= pdo_fetch('SELECT sum(cash_fee) as total,count(*) as num from (select DISTINCT orderid,cash_fee from ims_j_money_trade where paytype =2 and '.$where.') b' );
+        $paycard1= pdo_fetch('SELECT sum(daijinquan)*100 as total from ims_j_money_trade where  '.$where);
+        $data['meituan']['total']+=$paycard1['total'];
+
+        //总
+        $total= pdo_fetch('SELECT sum(total_fee) as total,count(*) as num from ims_j_money_trade where '.$where);
+        $data['all']['total_fee'] = $total['total'];//应收
+        $data['all']['total'] = ($data['weixin']['total']+$data['alipay']['total']+$data['cash']['total']+$data['paycard']['total']+$data['shanhui']['total']+$data['meituan']['total']);//实收
+        $data['all']['num'] = $total['num'];
+        return $data;
+    }
+
+	// 打印交班/日结明细
+	public function doMobilePrintrijie() {
+		global $_GPC, $_W;
+		$where=$where2="";
+		$storeid=$_GPC['storeid'];
+		$username=$_GPC['username'];
+		$starts=$_GPC['starttime'];
+		$end=$_GPC['endtime'];
+
+        $data = $this->tongji($storeid,$starts,$end);
+		$user=pdo_fetchall("SELECT id,useracount,realname,pcate FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' order by id desc ");
+        include $this->template('printrijie');
+    }
+
+    // 消费统计表(收银后打印)
+	public function doMobilePrinttong() {
+			global $_GPC, $_W;
+		$storeid = $_GPC['storeid'];
+		$where=$where2="";
+		$username=$_GPC['username'];
+		$starts=$_GPC['starttime'];
+		$end=$_GPC['endtime'];
+		$where.=" and storeid=".$storeid." and createtime between ".$starts." and ".$end;
+
+		  $storeinfo=pdo_fetch("SELECT a.title,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+		  
+		$list=$allItem=pdo_fetchall("SELECT  * FROM ".tablename('j_money_trade')." WHERE 1  $where $where2 group by orderid");//weid='{$_W['uniacid']}'
+		
+		foreach($list as $key=> $row){
+            $tableinfo = pdo_fetchall("SELECT a.title,b.title as zone FROM ".tablename('weisrc_dish_tables')." a left join ".tablename('weisrc_dish_tablezones')." b on a.tablezonesid = b.id WHERE a.id=".$row['tablesid']);
+            $list[$key]['tablename']=$tableinfo[0]['zone'].$tableinfo[0]['title'];//桌台信息
+            $list[$key]['ordersn'] = pdo_fetch('SELECT id,counts FROM '.tablename('weisrc_dish_order').' WHERE id='.$row['orderid']);//订单号，人数
+// 第几桌
+            $lastRijie = pdo_fetch("SELECT id,createtime FROM ".tablename('j_money_endday')." WHERE storeid='{$storeid}'  and createtime<".$row['createtime']." order by id desc");
+$num = pdo_fetch("SELECT count(*) as num FROM ".tablename('j_money_trade')." WHERE storeid='{$storeid}'  and createtime between ".$lastRijie['createtime']." and ".$row['createtime']);
+$list[$key]['num'] = $num['num'];
+// $list[$key]['num'] = $key+1;
+        }
+
+          $rateCount = array();
+        foreach($list as $user){
+            $rateCount[] = $user['rate'];
+        }
+        array_multisort($rateCount,SORT_DESC, $list);
+
+
+       //统计 
+        $data = $this->tongji($storeid,$starts,$end);
+        // 未结账17.2.28
+		$where3.=" and status<2 and storeid=".$storeid." and dateline between ".$starts." and ".$end;
+		$list2=pdo_fetchall("SELECT * FROM ".tablename('weisrc_dish_order')." WHERE weid='{$_W['uniacid']}'  $where3 $where2 ");
+		foreach($list2 as $key=> $row){
+            $tableinfo = pdo_fetchall("SELECT a.title,b.title as zone FROM ".tablename('weisrc_dish_tables')." a left join ".tablename('weisrc_dish_tablezones')." b on a.tablezonesid = b.id WHERE a.id=".$row['tables']);//桌名
+				$list2[$key]['tablename']=$tableinfo[0]['zone'].$tableinfo[0]['title'];
+				//2017-1-12添加收银方式
+				if($row['status']==1 || $row['status']==0) {
+					$data['ws']['all'] +=$row['totalprice'];//未收总金额
+				}
+        }
+        //end
+        include $this->template('printtong');
+    }
+
+
+    //  按分类、交班时间打印销售明细 酒水、飞饼对账单
+	public function doMobilePrintcat() {
+		global $_GPC, $_W;
+		$storeid =$_GPC['storeid'];
+		$where="";
+		$username=$_GPC['username'];
+		$starts=$_GPC['starttime'];
+		$end=$_GPC['endtime'];
+		$cat=$_GPC['cat'];
+		$where.=" and storeid=".$storeid." and createtime between ".$starts." and ".$end;
+
+		$catname =pdo_fetch("SELECT name FROM ".tablename('weisrc_dish_category')." WHERE weid='{$_W['uniacid']}' and id =$cat");
+		$list=pdo_fetchall("SELECT * FROM ".tablename('weisrc_dish_goods')." WHERE weid='{$_W['uniacid']}' and pcate =$cat  order by title");
+		$totalnum =$totalprice =0;
+		foreach($list as $key=> $row){
+	        $list[$key]['total']=pdo_fetchcolumn("SELECT sum(total) FROM ".tablename('weisrc_dish_order_goods')." WHERE goodsid =".$row['id']." and type <2 and status >0 and dateline between ".$starts." and ".$end);// weid='".$_W['uniacid']."' and 
+	        $list[$key]['totalprice']=pdo_fetchcolumn("SELECT sum(total*price) FROM ".tablename('weisrc_dish_order_goods')." WHERE  goodsid =".$row['id']." and type <2 and status >0 and dateline between ".$starts." and ".$end);//weid='".$_W['uniacid']."' and
+	        $totalnum = $totalnum+$list[$key]['total'];
+	        $totalprice = $totalprice+$list[$key]['totalprice'];
+        }
+
+      
+        include $this->template('printcat');
+    }
+
+ //自动打印fei 酒水
+	public function doMobileIsfeiAjax() {
+		global $_GPC, $_W;
+         $storeid = $_GPC['storeid'];//店铺id
+         $ajax = $_GPC['ajax'];//店铺id
+         //飞饼，酒水所有ID
+        $printsetting = $_GPC['printCat'];
+         if(!empty($printsetting)){
+         	   $ids=pdo_fetchall("SELECT a.id from ".tablename('weisrc_dish_goods')." a left join ".tablename('weisrc_dish_category')." as b on a.pcate=b.id WHERE b.id in(".$printsetting.") and b.storeid=".$storeid);  
+			 
+         }else{
+         $ids = "";
+         	  // $ids=pdo_fetchall("SELECT a.id from ".tablename('weisrc_dish_goods')." a left join ".tablename('weisrc_dish_category')." as b on a.pcate=b.id WHERE b.name in('酒水饮料','飞饼') and b.storeid=".$storeid);  
+         }
+   $idall ='';
+   foreach ($ids as $key => $value) {
+   		$idall.=$value['id'].",";
+   }
+// 已下单，未退，上桌的，已确认未付款的status =1 ,未打印的
+  $good=pdo_fetchall("SELECT * from ".tablename('weisrc_dish_order_goods')."  WHERE goodsid in(".$idall."0) and stepnow =0 and type <2 and isprint =0 and status =1"); //tablesid,orderid,goodsid,sum(price*total) as totalprice
+   if(!empty($good)){
+       echo '1'; 
+   }else{
+       echo "0";
+   }    
+    }
+	public function doMobileIsfei() {
+		global $_GPC, $_W;
+         $storeid = $_GPC['storeid'];//店铺id
+         $ajax = $_GPC['ajax'];//店铺id
+         //飞饼，酒水所有ID
+         $printsetting = $_GPC['printCat'];
+         if(!empty($printsetting)){
+         	   $ids=pdo_fetchall("SELECT a.id from ".tablename('weisrc_dish_goods')." a left join ".tablename('weisrc_dish_category')." as b on a.pcate=b.id WHERE b.id in(".$printsetting.") and b.storeid=".$storeid);  
+         }else{
+         $ids = "";
+         	  // $ids=pdo_fetchall("SELECT a.id from ".tablename('weisrc_dish_goods')." a left join ".tablename('weisrc_dish_category')." as b on a.pcate=b.id WHERE b.name in('酒水饮料','飞饼') and b.storeid=".$storeid);  
+         }
+
+
+   $idall ='';
+   foreach ($ids as $key => $value) {
+   		$idall.=$value['id'].",";
+   }
+// 已下单，未退，上桌的，已确认未付款的status =1 ,未打印的
+  $good=pdo_fetchall("SELECT * from ".tablename('weisrc_dish_order_goods')."  WHERE goodsid in(".$idall."0) and stepnow =0 and type <2 and isprint =0 and status =1"); //tablesid,orderid,goodsid,sum(price*total) as totalprice
+   if(!empty($good)){
+       echo '1'; 
+   }else{
+       echo "0";
+   }    
+   include $this->template('isfei');
+    }
+
+    //手动打印fei 酒水
+	public function doMobilePrintfei() {
+		global $_GPC, $_W;
+        $tablesid = $_GPC['tablesid'];
+        $orderid = $_GPC['orderid'];
+        $goodsid = $_GPC['goodsid'];
+        $storeid = $_GPC['storeid'];
+        $total = $_GPC['total'];
+        $id = $_GPC['id'];
+         //店名
+        $storeinfo=pdo_fetch("SELECT a.title,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+         //桌号信息
+        $tableinfo=pdo_fetch("SELECT t.title as id,z.title as zone from ".tablename('weisrc_dish_tables')." t left join ".tablename('weisrc_dish_tablezones')." z on t.tablezonesid = z.id WHERE t.id=".$tablesid);
+       
+  $good=pdo_fetch("SELECT a.title,b.type,a.dateline,b.total,b.price,(b.total*b.price) as ttprice,b.taste as flavor from ".tablename('weisrc_dish_order_goods')." as b left join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid  WHERE a.id=".$goodsid." AND a.storeid=".$storeid);
+
+  $totalprice = $good['price']*$total; 
+
+  if ($id>0) {
+  	pdo_update("weisrc_dish_order_goods",array('isprint'=>1),array("id"=>$id));
+  }
+        // var_dump($good);  
+        include $this->template('printfei');
+    }
+	//打印账单
+	public function doMobilePrint() {
+		global $_GPC, $_W;
+        $tablesid = $_GPC['tablesid'];
+        $orderid = $_GPC['orderid'];
+        $comment = $_GPC['comment'];
+        $storeid = $_GPC['storeid'];
+        $type = $_GPC['type'];
+        if($type ==0){//点菜单
+			isetcookie('dian'.$tablesid, 1);//30分 ,1800
+        }
+        if($type ==1){//预打单
+			isetcookie('yu'.$tablesid, 1);//30分 
+        }
+$comment= str_replace("&lt;","<",$comment); 
+$comment= str_replace("&gt;",">",$comment); 
+        //收银员
+		$islogin=$_GPC['islogin'];
+        $user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:id ",array(":id"=>$islogin));
+        //店名
+        $storeinfo=pdo_fetch("SELECT a.title,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+        
+        //订单号
+        $orderinfos = pdo_fetch("SELECT sum(total*price) as totalprice from ims_weisrc_dish_order_goods WHERE type!=2 and orderid=".$orderid);
+$orderinfo = pdo_fetch("SELECT * from ims_weisrc_dish_order WHERE id=".$orderid." order by id desc limit 1");
+$orderinfo['ys'] = $orderinfos['totalprice'] - $orderinfo['zhekou'];
+
+$tablesid = $orderinfo['tables'];
+
+	//trade 支付方式
+$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}'  and orderid=".$orderid);
+if(empty($trade)){
+	$trade['createtime']= time();
+}
+$lastRijie = pdo_fetch("SELECT id,createtime FROM ".tablename('j_money_endday')." WHERE storeid='{$storeid}'  and createtime<".$trade['createtime']." order by id desc");
+$num = pdo_fetch("SELECT count(*) as num FROM ".tablename('j_money_trade')." WHERE storeid='{$storeid}'  and createtime between ".$lastRijie['createtime']." and ".$trade['createtime']);
+//2017-1-12添加收银方式判断 
+if(!empty($trade['weixin'])){
+	$addtp=1;
+	$addmoney = $trade['weixin']/100;
+}elseif(!empty($trade['alipay'])){
+	$addtp=2;
+	$addmoney = $trade['alipay']/100;
+}elseif(!empty($trade['cash'])){
+	$addtp=3;
+	$addmoney = $trade['cash']/100;
+}elseif(!empty($trade['quick'])){
+	$addtp=4;
+	$addmoney = $trade['quick']/100;
+}elseif(!empty($trade['paycard'])){
+	$addtp=5;
+	$addmoney = $trade['paycard']/100;
+}
+
+
+if (!$trade) {
+$trade['paytype']=3;
+}
+
+        //桌号信息
+        $tableinfo=pdo_fetch("SELECT t.title as id,z.title as zone from ".tablename('weisrc_dish_tables')." t left join ".tablename('weisrc_dish_tablezones')." z on t.tablezonesid = z.id WHERE t.id=".$tablesid);
+        //菜单信息 
+	$order_goods=pdo_fetchall("SELECT a.title,b.type,b.total,b.price,(b.total*b.price) as ttprice,b.taste as flavor from ".tablename('weisrc_dish_order_goods')." as b join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid join ".tablename('weisrc_dish_order')." as o on o.id=b.orderid WHERE o.id=".$orderid." order by b.type,a.title");//按订单号
+	 //$order_goods=pdo_fetchall("SELECT a.title,b.total,b.price,(b.total*b.price) as ttprice,b.taste as flavor from ".tablename('weisrc_dish_order_goods')." as b join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid WHERE b.status =0 and b.tablesid=".$tablesid);//接桌号
+        // 消费金额
+                    $xiaofei=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and orderid=".$orderid);//所有消费金额
+// var_dump($xiaofei);
+// die();
+                    //应收：非退，送菜总金额
+                    $ys=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and type =0 and orderid=".$orderid);//所有消费金额
+                    $song=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and type =1 and orderid=".$orderid);//送菜金额
+$orderinfo['zhekou'] = $orderinfo['zhekou']+$song['total'];
+
+                    $dazp=pdo_fetch("SELECT price from ".tablename('weisrc_dish_order_goods')." WHERE status =1 and taste='大转盘' and type=0 and orderid=".$orderid);//大转盘抵消金额
+
+                   $xiaofei['total1']= round($xiaofei['total'],2);//所有消费金额保留两位小数
+                   $xiaofei['total']= round($xiaofei['total'],0);//所有消费取整数
+                   $xiaofei['ys']= round($ys['total'],0);//所有消费取整数
+                   $xiaofei['song']= round($song['total'],2);//所有消费金额保留两位小数
+        $zhaocha=pdo_fetch("SELECT price from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and taste='找茬' and orderid=".$orderid);//找茬抵消金额
+        $dixiao=abs($dazp['price']+$zhaocha['price']);//抵消差
+       // $buzhekou=pdo_fetch("SELECT sum(a.price) as price from ims_weisrc_dish_order_goods as a join ims_weisrc_dish_goods as b on a.goodsid=b.id WHERE (a.status =0 or a.status =1) and type=0 and (b.pcate=8 or b.pcate=10) and a.orderid=".$orderid);//酒水饮料+飞饼的消费价格
+                   // $buzhekou=0;//酒水饮料+飞饼的消费价格//
+                   $buzhekou=pdo_fetch("SELECT sum(a.price*a.total) as price from ims_weisrc_dish_order_goods as a join ims_weisrc_dish_goods as b on a.goodsid=b.id join ims_weisrc_dish_category as c on b.pcate = c.id WHERE (a.status =0 or a.status =1) and a.type =0 and c.parentid = 0 and a.storeid=".$storeid." and a.orderid=".$orderid);//酒水饮料+飞饼的消费价格//
+        $kedazhe=$xiaofei['total']-$buzhekou['price'];//可折扣价格
+
+        if($dazp['price']){
+            $xiaofei['total0']=$xiaofei['total1']-$dazp['price'];
+            if($zhaocha['price']){
+                $xiaofei['total0']=$xiaofei['total0']-$zhaocha['price'];
+            }
+        }else{
+            $xiaofei['total0']=$xiaofei['total1'];
+            if($zhaocha['price']){
+                $xiaofei['total0']=$xiaofei['total1']-$zhaocha['price'];
+            }
+        }
+        include $this->template('print');
+    }
+// 取消订单
+    public function doMobileCancelorder() {
+		global $_GPC, $_W;
+        $orderid = intval($_GPC['orderid']);
+        $tablesid = intval($_GPC['tablesid']);
+        //前一个订单
+        $select = pdo_fetch("SELECT id FROM " . tablename('weisrc_dish_order') . " WHERE status=1 AND tables =".$tablesid);
+        pdo_update("weisrc_dish_order_goods",array('status'=>-1),array("orderid"=>$orderid));
+        $order = pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE id = :id", array(':id' => $orderid));
+
+             //修改鱼表 
+                // pdo_fetch("update ims_weisrc_dish_fish  set done =6 where done = 0  and tablesid=".$order['tables']);
+        if(empty($select)){
+        	pdo_update("weisrc_dish_tables",array('status'=>0),array("id"=>$tablesid));
+        }
+        
+        $i=pdo_update("weisrc_dish_order",array('status'=>-1),array("id"=>$orderid));
+        if($i){
+            message("操作成功！");
+        }else{
+            message("操作失败！");
+        }
+    }
+// 确认订单
+    public function doMobileConfirmorder() {
+		global $_GPC, $_W;
+        $orderid = intval($_GPC['orderid']);
+        $tablesid = intval($_GPC['tablesid']);
+        //前一个订单
+        $select = pdo_fetch("SELECT id,totalnum,totalprice FROM " . tablename('weisrc_dish_order') . " WHERE status=1 and ispay=0 AND tables =".$tablesid." order by id ASC limit 1");
+        // var_dump($select);
+        if(!empty($select)  && $select['id'] != $orderid){
+        	$select2 = pdo_fetch("SELECT totalnum,totalprice FROM " . tablename('weisrc_dish_order') . " WHERE status=0 and ispay=0 AND id =".$orderid);
+        	$totalnum = $select['totalnum']+$select2['totalnum'];
+        	$totalprice = $select['totalprice']+$select2['totalprice'];
+        	pdo_update('weisrc_dish_order_goods',array('status'=>1,'orderid'=>$select['id'],'content'=>"加菜 F".$orderid),array('orderid'=>$orderid,'tablesid'=>$tablesid));
+        	pdo_update('weisrc_dish_order',array('totalnum'=>$totalnum,'totalprice'=>$totalprice),array('id'=>$select['id'],'tables'=>$tablesid));
+        	$goods=pdo_update("weisrc_dish_order",array('addto'=>$select['id'],'status'=>5,'comment'=>"加菜 T".$select['id']),array("id"=>$orderid));
+            // pdo_update('weisrc_dish_fish',array('orderid'=>$select['id']),array('tablesid'=>$tablesid,'done'=>0));//更新鱼表17.2.3
+        	// $goods = pdo_delete('weisrc_dish_order',array('id'=>$orderid));
+        }else{
+        	pdo_update('weisrc_dish_order_goods',array('status'=>1),array('orderid'=>$orderid));
+        	$goods=pdo_update('weisrc_dish_order',array('status'=>1),array('id'=>$orderid));
+            // pdo_update('weisrc_dish_fish',array('orderid'=>$orderid),array('tablesid'=>$tablesid,'done'=>0));//更新鱼表17.2.3
+        } 
+        
+        if($goods){
+            message("操作成功！");
+        }else{
+            message("操作失败！");
+        }
+    }
+
+    // 收银台排号管理
+    public function doMobileQueueorder2() {
+		global $_GPC, $_W;
+        $storeid = $_GPC['storeid'];//店铺id
+        $operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+        $queueid = intval($_GPC['queueid']);
+        if ($operation == 'detail') {
+        	$queueid = intval($_GPC['queueid']);
+            if (empty($queueid)) {
+                message('请先选择队列');
+            }
+            $pindex = max(1, intval($_GPC['page']));
+            $psize = 8;
+            $condition = '';
+            if (isset($_GPC['status'])) {
+                $condition .= " AND status = '" . intval($_GPC['status']) . "'";
+            } else {
+                $condition .= " AND status = 1 ";
+            }
+            $condition .= " AND queueid = ".$queueid."";
+            $list = pdo_fetchall("SELECT * FROM " . tablename('weisrc_dish_queue_order') . " WHERE weid = '{$_W['uniacid']}' AND storeid =:storeid $condition ORDER BY id ASC LIMIT " . ($pindex - 1) * $psize . ',' . $psize, array(':storeid' => $storeid));
+
+            $total = pdo_fetchcolumn('SELECT COUNT(*) FROM ' . tablename('weisrc_dish_queue_order') . " WHERE weid ='{$_W['uniacid']}' AND storeid =:storeid $condition", array(':storeid' => $storeid));
+            $pager = pagination($total, $pindex, $psize);
+        } else if ($operation == 'display') {
+
+            $list = pdo_fetchall("SELECT * FROM " . tablename('weisrc_dish_queue_setting') . " WHERE weid = '{$_W['uniacid']}' AND storeid =".$storeid." ORDER BY displayorder DESC");
+            $queue_count = pdo_fetchall("SELECT queueid,COUNT(1) as count FROM " . tablename('weisrc_dish_queue_order') . " where storeid=:storeid AND status=1 AND  weid = '{$_W['uniacid']}' GROUP BY queueid", array(':storeid' => $storeid), 'queueid');
+        } else if ($operation == 'post') {
+        	// $queueid = intval($_GPC['queueid']);
+            if (empty($queueid)) {
+                message('请先选择队列');
+            }
+            $id = intval($_GPC['id']);
+            if (!empty($id)) {
+                $item = pdo_fetch("SELECT * FROM " . tablename('weisrc_dish_queue_order') . " WHERE id = :id", array(':id' => $id));
+                if (empty($item)) {
+                    message('抱歉，队列不存在或是已经删除！', '', 'error');
+                }
+            }
+
+            if (checksubmit('submit')) {
+                $data = array(
+                    'weid' => intval($_W['uniacid']),
+                    'storeid' => $storeid,
+                    'num' => trim($_GPC['num']),
+                    'mobile' => trim($_GPC['mobile']),
+                    'usercount' => trim($_GPC['usercount'])
+                );
+
+                pdo_update('weisrc_dish_queue_order', $data, array('id' => $id));
+                // message('操作成功！', $this->createWebUrl('queueorder2', array('op' => 'detail', 'storeid' => $storeid, 'queueid' => $queueid)), 'success');
+                $url='index.php?i='.$_W['uniacid'].'&c=entry&op=detail&storeid='.$storeid.'&queueid='.$queueid.'&do=queueorder2&m=j_money';
+            message('操作成功！', $url,'success');
+            }
+        } else if ($operation == 'setstatus') {
+            $id = intval($_GPC['id']);
+            $status = intval($_GPC['status']);
+            pdo_update('weisrc_dish_queue_order', array('status' => $status), array('id' => $id, 'weid' => $_W['uniacid']));
+            $this->sendQueueNotice($id, 2);
+            pdo_update('weisrc_dish_queue_order', array('isnotify' => 1), array('id' => $id));
+
+            $queue_setting = pdo_fetch("SELECT * FROM " . tablename('weisrc_dish_queue_setting') . " WHERE id = :id", array(':id' => $queueid));
+            if (!empty($queue_setting) && $queue_setting['limit_num'] > 0) {
+                $queues = pdo_fetchall("SELECT * FROM " . tablename('weisrc_dish_queue_order') . " WHERE status=1 AND storeid=:storeid AND  queueid=:queueid ORDER BY id DESC LIMIT " . $queue_setting['limit_num'], array(':storeid' => $storeid, ':queueid' => $queueid));
+                foreach ($queues as $key => $value) {
+                    $this->sendQueueNotice($value['id'], 2);
+                    pdo_update('weisrc_dish_queue_order', array('isnotify' => 1), array('id' => $value['id']));
+                }
+            }
+            // message('操作成功！', $this->createWebUrl('queueorder2', array('op' => 'detail', 'storeid' => $storeid, 'queueid' => $queueid)), 'success');
+            $url='index.php?i='.$_W['uniacid'].'&c=entry&op=detail&storeid='.$storeid.'&queueid='.$queueid.'&do=queueorder2&m=j_money';
+            message('操作成功！', $url,'success');
+        } else if ($operation == 'notice') {
+            $id = intval($_GPC['id']);
+            $this->sendQueueNotice($id, 2);
+            pdo_update('weisrc_dish_queue_order', array('isnotify' => 1), array('id' => $id));
+            // message('操作成功！', $this->createWebUrl('queueorder2', array('op' => 'detail', 'storeid' => $storeid, 'queueid' => $queueid)), 'success');
+            $url='index.php?i='.$_W['uniacid'].'&c=entry&op=detail&storeid='.$storeid.'&queueid='.$queueid.'&do=queueorder2&m=j_money';
+            message('操作成功！', $url,'success');
+        }
+        include $this->template('queueorder2');
+    }
+    //收银台队列管理
+     public function doMobileQueuesetting2()
+    {
+        global $_GPC, $_W;
+        // $action = 'queueorder2';
+        // $title = $this->actions_titles[$action];
+        $storeid = intval($_GPC['storeid']);//店铺id
+        if (empty($storeid)) {
+            message('请选择门店!');
+        }
+        $returnid = $this->checkPermission($storeid);
+
+        $operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+        if ($operation == 'post') {
+            $id = intval($_GPC['id']);
+            if (!empty($id)) {
+                $item = pdo_fetch("SELECT * FROM " . tablename('weisrc_dish_queue_setting') . " WHERE id = :id", array(':id' => $id));
+                if (empty($item)) {
+                    message('抱歉，队列不存在或是已经删除！', '', 'error');
+                }
+            }
+            if (checksubmit('submit')) {
+                $data = array(
+                    'weid' => intval($_W['uniacid']),
+                    'storeid' => $storeid,
+                    'title' => trim($_GPC['title']),
+                    'limit_num' => intval($_GPC['limit_num']),
+                    'notify_number' => intval($_GPC['notify_number']),
+                    'prefix' => trim($_GPC['prefix']),
+                    'starttime' => trim($_GPC['starttime']),
+                    'endtime' => trim($_GPC['endtime']),
+                    'status' => intval($_GPC['status']),
+                    'displayorder' => intval($_GPC['displayorder']),
+                    'dateline' => TIMESTAMP,
+                );
+
+                if (empty($data['title'])) {
+                    message('队列名称！');
+                }
+
+                if (empty($id)) {
+                    pdo_insert('weisrc_dish_queue_setting', $data);
+                } else {
+                    unset($data['dateline']);
+                    pdo_update('weisrc_dish_queue_setting', $data, array('id' => $id));
+                }
+                // message('操作成功！', $this->createWebUrl('queuesetting2', array('op' => 'display', 'storeid' => $storeid)), 'success');
+                $url='index.php?i='.$_W['uniacid'].'&c=entry&op=display&storeid='.$storeid.'&do=queuesetting2&m=j_money';
+                message('操作成功！', $url,'success');
+            }
+        } else if ($operation == 'display') {
+            $list = pdo_fetchall("SELECT * FROM " . tablename('weisrc_dish_queue_setting') . " WHERE weid = '{$_W['uniacid']}' AND storeid =:storeid ORDER BY displayorder DESC", array(':storeid' => $storeid));
+        } else if ($operation == 'setting') {
+            $config = $this->module['config']['weisrc_dish'];
+            if (checksubmit('submit')) {
+                $cfg['weisrc_dish']['queuemode'] = trim($_GPC['queuemode']);
+                $this->saveSettings($cfg);
+                $url='index.php?i='.$_W['uniacid'].'&c=entry&op=setting&storeid='.$storeid.'&do=queuesetting2&m=j_money';
+                message('更新成功！', $url,'success');
+                
+                // header("location:$url");
+            }
+        }
+        include $this->template('queuesetting2');
+    }
+    //收银台预订管理
+    public function doMobileReservation()
+    {
+        global $_GPC, $_W;
+        $storeid = intval($_GPC['storeid']);
+        if (empty($storeid)) {
+            message('请选择门店!');
+        }
+        $returnid = $this->checkPermission($storeid);
+
+        $tablezones = pdo_fetchall("SELECT * FROM " . tablename('weisrc_dish_tablezones') . " WHERE weid = {$_W['uniacid']} AND storeid=:storeid ORDER BY displayorder DESC", array(':storeid' => $storeid));
+        $operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+
+        if ($operation == 'post') {
+            $id = intval($_GPC['id']);
+            $row = pdo_fetch("SELECT id FROM " . tablename('weisrc_dish_order') . " WHERE id = :id", array(':id' => $id));
+            if (empty($row)) {
+                message('抱歉，数据不存在或是已经被删除！');
+            }
+
+            pdo_update('weisrc_dish_order', array('status' => 1), array('id' => $id, 'weid' => $_W['uniacid']));
+            $url='index.php?i='.$_W['uniacid'].'&c=entry&op=display&storeid='.$storeid.'&do=reservation&m=j_money';
+                message('操作成功！', $url,'success');
+
+        }else if ($operation == 'display') {
+            $tablezones = pdo_fetchall("SELECT * FROM " . tablename('weisrc_dish_tablezones') . " WHERE weid = {$_W['uniacid']} AND storeid=:storeid ORDER BY displayorder DESC", array(':storeid' => $storeid), 'id');
+
+            $pindex = max(1, intval($_GPC['page']));
+            $psize = 15;
+
+            $list = pdo_fetchall("SELECT id,status,username,tel,meal_time,dateline,tablezonesid FROM " . tablename('weisrc_dish_order') . " WHERE weid = {$_W['uniacid']} AND dining_mode=3 AND status<=1 AND storeid =:storeid ORDER BY id DESC LIMIT " . ($pindex - 1) * $psize . ',' . $psize, array(':storeid' => $storeid));
+            $total = pdo_fetchcolumn('SELECT COUNT(*) FROM ' . tablename('weisrc_dish_order') . " WHERE weid = {$_W['uniacid']} AND dining_mode=3 AND status<=1 AND storeid =:storeid ", array(':storeid' => $storeid));
+            $pager = pagination($total, $pindex, $psize);
+        } else if ($operation == 'delete') {
+            $id = intval($_GPC['id']);
+            $row = pdo_fetch("SELECT id FROM " . tablename('weisrc_dish_order') . " WHERE id = :id", array(':id' => $id));
+            if (empty($row)) {
+                message('抱歉，数据不存在或是已经被删除！');
+            }
+
+            pdo_update('weisrc_dish_order', array('status' => -1), array('id' => $id, 'weid' => $_W['uniacid']));
+            // message('操作成功！', $this->createWebUrl('reservation', array('op' => 'display', 'storeid' => $storeid)), 'success');
+            $url='index.php?i='.$_W['uniacid'].'&c=entry&op=display&storeid='.$storeid.'&do=reservation&m=j_money';
+                message('操作成功！', $url,'success');
+        }
+
+        include $this->template('reservation');
+    }
+
+
+	public function doMobileCounthistory() {
+		global $_GPC, $_W;
+		$storeid = $_GPC['storeid'];
+
+
+//所有分类，打印清单
+            $category=pdo_fetchall("SELECT * FROM ims_weisrc_dish_category WHERE storeid=".$storeid);
+            // var_dump($category);
+
+		$where=$where2="";
+		$starts=strtotime($_GPC['start']);
+		$end=strtotime($_GPC['end']);
+		if(!$starts){
+			$starts = pdo_fetch("SELECT endtime FROM ".tablename('j_money_endday')." WHERE storeid=".$storeid." order by id DESC limit 1");
+			$starts = $starts['endtime'];
+		}
+		if(!$end){
+			$end = time();
+		}
+		// if($_GPC['islogin'])$where2.=" and userid='".$_GPC['islogin']."'";
+		// if($_GPC['start'] && $_GPC['end'])
+			$where.=" and createtime between '".$starts."' and '".$end."'";
+		if(isset($_GPC['rijie']) && $_GPC['start']){
+			$all=$_GPC['all'];
+			$shishou=$_GPC['shishou'];
+			$insert=pdo_fetch("INSERT INTO ims_j_money_endday(userid,starttime,endtime,revenue,totalprice,createtime,type) values(".$_GPC['islogin'].",".$starts.",".$end.",".$shishou.",".$all.",".time().",0)");
+			if(!$insert)message("日结成功！");
+
+		}
+
+		if(isset($_GPC['jiaoban'])){
+			$suser=pdo_fetch("SELECT * FROM ".tablename('j_money_endday')." where storeid=".$storeid." and type=1 order by id DESC");
+			if(empty($suser)){
+				$stime=strtotime("today");
+				$etime=time();
+			}else{
+				$stime=$suser['createtime'];
+				$etime=time();
+			}
+				// $stime=strtotime($_GPC['start']); //测试完恢复上面 取消这里
+				// $etime=time();//测试完恢复上面  取消这里
+
+			$sprice = $this->tongji($storeid,$stime,$etime);
+			$shishou = $sprice['all']['total_fee']/100;
+			$ys = $sprice['all']['total']/100;
+			$insert=pdo_fetch("INSERT INTO ims_j_money_endday(userid,starttime,endtime,revenue,totalprice,createtime,type,storeid) values(".$_GPC['islogin'].",".$stime.",".$etime.",".$shishou.",".$ys.",".time().",1,".$storeid.")");
+
+			//门店交班 原材料结算
+			$orderid = pdo_fetchall('SELECT orderid FROM '.tablename('j_money_trade').' WHERE status=1 and createtime>='.$stime.' and createtime<='.$etime.' and userid='.$_GPC['islogin']);
+			$orders = array();
+			foreach ($orderid as $value) {
+				$orders[$value['orderid']] = $value;//将二维数组的值赋值给新数组的下标
+			}
+		    $order = implode(",",array_keys($orders));//将新数组的下标连接成字符串
+		    if($order){
+		    	$goods = pdo_fetchall('SELECT goodsid,sum(total) as goodsnum FROM '.tablename('weisrc_dish_order_goods').' WHERE orderid IN ('.$order.') GROUP BY goodsid');
+			    foreach ($goods as $key => $value) {
+			    	$staple = pdo_fetch('SELECT id,staple FROM '.tablename('weisrc_dish_goods').' WHERE id = '.$value['goodsid']);
+			    	if(!empty($staple['staple'])){
+			    		$data['data'] = iunserializer($staple['staple']);
+			    		foreach ($data['data'] as $k => $v) {
+			    			$num[$k] += $value['goodsnum'] * $v;
+			    		}
+			    		
+			    	}
+			    }
+			    $members = pdo_fetch('SELECT c.number,c.id,c.name FROM ' . tablename('weisrc_dish_stores') . ' as s join ci_contact as c on s.title = c.name WHERE s.id='.$storeid);
+			    $locationId = pdo_fetch('SELECT id FROM ci_storage WHERE locationNo="'.$members['number'].'"');
+			    foreach ($num as $k => $v) {
+			    	if($k && $v){
+			    		$nums += $v;
+			    	}	 
+			    }
+			    //出库订单表
+			    $orderSn = 'XSDD'.date('YmdHis'). sprintf('%d', rand(0, 9));//订单号
+			    $data = array(
+			    	'buId' => $members['id'],
+			    	'billNo' => $orderSn,//单据编号
+				    'uid' => $members['id'],
+					'username' => $members['name'],
+					'transType' => '150601',//销货
+					'transTypeName' => '门店交班',
+					'description' => '门店交班2',
+
+					'totalQty' => $nums,
+					'locationId' => $locationId['id'],
+					'billStatus' => 2,
+					'checked' => 1,
+					'modifyTime' => date('Y-m-d H:i:s'),
+					'deliveryDate' => date('Y-m-d'),
+					'billType' => 'SALE',
+					'postData' => iserializer($data),
+					'billDate' => date('Y-m-d'),
+			    	);
+				// $data['description'] = trim($_GPC['note']);//备注	
+				// $data['totalAmount'] = $status == 1 ? -$cart['price'] : $cart['price']; 
+				$i = pdo_inserts('ci_order', $data);
+				// var_dump("123");
+				$id = pdo_insertid();
+				if(!empty($num)) {
+					$ids_str = implode(',', array_keys($num));
+					$dish_info = pdo_fetchall('SELECT * FROM ci_goods WHERE 1 = :sid AND id IN ('.$ids_str.')', array(':sid' => 1), 'id');
+					// var_dump($dish_info);
+				}
+				// exit();
+	           //出库订单商品表
+				foreach($num as $k => $v) {
+					$k = intval($k);
+					$stat = array();
+					if($k && $v) {
+						$stat['iid'] = $id;
+						$stat['invId'] = $dish_info[$k]['id'];
+						$stat['buId'] = $members['id'];
+						$stat['billNo'] = $orderSn;
+						$stat['transType'] = '150601';
+						$stat['billDate'] = date('Y-m-d');
+					if($dish_info[$k]['costUnitId']>0){ //销售换算比例
+							$stat['qty'] = -($v/$dish_info[$k]['costUnitId']);///$dish_info[$k]['costUnitId']
+							$stat['amount'] = ($dish_info[$k]['salePrice']*$v/$dish_info[$k]['costUnitId']);
+							$stat['description'] = $v.$dish_info[$k]['costName'];
+						}else{
+							$stat['qty'] = -$v;
+							$stat['amount'] = ($dish_info[$k]['salePrice']*$v);
+							// $stat['description'] = $v.$dish_info[$k]['unitName'].' 门店交班';
+						}
+						$stat['price'] = $dish_info[$k]['salePrice'];
+						$stat['locationId'] = $locationId['id'];
+						$stat['uid'] = $members['id'];
+						$stat['skuId'] = -1;
+						$stat['transTypeName'] = '销售';
+						$stat['billType'] = 'SALE';
+						// $stat['addtime'] = TIMESTAMP;
+						pdo_inserts('ci_order_info', $stat);
+					}
+				}
+				//出库销货单表
+				
+			    $orderSn = 'XS'.date('YmdHis'). sprintf('%d', rand(0, 9));//订单号
+				$invo = array(
+					'buId' => $members['id'],
+					'billNo' => $orderSn,//单据编号
+					'uid' => $members['id'],
+					'username' => $members['name'],
+					'transType' => '150601',//销货
+					'description' => '门店交班',//备注
+					'transTypeName' => '门店交班',
+					'totalQty' => $nums,
+					'locationId' => $locationId['id'],
+					// 'billStatus' => 2,
+					'checked' => 1,
+					// 'totalAmount' => $status == 1 ? -$cart['price'] : $cart['price'],
+					'modifyTime' => date('Y-m-d H:i:s'),
+					'createtime' => date('Y-m-d H:i:s'),
+					'billType' => 'SALE',
+					'postData' => iserializer($data),
+					'billDate' => date('Y-m-d'),
+					);
+				
+				pdo_inserts('ci_invoice', $invo);
+				$ids = pdo_insertid();
+
+				//出库销货商品表
+				foreach($num as $k => $v) {
+					$k = intval($k);
+					$stats = array();
+					if($k && $v) {
+						$stats['iid'] = $ids;
+						$stats['invId'] = $dish_info[$k]['id'];
+						$stats['buId'] = $members['id'];
+						$stats['billNo'] = $orderSn;
+						$stats['transType'] = '150601';
+						$stats['billDate'] = date('Y-m-d');
+						if($dish_info[$k]['costUnitId']>0){ //销售换算比例
+							$stats['qty'] = -($v/$dish_info[$k]['costUnitId']);///$dish_info[$k]['costUnitId']
+							$stats['amount'] = ($dish_info[$k]['salePrice']*$v/$dish_info[$k]['costUnitId']);
+							$stats['description'] = $v.$dish_info[$k]['costName'];
+						}else{
+							$stats['qty'] = -$v;
+							$stats['amount'] = ($dish_info[$k]['salePrice']*$v);
+							// $stat['description'] = $v.$dish_info[$k]['unitName'].' 门店交班';
+						}
+						$stats['price'] = $dish_info[$k]['salePrice'];
+						$stats['locationId'] = $locationId['id'];
+						$stats['uid'] = $members['id'];
+						$stats['srcOrderEntryId'] = 1;
+						$stats['skuId'] = -1;
+						$stats['transTypeName'] = '门店交班';
+						$stats['billType'] = 'SALE';
+						// $stat['addtime'] = TIMESTAMP;
+						pdo_inserts('ci_invoice_info', $stats);
+					}
+				}
+		    }
+			// var_dump($goods);
+			// exit();
+		
+			pdo_delete("weisrc_dish_cart",array("storeid"=>$storeid));
+			if(!$insert)message("交班成功！");
+
+		}
+		if($_GPC['groupid']){
+			$u_list=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_user')." WHERE pcate=:a",array(":a"=>$_GPC['groupid']));
+			if($u_list)$where2.=" and userid in(SELECT id FROM ".tablename('j_money_user')." WHERE pcate='".$_GPC['groupid']."')";
+		}
+		$pindex=intval($_GPC['page']) ? intval($_GPC['page']) :1;
+		$psize = 20;
+		$start = ($pindex-1) * $psize;
+		$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE storeid = ".$storeid." AND weid='{$_W['uniacid']}'  $where $where2 order by id desc LIMIT ".$start.",".$psize);
+		$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='".$_W['uniacid']."'  $where $where2");
+		$pager=pagination($total, $pindex, $psize);
+		
+		$allItem=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE storeid = ".$storeid." AND weid='{$_W['uniacid']}'  $where $where2 ");
+		// var_dump($allItem);
+		foreach($list as $key=> $row){
+            $tableinfo = pdo_fetchall("SELECT a.title,b.title as zone FROM ".tablename('weisrc_dish_tables')." a left join ".tablename('weisrc_dish_tablezones')." b on a.tablezonesid = b.id AND a.storeid = b.storeid WHERE a.storeid = ".$storeid." AND a.id=".$row['tablesid']);
+            $list[$key]['tablename']=$tableinfo[0]['zone'].$tableinfo[0]['title'];
+            //2017-1-12 添加
+			if(!empty($row['weixin'])){
+				$list[$key]['countmoney'] = $row['cash_fee']+$row['weixin'];
+				$list[$key]['addcount'] = 1;
+			}elseif(!empty($row['alipay'])){
+				$list[$key]['countmoney'] = $row['cash_fee']+$row['alipay'];
+				$list[$key]['addcount'] = 2;
+			}elseif(!empty($row['cash'])){
+				$list[$key]['countmoney'] = $row['cash_fee']+$row['cash'];
+				$list[$key]['addcount'] = 3;
+			}elseif(!empty($row['quick'])){
+				$list[$key]['countmoney'] = $row['cash_fee']+$row['quick'];
+				$list[$key]['addcount'] = 4;
+			}elseif(!empty($row['paycard'])){
+				$list[$key]['countmoney'] = $row['cash_fee']+$row['paycard'];
+				$list[$key]['addcount'] = 5;
+			}else{
+				$list[$key]['countmoney'] =$row['cash_fee'];
+			}
+        }
+
+		foreach($allItem as $row){
+			if($row['status']==1){
+				//2017-1-11 添加合并付款
+				if(!empty($row['weixin'])){
+					$payAry['wechart']['wx']=$payAry['wx']+$row['weixin'];
+				}elseif(!empty($row['alipay'])){
+					$payAry['wechart']['ap']=$payAry['ap']+$row['alipay'];
+				}elseif(!empty($row['cash'])){
+					$payAry['wechart']['cs']=$payAry['cs']+$row['cash'];
+				}elseif(!empty($row['quick'])){
+					$payAry['wechart']['qc']=$payAry['qc']+$row['quick'];
+				}elseif(!empty($row['paycard'])){
+					$payAry['wechart']['pc']=$payAry['pc']+$row['paycard'];
+				}
+				//end
+				
+				if($row['total_fee']){//总金额 2017-1-12修改总额
+					if($row['paytype']==0){
+						$payAry['wechart']['all']=$payAry['wechart']['all']+$row['total_fee']-$row['alipay']-$row['cash']-$row['quick']-$row['paycard'];
+						$payAry['wechart']['all-count']=$payAry['wechart']['all-count']+1;
+					}elseif($row['paytype']==1){
+						$payAry['alipay']['all']=$payAry['alipay']['all']+$row['total_fee']-$row['weixin']-$row['cash']-$row['quick']-$row['paycard'];
+						$payAry['alipay']['all-count']=$payAry['alipay']['all-count']+1;
+					}elseif($row['paytype']==2){
+						$payAry['meituan']['all']=$payAry['meituan']['all']+$row['total_fee']-$row['weixin']-$row['cash']-$row['alipay']-$row['paycard'];
+						$payAry['meituan']['all-count']=$payAry['meituan']['all-count']+1;
+					}elseif($row['paytype']==3){
+						$payAry['xianjin']['all']=$payAry['xianjin']['all']+$row['total_fee']-$row['weixin']-$row['quick']-$row['alipay']-$row['paycard'];
+						$payAry['xianjin']['all-count']=$payAry['xianjin']['all-count']+1;
+					}elseif($row['paytype']==4){
+						$payAry['shuaka']['all']=$payAry['shuaka']['all']+$row['total_fee']-$row['weixin']-$row['quick']-$row['alipay']-$row['cash'];
+						$payAry['shuaka']['all-count']=$payAry['shuaka']['all-count']+1;
+					}elseif($row['paytype']==5){
+						$payAry['shanhui']['all']=$payAry['shanhui']['all']+$row['total_fee']-$row['weixin']-$row['quick']-$row['alipay']-$row['cash']-$row['paycard'];
+						$payAry['shanhui']['all-count']=$payAry['shanhui']['all-count']+1;
+					}
+				}
+				if($row['coupon_fee']){//优惠
+					if($row['paytype']==0){
+						$payAry['wechart']['coupon']=$payAry['wechart']['coupon']+$row['coupon_fee'];
+						$payAry['wechart']['coupon-count']=$payAry['wechart']['coupon-count']+1;
+					}elseif($row['paytype']==1){
+						$payAry['alipay']['coupon']=$payAry['alipay']['coupon']+$row['coupon_fee'];
+						$payAry['alipay']['coupon-count']=$payAry['alipay']['coupon-count']+1;
+					}elseif($row['paytype']==2){
+						$payAry['meituan']['coupon']=$payAry['meituan']['coupon']+$row['coupon_fee'];
+						$payAry['meituan']['coupon-count']=$payAry['meituan']['coupon-count']+1;
+					}elseif($row['paytype']==3){
+						$payAry['xianjin']['coupon']=$payAry['xianjin']['coupon']+$row['coupon_fee'];
+						$payAry['xianjin']['coupon-count']=$payAry['xianjin']['coupon-count']+1;
+					}elseif($row['paytype']==4){
+						$payAry['shuaka']['coupon']=$payAry['shuaka']['coupon']+$row['coupon_fee'];
+						$payAry['shuaka']['coupon-count']=$payAry['shuaka']['coupon-count']+1;
+					}elseif($row['paytype']==5){
+						$payAry['shanhui']['coupon']=$payAry['shanhui']['coupon']+$row['coupon_fee'];
+						$payAry['shanhui']['coupon-count']=$payAry['shanhui']['coupon-count']+1;
+					}
+				}
+				if($row['cash_fee']){//实收
+					if($row['paytype']==0){
+						$payAry['wechart']['cash_fee']=$payAry['wechart']['cash_fee']+$row['cash_fee'];
+						$payAry['wechart']['cash_fee-count']=$payAry['wechart']['cash_fee-count']+1;
+					}elseif($row['paytype']==1){
+						$payAry['alipay']['cash_fee']=$payAry['alipay']['cash_fee']+$row['cash_fee'];
+						$payAry['alipay']['cash_fee-count']=$payAry['alipay']['cash_fee-count']+1;
+					}elseif($row['paytype']==2){
+						$payAry['meituan']['cash_fee']=$payAry['meituan']['cash_fee']+$row['cash_fee'];
+						$payAry['meituan']['cash_fee-count']=$payAry['meituan']['cash_fee-count']+1;
+					}elseif($row['paytype']==3){
+						$payAry['xianjin']['cash_fee']=$payAry['xianjin']['cash_fee']+$row['cash_fee'];
+						$payAry['xianjin']['cash_fee-count']=$payAry['xianjin']['cash_fee-count']+1;
+					}elseif($row['paytype']==4){
+						$payAry['shuaka']['cash_fee']=$payAry['shuaka']['cash_fee']+$row['cash_fee'];
+						$payAry['shuaka']['cash_fee-count']=$payAry['shuaka']['cash_fee-count']+1;
+					}elseif($row['paytype']==5){
+						$payAry['shanhui']['cash_fee']=$payAry['shanhui']['cash_fee']+$row['cash_fee'];
+						$payAry['shanhui']['cash_fee-count']=$payAry['shanhui']['cash_fee-count']+1;
+					}
+				}
+						$payAry['meituan']['cash_fee']=$payAry['meituan']['cash_fee']+$row['daijinquan']*100;
+						$payAry['meituan']['all']=$payAry['meituan']['all']+$row['daijinquan']*100;
+			}
+		}
+		
+		$datelist=pdo_fetchall("SELECT createdate FROM ".tablename('j_money_trade')." WHERE storeid = ".$storeid." AND weid='{$_W['uniacid']}'  group by createdate order by id desc  ");
+		$user=pdo_fetchall("SELECT id,useracount,realname,pcate FROM ".tablename('j_money_user')." WHERE storeid = ".$storeid." AND weid = '{$_W['uniacid']}' order by id desc ");
+		$userList=array();
+		foreach($user as $row){
+			$userList[$row['id']]=$row['realname'];
+		}
+		$data=array("CFT"=>"零钱包","ICBC_DEBIT"=>"工商银行(借记卡)","ICBC_CREDIT"=>"工商银行(信用卡)","ABC_DEBIT"=>"农业银行(借记卡)","ABC_CREDIT"=>"农业银行(信用卡)","PSBC_DEBIT"=>"邮政储蓄银行(借记卡)","PSBC_CREDIT"=>"邮政储蓄银行(信用卡)","CCB_DEBIT"=>"建设银行(借记卡)","CCB_CREDIT"=>"建设银行(信用卡)","CMB_DEBIT"=>"招商银行(借记卡)","CMB_CREDIT"=>"招商银行(信用卡)","BOC_DEBIT"=>"中国银行(借记卡)","BOC_CREDIT"=>"中国银行(信用卡)","COMM_DEBIT"=>"交通银行(借记卡)","SPDB_DEBIT"=>"浦发银行(借记卡)","SPDB_CREDIT"=>"浦发银行(信用卡)","GDB_DEBIT"=>"广发银行(借记卡)","GDB_CREDIT"=>"广发银行(信用卡)","CMBC_DEBIT"=>"民生银行(借记卡)","CMBC_CREDIT"=>"民生银行(信用卡)","PAB_DEBIT"=>"平安银行(借记卡)","PAB_CREDIT"=>"平安银行(信用卡)","CEB_DEBIT"=>"光大银行(借记卡)","CEB_CREDIT"=>"光大银行(信用卡)","CIB_DEBIT"=>"兴业银行(借记卡)","CIB_CREDIT"=>"兴业银行(信用卡)","CITIC_DEBIT"=>"中信银行(借记卡)","CITIC_CREDIT"=>"中信银行(信用卡)","BOSH_DEBIT"=>"上海银行(借记卡)","BOSH_CREDIT"=>"上海银行(信用卡)","CRB_DEBIT"=>"华润银行(借记卡)","HZB_DEBIT"=>"杭州银行(借记卡)","HZB_CREDIT"=>"杭州银行(信用卡)","BSB_DEBIT"=>"包商银行(借记卡)","BSB_CREDIT"=>"包商银行(信用卡)","CQB_DEBIT"=>"重庆银行(借记卡)","SDEB_DEBIT"=>"顺德农商行(借记卡)","SZRCB_DEBIT"=>"深圳农商银行(借记卡)","HRBB_DEBIT"=>"哈尔滨银行(借记卡)","BOCD_DEBIT"=>"成都银行(借记卡)","GDNYB_DEBIT"=>"南粤银行(借记卡)","GDNYB_CREDIT"=>"南粤银行(信用卡)","GZCB_DEBIT"=>"广州银行(借记卡)","GZCB_CREDIT"=>"广州银行(信用卡)","JSB_DEBIT"=>"江苏银行(借记卡)","JSB_CREDIT"=>"江苏银行(信用卡)","NBCB_DEBIT"=>"宁波银行(借记卡)","NBCB_CREDIT"=>"宁波银行(信用卡)","NJCB_DEBIT"=>"南京银行(借记卡)","JZB_DEBIT"=>"晋中银行(借记卡)","KRCB_DEBIT"=>"昆山农商(借记卡)","LJB_DEBIT"=>"龙江银行(借记卡)","LNNX_DEBIT"=>"辽宁农信(借记卡)","LZB_DEBIT"=>"兰州银行(借记卡)","WRCB_DEBIT"=>"无锡农商(借记卡)","ZYB_DEBIT"=>"中原银行(借记卡)","ZJRCUB_DEBIT"=>"浙江农信(借记卡)","WZB_DEBIT"=>"温州银行(借记卡)","XAB_DEBIT"=>"西安银行(借记卡)","JXNXB_DEBIT"=>"江西农信(借记卡)","NCB_DEBIT"=>"宁波通商银行(借记卡)","NYCCB_DEBIT"=>"南阳村镇银行(借记卡)","NMGNX_DEBIT"=>"内蒙古农信(借记卡)","SXXH_DEBIT"=>"陕西信合(借记卡)","SRCB_CREDIT"=>"上海农商银行(信用卡)","SJB_DEBIT"=>"盛京银行(借记卡)","SDRCU_DEBIT"=>"山东农信(借记卡)","SRCB_DEBIT"=>"上海农商银行(借记卡)","SCNX_DEBIT"=>"四川农信(借记卡)","QLB_DEBIT"=>"齐鲁银行(借记卡)","QDCCB_DEBIT"=>"青岛银行(借记卡)","PZHCCB_DEBIT"=>"攀枝花银行(借记卡)","ZJTLCB_DEBIT"=>"浙江泰隆银行(借记卡)","TJBHB_DEBIT"=>"天津滨海农商行(借记卡)","WEB_DEBIT"=>"微众银行(借记卡)","YNRCCB_DEBIT"=>"云南农信(借记卡)","WFB_DEBIT"=>"潍坊银行(借记卡)","WHRC_DEBIT"=>"武汉农商行(借记卡)","ORDOSB_DEBIT"=>"鄂尔多斯银行(借记卡)","XJRCCB_DEBIT"=>"新疆农信银行(借记卡)","ORDOSB_CREDIT"=>"鄂尔多斯银行(信用卡)","CSRCB_DEBIT"=>"常熟农商银行(借记卡)","JSNX_DEBIT"=>"江苏农商行(借记卡)","GRCB_CREDIT"=>"广州农商银行(信用卡)","GLB_DEBIT"=>"桂林银行(借记卡)","GDRCU_DEBIT"=>"广东农信银行(借记卡)","GDHX_DEBIT"=>"广东华兴银行(借记卡)","FJNX_DEBIT"=>"福建农信银行(借记卡)","DYCCB_DEBIT"=>"德阳银行(借记卡)","DRCB_DEBIT"=>"东莞农商行(借记卡)","CZCB_DEBIT"=>"稠州银行(借记卡)","CZB_DEBIT"=>"浙商银行(借记卡)","CZB_CREDIT"=>"浙商银行(信用卡)","GRCB_DEBIT"=>"广州农商银行(借记卡)","CSCB_DEBIT"=>"长沙银行(借记卡)","CQRCB_DEBIT"=>"重庆农商银行(借记卡)","CBHB_DEBIT"=>"渤海银行(借记卡)","BOIMCB_DEBIT"=>"内蒙古银行(借记卡)","BOD_DEBIT"=>"东莞银行(借记卡)","BOD_CREDIT"=>"东莞银行(信用卡)","BOB_DEBIT"=>"北京银行(借记卡)","BNC_DEBIT"=>"江西银行(借记卡)","BJRCB_DEBIT"=>"北京农商行(借记卡)","AE_CREDIT"=>"AE(信用卡)","GYCB_CREDIT"=>"贵阳银行(信用卡)","JSHB_DEBIT"=>"晋商银行(借记卡)","JRCB_DEBIT"=>"江阴农商行(借记卡)","JNRCB_DEBIT"=>"江南农商(借记卡)","JLNX_DEBIT"=>"吉林农信(借记卡)","JLB_DEBIT"=>"吉林银行(借记卡)","JJCCB_DEBIT"=>"九江银行(借记卡)","HXB_DEBIT"=>"华夏银行(借记卡)","HXB_CREDIT"=>"华夏银行(信用卡)","HUNNX_DEBIT"=>"湖南农信(借记卡)","HSB_DEBIT"=>"徽商银行(借记卡)","HSBC_DEBIT"=>"恒生银行(借记卡)","HRXJB_DEBIT"=>"华融湘江银行(借记卡)","HNNX_DEBIT"=>"河南农信(借记卡)","HKBEA_DEBIT"=>"东亚银行(借记卡)","HEBNX_DEBIT"=>"河北农信(借记卡)","HBNX_DEBIT"=>"湖北农信(借记卡)","HBNX_CREDIT"=>"湖北农信(信用卡)","GYCB_DEBIT"=>"贵阳银行(借记卡)","GSNX_DEBIT"=>"甘肃农信(借记卡)","JCB_CREDIT"=>"JCB(信用卡)","MASTERCARD_CREDIT"=>"MASTERCARD(信用卡)","VISA_CREDIT"=>"VISA(信用卡)");
+		include $this->template('history');
+	}
+	// 加菜
+	public function doMobileAddmenu() {
+		global $_GPC, $_W;
+$_W['page']['title'] = '后台下单-' . $_W['we7_wmall']['config']['title'];
+
+// $store = store_check();
+		$sid = $_GPC['storeid'];
+		$orderid = $_GPC['orderid'];
+		$tablesid = $_GPC['tablesid'];
+		$date=time();
+$op = trim($_GPC['op']) ? trim($_GPC['op']) : 'index';
+
+if($op == 'index') {
+	// $store = store_fetch($sid, array('delivery_price', 'delivery_free_price', 'pack_price'));
+	// $categorys = store_fetchall_goods_category($sid);
+	$categorys = pdo_fetchall('SELECT id,weid as uniacid,storeid as sid,name as title,enabled as status,displayorder  FROM ' . tablename('weisrc_dish_category') . ' WHERE storeid = :sid AND enabled = 1 and name not in ("特殊类","活杀黑鱼") ORDER BY displayorder, id ASC', array(':sid' => $sid),'id');
+// var_dump($categorys);
+	$goods = pdo_fetchall('SELECT *,marketprice as price,pcate as cid,storeid as sid   FROM ' . tablename('weisrc_dish_goods') . ' WHERE storeid = :sid AND status = 1 ORDER BY displayorder DESC, id ASC', array(':sid' => $sid));
+	foreach($goods as &$good) {
+			$good['pcate'] = pdo_fetch("select name from ims_weisrc_dish_category where id =".$good['cid']);
+	}
+// var_dump($goods);
+}
+
+if($op == 'post') {
+	if(!$_W['isajax']) {
+		message(error(-1, '非法访问'), '', 'ajax');
+	}
+	$post = $_GPC['__input'];
+	$orderid = $_GPC['orderid'];
+	$tablesid = $_GPC['tablesid'];
+	$date=time();
+//以下-----
+	
+	$goods = array();
+	$total =0;
+	$totalMoney=0;
+	foreach($post['cart'] as $good) {
+		$goodsid = $good['id'];
+		$num = $good['num'];
+		$price = $good['price'];
+		$total_price = $good['total_price'];
+
+		$totalMoney += $total_price;
+
+		$select=pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE status in(0,1) and ispay=0 AND storeid=".$sid." AND tables=".$tablesid." AND id=".$orderid."  order by id desc");
+		if($select['id']){
+			$allprice=$total_price+$select['totalprice'];//总价
+			$totalnum=$select['totalnum']+$num;//总数
+            //加菜
+			$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_order_goods(weid,storeid,orderid,goodsid,price,total,dateline,tablesid,status) VALUES({$_W['uniacid']},{$sid},{$select['id']},{$goodsid},{$price},{$num},{$date},{$tablesid},1)");
+            //更新总价格和数量
+			$update=pdo_fetch("UPDATE ims_weisrc_dish_order SET totalnum=".$totalnum.", totalprice=".$allprice." WHERE storeid=".$sid." AND id =".$select['id']);
+	 
+		}else{
+            //没有订单，则加入购物车
+			$insert=pdo_fetch("INSERT INTO ims_weisrc_dish_cart(weid,storeid,goodsid,price,total,tablesid) VALUES({$_W['uniacid']},{$sid},{$goodsid},{$price},{$num},{$tablesid})");
+		}	
+	}	
+   message(error(0, $post['cart']), '', 'ajax');//提示成功
+}
+$GLOBALS['frames'] = array();
+		// $storeid = $_GPC['storeid'];
+		// $orderid = $_GPC['orderid'];
+		// $tablesid = $_GPC['tablesid'];
+		// $date=time();
+		// $num = $_GPC['numb'];
+		// foreach ($num as $k => $v) {
+			// // var_dump($orderid);
+			// if($v > 0){
+				// $goods = pdo_fetch('SELECT marketprice FROM ims_weisrc_dish_goods WHERE id='.$k.' AND storeid='.$storeid);
+					// $price=$v*$goods['marketprice'];
+
+					// $select=pdo_fetch("SELECT * FROM ims_weisrc_dish_order WHERE status in(0,1) and ispay=0 AND storeid=".$storeid." AND tables=".$tablesid." AND id=".$orderid."  order by id desc");
+					// if($select['id']){
+						// $allprice=$price+$select['totalprice'];
+						// $totalnum=$select['totalnum']+$v;
+                        // //加菜
+						// $insert=pdo_fetch("INSERT INTO ims_weisrc_dish_order_goods(weid,storeid,orderid,goodsid,price,total,dateline,tablesid,status) VALUES({$_W['uniacid']},{$storeid},{$select['id']},{$k},{$goods['marketprice']},{$v},{$date},{$tablesid},1)");
+                        // //更新总价格和数量
+						// $update=pdo_fetch("UPDATE ims_weisrc_dish_order SET totalnum=".$totalnum.", totalprice=".$allprice." WHERE storeid=".$storeid." AND id =".$select['id']);
+						// $in = 1;
+				 
+					// }else{
+                        // //没有订单，则加入购物车
+						// $insert=pdo_fetch("INSERT INTO ims_weisrc_dish_cart(weid,storeid,goodsid,price,total,tablesid) VALUES({$_W['uniacid']},{$storeid},{$k},{$goods['marketprice']},{$v},{$tablesid})");
+						// $in = 1;
+					// }
+			// }
+		// }
+		
+		// //桌号信息
+		// $tablefor = pdo_fetch('SELECT t.title as id,z.title as zone from '.tablename('weisrc_dish_tables').' t left join '.tablename('weisrc_dish_tablezones').' z on t.tablezonesid = z.id WHERE t.storeid='.$storeid.' AND t.id='.$tablesid);
+		// // $count = pdo_fetchall("SELECT COUNT(id) as count FROM ims_weisrc_dish_goods WHERE storeid = ".$storeid." group by pcate order by count DESC");
+		// // var_dump($count);
+
+		// $cat  = pdo_fetchall("SELECT c.* FROM ims_weisrc_dish_category as c join (SELECT pcate,COUNT(id) as count FROM ims_weisrc_dish_goods WHERE storeid = ".$storeid." group by pcate) as a on a.pcate=c.id where c.storeid = ".$storeid." and c.name !='活杀黑鱼' and c.name !='特殊类' order by a.count DESC");
+		// foreach ($cat as $key => $value) {
+			// $cat[$key]['goods'] = pdo_fetchall("SELECT a.* from ".tablename('weisrc_dish_goods')."  a WHERE a.pcate=".$value['id']." and a.storeid=".$storeid." order by a.pcate");
+		// }
+		// // var_dump($cat);
+		// // $all_goods=pdo_fetchall("SELECT a.*,b.name as fenlei from ".tablename('weisrc_dish_goods')."  a left join ".tablename('weisrc_dish_category')."  b on a.pcate = b.id WHERE a.storeid=".$storeid." and b.name !='活杀黑鱼' and b.name !='特殊类' order by a.pcate");
+		// //菜的做法列表
+        // $taste=pdo_fetchall("SELECT * FROM ims_weisrc_dish_goods_taste order by id");
+
+		include $this->template('addmenu');
+	}
+	//end
+	/*
+	*手机端
+	*/
+	public function doMobileMobile() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$cfg = $this->module['config'];
+		$price = $_GPC['price'];
+		$tablesid = $_GPC['tableid'];
+		if(empty($tablesid)){
+			$tablesid = 0;
+		}else{
+			$tablesid = $_GPC['tableid'];
+		}
+		if($operation=="paysuccess"){
+			$tradeid=$_GPC['tradeid'];
+			if(!$tradeid)message("无数据请求",$this->createMobileUrl('mobile'));
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$tradeid));
+			
+			$update=pdo_fetch("UPDATE ims_weisrc_dish_order a INNER JOIN ims_weisrc_dish_tables b on a.tables=b.id SET a.status=2,a.ispay=1,a.paytype=2,b.status=0 where a.status>=0 and b.id=".$trade['tablesid']);
+//----
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and status=1 and isprint=0 order by id desc limit 0,10",array(":a"=>$userid,":b"=>$date));
+			$i=0;
+			$templist=array();
+			foreach($list as $row){
+				if($i<10){
+					$templist[$i]=$row;
+					$templist[$i]['paytype']=$row['paytype'] ? "支付宝":"微信";
+					$templist[$i]['createtime']=date("H:i",$row['createtime']);
+					$templist[$i]['total_fee']=sprintf('%.2f',($row['total_fee']/100));
+					$templist[$i]['coupon_fee']=sprintf('%.2f',($row['coupon_fee']/100));
+					$templist[$i]['cash_fee']=sprintf('%.2f',($row['cash_fee']/100));
+				}
+				$i++;
+			}
+			$num=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and status=1 and isprint=0 ",array(":a"=>$userid,":b"=>$date));
+
+			include $this->template('mobilepayseccess');
+			exit();
+		}elseif($operation=="history"){
+			$userOpenid=$_W['openid'] ? $_W['openid'] : message("非法登陆");
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and openid=:openid ",array(":openid"=>$userOpenid));
+			//$user['id']=1;
+			$date=$_GPC['date']? $_GPC['date'] : date("Y-m-d");
+			//$date='2016-03-28';
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and attach<>'-' and attach<>'PC' order by id desc limit 0,5",array(":a"=>$user['id'],":b"=>$date));
+			
+			$num=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and userid=:a and createdate=:b and attach<>'-' and attach<>'PC' ",array(":a"=>$user['id'],":b"=>$date));
+			
+			include $this->template('mobilehistory');
+			exit();
+		}elseif($operation=="nopay"){
+			$userOpenid=$_W['openid'] ? $_W['openid'] : message("非法登陆");
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and openid=:openid ",array(":openid"=>$userOpenid));
+			//$user['id']=1;
+			$start=strtotime("today");
+			$end=strtotime(date('Y-m-d H:i:s'));
+
+			$list=pdo_fetchall("SELECT t.title,t.id,sum(o.totalprice) as price from ims_weisrc_dish_tables as t join ims_weisrc_dish_order as o on t.id=o.tables where o.ispay=0  and o.status>= 0 and o.status<2 and o.dateline>=$start and o.dateline<$end group by t.id");
+			
+			include $this->template('mobilenopay');
+			exit();
+		}else{
+			$userOpenid=$_W['openid'] ? $_W['openid'] : message("非法登陆");
+			$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and openid=:openid ",array(":openid"=>$userOpenid));
+			if(!$user['login_m'])message("您的账号禁止在移动端登录！");
+			$group=pdo_fetchcolumn("SELECT companyname FROM ".tablename('j_money_group')." WHERE id=:a",array(":a"=>$user['pcate']));
+			$marketing=pdo_fetchall("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and status=1 and starttime<=:a and endtime>=:b order by displayorder asc ,id desc",array(":a"=>TIMESTAMP,":b"=>TIMESTAMP));
+		}
+		include $this->template('mobile');
+	}
+	
+	//打印文档
+	public function doMobilePrinter() {
+		global $_GPC, $_W;
+		$islogin=$_GPC['islogin'];
+		// if(!$islogin)die("请先登录");
+		$id=$_GPC['id'];
+		$pcate=intval($_GPC['cid']);
+		$tradeid=$_GPC['tradeid'];
+		$print=pdo_fetch("SELECT * FROM ".tablename('j_money_print')." WHERE weid='{$_W['uniacid']}' and id=:a ",array(":a"=>$id));
+		$user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:id and status=1",array(":id"=>$islogin));
+		include('../addons/j_money/phpqrcode.php');
+		
+		if(!$pcate){
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' and out_trade_no=:a ",array(":a"=>$tradeid));
+			if(!$print)die('1');
+			if(!$user)die('2');
+			if(!$trade)die('3');
+			$data=array("CFT"=>"零钱包","ICBC_DEBIT"=>"工商银行(借记卡)","ICBC_CREDIT"=>"工商银行(信用卡)","ABC_DEBIT"=>"农业银行(借记卡)","ABC_CREDIT"=>"农业银行(信用卡)","PSBC_DEBIT"=>"邮政储蓄银行(借记卡)","PSBC_CREDIT"=>"邮政储蓄银行(信用卡)","CCB_DEBIT"=>"建设银行(借记卡)","CCB_CREDIT"=>"建设银行(信用卡)","CMB_DEBIT"=>"招商银行(借记卡)","CMB_CREDIT"=>"招商银行(信用卡)","BOC_DEBIT"=>"中国银行(借记卡)","BOC_CREDIT"=>"中国银行(信用卡)","COMM_DEBIT"=>"交通银行(借记卡)","SPDB_DEBIT"=>"浦发银行(借记卡)","SPDB_CREDIT"=>"浦发银行(信用卡)","GDB_DEBIT"=>"广发银行(借记卡)","GDB_CREDIT"=>"广发银行(信用卡)","CMBC_DEBIT"=>"民生银行(借记卡)","CMBC_CREDIT"=>"民生银行(信用卡)","PAB_DEBIT"=>"平安银行(借记卡)","PAB_CREDIT"=>"平安银行(信用卡)","CEB_DEBIT"=>"光大银行(借记卡)","CEB_CREDIT"=>"光大银行(信用卡)","CIB_DEBIT"=>"兴业银行(借记卡)","CIB_CREDIT"=>"兴业银行(信用卡)","CITIC_DEBIT"=>"中信银行(借记卡)","CITIC_CREDIT"=>"中信银行(信用卡)","BOSH_DEBIT"=>"上海银行(借记卡)","BOSH_CREDIT"=>"上海银行(信用卡)","CRB_DEBIT"=>"华润银行(借记卡)","HZB_DEBIT"=>"杭州银行(借记卡)","HZB_CREDIT"=>"杭州银行(信用卡)","BSB_DEBIT"=>"包商银行(借记卡)","BSB_CREDIT"=>"包商银行(信用卡)","CQB_DEBIT"=>"重庆银行(借记卡)","SDEB_DEBIT"=>"顺德农商行(借记卡)","SZRCB_DEBIT"=>"深圳农商银行(借记卡)","HRBB_DEBIT"=>"哈尔滨银行(借记卡)","BOCD_DEBIT"=>"成都银行(借记卡)","GDNYB_DEBIT"=>"南粤银行(借记卡)","GDNYB_CREDIT"=>"南粤银行(信用卡)","GZCB_DEBIT"=>"广州银行(借记卡)","GZCB_CREDIT"=>"广州银行(信用卡)","JSB_DEBIT"=>"江苏银行(借记卡)","JSB_CREDIT"=>"江苏银行(信用卡)","NBCB_DEBIT"=>"宁波银行(借记卡)","NBCB_CREDIT"=>"宁波银行(信用卡)","NJCB_DEBIT"=>"南京银行(借记卡)","JZB_DEBIT"=>"晋中银行(借记卡)","KRCB_DEBIT"=>"昆山农商(借记卡)","LJB_DEBIT"=>"龙江银行(借记卡)","LNNX_DEBIT"=>"辽宁农信(借记卡)","LZB_DEBIT"=>"兰州银行(借记卡)","WRCB_DEBIT"=>"无锡农商(借记卡)","ZYB_DEBIT"=>"中原银行(借记卡)","ZJRCUB_DEBIT"=>"浙江农信(借记卡)","WZB_DEBIT"=>"温州银行(借记卡)","XAB_DEBIT"=>"西安银行(借记卡)","JXNXB_DEBIT"=>"江西农信(借记卡)","NCB_DEBIT"=>"宁波通商银行(借记卡)","NYCCB_DEBIT"=>"南阳村镇银行(借记卡)","NMGNX_DEBIT"=>"内蒙古农信(借记卡)","SXXH_DEBIT"=>"陕西信合(借记卡)","SRCB_CREDIT"=>"上海农商银行(信用卡)","SJB_DEBIT"=>"盛京银行(借记卡)","SDRCU_DEBIT"=>"山东农信(借记卡)","SRCB_DEBIT"=>"上海农商银行(借记卡)","SCNX_DEBIT"=>"四川农信(借记卡)","QLB_DEBIT"=>"齐鲁银行(借记卡)","QDCCB_DEBIT"=>"青岛银行(借记卡)","PZHCCB_DEBIT"=>"攀枝花银行(借记卡)","ZJTLCB_DEBIT"=>"浙江泰隆银行(借记卡)","TJBHB_DEBIT"=>"天津滨海农商行(借记卡)","WEB_DEBIT"=>"微众银行(借记卡)","YNRCCB_DEBIT"=>"云南农信(借记卡)","WFB_DEBIT"=>"潍坊银行(借记卡)","WHRC_DEBIT"=>"武汉农商行(借记卡)","ORDOSB_DEBIT"=>"鄂尔多斯银行(借记卡)","XJRCCB_DEBIT"=>"新疆农信银行(借记卡)","ORDOSB_CREDIT"=>"鄂尔多斯银行(信用卡)","CSRCB_DEBIT"=>"常熟农商银行(借记卡)","JSNX_DEBIT"=>"江苏农商行(借记卡)","GRCB_CREDIT"=>"广州农商银行(信用卡)","GLB_DEBIT"=>"桂林银行(借记卡)","GDRCU_DEBIT"=>"广东农信银行(借记卡)","GDHX_DEBIT"=>"广东华兴银行(借记卡)","FJNX_DEBIT"=>"福建农信银行(借记卡)","DYCCB_DEBIT"=>"德阳银行(借记卡)","DRCB_DEBIT"=>"东莞农商行(借记卡)","CZCB_DEBIT"=>"稠州银行(借记卡)","CZB_DEBIT"=>"浙商银行(借记卡)","CZB_CREDIT"=>"浙商银行(信用卡)","GRCB_DEBIT"=>"广州农商银行(借记卡)","CSCB_DEBIT"=>"长沙银行(借记卡)","CQRCB_DEBIT"=>"重庆农商银行(借记卡)","CBHB_DEBIT"=>"渤海银行(借记卡)","BOIMCB_DEBIT"=>"内蒙古银行(借记卡)","BOD_DEBIT"=>"东莞银行(借记卡)","BOD_CREDIT"=>"东莞银行(信用卡)","BOB_DEBIT"=>"北京银行(借记卡)","BNC_DEBIT"=>"江西银行(借记卡)","BJRCB_DEBIT"=>"北京农商行(借记卡)","AE_CREDIT"=>"AE(信用卡)","GYCB_CREDIT"=>"贵阳银行(信用卡)","JSHB_DEBIT"=>"晋商银行(借记卡)","JRCB_DEBIT"=>"江阴农商行(借记卡)","JNRCB_DEBIT"=>"江南农商(借记卡)","JLNX_DEBIT"=>"吉林农信(借记卡)","JLB_DEBIT"=>"吉林银行(借记卡)","JJCCB_DEBIT"=>"九江银行(借记卡)","HXB_DEBIT"=>"华夏银行(借记卡)","HXB_CREDIT"=>"华夏银行(信用卡)","HUNNX_DEBIT"=>"湖南农信(借记卡)","HSB_DEBIT"=>"徽商银行(借记卡)","HSBC_DEBIT"=>"恒生银行(借记卡)","HRXJB_DEBIT"=>"华融湘江银行(借记卡)","HNNX_DEBIT"=>"河南农信(借记卡)","HKBEA_DEBIT"=>"东亚银行(借记卡)","HEBNX_DEBIT"=>"河北农信(借记卡)","HBNX_DEBIT"=>"湖北农信(借记卡)","HBNX_CREDIT"=>"湖北农信(信用卡)","GYCB_DEBIT"=>"贵阳银行(借记卡)","GSNX_DEBIT"=>"甘肃农信(借记卡)","JCB_CREDIT"=>"JCB(信用卡)","MASTERCARD_CREDIT"=>"MASTERCARD(信用卡)","VISA_CREDIT"=>"VISA(信用卡)");
+			$content=$print['content'];
+			$printDoc=str_replace("|#收银员姓名#|",$user['realname'],$content);
+			$printDoc=str_replace("|#收银时间#|",$trade['time_end'] ? date("Y-m-d H:i:s",$trade['time_end']) : 0,$printDoc);
+			$printDoc=str_replace("|#总金额#|",sprintf('%.2f',($trade['total_fee']/100)),$printDoc);
+			$printDoc=str_replace("|#优惠金额#|",sprintf('%.2f',($trade['coupon_fee']/100)),$printDoc);
+			$printDoc=str_replace("|#实收金额#|",sprintf('%.2f',($trade['cash_fee']/100)),$printDoc);
+			$printDoc=str_replace("|#付款银行#|",$trade['paytype'] ? "支付宝" : "微信".$data[$trade['bank_type']],$printDoc);
+			$printDoc=str_replace("|#付款终端#|",$trade['attach']=='-' ||$trade['attach']=='PC' ? "电脑端" : "移动端",$printDoc);
+			$printDoc=str_replace("|#单号#|",$trade['out_trade_no'],$printDoc);
+			$printDoc=str_replace("|#原单号#|",$trade['old_trade_no'],$printDoc);
+		}else{
+			$trade=pdo_fetch("SELECT * FROM ".tablename('j_money_carduser')." WHERE weid='{$_W['uniacid']}' and id=:a ",array(":a"=>$tradeid));
+			if(!$print)die('1');
+			if(!$user)die('2');
+			if(!$trade)die('3');
+			$cardtype=array("discount"=>"折扣券","cash"=>"代金券","gift"=>"礼品券","groupon"=>"团购券","general_coupon"=>"优惠券",);
+			
+			$content=$print['content'];
+			$printDoc=str_replace("|#收银员姓名#|",$user['realname'],$content);
+			$printDoc=str_replace("|#兑换时间#|",date("Y-m-d H:i:s",$trade['createtime']),$printDoc);
+			$printDoc=str_replace("|#卡券内容#|",$trade['description'],$printDoc);
+			$printDoc=str_replace("|#卡券标题#|",$trade['title'],$printDoc);
+			$printDoc=str_replace("|#卡券副标题#|",$trade['sub_title'],$printDoc);
+			$printDoc=str_replace("|#卡券类型#|",$cardtype[$trade['type']],$printDoc);
+			switch($coupon['type']){
+				case "gift":
+				case "groupon":
+				case "general_coupon":
+					$trade["typestr"]=$coupon['extra'];
+				break;
+				case "discount":
+					$trade["typestr"]="".sprintf('%.2f',($coupon['extra']/100))."折";
+				break;
+				case "cash":
+					$extra=iunserializer($coupon['extra']);
+					$trade["typestr"]="满".$extra['least_cost']."减".$extra['reduce_cost'];
+				break;
+			}
+			$printDoc=str_replace("|#卡券优惠#|",$trade["typestr"],$printDoc);
+		}
+		$cfg = $this->module['config'];
+		include $this->template('print');
+	}
+	
+	/*
+	*大转盘
+	*/
+	public function doMobileGame() {
+		global $_GPC, $_W;
+		$id = intval($_GPC['id']);
+		$orderid= intval($_GPC['orderid']);
+		$tablesid= intval($_GPC['tables']);
+		if(empty($id))message('活动已经删除！');
+		$item = pdo_fetch("SELECT * FROM ".tablename('j_money_lotterygame')." WHERE id =:id ",array(':id'=>$id));
+		if(empty($item))message('活动已经删除！');
+		$openid=$_W['openid'] ? $_W['openid'] : $_GPC['from_user_oauth'];
+		$cfg = $this->module['config'];
+		if(empty($openid)){
+			// $callback = urlencode($_W['siteroot'] .'app'.str_replace("./","/",$this->createMobileurl('oauth',array('id'=>$id))));
+			// $forward = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$cfg['appid']."&redirect_uri={$callback}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+			// header('location:'.$forward);
+		}
+		$isfollow=pdo_fetchcolumn("SELECT follow FROM ".tablename('mc_mapping_fans')." WHERE openid =:openid ",array(":openid"=>$openid));
+		// if(!$isfollow)message("请先关注我们的公众号哦",$item['gzurl'],"error");
+		$prizelist = pdo_fetchall("SELECT * FROM ".tablename('j_money_award')." WHERE gid =:id and isprize=1 order by id desc",array(':id'=>$id));
+		$prizeary=array();
+		foreach($prizelist as $row){
+			$prizeary[$row['id']]=$row['level'];
+		}
+		$isGetPrize=pdo_fetchall("SELECT * FROM ".tablename('j_money_lottery')." WHERE gid =:id and from_user=:f and isprize=1 order by id asc",array(':id'=>$id,':f'=>$openid));		
+		$flag=1;
+		$gamecount=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_lottery')." WHERE gid =:id ",array(':id'=>$id));
+		if(!$gamecount){
+			$flag=0;
+		}
+		include $this->template('game');
+	}
+	public function doMobileOauth(){
+		global $_W,$_GPC;
+ 		$code = $_GPC['code'];
+		load()->func('communication');
+		$id=intval($_GPC['id']);
+		$cfg = $this->module['config'];
+		if(!empty($code)) {
+			$url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$cfg['appid']."&secret=".$cfg['secret']."&code={$code}&grant_type=authorization_code";
+			$ret = ihttp_get($url);
+			if(!is_error($ret)) {
+				$auth = @json_decode($ret['content'], true);
+				if(is_array($auth) && !empty($auth['openid'])) {
+					$url='https://api.weixin.qq.com/sns/userinfo?access_token='.$auth['access_token'].'&openid='.$auth['openid'].'&lang=zh_CN';
+					$ret = ihttp_get($url);
+					$auth = @json_decode($ret['content'], true);
+					isetcookie('from_user_oauth', $auth['openid'],86400);
+					isetcookie('nickname',$auth['nickname'],86400);
+					isetcookie('headimgurl', $auth['headimgurl'],86400);
+					$forward = $_W['siteroot']."app/index.php?i=".$_W['uniacid']."&c=entry&do=game&m=j_money&id=".$id."&wxref=mp.weixin.qq.com#wechat_redirect";
+					header('location:'.$forward);
+					exit;
+				}else{
+					die('抱歉，微信授权失败');
+				}
+			}else{
+				die('微信授权失败');
+			}
+		}else{
+			$forward = $_W['siteroot']."app/index.php?i=".$_W['uniacid']."&c=entry&do=game&m=j_money&id=".$id."&wxref=mp.weixin.qq.com#wechat_redirect";
+			header('location: ' .$forward);
+			exit;
+		}
+	}
+	
+	
+	/*==========*/
+	/*
+	*  页面名称：收银员管理
+	*  页面作用：
+	*/
+	public function doWebMember() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$cfg = $this->module['config'];
+		// // 上月
+  //       $timeend=time();
+  //       $firstday=date('Y-m-01 H:i:s',strtotime(date('Y',$timeend).'-'.(date('m',$timeend)-1).'-01'));
+  //       $firstmonth=strtotime(date('Y-m-01 H:i:s',strtotime(date('Y',$timeend).'-'.(date('m',$timeend)-1).'-01')));
+  //       $lastmonth=strtotime(date('Y-m-d H:i:s',strtotime("$firstday +1 month -1 day")));
+  //       // 本月
+  //       $monthstart = mktime(0,0,0,date('m'),1,date('y'));
+
+		if($operation=="display"){
+			$stores=pdo_fetchall("SELECT id,title,address FROM  ".tablename('weisrc_dish_stores')."  WHERE weid = '{$_W['uniacid']}' order by id ");
+			$storeid = $_GPC['sid'];
+			// var_dump($storeid);
+			if ($storeid>0) {
+				$list=pdo_fetchall("SELECT a.*,b.companyname,s.title FROM ".tablename('j_money_user')." a left join ".tablename('j_money_group')." b on a.pcate = b.id left join ".tablename('weisrc_dish_stores')." s on s.id=a.storeid WHERE a.weid = '{$_W['uniacid']}' and a.storeid = ".$storeid." order by a.storeid, a.pcate desc");
+			}
+			//添加员工考勤2016.10.25
+			// foreach ($list as $key => $value) {
+				// //上月
+    //         $list[$key]['normal']=pdo_fetch("select count(*) as normal from dashang where opera=0 and man='".$value['realname']."'  and timeline between $firstmonth and $lastmonth");
+    //         //and storeid=".$value['storeid']."限制不同的店
+    //         $list[$key]['warning'] = pdo_fetch("select count(*) as warning from dashang where opera=1 and man='".$value['realname']."'  and timeline between $firstmonth and $lastmonth");
+    //         //and storeid=".$value['storeid']."
+    //         $list[$key]['punish'] = pdo_fetch("select count(*) as punish from dashang where opera=-1 and man='".$value['realname']."'  and timeline between $firstmonth and $lastmonth");
+    //         //and storeid=".$value['storeid']."
+    //         //本月
+    //         $list[$key]['normals']=pdo_fetch("select count(*) as normal from dashang where opera=0 and man='".$value['realname']."'  and timeline between $monthstart and $timeend");
+    //         //and storeid=".$value['storeid']."
+    //         $list[$key]['warnings'] = pdo_fetch("select count(*) as warning from dashang where opera=1 and man='".$value['realname']."' and timeline between $monthstart and $timeend");
+    //         //and storeid=".$value['storeid']."
+    //         $list[$key]['punishs'] = pdo_fetch("select count(*) as punish from dashang where opera=-1 and man='".$value['realname']."' and timeline between $monthstart and $timeend");
+    //         // and storeid=".$value['storeid']."
+			// }
+
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id){
+				$item=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE id = :id ",array(':id'=>$id));
+			}else{
+				if($cfg['usernum']){
+					$allgroup=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}'");
+					if($allgroup>=$cfg['usernum'])message("只能添加".$cfg['usernum']."个坐席，增加请联系服务商");
+				}
+			}
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_group')." WHERE weid = '{$_W['uniacid']}' order by id desc");
+			$stores=pdo_fetchall("SELECT * FROM ".tablename('weisrc_dish_stores')." WHERE weid = '{$_W['uniacid']}' order by id desc");
+			//查找折扣内容
+			 if($item['discount'] ==""){
+           		 $item['discount'] ='0';
+      		 }
+			$discount1=pdo_fetchall("SELECT * FROM ".tablename('j_money_discount')." where status=1 and id in (".$item['discount'].")");
+			$discount0=pdo_fetchall("SELECT * FROM ".tablename('j_money_discount')." where status=1 and id not in (".$item['discount'].")");
+
+			if (checksubmit('submit')){
+				//权限
+				// $discount=0;
+				$a=$_GPC['discount'];
+				// for($i=0;$i<count($a);$i++){
+				// 	$discount=$discount.",".$a[$i];
+				// }
+				$discount=implode(",",$a);
+
+				$data=array(
+					'useracount'=>$_GPC['useracount'],
+					'weid'=>$_W['uniacid'],
+					'realname'=>$_GPC['name'],
+					'openid'=>$_GPC['openid'],
+					
+					'mobile'=>$_GPC['mobile'],
+					'password'=>$_GPC['password'] ? md5($_GPC['password']) : '',
+					'login_pc'=>intval($_GPC['login_pc']),
+					'login_m'=>intval($_GPC['login_m']),
+					'status'=>intval($_GPC['status']),
+					'pcate'=>intval($_GPC['pcate']),
+					'storeid'=>intval($_GPC['store']),
+					'discount'=>$discount,
+				);
+				// var_dump($data);
+				// die();
+				if(!$data['pcate'])message("请选择所属组别");
+				if($id){
+					if(!$data['password'])unset($data['password']);
+					unset($data['useracount']);
+					pdo_update("j_money_user",$data,array("id"=>$id));
+				}else{
+					if($cfg['usernum']){
+						$allgroup=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}'");
+						if($allgroup>=$cfg['usernum'])message("只能添加".$cfg['usernum']."个坐席，增加请联系服务商");
+					}
+					$isUsed=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' and useracount=:a",array(":a"=>$data['useracount']));
+					if($isUsed){
+						message("【".$data['useracount']."】已经被使用，请更换其他工号");
+					}
+					$data['createtime']=TIMESTAMP;
+					pdo_insert("j_money_user",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('member',array('op'=>'post','id'=>$id)), 'success');
+			}
+		}elseif ($operation == 'delete') {
+			//需完善
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_user',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('member'), 'success');
+		}
+		include $this->template('member');
+	}
+	/*
+	* *组别管理
+	*/
+	public function doWebGroup() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		$cfg = $this->module['config'];
+		if($operation=="display"){
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_group')." WHERE weid='{$_W['uniacid']}' order by id desc ");
+			$user=pdo_fetchall("SELECT pcate FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' order by id desc ");
+			$userList=array();
+			foreach($user as $row){
+				if(!isset($userList[$row['pcate']]))$userList[$row['pcate']]=0;
+				$userList[$row['pcate']]=intval($userList[$row['pcate']])+1;
+			}
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id){
+				$category=pdo_fetch("SELECT * FROM ".tablename('j_money_group')." WHERE id = :id ",array(':id'=>$id));
+			}else{
+				if($cfg['groupnum']){
+					$allgroup=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_group')." WHERE weid='{$_W['uniacid']}'");
+					if($allgroup>=$cfg['groupnum'])message("只能添加".$cfg['groupnum']."个组别，增加请联系服务商");
+				}
+			}
+			if (checksubmit('submit')){
+				$data=array(
+					'weid'=>$_W['uniacid'],
+					'companyname'=>$_GPC['companyname'],
+					'description'=>$_GPC['description'],
+				);
+				if($id){
+					pdo_update("j_money_group",$data,array("id"=>$id));
+				}else{
+					if($cfg['groupnum']){
+						$allgroup=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_group')." WHERE weid='{$_W['uniacid']}'");
+						if($allgroup>=$cfg['groupnum'])message("只能添加".$cfg['groupnum']."个组别，增加请联系服务商");
+					}
+					$isUsed=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_group')." WHERE weid = '{$_W['uniacid']}' and companyname=:a",array(":a"=>$data['companyname']));
+					if($isUsed)message("【".$data['companyname']."】已经被使用");
+					pdo_insert("j_money_group",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('group',array('op'=>'post','id'=>$id)), 'success');
+			}
+		}elseif ($operation == 'delete') {
+			$id=intval($_GPC['id']);
+			if($id){
+				$isUsed=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' and pcate=:a",array(":a"=>$id));
+				if($isUsed)message("该组别下还有人员，不能直接删除！");
+				pdo_delete('j_money_group',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('group'), 'success');
+		}
+		include $this->template('category');
+	}
+	/*
+	* 打印管理
+	*/
+	public function doWebPrint() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_print')." WHERE weid = '{$_W['uniacid']}' order by id desc");
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id)$item=pdo_fetch("SELECT * FROM ".tablename('j_money_print')." WHERE id = :id ",array(':id'=>$id));
+			if (checksubmit('submit')){
+				$content=htmlspecialchars_decode(str_replace('&#039;','\"',$_GPC['content']));
+				$array=explode("\n",$content);
+				if(count($array)){
+					$temp=$array[0];
+					$temp=str_replace("LODOP.PRINT_INITA(","",$temp);
+					$temp=str_replace(");","",$temp);
+					$ary=explode(",",$temp);
+					$array[0]="LODOP.PRINT_INITA(0,0,".$ary[2].",".$ary[3].",'小票打印页');";
+				}
+				$data=array(
+					'content'=>implode("\n",$array),
+					'weid'=>$_W['uniacid'],
+					'title'=>$_GPC['title'],
+					'pcate'=>intval($_GPC['pcate']),
+					
+				);
+				
+				if($id){
+					pdo_update("j_money_print",$data,array("id"=>$id));
+				}else{
+					pdo_insert("j_money_print",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('print',array('op'=>'post','id'=>$id)), 'success');
+			}
+			include $this->template('print-edit');
+			exit();
+		} elseif ($operation == 'isdefault') {
+			$id=intval($_GPC['id']);
+			if($id){
+				$pcate=pdo_fetchcolumn("SELECT pcate FROM ".tablename('j_money_print')." WHERE id = :id ",array(':id'=>$id));
+				pdo_update("j_money_print",array("isdefault"=>0),array("weid"=>$_W['uniacid'],"pcate"=>$pcate));
+				pdo_update("j_money_print",array("isdefault"=>1),array("id"=>$id));
+			}
+			message("修改完成", $this->createWebUrl('print'), 'success');
+		}elseif ($operation == 'delete') {
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_print',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('print'), 'success');
+		}
+		include $this->template('print');
+	}
+	/*
+	* 文章
+	*/
+	public function doWebArtcle() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		/*if($operation=="display"){
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_card')." WHERE weid = '{$_W['uniacid']}' order by id desc");
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id)$item=pdo_fetch("SELECT * FROM ".tablename('j_money_card')." WHERE id = :id ",array(':id'=>$id));
+			if (checksubmit('submit')){
+				$data=array(
+					'weid'=>$_W['uniacid'],
+					'title'=>$_GPC['title'],
+					'cardid'=>$_GPC['cardid'],
+					'description'=>strval($_GPC['description']),
+				);
+				
+				if($id){
+					pdo_update("j_money_card",$data,array("id"=>$id));
+				}else{
+					$ishad=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_card')." WHERE cardid = :a ",array(':a'=>$data['cardid']));
+					if($ishad)message("该卡券已经存在，不能重复添加！");
+					pdo_insert("j_money_card",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('card',array('op'=>'post','id'=>$id)), 'success');
+			}
+		}elseif ($operation == 'delete') {
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_card',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('card'), 'success');
+		}*/
+		include $this->template('artcle');
+	}
+	/*
+	* 卡券设置
+	*/
+	public function doWebCard() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_card')." WHERE weid = '{$_W['uniacid']}' order by id desc");
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id)$item=pdo_fetch("SELECT * FROM ".tablename('j_money_card')." WHERE id = :id ",array(':id'=>$id));
+			if (checksubmit('submit')){
+				$data=array(
+					'weid'=>$_W['uniacid'],
+					'title'=>$_GPC['title'],
+					'cardid'=>$_GPC['cardid'],
+					'description'=>strval($_GPC['description']),
+				);
+				
+				if($id){
+					pdo_update("j_money_card",$data,array("id"=>$id));
+				}else{
+					$ishad=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_card')." WHERE cardid = :a ",array(':a'=>$data['cardid']));
+					if($ishad)message("该卡券已经存在，不能重复添加！");
+					pdo_insert("j_money_card",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('card',array('op'=>'post','id'=>$id)), 'success');
+			}
+		}elseif ($operation == 'delete') {
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_card',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('card'), 'success');
+		}
+		include $this->template('card');
+	}
+	/*
+	* 营销活动设置
+	*/
+	public function doWebFunction() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page'])-1 :0;
+			$psize = 20;
+			$start = $pindex * $psize;
+			
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' order by status desc,displayorder asc,id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_marketing')." WHERE weid='".$_W['uniacid']."'  ");
+			$pager=pagination($total, $pindex, $psize);
+		} elseif ($operation == 'post') {
+			$id=intval($_GPC['id']);
+			if($id)$item=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and id=:a",array(':a'=>$id));
+			$item['starttime'] = $item['starttime'] ? $item['starttime']:TIMESTAMP;
+			$item['endtime'] = $item['endtime'] ? $item['endtime']:TIMESTAMP;
+			$hourlist=array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23);
+			$grouplist= pdo_fetchall("SELECT * FROM ".tablename("mc_groups")." WHERE uniacid = '".$_W['uniacid']."' ORDER BY `orderlist` asc");
+			$groupary=array();
+			$groupary2=array();
+			foreach($grouplist as $row){
+				$groupary2[]=$row['groupid'];
+				$groupary[$row['groupid']]=$row['title'];
+			}
+			
+			$gamelist=pdo_fetchall("SELECT * FROM ".tablename('j_money_lotterygame')." WHERE weid='{$_W['uniacid']}' and status=1 order by id desc ");
+			$cfg = $this->module['config'];
+			if (checksubmit('submit')){
+				$data=array(
+					'displayorder'=>intval($_GPC['displayorder']),
+					'weid'=>$_W['uniacid'],
+					'status'=>intval($_GPC['status']),
+					'isint'=>intval($_GPC['isint']),
+					'title'=>$_GPC['title'],
+					'starttime'=>strtotime($_GPC['gametime']['start']),
+					'endtime'=>strtotime($_GPC['gametime']['end']),
+					'hour'=>implode(",",$_GPC['hour']),
+					'num'=>intval($_GPC['num']),
+					'favorabletype'=>intval($_GPC['favorabletype']),
+					'gid'=>intval($_GPC['gid']),
+					'condition_fee'=>intval($_GPC['condition_fee']*100),
+					'favorable'=>$_GPC['favorable'],
+					'isallnum'=>intval($_GPC['isallnum']),
+					'condition'=>intval($_GPC['condition']),
+					'condition_attendtime'=>intval($_GPC['condition_attendtime']),
+					'condition_member'=>implode(",",$_GPC['condition_member']),
+					'description'=>$_GPC['description'],
+				);
+				if($id){
+					unset($data['favorabletype']);
+					pdo_update("j_money_marketing",$data,array("id"=>$id));
+				}else{
+					pdo_insert("j_money_marketing",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('function'), 'success');
+			}
+		} elseif ($operation == 'statistical') {
+			$id=intval($_GPC['id']);
+			if($id)$item=pdo_fetch("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' and id=:a",array(':a'=>$id));
+			$list=pdo_fetch("SELECT * FROM ".tablename('j_money_trade')." WHERE marketing=:a order by id desc",array(':a'=>$id));
+			
+		} elseif ($operation == 'delete') {
+			$id=intval($_GPC['id']);
+			if($id){
+				if(!$_W['isfounder'])message('删除订单必须是管理员方能删除！');
+				pdo_delete('j_money_marketing',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('function'), 'success');
+		}
+		include $this->template('function');
+	}
+	
+	/*
+	*  页面名称：订单记录
+	*  页面作用：
+	*/
+	public function doWebHistory() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$where=$where2="";
+			if($_GPC['userid'])$where2.=" and userid='".$_GPC['userid']."'";
+			if($_GPC['year'])$where.=" and year(createdate)='".$_GPC['year']."'";
+			if($_GPC['month'])$where.=" and month(createdate)='".$_GPC['month']."'";
+			if($_GPC['day'])$where.=" and dayofmonth(createdate)='".$_GPC['day']."'";
+			if($_GPC['groupid'])$where2.=" and groupid='".$_GPC['groupid']."' ";
+			if($_GPC['keyword'])$where2.=" and (out_trade_no='".$_GPC['keyword']."' or old_trade_no ='".$_GPC['keyword']."')";
+			if ($_GPC['isexplode']){
+				$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' $where $where2 order by id desc ");
+				$user=pdo_fetchall("SELECT * FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' order by id desc ");
+				$grouplist=pdo_fetchall("SELECT * FROM ".tablename('j_money_group')." WHERE weid = '{$_W['uniacid']}' order by id asc ");
+				$marklist=pdo_fetchall("SELECT id,description FROM ".tablename('j_money_marketing')." WHERE weid = '{$_W['uniacid']}' order by id asc ");
+				$userList=array();
+				$groupids=array();
+				$markary=array();
+				foreach($marklist as $row){
+					$markary[$row['id']]=$row['description'];
+				}
+				foreach($grouplist as $row){
+					$groupids[$row['id']]=$row['companyname'];
+				}
+				foreach($user as $row){
+					$userList[$row['id']]['name']=$row['useracount'].'('.$row['realname'].')';
+					$userList[$row['id']]['group']=$groupids[$row['pcate']];
+				}
+				$tableheader = array(
+					'单号',
+					'原单号',
+					'时间',
+					'支付方式',
+					'收银员',
+					'所在组别',
+					'订单金额',
+					'优惠金额',
+					'实际支付',
+					'优惠方案',
+					'状态',
+				);
+				foreach($parama as $index=>$row){
+					array_push($tableheader,$index);
+				}
+				$html = "\xEF\xBB\xBF";
+				foreach ($tableheader as $value) {
+					$html .= $value . "\t ,";
+				}
+				$html .= "\n";
+				foreach($list as $row){
+					$html .= $row['out_trade_no'] . "\t ,";
+					$html .= $row['old_trade_no'] . "\t ,";
+					$html .= $row['createdate'] . "\t ,";
+					$html .= ($row['paytype'] ? "支付宝" : "微信") . "\t ,";
+					$html .= addslashes($userList[$row['userid']]['name']) . "\t ,";
+					$html .= addslashes($userList[$row['userid']]['group']) . "\t ,";
+					$html .= addslashes("￥".sprintf('%.2f',($row['total_fee']/100))) . "\t ,";
+					$html .= addslashes("￥".sprintf('%.2f',($row['coupon_fee']/100))) . "\t ,";
+					$html .= addslashes("￥".sprintf('%.2f',($row['cash_fee']/100))) . "\t ,";
+					$html .= addslashes($row['marketing_log']) . "\t ,";
+					$html .= ($row['status'] ? "成功" : "失败") . "\t ,";
+					$html .="\n";
+				}
+				header("Content-type:text/csv");
+	
+				header("Content-Disposition:attachment; filename=收银情况_".TIMESTAMP.".csv");
+				echo $html;
+				exit();
+			}
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page']) :1;
+			$psize = 10;
+			$start = ($pindex-1) * $psize;
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' $where $where2 order by id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_trade')." WHERE weid='".$_W['uniacid']."' $where $where2");
+			$pager=pagination($total, $pindex, $psize);
+			$allItem=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' $where $where2 ");
+			$payAry=array();
+			$payAry['wechart']['all']=0;
+			$payAry['wechart']['all-count']=0;
+			$payAry['wechart']['coupon']=0;
+			$payAry['wechart']['coupon-count']=0;
+			$payAry['wechart']['fee']=0;
+			$payAry['wechart']['fee-count']=0;
+			$payAry['alipay']['all']=0;
+			$payAry['alipay']['all-count']=0;
+			$payAry['alipay']['coupon']=0;
+			$payAry['alipay']['coupon-count']=0;
+			$payAry['alipay']['fee']=0;
+			$payAry['alipay']['fee-count']=0;
+			
+			$payAry['shanhui']['all']=0;
+			$payAry['shanhui']['all-count']=0;
+			$payAry['shanhui']['coupon']=0;
+			$payAry['shanhui']['coupon-count']=0;
+			$payAry['shanhui']['fee']=0;
+			$payAry['shanhui']['fee-count']=0;
+			foreach($allItem as $row){
+				if($row['status']==1){
+					if($row['total_fee']){
+						if(!$row['paytype']){
+							$payAry['wechart']['all']=$payAry['wechart']['all']+$row['total_fee'];
+							$payAry['wechart']['all-count']=$payAry['wechart']['all-count']+1;
+						}else{
+							$payAry['alipay']['all']=$payAry['alipay']['all']+$row['total_fee'];
+							$payAry['alipay']['all-count']=$payAry['alipay']['all-count']+1;
+						}
+					}
+					if($row['coupon_fee']){
+						if(!$row['paytype']){
+							$payAry['wechart']['coupon']=$payAry['wechart']['coupon']+$row['coupon_fee'];
+							$payAry['wechart']['coupon-count']=$payAry['wechart']['coupon-count']+1;
+						}else{
+							$payAry['alipay']['coupon']=$payAry['alipay']['coupon']+$row['coupon_fee'];
+							$payAry['alipay']['coupon-count']=$payAry['alipay']['coupon-count']+1;
+						}
+					}
+					if($row['cash_fee']){
+						if(!$row['paytype']){
+							$payAry['wechart']['cash_fee']=$payAry['wechart']['cash_fee']+$row['cash_fee'];
+							$payAry['wechart']['cash_fee-count']=$payAry['wechart']['cash_fee-count']+1;
+						}else{
+							$payAry['alipay']['cash_fee']=$payAry['alipay']['cash_fee']+$row['cash_fee'];
+							$payAry['alipay']['cash_fee-count']=$payAry['alipay']['cash_fee-count']+1;
+						}
+					}
+				}
+			}
+			$year=pdo_fetchall("SELECT year(createdate) as y FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' group by year(createdate) order by id asc  ");
+			$month=array(1,2,3,4,5,6,7,8,9,10,11,12);
+			$day=array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
+			$user=pdo_fetchall("SELECT id,useracount,realname,pcate FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' order by id desc ");
+			$userList=array();
+			$groupids=array();
+			$grouplist=pdo_fetchall("SELECT * FROM ".tablename('j_money_group')." WHERE weid = '{$_W['uniacid']}' order by id asc ");
+			foreach($grouplist as $row){
+				$groupids[$row['id']]=$row['companyname'];
+			}
+			foreach($user as $row){
+				$userList[$row['id']]=$groupids[$row['pcate']]."-".$row['useracount'].'('.$row['realname'].')';
+			}
+			$data=array("CFT"=>"零钱包","ICBC_DEBIT"=>"工商银行(借记卡)","ICBC_CREDIT"=>"工商银行(信用卡)","ABC_DEBIT"=>"农业银行(借记卡)","ABC_CREDIT"=>"农业银行(信用卡)","PSBC_DEBIT"=>"邮政储蓄银行(借记卡)","PSBC_CREDIT"=>"邮政储蓄银行(信用卡)","CCB_DEBIT"=>"建设银行(借记卡)","CCB_CREDIT"=>"建设银行(信用卡)","CMB_DEBIT"=>"招商银行(借记卡)","CMB_CREDIT"=>"招商银行(信用卡)","BOC_DEBIT"=>"中国银行(借记卡)","BOC_CREDIT"=>"中国银行(信用卡)","COMM_DEBIT"=>"交通银行(借记卡)","SPDB_DEBIT"=>"浦发银行(借记卡)","SPDB_CREDIT"=>"浦发银行(信用卡)","GDB_DEBIT"=>"广发银行(借记卡)","GDB_CREDIT"=>"广发银行(信用卡)","CMBC_DEBIT"=>"民生银行(借记卡)","CMBC_CREDIT"=>"民生银行(信用卡)","PAB_DEBIT"=>"平安银行(借记卡)","PAB_CREDIT"=>"平安银行(信用卡)","CEB_DEBIT"=>"光大银行(借记卡)","CEB_CREDIT"=>"光大银行(信用卡)","CIB_DEBIT"=>"兴业银行(借记卡)","CIB_CREDIT"=>"兴业银行(信用卡)","CITIC_DEBIT"=>"中信银行(借记卡)","CITIC_CREDIT"=>"中信银行(信用卡)","BOSH_DEBIT"=>"上海银行(借记卡)","BOSH_CREDIT"=>"上海银行(信用卡)","CRB_DEBIT"=>"华润银行(借记卡)","HZB_DEBIT"=>"杭州银行(借记卡)","HZB_CREDIT"=>"杭州银行(信用卡)","BSB_DEBIT"=>"包商银行(借记卡)","BSB_CREDIT"=>"包商银行(信用卡)","CQB_DEBIT"=>"重庆银行(借记卡)","SDEB_DEBIT"=>"顺德农商行(借记卡)","SZRCB_DEBIT"=>"深圳农商银行(借记卡)","HRBB_DEBIT"=>"哈尔滨银行(借记卡)","BOCD_DEBIT"=>"成都银行(借记卡)","GDNYB_DEBIT"=>"南粤银行(借记卡)","GDNYB_CREDIT"=>"南粤银行(信用卡)","GZCB_DEBIT"=>"广州银行(借记卡)","GZCB_CREDIT"=>"广州银行(信用卡)","JSB_DEBIT"=>"江苏银行(借记卡)","JSB_CREDIT"=>"江苏银行(信用卡)","NBCB_DEBIT"=>"宁波银行(借记卡)","NBCB_CREDIT"=>"宁波银行(信用卡)","NJCB_DEBIT"=>"南京银行(借记卡)","JZB_DEBIT"=>"晋中银行(借记卡)","KRCB_DEBIT"=>"昆山农商(借记卡)","LJB_DEBIT"=>"龙江银行(借记卡)","LNNX_DEBIT"=>"辽宁农信(借记卡)","LZB_DEBIT"=>"兰州银行(借记卡)","WRCB_DEBIT"=>"无锡农商(借记卡)","ZYB_DEBIT"=>"中原银行(借记卡)","ZJRCUB_DEBIT"=>"浙江农信(借记卡)","WZB_DEBIT"=>"温州银行(借记卡)","XAB_DEBIT"=>"西安银行(借记卡)","JXNXB_DEBIT"=>"江西农信(借记卡)","NCB_DEBIT"=>"宁波通商银行(借记卡)","NYCCB_DEBIT"=>"南阳村镇银行(借记卡)","NMGNX_DEBIT"=>"内蒙古农信(借记卡)","SXXH_DEBIT"=>"陕西信合(借记卡)","SRCB_CREDIT"=>"上海农商银行(信用卡)","SJB_DEBIT"=>"盛京银行(借记卡)","SDRCU_DEBIT"=>"山东农信(借记卡)","SRCB_DEBIT"=>"上海农商银行(借记卡)","SCNX_DEBIT"=>"四川农信(借记卡)","QLB_DEBIT"=>"齐鲁银行(借记卡)","QDCCB_DEBIT"=>"青岛银行(借记卡)","PZHCCB_DEBIT"=>"攀枝花银行(借记卡)","ZJTLCB_DEBIT"=>"浙江泰隆银行(借记卡)","TJBHB_DEBIT"=>"天津滨海农商行(借记卡)","WEB_DEBIT"=>"微众银行(借记卡)","YNRCCB_DEBIT"=>"云南农信(借记卡)","WFB_DEBIT"=>"潍坊银行(借记卡)","WHRC_DEBIT"=>"武汉农商行(借记卡)","ORDOSB_DEBIT"=>"鄂尔多斯银行(借记卡)","XJRCCB_DEBIT"=>"新疆农信银行(借记卡)","ORDOSB_CREDIT"=>"鄂尔多斯银行(信用卡)","CSRCB_DEBIT"=>"常熟农商银行(借记卡)","JSNX_DEBIT"=>"江苏农商行(借记卡)","GRCB_CREDIT"=>"广州农商银行(信用卡)","GLB_DEBIT"=>"桂林银行(借记卡)","GDRCU_DEBIT"=>"广东农信银行(借记卡)","GDHX_DEBIT"=>"广东华兴银行(借记卡)","FJNX_DEBIT"=>"福建农信银行(借记卡)","DYCCB_DEBIT"=>"德阳银行(借记卡)","DRCB_DEBIT"=>"东莞农商行(借记卡)","CZCB_DEBIT"=>"稠州银行(借记卡)","CZB_DEBIT"=>"浙商银行(借记卡)","CZB_CREDIT"=>"浙商银行(信用卡)","GRCB_DEBIT"=>"广州农商银行(借记卡)","CSCB_DEBIT"=>"长沙银行(借记卡)","CQRCB_DEBIT"=>"重庆农商银行(借记卡)","CBHB_DEBIT"=>"渤海银行(借记卡)","BOIMCB_DEBIT"=>"内蒙古银行(借记卡)","BOD_DEBIT"=>"东莞银行(借记卡)","BOD_CREDIT"=>"东莞银行(信用卡)","BOB_DEBIT"=>"北京银行(借记卡)","BNC_DEBIT"=>"江西银行(借记卡)","BJRCB_DEBIT"=>"北京农商行(借记卡)","AE_CREDIT"=>"AE(信用卡)","GYCB_CREDIT"=>"贵阳银行(信用卡)","JSHB_DEBIT"=>"晋商银行(借记卡)","JRCB_DEBIT"=>"江阴农商行(借记卡)","JNRCB_DEBIT"=>"江南农商(借记卡)","JLNX_DEBIT"=>"吉林农信(借记卡)","JLB_DEBIT"=>"吉林银行(借记卡)","JJCCB_DEBIT"=>"九江银行(借记卡)","HXB_DEBIT"=>"华夏银行(借记卡)","HXB_CREDIT"=>"华夏银行(信用卡)","HUNNX_DEBIT"=>"湖南农信(借记卡)","HSB_DEBIT"=>"徽商银行(借记卡)","HSBC_DEBIT"=>"恒生银行(借记卡)","HRXJB_DEBIT"=>"华融湘江银行(借记卡)","HNNX_DEBIT"=>"河南农信(借记卡)","HKBEA_DEBIT"=>"东亚银行(借记卡)","HEBNX_DEBIT"=>"河北农信(借记卡)","HBNX_DEBIT"=>"湖北农信(借记卡)","HBNX_CREDIT"=>"湖北农信(信用卡)","GYCB_DEBIT"=>"贵阳银行(借记卡)","GSNX_DEBIT"=>"甘肃农信(借记卡)","JCB_CREDIT"=>"JCB(信用卡)","MASTERCARD_CREDIT"=>"MASTERCARD(信用卡)","VISA_CREDIT"=>"VISA(信用卡)");
+			
+		} elseif ($operation == 'post') {
+			//导出数据
+			$where=$where2="";
+			if($_GPC['userid'])$where2.=" and userid='".$_GPC['userid']."'";
+			$start=$_GPC['search']['start'] ? $_GPC['search']['start'] : date("Y-m-d");
+			$end=$_GPC['search']['end'] ? $_GPC['search']['end'] : date("Y-m-d");
+			$where.=" and createdate>='".$start."' and createdate<='".$end."'";
+			if($_GPC['groupid']){
+				$u_list=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_user')." WHERE pcate=:a",array(":a"=>$_GPC['groupid']));
+				if($u_list)$where2.=" and userid in(SELECT id FROM ".tablename('j_money_user')." WHERE pcate='".$_GPC['groupid']."')";
+			}
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_trade')." WHERE weid='{$_W['uniacid']}' $where $where2 and status=1 order by id asc");
+			$listary=array();
+			$totalary=array("total"=>0,"cash"=>0,"coupon"=>0,"num"=>0,);
+			
+			foreach($list as $row){
+				$totalary['total']=$totalary['total']+$row['total_fee'];
+				$totalary['cash']=$totalary['cash']+$row['cash_fee'];
+				$totalary['coupon']=$totalary['coupon']+$row['coupon_fee'];
+				$totalary['num']=$totalary['num']+1;
+				if(!isset($listary[$row['createdate']])){
+					$listary[$row['createdate']]=array(
+						"wechat"=>0,
+						"ali"=>0,
+						"total"=>0,
+						"coupon"=>0,
+						"num"=>0,
+					);
+				}
+				if($row['paytype']){
+					$listary[$row['createdate']]['ali']=$listary[$row['createdate']]['ali']+$row['total_fee'];
+				}else{
+					$listary[$row['createdate']]['wechat']=$listary[$row['createdate']]['wechat']+$row['total_fee'];
+				}
+				$listary[$row['createdate']]['total']=$listary[$row['createdate']]['total']+$row['total_fee'];
+				$listary[$row['createdate']]['coupon']=$listary[$row['createdate']]['coupon']+$row['coupon_fee'];
+				$listary[$row['createdate']]['num']=$listary[$row['createdate']]['num']+1;
+			}
+			$datediff=intval((strtotime($end)-strtotime($start))/60/60/24);
+			$dateary=array();
+			$fee_wechat=array();
+			$fee_ali=array();
+			$fee_total=array();
+			for($i=0;$i<=$datediff;$i++){
+				$date=date("Y-m-d",strtotime("+".$i." day",strtotime($start)));
+				$dateary[]=$date;
+				$fee_wechat[]=sprintf('%.2f',($listary[$date]['wechat']*0.01));
+				$fee_ali[]=sprintf('%.2f',($listary[$date]['ali']*0.01));
+				$fee_total[]=sprintf('%.2f',(($listary[$date]['wechat']+$listary[$date]['ali'])*0.01));
+			}
+			$dateary_str=implode("','",$dateary);
+			$fee_wechat_str=implode(",",$fee_wechat);
+			$fee_ali_str=implode(",",$fee_ali);
+			$fee_total_str=implode(",",$fee_total);
+			$user=pdo_fetchall("SELECT id,useracount,realname,pcate FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' order by id desc ");
+			$userList=array();
+			$groupids=array();
+			$grouplist=pdo_fetchall("SELECT * FROM ".tablename('j_money_group')." WHERE weid = '{$_W['uniacid']}' order by id asc ");
+			foreach($grouplist as $row){
+				$groupids[$row['id']]=$row['companyname'];
+			}
+			foreach($user as $row){
+				$userList[$row['id']]=$groupids[$row['pcate']]."-".$row['useracount'].'('.$row['realname'].')';
+			}
+		} elseif ($operation == 'card') {
+			//卡券记录
+			$where=$where2="";
+			#if($_GPC['userid'])$where2.=" and userid='".$_GPC['userid']."'";
+			#if($_GPC['groupid'])$where2.=" and groupid='".$_GPC['groupid']."' ";
+			$start=$_GPC['search']['start'] ? $_GPC['search']['start'] : date("Y-m-d");
+			$end=$_GPC['search']['end'] ? $_GPC['search']['end'] : date("Y-m-d");
+			$where.=" and createtime>='".strtotime($start)."' and createtime<='".strtotime($end)."'";
+			$where2.=" and addtime>='".strtotime($start)."' and addtime<='".strtotime($end)."'";
+			$couponType=array(
+				"cash"=>"代金券",
+				"gift"=>"礼品券",
+				"groupon"=>"团购券",
+				"discount"=>"折扣券",
+				"general_coupon"=>"优惠券",
+			);
+			$couponList=pdo_fetchall("SELECT * FROM ".tablename('coupon')." WHERE uniacid='{$_W['uniacid']}' order by id desc");
+			$recordary=array();
+			$totalAll=array("total"=>0,"used"=>0,);
+			foreach($couponList as $row){
+				
+				$recordary[$row['card_id']]['total']=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('coupon_record')." WHERE uniacid='{$_W['uniacid']}' and card_id=:a $where2 ",array(":a"=>$row['card_id']));
+				$recordary[$row['card_id']]['used']=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_carduser')." WHERE weid='{$_W['uniacid']}' and cardid=:a $where",array(":a"=>$row['card_id']));
+				$totalAll['"total"']=$totalAll['"total"']+$recordary[$row['card_id']]['total'];
+				$totalAll['"used"']=$totalAll['"used"']+$recordary[$row['card_id']]['used'];
+			}
+			
+		}elseif ($operation == 'clear'){
+			pdo_delete('j_money_trade'," weid='".$_W['uniacid']."' and status=0 and time_end='' and createtime<".(TIMESTAMP-3600)." ");
+			message("删除成功", $this->createWebUrl('history'), 'success');
+		}elseif ($operation == 'delete'){
+			$id=intval($_GPC['id']);
+			if($id){
+				if(!$_W['isfounder'])message('删除订单必须是管理员方能删除！');
+				pdo_delete('j_money_trade',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('history'), 'success');
+		}
+		include $this->template('history');
+	}
+	
+	
+	/*
+	*统计
+	*/
+	public function doWebStatistical() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page'])-1 :0;
+			$psize = 20;
+			$start = $pindex * $psize;
+			
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_marketing')." WHERE weid='{$_W['uniacid']}' order by status desc,displayorder asc,id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_marketing')." WHERE weid='".$_W['uniacid']."'  ");
+			$pager=pagination($total, $pindex, $psize);
+		}
+	}
+	/*
+	* 大转盘
+	*/
+	public function doWebLottery() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page']) :1;
+			$psize = 10;
+			$start = ($pindex-1) * $psize;
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_lotterygame')." WHERE weid='{$_W['uniacid']}' order by id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_lotterygame')." WHERE weid='".$_W['uniacid']."' ");
+			$pager=pagination($total, $pindex, $psize);
+			
+			$prizelist=array();
+			$list2=pdo_fetchall("SELECT * FROM ".tablename('j_money_award')." WHERE weid='{$_W['uniacid']}' and isprize=1 order by id asc" );
+			foreach($list2 as $row){
+				
+				$prizelist[$row['gid']][]=$row;
+			}
+			
+			
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id){
+				$reply=pdo_fetch("SELECT * FROM ".tablename('j_money_lotterygame')." WHERE id = :id ",array(':id'=>$id));
+				$list= pdo_fetchall("SELECT * FROM ".tablename("j_money_award")." WHERE gid = :gid ORDER BY `id` asc", array(':gid' => $id));
+			}
+			$reply['zppic']= $reply['zppic']? $reply['zppic']:'../addons/j_money/template/img/6prize.png';
+			$reply['thumb_pointer']=$reply['thumb_pointer']? $reply['thumb_pointer']: '../addons/j_money/template/img/pointer.gif';
+			if (checksubmit('submit')){
+				
+				$insert=array(
+					'weid'=> $_W['uniacid'],
+					'thumb' => $_GPC['thumb'],
+					'clientpic' => $_GPC['clientpic'],
+					'pointer' => $_GPC['pointer'],
+					'description' => $_GPC['description'],
+					'title' => $_GPC['title'],
+					'zppic' => $_GPC['zppic'],
+					'rule' => htmlspecialchars_decode($_GPC['rule']),
+					'starttime' => strtotime($_GPC['acttime']['start']),
+					'endtime' => strtotime($_GPC['acttime']['end']),
+					'status'=>intval($_GPC['status']),
+					'gzurl'=>strval($_GPC['gzurl']),
+					'sharedes'=>strval($_GPC['sharedes']),
+					'thumb_bg'=>strval($_GPC['thumb_bg']),
+					'thumb_pointer'=>strval($_GPC['thumb_pointer']),
+					'bgcolor'=>strval($_GPC['bgcolor']),
+				);
+				
+				if($id){
+					pdo_update("j_money_lotterygame",$insert,array("id"=>$id));
+					foreach ($_GPC['award-level'] as $index => $row) {
+						$data = array(
+							'level' => $_GPC['award-level'][$index],
+							'title' => $_GPC['award-title'][$index],
+							'total' => $_GPC['award-total'][$index],
+							'renum' => $_GPC['award-renum'][$index],
+							'description' => $_GPC['award-description'][$index],
+							'thumb' => $_GPC['award-thumb'][$index],
+							'credit' => intval($_GPC['award-credit'][$index]),
+							'isprize' => intval($_GPC['award-isprize'][$index]),
+							'leavel' => intval($_GPC['award-leavel'][$index]),
+							'probalilty' => $_GPC['award-probalilty'][$index],
+							'deg' => $_GPC['award-deg'][$index],
+						);
+						pdo_update('j_money_award', $data, array('id' => $index));
+					}
+				}else{
+					$insert['status']=1;
+					pdo_insert("j_money_lotterygame", $insert);
+					$id=pdo_insertid();
+					foreach ($_GPC['award-level-new'] as $index => $row) {
+						$data = array(
+							'gid' => $id,
+							'weid' => $_W['uniacid'],
+							'level' => $_GPC['award-level-new'][$index],
+							'leavel' => intval($_GPC['award-leavel-new'][$index]),
+							'thumb' => $_GPC['award-thumb-new'][$index],
+							'credit' => intval($_GPC['award-credit-new'][$index]),
+							'title' => $_GPC['award-title-new'][$index],
+							'description' => $_GPC['award-description-new'][$index],
+							'isprize' => intval($_GPC['award-isprize-new'][$index]),
+							'total' => $_GPC['award-total-new'][$index],
+							'renum' => $_GPC['award-total-new'][$index],
+							'probalilty' => $_GPC['award-probalilty-new'][$index],
+							'deg' => $_GPC['award-deg-new'][$index],
+						);
+						pdo_insert('j_money_award', $data);
+					}
+				}
+				message("修改完成", $this->createWebUrl('lottery',array('op'=>'post','id'=>$id)), 'success');
+			}
+		} elseif ($operation == 'delete') {
+			//待完善，删除已兑奖和木有使用的人
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_award',array('gid'=>$id));
+				pdo_delete('j_money_lotterygame',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('lottery'), 'success');
+		}
+		include $this->template('lottery');
+	}
+
+
+	/*
+	* 满减功能 
+	*/
+	public function doWebManjian() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page']) :1;
+			$psize = 10;
+			$start = ($pindex-1) * $psize;
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_manjian')."  order by id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_manjian')."");
+			$pager=pagination($total, $pindex, $psize);
+			
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id){
+				$reply=pdo_fetch("SELECT * FROM ".tablename('j_money_manjian')." WHERE id = :id ",array(':id'=>$id));
+			}
+			if (checksubmit('submit')){
+				
+				$insert=array(
+					'title' => $_GPC['title'],
+					'status'=>intval($_GPC['status']),
+					'manjian'=>strval($_GPC['manjian']),
+					'createtime'=>TIMESTAMP,
+				);
+				
+				if($id){
+					pdo_update("j_money_manjian",$insert,array("id"=>$id));
+				}else{
+					$insert['status']=1;
+					pdo_insert("j_money_manjian", $insert);
+				}
+				message("修改完成", $this->createWebUrl('manjian',array('op'=>'post','id'=>$id)), 'success');
+			}
+		} elseif ($operation == 'delete') {
+			//待完善，删除已兑奖和木有使用的人
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_manjian',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('manjian'), 'success');
+		}
+		include $this->template('manjian');
+	}
+
+	/*
+	* 打折活动
+	*/
+	public function doWebDiscount() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page']) :1;
+			$psize = 10;
+			$start = ($pindex-1) * $psize;
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_discount')."  order by id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_discount')."");
+			$pager=pagination($total, $pindex, $psize);
+			
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id){
+				$reply=pdo_fetch("SELECT * FROM ".tablename('j_money_discount')." WHERE id = :id ",array(':id'=>$id));
+			}
+			if (checksubmit('submit')){
+				
+				$insert=array(
+					'title' => $_GPC['title'],
+					'status'=>intval($_GPC['status']),
+					'discount'=>strval($_GPC['discount']),
+					'createtime'=>TIMESTAMP,
+				);
+				
+				if($id){
+					pdo_update("j_money_discount",$insert,array("id"=>$id));
+				}else{
+					$insert['status']=1;
+					pdo_insert("j_money_discount", $insert);
+				}
+				message("修改完成", $this->createWebUrl('discount',array('op'=>'post','id'=>$id)), 'success');
+			}
+		} elseif ($operation == 'delete') {
+			//待完善，删除已兑奖和木有使用的人
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_discount',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('discount'), 'success');
+		}
+		include $this->template('discount');
+	}
+
+
+	/*
+	* 代金卷功能 
+	*/
+	public function doWebDaijin() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$pindex=intval($_GPC['page']) ? intval($_GPC['page']) :1;
+			$psize = 10;
+			$start = ($pindex-1) * $psize;
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_daijin')."  order by id desc LIMIT ".$start.",".$psize);
+			$total=pdo_fetchcolumn("SELECT count(*) FROM ".tablename('j_money_daijin')."");
+			$pager=pagination($total, $pindex, $psize);
+			
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id){
+				$reply=pdo_fetch("SELECT * FROM ".tablename('j_money_daijin')." WHERE id = :id ",array(':id'=>$id));
+			}
+			if (checksubmit('submit')){
+				
+				$insert=array(
+					'title' => $_GPC['title'],
+					'status'=>intval($_GPC['status']),
+					'daijin'=>strval($_GPC['daijin']),
+					'createtime'=>TIMESTAMP,
+				);
+				
+				if($id){
+					pdo_update("j_money_daijin",$insert,array("id"=>$id));
+				}else{
+					$insert['status']=1;
+					pdo_insert("j_money_daijin", $insert);
+				}
+				message("修改完成", $this->createWebUrl('daijin',array('op'=>'post','id'=>$id)), 'success');
+			}
+		} elseif ($operation == 'delete') {
+			//待完善，删除已兑奖和木有使用的人
+			$id=intval($_GPC['id']);
+			if($id){
+				pdo_delete('j_money_daijin',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('daijin'), 'success');
+		}
+		include $this->template('daijin');
+	}
+
+	public function doWebJoiner() {
+		global $_GPC, $_W;
+		$id = intval($_GPC['id']);
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if (checksubmit('getprize')) {
+			pdo_query("update ".tablename('j_money_lottery')." set status=1,gettime='".TIMESTAMP."' where id  IN  ('".implode("','", $_GPC['select'])."')");
+			message('标记成功！', $this->createWebUrl('joiner', array('id' => $id,'page' => $_GPC['page'])));
+		}
+		if (!empty($_GPC['wid'])) {
+			$wid = intval($_GPC['wid']);
+			pdo_update('j_money_lottery', array('status'=>intval($_GPC['status']),'gettime' => TIMESTAMP), array('id' => $wid));
+			message('标识成功！', $this->createWebUrl('joiner', array('id' => $id,'page' => $_GPC['page'])));
+		}
+		if($operation=='display'){
+			$pindex = max(1, intval($_GPC['page']));
+			$psize = 50;
+			$where="";
+			if($_GPC['prizeid'])$where .= " and aid = '".$_GPC['prizeid']."' ";
+			if($_GPC['sncode'])$where .= " and sncode = '".$_GPC['sncode']."' ";
+			$item=pdo_fetch("SELECT * FROM ".tablename('j_money_lotterygame')." WHERE id = '$id' limit 1");
+			$prizelist=pdo_fetchall("SELECT * FROM ".tablename('j_money_award')." WHERE gid = '$id' and isprize=1 order by id asc");
+			$sql = "SELECT * FROM ".tablename('j_money_lottery')."  WHERE gid = '$id' and weid='{$_W['uniacid']}' and isprize=1 $where order by id desc LIMIT ".($pindex - 1) * $psize.",{$psize}";
+			$list = pdo_fetchall($sql);
+			if (!empty($list)) {
+				$total = pdo_fetchcolumn("SELECT COUNT(*) FROM ".tablename('j_money_lottery')." WHERE gid = '$id' and isprize=1 and weid='{$_W['uniacid']}' $where");
+				$pager = pagination($total, $pindex, $psize);
+			}
+			$alljoin=pdo_fetchcolumn("SELECT COUNT(*) FROM ".tablename('j_money_lottery')."  WHERE gid = '$id' and weid='{$_W['uniacid']}' and aid>0");
+		}
+		include $this->template('joiner');
+	}
+	/*扩展按钮*/
+	public function doWebExtendbtn() {
+		global $_GPC, $_W;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$list=pdo_fetchall("SELECT * FROM ".tablename('j_money_extend')." WHERE weid='{$_W['uniacid']}' order by id desc ");
+			
+		} elseif ($operation == 'post') {
+			$id=$_GPC['id'];
+			if($id)$category=pdo_fetch("SELECT * FROM ".tablename('j_money_extend')." WHERE id = :id ",array(':id'=>$id));
+			if (checksubmit('submit')){
+				$data=array(
+					'weid'=>$_W['uniacid'],
+					'status'=>intval($_GPC['status']),
+					'btnname'=>$_GPC['btnname'],
+					'btnurl'=>$_GPC['btnurl'],
+					'jsurl'=>$_GPC['jsurl2'],
+				);
+				load()->func('file');
+				$dir_url='../attachment/j_money/js/'.$_W['uniacid']."/";
+				mkdirs($dir_url);
+				if ($_FILES["jsurl"]["name"]){
+					if(file_exists($dir_url.$category["jsurl"]))@unlink ($dir_url.$category["jsurl"]);
+					$data['jsurl']=TIMESTAMP.".js";
+					move_uploaded_file($_FILES["jsurl"]["tmp_name"],$dir_url.$data['jsurl']);
+				}
+				if($id){
+					pdo_update("j_money_extend",$data,array("id"=>$id));
+				}else{
+					pdo_insert("j_money_extend",$data);
+					$id=pdo_insertid();
+				}
+				message("修改完成", $this->createWebUrl('extendbtn',array('op'=>'post','id'=>$id)), 'success');
+			}
+		}elseif ($operation == 'delete') {
+			$id=intval($_GPC['id']);
+			if($id){
+				$category=pdo_fetch("SELECT * FROM ".tablename('j_money_extend')." WHERE id = :id ",array(':id'=>$id));
+				load()->func('file');
+				$dir_url='../attachment/j_money/js/'.$_W['uniacid']."/";
+				if(file_exists($dir_url.$category["jsurl"]))@unlink ($dir_url.$category["jsurl"]);
+				pdo_delete('j_money_extend',array('id'=>$id));
+			}
+			message("删除成功", $this->createWebUrl('extendbtn'), 'success');
+		}
+		include $this->template('extendbtn');
+	}
+	
+	/*
+	* 发送红包
+	*/
+	public function _sendpack($openid,$orderid=0,$fee=0,$cfg=array()){
+		global $_W;
+		if($fee<100)return false;
+ 		$url='https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack';
+        $pars = array();
+		$pars['nonce_str'] =random(32);
+		$pars['mch_billno'] =$cfg['mchid'].date('YmdHis').rand(1000, 9999);
+		$pars['mch_id']=$cfg['pay_mchid'];
+		$pars['wxappid'] =$cfg['appid'];
+		$pars['send_name'] =$cfg['pay_name'];
+		$pars['re_openid'] =$openid;
+		$pars['total_amount'] =$fee;
+		$pars['total_num'] =1;
+		$pars['wishing'] ="微信支付，便捷生活";
+		$pars['client_ip'] =$cfg['pay_ip'];
+		$pars['act_name'] =$cfg['pay_name'];
+		$pars['remark'] =$cfg['pay_name'];
+        ksort($pars, SORT_STRING);
+        $string1='';
+        foreach ($pars as $k => $v) {
+            $string1 .= "{$k}={$v}&";
+        }
+        $string1 .= "key=".$cfg['pay_signkey'];
+        $pars['sign'] = strtoupper(md5($string1));
+        $xml = array2xml($pars);
+        $extras = array();
+        $extras['CURLOPT_CAINFO'] = IA_ROOT.'/attachment/j_money/cert_2/'.$_W['uniacid'].'/'.$cfg['rootca'];
+        $extras['CURLOPT_SSLCERT'] =IA_ROOT.'/attachment/j_money/cert_2/'.$_W['uniacid'].'/'.$cfg['apiclient_cert'];
+        $extras['CURLOPT_SSLKEY'] =IA_ROOT.'/attachment/j_money/cert_2/'.$_W['uniacid'].'/'.$cfg['apiclient_key'];
+		$procResult = null;
+		load()->func('communication');
+        $resp = ihttp_request($url, $xml, $extras);
+        if (is_error($resp)) {
+            $procResult = $resp;
+        } else {
+			$arr=json_decode(json_encode((array) simplexml_load_string($resp['content'])), true);
+            $xml = '<?xml version="1.0" encoding="utf-8"?>' . $resp['content'];
+            $dom = new \DOMDocument();
+            if ($dom->loadXML($xml)){
+                $xpath = new \DOMXPath($dom);
+                $code = $xpath->evaluate('string(//xml/return_code)');
+                $ret = $xpath->evaluate('string(//xml/result_code)');
+                if (strtolower($code) == 'success' && strtolower($ret) == 'success') {
+                    $procResult =  array('errno'=>0,'error'=>'success');
+                } else {
+                    $error = $xpath->evaluate('string(//xml/err_code_des)');
+                    $procResult = array('errno'=>-2,'error'=>$error);
+                }
+            } else {
+				$procResult = array('errno'=>-1,'error'=>'未知错误');				
+            }
+        }
+		$rec = array();
+		$rec['log'] = $error;
+		$rec['reward']=$fee;
+		$rec['completed']=$rec['status']=$procResult['errno']!=0 ? $procResult['errno'] :1;
+		if($rec['completed']==1)$rec['endtime']=TIMESTAMP;
+        pdo_update('j_money_reward',$rec,array('out_trade_no'=>$orderid));
+		return $procResult;
+	}
+	/*
+	* 发送红包2
+	*/
+	public function _sendpack2($openid,$fee=0,$cfg=array()){
+		global $_W;
+		if($fee<100)return false;
+ 		$url='https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack';
+        $pars = array();
+		$pars['nonce_str'] =random(32);
+		$pars['mch_billno'] =$cfg['mchid'].date('YmdHis').rand(1000, 9999);
+		$pars['mch_id']=$cfg['pay_mchid'];
+		$pars['wxappid'] =$cfg['appid'];
+		$pars['send_name'] =$cfg['pay_name'];
+		$pars['re_openid'] =$openid;
+		$pars['total_amount'] =$fee;
+		$pars['total_num'] =1;
+		$pars['wishing'] ="微信支付，便捷生活";
+		$pars['client_ip'] =$cfg['pay_ip'];
+		$pars['act_name'] =$cfg['pay_name'];
+		$pars['remark'] =$cfg['pay_name'];
+        ksort($pars, SORT_STRING);
+        $string1='';
+        foreach ($pars as $k => $v) {
+            $string1 .= "{$k}={$v}&";
+        }
+        $string1 .= "key=".$cfg['pay_signkey'];
+        $pars['sign'] = strtoupper(md5($string1));
+        $xml = array2xml($pars);
+        $extras = array();
+        $extras['CURLOPT_CAINFO'] = IA_ROOT.'/attachment/j_money/cert_2/'.$_W['uniacid'].'/'.$cfg['rootca'];
+        $extras['CURLOPT_SSLCERT'] =IA_ROOT.'/attachment/j_money/cert_2/'.$_W['uniacid'].'/'.$cfg['apiclient_cert'];
+        $extras['CURLOPT_SSLKEY'] =IA_ROOT.'/attachment/j_money/cert_2/'.$_W['uniacid'].'/'.$cfg['apiclient_key'];
+		$procResult = null;
+		load()->func('communication');
+        $resp = ihttp_request($url, $xml, $extras);
+        if (is_error($resp)) {
+            $procResult = $resp;
+        } else {
+			$arr=json_decode(json_encode((array) simplexml_load_string($resp['content'])), true);
+            $xml = '<?xml version="1.0" encoding="utf-8"?>' . $resp['content'];
+            $dom = new \DOMDocument();
+            if ($dom->loadXML($xml)){
+                $xpath = new \DOMXPath($dom);
+                $code = $xpath->evaluate('string(//xml/return_code)');
+                $ret = $xpath->evaluate('string(//xml/result_code)');
+                if (strtolower($code) == 'success' && strtolower($ret) == 'success') {
+                    $procResult =  array('errno'=>0,'error'=>'success');
+                } else {
+                    $error = $xpath->evaluate('string(//xml/err_code_des)');
+                    $procResult = array('errno'=>-2,'error'=>$error);
+                }
+            } else {
+				$procResult = array('errno'=>-1,'error'=>'未知错误');				
+            }
+        }
+		return $procResult;
+	}
+	/*
+	* 卡券
+	*/
+	public function sendCard($openid,$cardid){
+		global $_W;
+		if(strlen($cardid)<5)return false;
+		$acid=$_W['account']['acid'];
+		if(!$acid){
+			$acid=pdo_fetchcolumn("SELECT acid FROM ".tablename('account')." WHERE uniacid=:uniacid ",array(':uniacid'=>$_W['uniacid']));
+		}
+		$acc = WeAccount::create($acid);
+		$ticket=$this->getCard();
+		$pars['nonce_str'] =random(32);
+		$pars['code'] ="";
+		$pars['openid'] =$openid;
+		$pars['timestamp'] =TIMESTAMP;
+		$pars['signature'] ="";
+		//timestamp,nonce_str,code,ticket,card_id
+        $string1=$pars['timestamp'].$pars['nonce_str'].$pars['code'].$ticket.$cardid;
+		$pars['signature']=sha1($string1);
+		$sendata=array(
+			"card_id"=>$cardid,
+			"card_ext"=>array(
+				"code"=>$pars['code'],
+				"openid"=>$pars['openid'],
+				"timestamp"=>$pars['timestamp'],
+				"signature"=>$pars['signature'],
+			)
+		);
+		$data = $acc->sendCustomNotice(array('touser'=>$openid,'msgtype'=>'wxcard','wxcard'=>$sendata));
+		return $data;
+	}
+	public function getCard(){
+		global $_W;
+		load()->func('cache');
+		$wxcard=cache_load("wxcard");
+		if(!$wxcard || $wxcard['extime']<TIMESTAMP){
+			load()->func('communication');
+			$acid=pdo_fetchcolumn("SELECT acid FROM ".tablename('account')." WHERE uniacid=:uniacid ",array(':uniacid'=>$_W['uniacid']));
+			$acc = WeAccount::create($acid);
+			$tokens=$acc->fetch_token();
+			$url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$tokens."&type=wx_card";
+			$content = ihttp_get($url);
+			if(is_error($content))return false;
+			$token = @json_decode($content['content'], true);
+			if(empty($token) || !is_array($token)) {
+				$errorinfo = substr($content['meta'], strpos($content['meta'], '{'));
+				$errorinfo = @json_decode($errorinfo, true);
+				return false;
+			}
+			$record = array();
+			$record['ticket'] = $token['ticket'];
+			$record['expire'] = TIMESTAMP + $token['expires_in'];
+			cache_write("wxcard",array("ticket"=>$record['ticket'],"expire"=>$record['expire']));
+			return $record['ticket'];
+		}
+		return $wxcard['ticket'];
+	}
+	
+	/*插件机制*/
+	public function doWebExtendfun(){
+		global $_W,$_GPC;
+		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
+		if($operation=="display"){
+			$hostdir="../addons/j_money/extension/";
+			$filesnames = scandir($hostdir);
+			$extendlist=array();
+			foreach ($filesnames as $name) {
+				if($name=="." || $name=="..")continue;
+				$extendlist[]=$name;
+			}
+
+		}else{
+			
+		}
+		include $this->template('extend');
+	}
+	
+	public function doMobileExtension(){
+		global $_W,$_GPC;
+		$Extension_modal=$_GPC['extend_modal'];
+		$Extension_do=$_GPC['extend_do'] ? $_GPC['extend_do'] : "Main";
+		include_once 'template/extension/'.strtolower($Extension_modal).'/site.php';
+		
+		$modalClass=new $Extension_modal();
+		call_user_func(array($modalClass,$Extension_do)); 
+	}
+	
+}

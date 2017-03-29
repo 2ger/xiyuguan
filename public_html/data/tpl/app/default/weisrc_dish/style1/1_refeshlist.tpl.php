@@ -1,0 +1,27 @@
+<?php defined('IN_IA') or exit('Access Denied');?><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title>自动刷新APP</title>
+</head>
+<body>
+<script language="JavaScript">
+var refesh =<?php  echo $refesh;?>;
+if(refesh==1){
+    // alert(refesh);
+    console.log('有新的');
+    setInterval(refreshParent,10000);
+}
+function refreshParent(){
+    console.log('刷新fucheng');
+	window.parent.location.reload();
+}
+function myrefresh()
+{
+    console.log('没有新的');
+       window.location.reload();
+}
+setTimeout('myrefresh()',15000); //指定1秒 = 1000刷新一次
+</script>
+
+</body>
+</html>

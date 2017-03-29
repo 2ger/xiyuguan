@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>加菜 </title>
+<meta name="format-detection" content="telephone=no, address=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link href="./resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="./resource/css/font-awesome.min.css" rel="stylesheet">
+<link href="./resource/css/animate.css" rel="stylesheet">
+<link href="./resource/css/common.css" rel="stylesheet">
+<script src="{MODULE_URL}template/js/jquery-2.1.1.min.js"></script>
+
+<!-- date-time-picker -->
+<link href="{MODULE_URL}template/extension/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="{MODULE_URL}template/extension/datepicker/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{MODULE_URL}template/extension/datepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{MODULE_URL}template/extension/datepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+</head>
+<body style="overflow-x: hidden;">
+<form method="POST" action="" name="form1">
+
+<div class="row">
+ {loop $cat $row}
+  <div class="col-xs-6 col-md-3 col-lg-2">
+  <div class="panel panel-default">
+  <div class="panel-heading">{$row['name']}</div>
+  <table class="table">
+  {loop $row['goods'] $item}
+      <tr>
+        <td>
+        {$item['title']}
+</td>
+<td>
+        <div class="input-group">
+  <input class="form-control" type="number" name="numb[{$item['id']}]" aria-describedby="basic-addon2"  style="width:60px">
+  <span class="input-group-addon" id="basic-addon2">份</span>
+</div>
+
+        </td>
+      </tr>
+      {/loop}
+  </table>
+</div>
+
+  </div>
+{/loop}
+</div>
+
+<button type="submit" class="btn btn-lg btn-success" style="
+    position: fixed;
+    top: 400px;
+    right: 20px;
+    z-index: 999;
+" >提交</button> 
+</form>
+
+<script>
+{if $in==1}
+  window.parent.location.reload();
+{/if}
+$(document).ready(function(e){
+	setHeight();
+	setTimeout("setHeight()",1000);
+});
+$('input').change(function(){
+  var num = $(this).val();
+  if(num>0){
+    $(this).parent().parent().parent('tr').addClass('success'); 
+  }else{
+     $(this).parent().parent().parent('tr').removeClass('success'); 
+  }
+  
+})
+function setHeight(){
+	$("#addmenu", window.top.document).height($(document).height());
+}
+</script>

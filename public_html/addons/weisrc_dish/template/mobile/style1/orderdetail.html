@@ -1,0 +1,421 @@
+<html ng-app="diandanbao" class="ng-scope">
+<head>
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+    ng\:form {
+        display: block;
+    }</style>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <title>我的订单</title>
+    <link data-turbolinks-track="true" href="{RES}/mobile/{php echo $this->cur_tpl}/assets/diandanbao/weixin.css?v=1" media="all"
+          rel="stylesheet">
+    <style type="text/css">@media screen {
+        .smnoscreen {
+            display: none
+        }
+    }
+
+    @media print {
+        .smnoprint {
+            display: none
+        }
+    }</style>
+</head>
+<body>
+<div ng-view="" style="height: 100%;" class="ng-scope">
+    <div class="ddb-nav-header ng-scope" common-header="">
+        <div class="nav-left-item" onclick="javascript :history.back(-1);"><i class="fa fa-angle-left"></i></div>
+        <div class="header-title ng-binding">我的订单</div>
+    </div>
+    <!-- ngInclude:  -->
+    <div class="ddb-nav-footer ng-scope" style="text-align:center;">
+        <span class="button border-green {if $order['paytype']!=0}ng-hide{/if}" onclick="window.location.reload()">刷新进度</span>
+        <!-- <span class="button border-green {if $order['paytype']!=0}ng-hide{/if}" onclick="reward()">打赏员工</span> -->
+
+        <!-- <span class="button border-green {if $order['paytype']!=0}ng-hide{/if}" onclick="confirmorder()">确认下单</span> -->
+
+        <span class="button border-blue ng-hide" ng-show="can_complete()" ng-click="complete()">完成</span>
+        <span class="button border-red ng-hide" ng-show="can_pay_online()" ng-click="pay_online()">支付</span>
+        <span class="button border-blue ng-hide" ng-show="can_append_itemable()" ng-click="go_append_itemable()">追加商品</span>
+        <span class="button ng-hide" ng-show="order &amp;&amp; order.pay_item_state=='paid'">已支付</span>
+        <span class="button border-green ng-hide" ng-show="can_exchange_code()" ng-click="go_exchange_code()">兑换码</span>
+        <span class="button border-red ng-binding  ng-hide" ng-click="hasten()" >催单</span>
+        <span class="button border-green ng-binding disable ng-hide">呼叫服务员</span>
+        <div class="ng-hide">
+        <!--<div>-->
+            <hr>
+            <span
+                class="button border-green ng-binding ng-scope" ng-click="call_waiter(waiter_service_item.name)"
+                ng-repeat="waiter_service_item in branch.waiter_service_items">水</span><!-- end ngRepeat: waiter_service_item in branch.waiter_service_items --><span
+                class="button border-green ng-binding ng-scope" ng-click="call_waiter(waiter_service_item.name)"
+                ng-repeat="waiter_service_item in branch.waiter_service_items">碗筷</span><!-- end ngRepeat: waiter_service_item in branch.waiter_service_items --><span
+                class="button border-green ng-binding ng-scope" ng-click="call_waiter(waiter_service_item.name)"
+                ng-repeat="waiter_service_item in branch.waiter_service_items">椅子</span><!-- end ngRepeat: waiter_service_item in branch.waiter_service_items -->
+            <span class="button border-green" ng-click="call_waiter('其他服务')">其他服务</span>
+            <span class="button border-red" ng-click="show_options(false)">取消</span>
+        </div>
+    </div>
+    <div class="main-view order-show ng-scope" id="delivery-order-show">
+        <div class="section">
+            <a class="list-item arrow-right ng-binding" href="{php echo $this->createMobileUrl('detail', array('id' => $store['id']), true)}">
+                <i class="fa fa-bookmark-o"></i> {$store['title']}
+            </a>
+            <a class="list-item arrow-right ng-binding" href="tel:{$store['tel']}">
+                <i class="fa fa-phone"></i> 商家客服：{$store['tel']}
+            </a>
+            <!--<a class="list-item ng-scope" ng-click="deliveryman_location()" ng-if="can_track_deliveryman()">-->
+                <!--<div class="service-button">-->
+                    <!--<i class="red fa fa-map-marker"></i> 配送员在哪儿-->
+                <!--</div>-->
+            <!--</a>-->
+            <!--<a class="list-item ng-scope" ng-click="ask_for_invoice()"-->
+                                                   <!--ng-if="can_ask_for_invoice()">-->
+            <!--<div class="service-button">-->
+                <!--<i class="red fa fa-ticket"></i> 索要发票-->
+            <!--</div>-->
+        <!--</a>-->
+            <!-- {if ($order['status'] == 0)}
+            <a class="list-item ng-scope" onclick="cancelorder()">
+                <div class="service-button">
+                    <i class="red fa fa-bell"></i> 取消订单
+                </div>
+            </a>
+            {/if} -->
+        </div>
+        <div class="space-8"></div>
+       <!--  {if $order['status']!=-1}
+        <div class="order-state-section ng-scope">
+            <div class="order-state ng-isolate-scope active">
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through ng-hide" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">等待处理</div>
+            </div>
+            <div class="order-state ng-isolate-scope {if $order['status']>=1}active{/if}">
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">已确认</div>
+            </div>
+            <div class="order-state ng-isolate-scope" >
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">配送中</div>
+            </div>
+            <div class="order-state ng-isolate-scope {if $order['status']==3}active{/if}">
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through ng-hide" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">已完成</div>
+            </div>
+        </div>
+        {else}
+        <div class="order-state-section ng-scope">
+            <div class="order-state ng-isolate-scope">
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">已取消</div>
+            </div>
+        </div>
+        {/if}
+        <div class="space-8"></div> -->
+        <div class="section no-bottom-border">
+            {if $_W['uniacid'] ==1}
+            <div style="color: #ff0000; text-align: center;">您享用的是溪雨观第{$order['id']}条鱼</br>感谢您为公益事业贡献了一元钱</div>
+            {/if}
+            <div class="list-item time">
+                <span class="ng-binding">类型：{if $order['dining_mode']==1}扫码点餐{elseif $order['dining_mode']==2}外卖{elseif $order['dining_mode']==3}预订{elseif $order['dining_mode']==4}快餐{/if}
+                {if $order['dining_mode']==1}
+                    桌号: {$table_title}
+                {/if}
+                </span>&nbsp;&nbsp;
+                
+                <br>
+                <span class="ng-binding">订单号：{$order['ordersn']}</span><br>
+                <span class="ng-binding">下单时间：{php echo date('Y-m-d H:i:s',$order['dateline'])}</span>
+
+            </div>
+            <div class="list-item">合计：<span class="red ng-binding">{$order['totalnum']}份</span>，<strong
+                    class="red ng-binding">￥{$order['totalprice']}</strong><!-- {if !empty($orders['id'])}<strong
+                    class="red ng-binding" style="padding-left: 10px;">大转盘：{$orders['price']}元</strong>{/if} -->
+                    {if $order['dining_mode']==2}
+                    {if $order['dispatchprice'] != '0.00'}
+                    <span class="ng-scope">（含{$order['dispatchprice']}元配送费）</span>
+                    {else}
+                    <span class="ng-scope">（免配送费）</span>
+                    {/if}
+                    {/if}
+                    {if !empty($order['credit'])}赠送积分:<span class="red ng-binding">{$order['credit']}</span>{/if}
+            </div>
+            {loop $order['goods'] $item}
+            <div class="list-item ng-scope">
+                <div class="name ng-binding">
+                    {$item['title']}{if $item['flavor']!=""}({$item['flavor']}){/if}
+                </div>
+                <div class="quantity-info">
+                    <span class="quantity ng-binding">{$item['total']}{if $item['goodsid']==6}斤{else}份{/if}</span>
+                    ×
+                    <span class="price ng-binding">￥{$item['price']}</span>
+                </div>
+                <div class="total-info">
+                    <span class="total ng-binding">￥{php echo $item['total']*$item['price']}</span>
+                </div>
+            </div>
+
+<!-- 修改10.24 -->
+          <div class="order-state-section ng-scope">
+            <div class="order-state ng-isolate-scope {if $item['stepnow']>=0}active{/if}">
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through ng-hide" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">
+                     <span id="time">{php echo date('H:i',$order['dateline'])}</span> <br>
+                    下单<br><a href="index.php?i={$_W['uniacid']}&c=entry&do=evaluate&m=weisrc_dish&id={$item['orderGoodsId']}&orderid={$item['orderid']}&storeid={$item['storeid']}&tablesid={$item['tablesid']}&goodsid={$item['goodsid']}&man={$item['step1man']}"><!-- {$item['step1man']} --></a></div>
+            </div>
+           
+            <div class="order-state ng-isolate-scope {if $item['stepnow']>0}active{/if}" >
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">
+                     <span id="time">{if $item['step1']>1}{php echo date('h:i',$item['step1'])}{/if} </span> <br>
+                     制作<br><a href="index.php?i={$_W['uniacid']}&c=entry&do=evaluate&m=weisrc_dish&id={$item['orderGoodsId']}&orderid={$item['orderid']}&storeid={$item['storeid']}&tablesid={$item['tablesid']}&goodsid={$item['goodsid']}&man={$item['step1man']}">{$item['step1man']}</a></div>
+            </div>
+            <div class="order-state ng-isolate-scope {if $item['stepnow']==5}active{/if}">
+                <div class="order-state-header">
+                    <div class="square">
+                        <div class="line-through" ng-hide="hide_left"></div>
+                    </div>
+                    <i class="fa fa-check-circle"></i>
+
+                    <div class="square">
+                        <div class="line-through ng-hide" ng-hide="hide_right"></div>
+                    </div>
+                </div>
+                <div class="order-state-body ng-binding">
+                     <span id="time">{if $item['step5']>1}{php echo date('h:i',$item['step5'])}{/if} </span> <br>
+                     上桌<br><a href="index.php?i={$_W['uniacid']}&c=entry&do=evaluate&m=weisrc_dish&id={$item['orderGoodsId']}&orderid={$item['orderid']}&storeid={$item['storeid']}&tablesid={$item['tablesid']}&goodsid={$item['goodsid']}&man={$item['step5man']}">{$item['step5man']}</a></div>
+            </div>
+        </div>
+ 
+
+            {/loop}
+            <div class="list-item">
+                <div class="order-item ng-binding ng-scope">
+                    <!-- 支付类型: {if $order['paytype']==0}未选择{elseif $order['paytype']==1}余额支付{elseif  $order['paytype']==2}在线支付{elseif  $order['paytype']==3}现金支付{/if} -->
+                </div>
+                {if $order['dispatchprice'] != '0.00' && $order['dining_mode']==2}
+                <div class="order-item ng-binding ng-scope">
+                    配送费用: {$order['dispatchprice']}元/份
+                </div>
+                {/if}
+                {if $order['dining_mode']==3}
+                <div class="order-item ng-binding ng-scope">
+                    桌台类型: {$tablezones['title']}
+                </div>
+                <div class="order-item ng-binding ng-scope">
+                    预约时间: {$order['meal_time']}
+                </div>
+                {/if}
+                {if $order['dining_mode']!=1}
+                <div class="order-item ng-binding ng-scope">
+                    姓名: {$order['username']}
+                </div>
+                <div class="order-item ng-binding ng-scope">
+                    电话: {$order['tel']}
+                </div>
+                {/if}
+                {if $order['dining_mode']==2}
+                <div class="order-item ng-binding ng-scope">
+                    地址: {$order['address']}
+                </div>
+                {/if}
+                {if $order['dining_mode']==1}
+                <!-- <div class="order-item ng-binding ng-scope"> -->
+                    <!-- 人数: {$order['counts']} -->
+                <!-- </div> -->
+                {/if}
+                {if !empty($order['remark'])}
+                <div class="order-item ng-binding ng-scope">
+                    备注: {$order['remark']}
+                </div>
+                {/if}
+                
+        </div>
+        <div class="juchi"></div>
+       
+        </div>
+
+                <style type="text/css">
+                    .operation-nav-item{float:left; width:25%;margin-left:10px;}
+                    .operation-nav-item1{float:left; width:95%;margin-left:10px;}
+                    .operation{float:right!important;}
+                    .textarea{ background-color:#eee;}
+                    .hidden{display:none}
+                </style>  
+         <!-- 评价 -->
+         {if empty($orders['id'])}
+        <div class="order-item section ng-scope hidden" style="margin:10px">
+            <a class="list-item" href="http://shanghai.xyj0772.com/app/index.php?i={$_W['uniacid']}&c=entry&id=2&do=game&orderid={$order['id']}&tables={$order['tables']}&m=j_money">
+                <div class="time ng-binding">
+                   <img src="resource/images/dazhuanpan.jpg" width="100%">
+                    <!-- <b>大转盘</b> -->
+                </div>
+            </a>
+        </div>
+        {/if}
+        <form name="form1" method="POST" action="" class="hidden" id='data_form'>
+        <div class="order-item section ng-scope" style="margin:10px">
+            <a class="list-item">
+                <div class="time ng-binding"> <b>评价</b></div>
+            </a>
+            <div class="list-item">
+                   <div class="operation-nav-item ng-scope">
+                   <input type="radio" name="pingjia" value="1" style="padding-top: 5px;"> 好
+                </div>
+                <div class="operation-nav-item ng-scope">  
+                  <input type="radio" name="pingjia" value="2" style="padding-top: 5px;"> 一般   
+                </div>
+                <div class="operation-nav-item ng-scope">   
+                  <input type="radio" name="pingjia" value="3" style="padding-top: 5px;"> 不好
+                </div>   
+            </div>
+            <div class="list-item">
+                <div class="operation">
+                   <input class="button ng-binding ng-scope" type="submit" name="submit1" value="提交"> 
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+        <div class="space-12"></div>
+         <div class="order-item section ng-scope hiddden" style="margin:10px">
+            <a class="list-item">
+                <div class="time ng-binding"> <b>找茬</b></div>
+            </a>
+            <div class="list-item">
+                   <div class="operation-nav-item ng-scope" style="padding-top: 5px;">
+               <input type="radio" name="zhaocha" value="1"> 上菜久
+            </div>
+            <div class="operation-nav-item ng-scope"  style="padding-top: 5px;">  
+              <input type="radio" name="zhaocha" value="2"> 味道差  
+            </div>
+            <div class="operation-nav-item ng-scope"  style="padding-top: 5px;">   
+              <input type="radio" name="zhaocha" value="3"> 服务差
+            </div>
+            <div class="operation-nav-item1" style="padding-top: 5px;">
+              <textarea name="comment" rows="3" cols="30" class="textarea" placeholder="备注"></textarea>
+            </div>
+            </div>
+            <div class="list-item">
+                <div class="operation">
+                   <input class="button ng-binding ng-scope" type="submit" name="submit2" value="提交"> 
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+      <input type="hidden" name="submit" value="1" />
+      <input type="hidden" name="token" value="{$_W['token']}" />
+      </form>
+
+    </div>
+
+</div>
+
+<script src="{RES}/mobile/{php echo $this->cur_tpl}/assets/diandanbao/jquery-1.11.3.min.js"></script>
+<script>
+function myrefresh() { 
+    window.location.reload(); 
+} 
+    setTimeout("myrefresh()",60000); //指定5秒刷新一次 
+    function confirmorder() {
+            var url = "{php echo $this->createMobileUrl('pay', array('orderid' => $order['id']), true)}";
+            window.location.href = url;
+
+    }
+    //打赏列表
+    function reward() {
+            var url = "{php echo $this->createMobileUrl('evaluatelist', array('orderid' => $order['id']), true)}";
+            window.location.href = url;
+
+    }
+
+    function cancelorder() {
+        var url = "{php echo $this->createMobileUrl('cancelorder', array('id' => $order['id']), true)}";
+        if (confirm("确认取消吗?")) {
+            $.ajax({
+                url: url, type: "post", dataType: "json", timeout: "10000",
+                data: {
+                },
+                success: function (data) {
+                    if (data.status == 1) {
+                        location.href='{php echo $this->createMobileUrl('order', array(), true)}';
+                    } else {
+                        alert(data.msg);
+                    }
+                },error: function () {
+                    alert("网络不稳定，请重新尝试!");
+                }
+            });
+
+        }
+        
+    }
+</script>
+</body>
+</html>

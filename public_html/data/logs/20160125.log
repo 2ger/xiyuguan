@@ -1,0 +1,58 @@
+2016-01-25 22:03:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwFEiqhe4TcqFIAeJuks80us]]></FromUserName>
+<CreateTime>1453730636</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[摇一摇]]></Content>
+<MsgId>6243725539216730677</MsgId>
+</xml>
+
+2016-01-25 22:03:57 params :
+------------
+Array:
+message : Array ;
+module : mon_qmshake ;
+rule : 23 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-25 22:03:57 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwFEiqhe4TcqFIAeJuks80us ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2016-01-25 22:08:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_ccbf343b8498]]></ToUserName>
+<FromUserName><![CDATA[oc2pYwFEiqhe4TcqFIAeJuks80us]]></FromUserName>
+<CreateTime>1453730912</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[经纪人]]></Content>
+<MsgId>6243726724627704435</MsgId>
+</xml>
+
+2016-01-25 22:08:33 params :
+------------
+Array:
+message : Array ;
+module : cover ;
+rule : 99 ;
+priority : 0 ;
+keyword : Array ;
+
+2016-01-25 22:08:33 response :
+------------
+Array:
+FromUserName : gh_ccbf343b8498 ;
+ToUserName : oc2pYwFEiqhe4TcqFIAeJuks80us ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
