@@ -1841,7 +1841,8 @@ class J_moneyModuleSite extends WeModuleSite {
 		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 		$cfg = $this->module['config'];
 
-  $storeinfo=pdo_fetch("SELECT title FROM ".tablename('weisrc_dish_stores')." WHERE id=:id ",array(":id"=>$storeid));
+        $storeinfo=pdo_fetch("SELECT a.title,a.typeid,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+        // var_dump($storeinfo);
 
 		if($operation=='display'){
 			isetcookie('islogin', '', 0);
@@ -2214,6 +2215,8 @@ if($start ==NULL)$start=0;
 		$starts=$_GPC['starttime'];
 		$end=$_GPC['endtime'];
 
+        $storeinfo=pdo_fetch("SELECT a.title,a.typeid,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+
         $data = $this->tongji($storeid,$starts,$end);
 		$user=pdo_fetchall("SELECT id,useracount,realname,pcate FROM ".tablename('j_money_user')." WHERE weid = '{$_W['uniacid']}' order by id desc ");
         include $this->template('printrijie');
@@ -2392,7 +2395,8 @@ $comment= str_replace("&gt;",">",$comment);
 		$islogin=$_GPC['islogin'];
         $user=pdo_fetch("SELECT * FROM ".tablename('j_money_user')." WHERE weid='{$_W['uniacid']}' and id=:id ",array(":id"=>$islogin));
         //店名
-        $storeinfo=pdo_fetch("SELECT a.title,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+        $storeinfo=pdo_fetch("SELECT a.title,a.typeid,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
+        // var_dump($storeinfo);
         
         //订单号
         $orderinfos = pdo_fetch("SELECT sum(total*price) as totalprice from ims_weisrc_dish_order_goods WHERE type!=2 and orderid=".$orderid);

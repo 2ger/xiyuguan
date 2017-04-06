@@ -455,7 +455,7 @@ function Wreload(){
               <a class="btn btn-sm btn-danger pull-right" style="margin-top:-5px; margin-left:10px;" onclick="cancletable()">消台</a>
           </div>
           <div class="">
-<?php  if($_W['uniacid']==3) { ?>
+<?php  if($typeid['typeid']==3) { ?>
 <center>
             <a class="btn btn-lg  btn-danger " id="addbtn" style="margin:5px auto" onclick="extendFun(5)"><i class="fa fa-plus"></i> 点击加菜</a>
 
@@ -471,7 +471,7 @@ function Wreload(){
                 </thead> -->
                 <tbody>
 
-                   <?php  if($_W['uniacid']==1) { ?>
+                   <?php  if($typeid['typeid']==1) { ?>
                     <form method="post" action="" name="form2">
                         <style>
                         .input-group,select{min-width:100px} 
@@ -735,7 +735,7 @@ function dayin(i){
                             <td><?php  echo round($item['ttprice'],2);?></td>
                             <td>
 
-<?php  if($_W['uniacid'] ==1) { ?>
+<?php  if($typeid['typeid'] ==1) { ?>
                                                
  
                                 <a class="btn btn-success gai" total="<?php  echo $item['total'];?>" orderid="<?php  echo $item['orderid'];?>" goodsid="<?php  echo $item['goodsid'];?>"  price="<?php  echo round($item['ttprice'],2);?>"  tablesid="<?php  echo $item['tablesid'];?>" id="<?php  echo $item['id'];?>">改</a>
@@ -1052,10 +1052,10 @@ $('#daijinbtn').click(function(){
  var jiae = kdz-all+bkdz;// 应收 = 可打折 - x(不应)满减 - （this）+ 不可打折
  var fee =  parseInt($('#fee').val());
   //alert(kdz+'--'+manjian+' -- 代金'+all+' +不可'+bkdz);
-    <?php  if($_W['uniacid'] ==1) { ?>
+    <?php  if($typeid['typeid'] ==1) { ?>
          if(ys < bkdz){                                             
      <?php  } ?>
-     <?php  if($_W['uniacid'] ==3) { ?>
+     <?php  if($typeid['typeid'] ==3) { ?>
         if(fee < all){                                             
      <?php  } ?>
    swal({   title: "金额不足", type:'error',  text: "无法使用",   timer: 500,   showConfirmButton: false });
@@ -1364,7 +1364,7 @@ $('#addpaybtn').click(function(){
                                                         <div class="state">
                                                             <!-- <?php  echo round($item['totalprice'])?>元 -->
                                                             <?php  echo round($item['price']['total'])?>元
-                                                            <?php  if($_W['uniacid'] ==3) { ?>
+                                                            <?php  if($typeid['typeid'] ==3) { ?>
                                                             /<?php  echo $item['order']['counts'];?>人
                                                             <?php  } ?>
                                                             <br>
@@ -1664,13 +1664,13 @@ function checkMdan(){
             var kdz=parseFloat($("#kdz").html());
             var bkdz=parseFloat($("#bkdz").html());
             //限制金额10元17.2.27
-            <?php  if($_W['uniacid']==1) { ?>
+            <?php  if($typeid['typeid']==1) { ?>
             max =10;
             <?php  } ?>
-            <?php  if($_W['uniacid']==3) { ?>
+            <?php  if($typeid['typeid']==3) { ?>
             max =18;
             <?php  } ?>
-            if(mian > 18){//原价： temp 金额不足
+            if(mian > max){//原价： temp 金额不足
              swal({   title: "免单仅可低于10元!", type:'error',  timer: 1000,   showConfirmButton: false });
          }else{
           var price = temp-mian;

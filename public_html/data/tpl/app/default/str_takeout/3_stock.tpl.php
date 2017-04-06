@@ -55,7 +55,7 @@
 	    	<script type="text/javascript">
 	    		function changeselect(){
 				var id= $('#changeselect').val();
-                window.location.href="index.php?i=3&c=entry&do=stock&uid=<?php  echo $uid;?>&lId=<?php  echo $lId;?>&storeid=<?php  echo $storeid;?>&m=str_takeout&cid="+id;
+                window.location.href="index.php?i=3&c=entry&do=stock&logid=<?php  echo $logid;?>&storeid=<?php  echo $storeid;?>&m=str_takeout&cid="+id;
 	    		}
 	    	</script>
 	    </div>
@@ -78,7 +78,15 @@
 						<tr>
 							<td><?php  echo $da['name'];?></td>
 							<td><?php  echo $da['spec'];?></td>
-							<td><?php  if(($da['qty']*$da['costUnitId'])<=1) { ?><span style="color: red;"><?php  echo $da['qty']*$da['costUnitId']?></span><?php  } else { ?><?php  echo $da['qty']*$da['costUnitId']?><?php  } ?></td>
+							<td><?php  if(empty($da['costUnitId']))$da['costUnitId']=1?>
+								<?php  if(($da['qty']*$da['costUnitId'])<=1) { ?>
+								<span style="color: red;">
+									<?php  echo $da['qty']*$da['costUnitId']?>
+								</span>
+								<?php  } else { ?>
+								<?php  echo $da['qty']*$da['costUnitId']?>
+								<?php  } ?>
+							</td>
 							<td><?php  if($da['costName']=='') { ?><?php  echo $da['unitName'];?><?php  } else { ?><?php  echo $da['costName'];?><?php  } ?></td>
 						</tr>
 					<?php  } } ?>
