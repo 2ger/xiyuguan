@@ -2447,7 +2447,7 @@ $trade['paytype']=3;
                     //应收：非退，送菜总金额
                     $ys=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and type =0 and orderid=".$orderid);//所有消费金额
                     $song=pdo_fetch("SELECT sum(total*price) as total from ".tablename('weisrc_dish_order_goods')." WHERE (status =0 or status =1) and type =1 and orderid=".$orderid);//送菜金额
-$orderinfo['zhekou'] = $orderinfo['zhekou']+$song['total'];
+$orderinfo['zhekou'] = $orderinfo['zhekou'];//+$song['total']
 
                     $dazp=pdo_fetch("SELECT price from ".tablename('weisrc_dish_order_goods')." WHERE status =1 and taste='大转盘' and type=0 and orderid=".$orderid);//大转盘抵消金额
 

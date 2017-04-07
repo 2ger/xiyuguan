@@ -38,7 +38,7 @@ body{font-size:12px}
 <a class="Noprint btn btn-success" onclick="print()">打印</a>
 <br>
 <!-- <img src="/attachment/images/1/2016/08/ELv48l461NA17lOi876LoA6Z8AAV4r.jpg" alt="" class="img-rounded" style="width:30%"> -->
-<h2>交班对账单
+<h2><?php  echo $storeinfo['title'];?> 交班对账单
 </h2>
 </center>
 <div style="">
