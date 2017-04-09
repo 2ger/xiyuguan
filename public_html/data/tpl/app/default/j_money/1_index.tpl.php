@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>收银台</title>
+    <title>web</title>
     <meta name="format-detection" content="telephone=no, address=no">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes"/>
@@ -2713,7 +2713,7 @@ function getTables(){
        
     });
 }
-window.setInterval(getTables, 5000); 
+//window.setInterval(getTables, 5000); 
 </script>
 
 <?php  if(is_array($btnlist)) { foreach($btnlist as $row) { ?>

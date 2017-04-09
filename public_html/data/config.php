@@ -3,8 +3,12 @@ defined('IN_IA') or exit('Access Denied');
 
 $config = array();
 
-$config['db']['master']['host'] = '10.66.206.165';
-$config['db']['master']['username'] = 'root';
+
+// $config['db']['master']['host'] = '10.66.206.165';
+// $config['db']['master']['username'] = 'root';
+$config['db']['master']['host'] = '115.159.222.211';
+$config['db']['master']['username'] = 'test333';
+
 $config['db']['master']['password'] = 'yh999999';
 $config['db']['master']['port'] = '3306';
 $config['db']['master']['database'] = 'shanghai';
@@ -38,7 +42,7 @@ $config['setting']['memory_limit'] = '256M';
 $config['setting']['filemode'] = 0644;
 $config['setting']['authkey'] = '63437ba1';
 $config['setting']['founder'] = '1';
-$config['setting']['development'] = 0;//11.24上海 初始0 正常使用时必须调回0
+$config['setting']['development'] = 1;//11.24上海 初始0 正常使用时必须调回0
 $config['setting']['referrer'] = 0;
 
 // --------------------------  CONFIG UPLOAD  --------------------------- //

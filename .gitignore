@@ -1,2 +1,5 @@
 *.log
-public_html/date/tpl/
+public_html/data/tpl/*
+public_html/data/tpl/*.*
+public_html/data/config.php
+ 

@@ -51,7 +51,7 @@ body{font-size:14px}
     </thead>
     <tbody>
         <tr>
-            <th><?php  echo $good['title'];?></th>
+            <th><?php  echo $good['title'];?> <?php  echo $good['taste'];?></th>
             <th><?php  echo $good['price'];?> </th>
             <th><?php  echo $total;?></th>
             <th><?php  echo $totalprice;?></th>

@@ -241,8 +241,8 @@ $(function(){
                         </div>
                     </div>
                 </div>
+                <!--将原价改为1斤多少份
                 <div class="form-group">
-                <!--将原价改为1斤多少份-->
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">【进销存】1斤多少份</label>  
                     <div class="col-sm-9">
                         <div class="input-group">
@@ -250,7 +250,7 @@ $(function(){
                             <span class="input-group-addon">份</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">购买积分</label>
                     <div class="col-sm-9">
@@ -370,6 +370,12 @@ $(function(){
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">做法</label>
                     <div class="col-sm-9">
+                             <?php  if(is_array($tastes2)) { foreach($tastes2 as $row2) { ?>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" checked name="message" class="tastecheck" id="tase<?php  echo $row2['id'];?>" value="<?php  echo $row2['id'];?>"><?php  echo $row2['name'];?> 
+                        </label>
+                            <?php  } } ?>
+
                             <?php  if(is_array($tastes)) { foreach($tastes as $row2) { ?>
                         <label class="checkbox-inline">
                             <input type="checkbox" name="message" class="tastecheck" id="tase<?php  echo $row2['id'];?>" value="<?php  echo $row2['id'];?>"><?php  echo $row2['name'];?> 

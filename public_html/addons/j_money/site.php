@@ -2355,7 +2355,7 @@ $list[$key]['num'] = $num['num'];
    include $this->template('isfei');
     }
 
-    //手动打印fei 酒水
+    //手动打印fei 酒水 
 	public function doMobilePrintfei() {
 		global $_GPC, $_W;
         $tablesid = $_GPC['tablesid'];
@@ -2369,7 +2369,7 @@ $list[$key]['num'] = $num['num'];
          //桌号信息
         $tableinfo=pdo_fetch("SELECT t.title as id,z.title as zone from ".tablename('weisrc_dish_tables')." t left join ".tablename('weisrc_dish_tablezones')." z on t.tablezonesid = z.id WHERE t.id=".$tablesid);
        
-  $good=pdo_fetch("SELECT a.title,b.type,a.dateline,b.total,b.price,(b.total*b.price) as ttprice,b.taste as flavor from ".tablename('weisrc_dish_order_goods')." as b left join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid  WHERE a.id=".$goodsid." AND a.storeid=".$storeid);
+  $good=pdo_fetch("SELECT a.title,b.type,a.dateline,b.total,b.price,(b.total*b.price) as ttprice,b.taste from ".tablename('weisrc_dish_order_goods')." as b left join ".tablename('weisrc_dish_goods')." as a on a.id=b.goodsid  WHERE a.id=".$goodsid." AND a.storeid=".$storeid);
 
   $totalprice = $good['price']*$total; 
 

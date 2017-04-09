@@ -231,7 +231,7 @@ $(function(){
                             <!--&lt;!&ndash;<option value="3" {if $item['isspecial']==3} selected="selected"{/if}>会员</option>&ndash;&gt;-->
                         <!--</select>-->
                     <!--</div>-->
-                <!--</div>-->
+                <!--</div>-->  
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">价格</label>
                     <div class="col-sm-9">
@@ -241,8 +241,8 @@ $(function(){
                         </div>
                     </div>
                 </div>
+                <!--将原价改为1斤多少份
                 <div class="form-group">
-                <!--将原价改为1斤多少份-->
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">【进销存】1斤多少份</label>  
                     <div class="col-sm-9">
                         <div class="input-group">
@@ -250,7 +250,7 @@ $(function(){
                             <span class="input-group-addon">份</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">购买积分</label>
                     <div class="col-sm-9">
@@ -370,6 +370,12 @@ $(function(){
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">做法</label>
                     <div class="col-sm-9">
+                             {loop $tastes2 $row2}
+                        <label class="checkbox-inline">
+                            <input type="checkbox" checked name="message" class="tastecheck" id="tase{$row2['id']}" value="{$row2['id']}">{$row2['name']} 
+                        </label>
+                            {/loop}
+
                             {loop $tastes $row2}
                         <label class="checkbox-inline">
                             <input type="checkbox" name="message" class="tastecheck" id="tase{$row2['id']}" value="{$row2['id']}">{$row2['name']} 

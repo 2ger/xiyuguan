@@ -8223,22 +8223,32 @@ print_usr=:print_usr) AND storeid = :storeid {$condition} ORDER BY id DESC limit
 
         $category = pdo_fetchall("SELECT * FROM " . tablename($this->table_category) . " WHERE weid = :weid And storeid=:storeid ORDER BY parentid ASC, displayorder DESC", array(':weid' => $weid, ':storeid' => $storeid), 'id');
         if (!empty($category)) {
-            $children = '';
+            $children = ''; 
             foreach ($category as $cid => $cate) {
                 if (!empty($cate['parentid'])) {
                     $children[$cate['parentid']][$cate['id']] = array($cate['id'], $cate['name']);
                 }
             }
         }
+ $tastes = pdo_fetchall("SELECT * FROM ims_weisrc_dish_goods_taste");
 
         $operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
         if ($operation == 'post') {
             load()->func('tpl');
             $id = intval($_GPC['id']);
+
+
+
             if (!empty($id)) {
-                $tastes = pdo_fetchall("SELECT * FROM ims_weisrc_dish_goods_taste");
                 // var_dump($tastes);
                 $item = pdo_fetch("SELECT * FROM " . tablename($this->table_goods) . " WHERE id = :id", array(':id' => $id));
+if(empty($item['tasteid'])){
+    $item['tasteid'] ='0';
+}
+
+                $tastes = pdo_fetchall("SELECT * FROM ims_weisrc_dish_goods_taste where id not in (".$item['tasteid'].")");
+                $tastes2 = pdo_fetchall("SELECT * FROM ims_weisrc_dish_goods_taste where id in (".$item['tasteid'].")");
+
                 $item['staple'] = iunserializer($item['staple']);
                  $items = array();
                 foreach ($item['staple'] as $k => $v) {
