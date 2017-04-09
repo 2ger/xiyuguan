@@ -612,7 +612,8 @@ $('[type="text"]').change(function(){
 <?php  if($orderid < 0) { ?>
 <script>
  swal({   title: "桌台已买单！正在为您刷新状态！", type:'error',  timer: 1000,   showConfirmButton: false });
-window.location.href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&op=in&do=index&m=j_money";
+ window.location.href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&tablesid=<?php  echo $tablesid;?>&orderid=1&do=xiaotai&m=j_money";
+// window.location.href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&op=in&do=index&m=j_money";
              </script>
 <?php  } ?>
 <?php  } ?>
