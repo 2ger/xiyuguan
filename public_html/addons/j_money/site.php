@@ -154,6 +154,7 @@ class J_moneyModuleSite extends WeModuleSite {
         }
         // 转台功能  
         if ($operation == 'changetable') {
+			$weid=$_GPC['weid'];
 			$storeid=$_GPC['storeid'];
             $orderid = intval($_GPC['orderid']);
             $tablesid = intval($_GPC['tablesid']);
@@ -171,7 +172,7 @@ class J_moneyModuleSite extends WeModuleSite {
              //互换状态
             pdo_fetch("UPDATE ims_weisrc_dish_tables set status=0 WHERE id=".$tablesid);
             pdo_fetch("UPDATE ims_weisrc_dish_tables set status=1 WHERE id=".$tableTo);
-            $url ='index.php?i='.$_W['uniacid'].'&c=entry&op=in&do=index&m=j_money&tablesid='.$tablesTo;
+            $url ='index.php?i='.$weid.'&c=entry&op=in&do=index&m=j_money&tablesid='.$tablesTo;
             die(json_encode(array("success"=>true)));
         }
 
@@ -1841,6 +1842,9 @@ class J_moneyModuleSite extends WeModuleSite {
 		$operation = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 		$cfg = $this->module['config'];
 
+		$weid = $_GPC['weid'];
+            // print_r('weid:'.$weid);
+            // print_r('uniacid:'.$_W['uniacid']);
         $storeinfo=pdo_fetch("SELECT a.title,a.typeid,b.name FROM ".tablename('weisrc_dish_stores')." a left join ".tablename('weisrc_dish_type')." b on a.typeid = b.id   WHERE a.id=:id ",array(":id"=>$storeid));
         // var_dump($storeinfo);
 
@@ -1954,7 +1958,7 @@ if($start ==NULL)$start=0;
             $daijin=pdo_fetchall("SELECT * FROM ".tablename('j_money_daijin')." where status=1 order by daijin");
 
             //满减活动列表
-            $manjian=pdo_fetchall("SELECT * FROM ".tablename('j_money_manjian')." where status=1 AND weid = '{$_W['uniacid']}' order by manjian");
+            $manjian=pdo_fetchall("SELECT * FROM ".tablename('j_money_manjian')." where status=1 AND weid = '{$weid}' order by manjian");
 
             //餐桌管理
 			$list = pdo_fetchall("SELECT a.id,a.title,a.status,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id AND a.storeid = b.storeid WHERE a.storeid = ".$storeid."  ORDER BY b.order,a.tablezonesid, a.title ASC");//'{$_W['uniacid']}' 

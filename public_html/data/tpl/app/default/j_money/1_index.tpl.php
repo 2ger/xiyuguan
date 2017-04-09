@@ -1440,7 +1440,7 @@ $('.kaitai').click(function(){
                });
     });
 });
-    //全桌转台17.3.3
+    //全桌转台17.4.9
     $('.changetable').click(function(){
         var tablesid = $(this).attr('tablesid');
         var orderid = $(this).attr('orderid');
@@ -1462,7 +1462,7 @@ $('.kaitai').click(function(){
             closeOnConfirm: false,
             confirmButtonText: "确认",
             cancelButtonText: "关闭",  
-            inputPlaceholder: "请选择做法" 
+            inputPlaceholder: "请选择目标桌" 
         }, function(inputValue){
             if (inputValue === false) return false;      
             if (inputValue === "") {
@@ -1470,11 +1470,11 @@ $('.kaitai').click(function(){
                 return false
             }
             $.post("<?php  echo $this->createMobileUrl('ajax',array('op'=>'changetable'))?>",{"tablesid":tablesid,"orderid":orderid,"tableTo":inputValue},function(data){
-               console.log(data);
-                  //var feedback=eval("("+data+")");
-                  swal({   title: "操作成功！", type:'success',  timer: 500,   showConfirmButton: false });
+                  swal({   title: "操作成功了！", type:'success',  timer: 500,   showConfirmButton: false });
                    // window.location.reload();
-                   window.location.href="index.php?i=3&c=entry&op=in&do=index&m=j_money&tablesid="+inputValue;
+                  var url="index.php?i=<?php  echo $weid;?>&c=entry&op=in&do=index&m=j_money&tablesid="+inputValue;
+                  console.log(url);
+                  window.location.href =  url;
                });
         });
 });
@@ -1512,7 +1512,7 @@ $('.kaitai').click(function(){
                   // console.log(feedback.tables);
                   console.log(data.tables);
                   swal({   title: "操作成功！", type:'success',  timer: 500,   showConfirmButton: false });
-                  window.location.href="index.php?i=3&c=entry&op=in&do=index&m=j_money";
+                  window.location.href="index.php?i=<?php  echo $weid;?>&c=entry&op=in&do=index&m=j_money";
               });
         });
 });
