@@ -1,6 +1,0 @@
-[2016-02-03 21:06:33] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ post_send_text:
-[2016-02-03 21:06:33] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ {"errcode":48001,"errmsg":"api unauthorized hint: [fwZJDA0794vr36]"}
-[2016-02-03 21:06:33] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ errcode=48001; errmsg=api unauthorized hint: [fwZJDA0794vr36]; 
-[2016-02-03 21:06:34] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ post_send_text:
-[2016-02-03 21:06:34] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ {"errcode":48001,"errmsg":"api unauthorized hint: [ch6RPA0795age7]"}
-[2016-02-03 21:06:34] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ errcode=48001; errmsg=api unauthorized hint: [ch6RPA0795age7]; 

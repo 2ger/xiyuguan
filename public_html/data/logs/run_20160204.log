@@ -1,6 +1,0 @@
-[2016-02-04 19:14:06] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ post_send_text:
-[2016-02-04 19:14:06] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ {"errcode":48001,"errmsg":"api unauthorized hint: [lRabDa0450age3]"}
-[2016-02-04 19:14:06] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ errcode=48001; errmsg=api unauthorized hint: [lRabDa0450age3]; 
-[2016-02-04 19:14:30] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ post_send_text:
-[2016-02-04 19:14:30] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ {"errcode":48001,"errmsg":"api unauthorized hint: [mOuLWa0471vr17]"}
-[2016-02-04 19:14:30] trace  /app/index.php?i=5&c=entry&m=water_jfhb&do=RespondImage&username=oc2pYwKHDCkVRfybTwnXSJ16QfCQ errcode=48001; errmsg=api unauthorized hint: [mOuLWa0471vr17]; 
