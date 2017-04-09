@@ -1,1 +1,0 @@
-define("app/weixinV2.1/book/global",[],{flipObj:null,dataJson:null});
