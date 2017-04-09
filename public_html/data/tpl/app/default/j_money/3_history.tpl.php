@@ -1,0 +1,232 @@
+<?php defined('IN_IA') or exit('Access Denied');?><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>收银台记录</title>
+<meta name="format-detection" content="telephone=no, address=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link href="./resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="./resource/css/font-awesome.min.css" rel="stylesheet">
+<link href="./resource/css/animate.css" rel="stylesheet">
+<link href="./resource/css/common.css" rel="stylesheet">
+<script src="<?php echo MODULE_URL;?>template/js/jquery-2.1.1.min.js"></script>
+
+<!-- date-time-picker -->
+<link href="<?php echo MODULE_URL;?>template/extension/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="<?php echo MODULE_URL;?>template/extension/datepicker/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo MODULE_URL;?>template/extension/datepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?php echo MODULE_URL;?>template/extension/datepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+</head>
+<body>
+<div class="main">
+  <div class="category">
+    <form action="" class="form-horizontal form">
+      <input type="hidden" name="c" value="entry" />
+      <input type="hidden" name="i" value="<?php  echo $_W['uniacid'];?>" />
+      <input type="hidden" name="m" value="j_money" />
+      <input type="hidden" name="do" value="counthistory" />
+      <input type="hidden" name="token" value="<?php  echo $_W['token'];?>" />
+      <div class="panel panel-info">
+        <div class="panel-body table-responsive">
+        <div class="form-group">
+            <label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+            <div class="col-sm-9 form-inline">
+
+              <div class="input-group">
+               <span class="input-group-addon">开始时间</span>
+               <span class="input-group-btn date form_datetime"  data-date="<?php  echo date('Y-m-d H:i',$starts)?>" data-date-format="dd MM yyyy - HH:ii p" data-link-field="start">
+               <input type="text" name="start" id="start" class="form-control" value="<?php  echo date('Y-m-d H:i',$starts)?>">
+          <!--      	<select name="date" class="form-control">
+                	<option value="0">全部日期</option>
+                    <?php  if(is_array($datelist)) { foreach($datelist as $row) { ?>
+                    <option value="<?php  echo $row['createdate'];?>" <?php  if($row['createdate']==$_GPC['date']) { ?>selected<?php  } ?>><?php  echo $row['createdate'];?></option>
+                    <?php  } } ?>
+                </select> -->
+               </span>
+               <span class="input-group-addon">结束时间</span>
+               <span class="input-group-btn date form_datetime"  data-date="<?php  echo date('Y-m-d H:i',$end)?>" data-date-format="dd MM yyyy - HH:ii p" data-link-field="end">
+                 <input type="text" name="end"  id="end" class="form-control" value="<?php  echo date('Y-m-d H:i',$end)?>">
+               </span>
+               <span class="input-group-btn"><input type="submit" class="btn btn-info" value="搜索"/></span>
+              </div>
+            </div>
+          </div>
+
+    </form>
+<script type="text/javascript">
+;(function($){
+  $.fn.datetimepicker.dates['zh-CN'] = {
+      days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+      daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+      daysMin:  ["日", "一", "二", "三", "四", "五", "六", "日"],
+      months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+      monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+      today: "今天",
+      suffix: [],
+      meridiem: ["上午", "下午"]
+  };
+
+    $('.form_datetime').datetimepicker({
+       language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    forceParse: 0,
+        showMeridian: 1
+    });
+
+    }(jQuery));
+</script>
+          <div class="well">
+
+
+<form action="" class="form-horizontal form" method="post">
+  <input type="hidden" name="all" value="<?php  echo sprintf('%.2f',(($payAry['alipay']['all']+$payAry['wechart']['all']+$payAry['meituan']['all']+$payAry['xianjin']['all']+$payAry['shuaka']['all'])/100))?>">
+  <input type="hidden" name="shishou" value="<?php  echo sprintf('%.2f',(($payAry['alipay']['cash_fee']+$payAry['wechart']['cash_fee']+$payAry['meituan']['cash_fee']+$payAry['xianjin']['cash_fee']+$payAry['shuaka']['cash_fee'])/100))?>">
+<div class="row">
+  <!-- <div class="col-xs-4"><input class="btn btn-success" type="submit" name="rijie" value="日结"></div> -->
+  <div class="col-xs-8">
+    <a href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&starttime=<?php  echo $starts;?>&endtime=<?php  echo $end;?>&do=printtong&m=j_money" class="btn btn-danger" target="_blank">消费统计表 <i class="fa fa-print"/></i></a>
+
+    <a href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&starttime=<?php  echo $starts;?>&endtime=<?php  echo $end;?>&do=printrijie&m=j_money" class="btn btn-danger" target="_blank">日结表对账单 <i class="fa fa-print"/></i></a>
+
+
+    <!-- <a href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&starttime=<?php  echo $starts;?>&endtime=<?php  echo $end;?>&do=printcat&m=j_money&cat=10" class="btn btn-danger" target="_blank">飞饼对账单 <i class="fa fa-print"/></i></a> -->
+
+    <!-- <a href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&starttime=<?php  echo $starts;?>&endtime=<?php  echo $end;?>&do=printcat&m=j_money&cat=8" class="btn btn-danger" target="_blank">酒水对账单 <i class="fa fa-print"/></i></a> -->
+
+  </div>
+  <div class="col-xs-4"><input class="btn btn-info pull-right" type="submit" name="jiaoban" value="确认交班"></div>
+</div>
+<hr>
+        打印分类对账单 ：
+    <?php  if(is_array($category)) { foreach($category as $item) { ?>
+    <a href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&starttime=<?php  echo $starts;?>&endtime=<?php  echo $end;?>&do=printcat&m=j_money&cat=<?php  echo $item['id'];?>" class="btn btn-success btn-mini" target="_blank" style="margin-top:2px">
+    <?php  echo $item['name'];?>
+        <i class="fa fa-print"/></i></a>
+    <?php  } } ?>
+  
+</form>
+          </div>
+          <table class="table table-hover hidden">
+            <thead>
+              <tr>
+                <th>类型</th>
+                <th>总金额</th>
+                <th>优惠金额</th>
+                <th>实收金额</th>
+              </tr>
+            </thead>
+            <tbody>
+            	<tr>
+                	<td>微信</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['wechart']['all']+$payAry['wechart']['wx'])/100))?>元 | <?php  echo $payAry['wechart']['all-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['wechart']['coupon']/100))?>元 | <?php  echo $payAry['wechart']['coupon-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['wechart']['cash_fee']+$payAry['wechart']['wx'])/100))?>元 | <?php  echo $payAry['wechart']['cash_fee-count']?>笔</td>
+                </tr>
+                <tr>
+                	<td>支付宝</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['alipay']['all']+$payAry['wechart']['ap'])/100))?>元 | <?php  echo $payAry['alipay']['all-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['alipay']['coupon']/100))?>元 | <?php  echo $payAry['alipay']['coupon-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['alipay']['cash_fee']+$payAry['wechart']['ap'])/100))?>元 | <?php  echo $payAry['alipay']['cash_fee-count']?>笔</td>
+                </tr>
+                <tr>
+                	<td>美团闪惠</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['shanhui']['all']/100))?>元 | <?php  echo $payAry['shanhui']['all-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['shanhui']['coupon']/100))?>元 | <?php  echo $payAry['shanhui']['coupon-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['shanhui']['cash_fee']/100))?>元 | <?php  echo $payAry['shanhui']['cash_fee-count']?>笔</td>
+                </tr>
+                <tr>
+                	<td>美团</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['meituan']['all']+$payAry['wechart']['qc'])/100))?>元 | <?php  echo $payAry['meituan']['all-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['meituan']['coupon']/100))?>元 | <?php  echo $payAry['meituan']['coupon-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['meituan']['cash_fee']+$payAry['wechart']['qc'])/100))?>元 | <?php  echo $payAry['meituan']['cash_fee-count']?>笔</td>
+                </tr>
+                <tr>
+                	<td>现金</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['xianjin']['all']+$payAry['wechart']['cs'])/100))?>元 | <?php  echo $payAry['xianjin']['all-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['xianjin']['coupon']/100))?>元 | <?php  echo $payAry['xianjin']['coupon-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['xianjin']['cash_fee']+$payAry['wechart']['cs'])/100))?>元 | <?php  echo $payAry['xianjin']['cash_fee-count']?>笔</td>
+                </tr>
+                <tr>
+                	<td>刷卡</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['shuaka']['all']+$payAry['wechart']['pc'])/100))?>元 | <?php  echo $payAry['shuaka']['all-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',($payAry['shuaka']['coupon']/100))?>元 | <?php  echo $payAry['shuaka']['coupon-count']?>笔</td>
+                    <td>￥<?php  echo sprintf('%.2f',(($payAry['shuaka']['cash_fee']+$payAry['wechart']['pc'])/100))?>元 | <?php  echo $payAry['shuaka']['cash_fee-count']?>笔</td>
+                </tr>
+                <tr>
+                	<td><strong>合计</strong></td>
+                    <td style="color:#F00">￥<?php  echo sprintf('%.2f',(($payAry['alipay']['all']+$payAry['wechart']['all']+$payAry['meituan']['all']+$payAry['xianjin']['all']+$payAry['shuaka']['all']+$payAry['shanhui']['all']+$payAry['wechart']['wx']+$payAry['wechart']['ap']+$payAry['wechart']['cs']+$payAry['wechart']['qc']+$payAry['wechart']['pc'])/100))?>元 
+                        | <?php  echo $payAry['alipay']['all-count']+$payAry['wechart']['all-count']+$payAry['meituan']['all-count']+$payAry['xianjin']['all-count']+$payAry['shuaka']['all-count']+$payAry['shanhui']['all-count']?>笔</td>
+                    <td style="color:#F00">￥<?php  echo sprintf('%.2f',(($payAry['alipay']['coupon']+$payAry['wechart']['coupon']+$payAry['meituan']['coupon']+$payAry['xianjin']['coupon']+$payAry['shuaka']['coupon']+$payAry['shanhui']['coupon'])/100))?>元 | <?php  echo $payAry['alipay']['coupon-count']+$payAry['wechart']['coupon-count']+$payAry['meituan']['coupon-count']+$payAry['xianjin']['coupon-count']+$payAry['shuaka']['coupon-count']+$payAry['shanhui']['coupon-count']?>笔</td>
+                    <td style="color:#F00">￥<?php  echo sprintf('%.2f',(($payAry['alipay']['cash_fee']+$payAry['wechart']['cash_fee']+$payAry['meituan']['cash_fee']+$payAry['xianjin']['cash_fee']+$payAry['shuaka']['cash_fee']+$payAry['shanhui']['cash_fee']+$payAry['wechart']['wx']+$payAry['wechart']['ap']+$payAry['wechart']['cs']+$payAry['wechart']['qc']+$payAry['wechart']['pc'])/100))?>元 | <?php  echo $payAry['alipay']['cash_fee-count']+$payAry['wechart']['cash_fee-count']+$payAry['meituan']['cash_fee-count']+$payAry['xianjin']['cash_fee-count']+$payAry['shuaka']['cash_fee-count']+$payAry['shanhui']['cash_fee-count']?>笔</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-body table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>时间</th>
+                <th>台桌</th>
+                <th>收银员</th>
+                <th>金额计算</th>
+                <th>实收</th>
+                <th>支付方式</th>
+                <th>打印小票</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php  if(is_array($list)) { foreach($list as $row) { ?>
+            <tr>
+              <td><?php  echo $row['id'];?></td>
+              <td><?php  echo date("m-d H:i",$row['createtime'])?></td>
+              <td><?php  echo $row['tablename'];?></td>
+              <td><?php  echo $userList[$row['userid']]?></td>
+              <td>￥<?php  echo sprintf('%.2f',($row['total_fee']/100))?> - <?php  echo sprintf('%.2f',($row['coupon_fee']/100))?></td>
+              <td>￥<?php  echo sprintf('%.2f',($row['countmoney']/100))?></td><!-- $row['cash_fee'] -->
+              <td>
+<?php  if($row['paytype']==0) { ?> 微信<?php  if($row['addcount']==2) { ?>+支付宝<?php  } else if($row['addcount']==3) { ?>+现金<?php  } else if($row['addcount']==4) { ?>+美团<?php  } else if($row['addcount']==5) { ?>+刷卡<?php  } ?><?php  echo $data[$row['bank_type']]?>
+              <?php  } else if($row['paytype']==1) { ?>支付宝<?php  if($row['addcount']==1) { ?>+微信<?php  } else if($row['addcount']==3) { ?>+现金<?php  } else if($row['addcount']==4) { ?>+美团<?php  } else if($row['addcount']==5) { ?>+刷卡<?php  } ?>
+              <?php  } else if($row['paytype']==5) { ?> 美团闪惠<?php  if($row['addcount']==2) { ?>+支付宝<?php  } else if($row['addcount']==3) { ?>+现金<?php  } else if($row['addcount']==4) { ?>+美团<?php  } else if($row['addcount']==5) { ?>+刷卡<?php  } else if($row['addcount']==1) { ?>+微信<?php  } ?>
+              <?php  } else if($row['paytype']==2) { ?> 美团<?php  if($row['addcount']==2) { ?>+支付宝<?php  } else if($row['addcount']==3) { ?>+现金<?php  } else if($row['addcount']==5) { ?>+刷卡<?php  } else if($row['addcount']==1) { ?>+微信<?php  } ?>
+              <?php  } else if($row['paytype']==3) { ?> 现金<?php  if($row['addcount']==2) { ?>+支付宝<?php  } else if($row['addcount']==4) { ?>+美团<?php  } else if($row['addcount']==5) { ?>+刷卡<?php  } else if($row['addcount']==1) { ?>+微信<?php  } ?>
+              <?php  } else if($row['paytype']==4) { ?> 刷卡<?php  if($row['addcount']==2) { ?>+支付宝<?php  } else if($row['addcount']==3) { ?>+现金<?php  } else if($row['addcount']==4) { ?>+美团<?php  } else if($row['addcount']==1) { ?>+微信<?php  } ?><?php  } ?>
+              </td>
+              <td>
+                  <?php  if($row['status']==1) { ?>
+              <!-- <span class="label label-success"><i class="fa fa-check"/></i></span> -->
+              <a class="btn btn-danger" target="_blank" href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&orderid=<?php  echo $row['orderid'];?>&tablesid=<?php  echo $row['tablesid'];?>&comment=&do=print&m=j_money" ><i class="fa fa-print"/></i>打印</a>
+              <?php  } else { ?> <a class="tips" data-toggle="tooltip" data-placement="bottom" title="<?php  echo $row['log'];?>"><span class="label label-danger"><i class="fa fa-exclamation-triangle"/></i></span></a><?php  } ?>
+              </td>
+            </tr>
+            <?php  } } ?>
+            <tr>
+              </tbody>
+          </table>
+          <div class="text-center">
+          <?php  echo $pager;?>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(e){
+	setHeight();
+	setTimeout("setHeight()",1000);
+});
+function setHeight(){
+	$("#historybox", window.top.document).height($(document).height());
+}
+</script>
