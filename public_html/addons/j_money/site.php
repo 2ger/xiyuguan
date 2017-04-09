@@ -4555,5 +4555,28 @@ $GLOBALS['frames'] = array();
 		$modalClass=new $Extension_modal();
 		call_user_func(array($modalClass,$Extension_do)); 
 	}
+    //api格式
+    //餐桌管理
+	public function doMobileGetTables(){
+		global $_W,$_GPC;
+        $weid = $_GPC['weid'];
+        $storeid = $_GPC['storeid'];
+			$list = pdo_fetchall("SELECT a.id,a.title,a.status,b.title as zone FROM ims_weisrc_dish_tables a  left join ims_weisrc_dish_tablezones b on a.tablezonesid =b.id AND a.storeid = b.storeid WHERE a.storeid = ".$storeid."  ORDER BY b.order,a.tablezonesid, a.title ASC");//'{$_W['uniacid']}' 
+            foreach ($list as $key => $value) {
+                //未结账的订单总价
+                $list[$key]['order']= pdo_fetch("SELECT totalprice,id,dateline,counts FROM  ims_weisrc_dish_order WHERE tables = ".$value['id']." and status in (0,1)  and ispay =0 order by id ");//  11.27  desc
+                if($list[$key]['order']){
+                	$list[$key]['price'] = pdo_fetch("SELECT sum(price*total) as total FROM  ims_weisrc_dish_order_goods WHERE type = 0 and status =1 and orderid = ".$list[$key]['order']['id']);//按商品表计算总价
+                }
+                $list[$key]['yu'] = $_GPC['yu'. $value['id']];
+                $list[$key]['dian'] = $_GPC['dian'. $value['id']];
+                }
+            // var_dump($list);
+            if(!empty($list)){
+                die(json_encode(array("success"=>true,"data"=>$list)));
+            }else{
+                die(json_encode(array("success"=>false)));
+            }
+	}
 	
 }

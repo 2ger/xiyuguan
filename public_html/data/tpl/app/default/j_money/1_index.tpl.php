@@ -1333,7 +1333,6 @@ $('#addpaybtn').click(function(){
                                             <br>
                                             <div class="col-xs-12">
                                                 <?php  if(is_array($list)) { foreach($list as $item) { ?>
-
                                                 <?php  if($item['status']==0) { ?>
                                                 <?php  $status = 'success';?>
                                                 <?php  $title = '空闲';?>
@@ -1347,38 +1346,33 @@ $('#addpaybtn').click(function(){
                                                     <?php  if($item['yu']) { ?>
                                                         <?php  $status = 'warning';?>
                                                     <?php  } ?>
-
                                                 <?php  } ?>
                                                 <?php  if($item['status']==0) { ?>
-                                                <div class="col-xs-1 kaitai img-thumbnail btn btn-<?php  echo $status;?> table-item " tablesid="<?php  echo $item['id'];?>">
-                                                    <a class="<?php  echo $status;?> round">
+                                                <div class="col-xs-1 kaitai img-thumbnail btn btn-<?php  echo $status;?> table-item " tablesid="<?php  echo $item['id'];?>" order="-1">
+                                                    <div class="<?php  echo $status;?> round">
                                                       <h4> <?php  echo $item['zone'];?>-<?php  echo $item['title'];?> </h4>
                                                         <div class="state">
-                                                        <?php  echo $title;?></div>  
-                                                     </a>
+                                                        <?php  echo $title;?>
                                                      <a class="btn btn-success btn-block" >点击开台</a>
+                                                    </div>  
+                                                     </div>
                                                      <?php  } else { ?>
-
-                                                     <div class="col-xs-1 img-thumbnail btn btn-<?php  echo $status;?> table-item " data-id="<?php  echo $item['id'];?>"   order="<?php  echo $item['order']['id'];?>">
+                                                     <div class="col-xs-1 img-thumbnail btn btn-<?php  echo $status;?> table-item " tablesid="<?php  echo $item['id'];?>"   order="<?php  echo $item['order']['id'];?>">
                                                        <a class="<?php  echo $status;?> round" href="index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&op=in&do=index&m=j_money&tablesid=<?php  echo $item['id'];?>">
                                                         <h4><?php  echo $item['zone'];?>-<?php  echo $item['title'];?></h4>
                                                         <div class="state">
                                                             <!-- <?php  echo round($item['totalprice'])?>元 -->
                                                             <?php  echo round($item['price']['total'])?>元
-                                                            <?php  if($typeid['typeid'] ==3) { ?>
-                                                            /<?php  echo $item['order']['counts'];?>人
-                                                            <?php  } ?>
                                                             <br>
                                                             <?php  echo date('H:i',$item['order']['dateline'])?>
                                                             <?php  echo $title;?>
                                                             <br>
                                                             <?php  if($item['dian']) { ?>
-                                                            <i class="fa fa-check-square"></i>
+                                                            <i class="dian fa fa-check-square"></i>
                                                             <?php  } ?>
                                                             <?php  if($item['yu']) { ?>
-                                                            <i class="fa fa-list"></i>
+                                                            <i class="yu fa fa-list"></i>
                                                             <?php  } ?>
-
                                                         </div>  
                                                     </a>
                                                     <?php  } ?>
@@ -1386,7 +1380,6 @@ $('#addpaybtn').click(function(){
                                                 <?php  } } ?>
                                             </div>
                                         </div>
-
                                         <iframe src="" id="printbox" name="printbox" style="width:0px; height:0px; border: 0;"></iframe>
                                     </div>
                                 </div>
@@ -1404,7 +1397,7 @@ $('#addpaybtn').click(function(){
                                 <script type="text/javascript">
 
 //开台
-$('.kaitai').click(function(){
+$('#a1').on('click','.kaitai',function(){
     console.log(<?php  echo $storeid;?>);
     var tablesid = $(this).attr('tablesid');
     var btns = '';
@@ -2683,6 +2676,44 @@ function extendPaySuccess(callback){
     });
     getCounterRecord();
 }
+
+//api 
+function getTables(){
+    $.post("./index.php?i=<?php  echo $weid;?>&c=entry&do=gettables&m=j_money",{"storeid":<?php  echo $weid;?>},function(data){
+        //console.log(data);
+        var feedback=eval("("+data+")");
+        console.log(feedback.data.length);
+        var tablesid = 0;
+        var price = 0;
+        var time = '';
+        var orderid = -1;
+    var tables = '';
+    tables += '<div class="row">';
+    for(var i=0;i<feedback.data.length;i++){
+        var statusHtml = '';
+        //tables += '<div class="col-xs-3"  style="margin:2px 0;"> <a type="a" class="btn btn-info btn-lg btn-block" onclick=settaste("'+i+'")>'+i+'人</a></div>';
+        //console.log(feedback.data[i].title);
+        tablesid = feedback.data[i].id;
+        orderid = parseInt(feedback.data[i].order.id);
+        if(orderid > 0){
+            $('[tablesid='+tablesid+']').removeClass('btn-success').addClass('btn-danger');        
+            price = parseInt(feedback.data[i].order.totalprice);
+            var dateTime = new Date(parseInt(feedback.data[i].order.dateline) * 1000);
+            var time = dateTime.getHours()+':'+dateTime.getMinutes();
+
+            statusHtml += price+' 元 <br>'; 
+            statusHtml += time+' 开台 <br>'; 
+        }else{
+            $('[tablesid='+tablesid+']').removeClass('btn-danger').addClass('btn-success kaitai');        
+            $('[tablesid='+tablesid+']').find('a').attr('href','#');        
+            statusHtml = ' 空闲 <br> <a class="btn btn-success btn-block" >点击开台</a>'; 
+        }
+        $('[tablesid='+tablesid+']').find('.state').html(statusHtml);        
+    }
+       
+    });
+}
+window.setInterval(getTables, 5000); 
 </script>
 
 <?php  if(is_array($btnlist)) { foreach($btnlist as $row) { ?>
