@@ -4,19 +4,20 @@ defined('IN_IA') or exit('Access Denied');
 $config = array();
 
 // 正式发布 push 要打开这里，注示下面
-	$config['setting']['development'] = 0;//正式发布
-	$config['db']['master']['host'] = '10.66.206.165';
-	$config['db']['master']['username'] = 'root';
+	// $config['setting']['development'] = 0;//正式发布
+	// $config['db']['master']['host'] = '10.66.206.165';
+	// $config['db']['master']['username'] = 'root';
+	// $config['db']['master']['port'] = '3306';
 // 正式发布
 
 // 本地测试
-	// $config['setting']['development'] = 1;//本地测试
-	// $config['db']['master']['host'] = '115.159.222.211';
-	// $config['db']['master']['username'] = 'test333';
+	$config['setting']['development'] = 1;//本地测试
+	$config['db']['master']['host'] = '58ec555b6dd57.sh.cdb.myqcloud.com';
+	$config['db']['master']['username'] = 'cdb_outerroot';
+	$config['db']['master']['port'] = '5611';
 // 本地测试
 
 $config['db']['master']['password'] = 'yh999999';
-$config['db']['master']['port'] = '3306';
 $config['db']['master']['database'] = 'shanghai';
 $config['db']['master']['charset'] = 'utf8';
 $config['db']['master']['pconnect'] = 0;
